@@ -18,6 +18,9 @@
     "//": "More info on Jest config below",
     "test": "jest --coverage",
 
+    "//": "More info on Jest config below",
+    "test:watch": "jest --watch --coverage",
+
     "//": "Bundle the server with development environment before start script",
     "prestart": "yarn build",
 
