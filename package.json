@@ -3,9 +3,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --config webpack/server/index.ts",
     "test": "echo Hello world"
   },
   "dependencies": {
+    "express": "^4.15.2",
     "webpack": "^2.3.3"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.40",
+    "@types/node": "^7.0.12",
+    "@types/redux": "^3.6.0"
   }
 }
