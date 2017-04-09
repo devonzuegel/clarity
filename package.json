@@ -4,6 +4,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack/server/index.ts",
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+    "pretest": "npm run lint",
     "test": "echo Hello world",
     "prestart": "webpack --config webpack/server/index.ts",
     "start": "node build/backend.js"
@@ -26,6 +28,8 @@
     "@types/ramda": "^0.0.5",
     "@types/redux": "^3.6.0",
     "@types/webpack": "^2.2.14",
-    "@types/webpack-merge": "^0.0.4"
+    "@types/webpack-merge": "^0.0.4",
+    "tslint": "^5.0.0",
+    "typescript": "^2.2.2"
   }
 }
