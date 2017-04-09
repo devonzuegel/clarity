@@ -3,13 +3,30 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack/server/index.ts",
+    "//": "Build development server",
+    "build": "webpack --config webpack/server/development.ts",
+
+    "//": "Build release and output it into /dist",
+    "build:prod": "webpack --config webpack/server/production.ts",
+
+    "//": "Lint all Typescript files",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+
+    "//": "Run linter as part of test script",
     "pretest": "npm run lint",
+
+    "//": "More info on Jest config below",
     "test": "jest",
-    "prestart": "webpack --config webpack/server/index.ts",
+
+    "//": "Bundle the server with development environment before start script",
+    "prestart": "yarn build",
+
+    "//": "Run development server",
     "start": "node build/backend.js",
+
+    "//": "Run production server",
     "start:prod": "node dist/backend.js"
+
   },
   "dependencies": {
     "awesome-typescript-loader": "^3.1.2",
