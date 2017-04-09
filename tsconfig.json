@@ -9,7 +9,7 @@
     "paths": {
       "~/*": [ "src/*" ]
     },
-    "types": ["node", "redux", "mocha"],
+    "types": ["node", "redux", "jest"],
     "outDir": "build",
     "module": "commonjs",
     "target": "es5",
