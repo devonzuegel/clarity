@@ -15,13 +15,7 @@ export const config: Function = (config: Options.Interface) => ({
   },
 
   module: {
-    rules: [
-      {
-        test:    /\.tsx?$/,
-        loader:  'ts-loader',
-        exclude: /node_modules/,
-      },
-    ]
+    rules: require('./loaders').rules,
   },
 
   devtool: config.devtool,
