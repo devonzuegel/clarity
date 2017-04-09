@@ -4,10 +4,24 @@ import * as Options from '../models/Options'
 
 export const config: Function = (config: Options.Interface) => ({
   // Take the entry point `src/main.js` and generate a file at `build/backend.js`.
-  entry:  './src/main.js',
+  entry:  './src/main.ts',
   output: {
     path:     path.join(config.rootDir, config.outputDir),
     filename: 'backend.js',
+  },
+
+  resolve: {
+    extensions: ['.tsx', '.ts']
+  },
+
+  module: {
+    rules: [
+      {
+        test:    /\.tsx?$/,
+        loader:  'ts-loader',
+        exclude: /node_modules/,
+      },
+    ]
   },
 
   devtool: config.devtool,
