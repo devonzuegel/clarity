@@ -8,11 +8,15 @@
   },
   "dependencies": {
     "express": "^4.15.2",
+    "ramda": "^0.23.0",
+    "source-map-support": "^0.4.14",
     "webpack": "^2.3.3"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.40",
     "@types/node": "^7.0.12",
-    "@types/redux": "^3.6.0"
+    "@types/ramda": "^0.0.5",
+    "@types/redux": "^3.6.0",
+    "@types/webpack": "^2.2.14"
   }
 }
