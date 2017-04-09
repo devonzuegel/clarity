@@ -16,7 +16,7 @@
     "pretest": "npm run lint",
 
     "//": "More info on Jest config below",
-    "test": "jest",
+    "test": "jest --coverage",
 
     "//": "Bundle the server with development environment before start script",
     "prestart": "yarn build",
@@ -26,7 +26,6 @@
 
     "//": "Run production server",
     "start:prod": "node dist/backend.js"
-
   },
   "dependencies": {
     "awesome-typescript-loader": "^3.1.2",
