@@ -1,16 +1,15 @@
 import * as path from 'path'
 
-import { config       } from './config'
-import * as Environment from '../models/Environment'
+import { config } from './config'
+import * as Env   from '../models/Environment'
 
-const env: Environment.Type = Environment.Enum.production
+const env: Env.Type = Env.Enum.development
 
-const node = {
-  console: env !== Environment.Enum.production,
-}
+const isProd = String(env) === String(Env.Enum.production)
 
 export default config({
-  rootDir: path.join(__dirname, '../..'),
-  devtool: 'sourcemap',
-  node,
+  rootDir:   path.join(__dirname, '../..'),
+  outputDir: 'build',
+  devtool:   'sourcemap',
+  console:   !isProd,
 })

@@ -2,7 +2,7 @@ const fs = require('fs')
 
 import { StrObject } from '../../utils/models'
 
-/*
+/**
  * By default, Webpack loads modules from the `node_modules` folder and bundle
  * them in. This is fine for frontend code, but backend modules typically
  * aren't prepared for this (i.e. using require in weird ways) or even worse
