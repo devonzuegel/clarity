@@ -9,7 +9,7 @@ const isProd = String(env) === String(Env.Enum.production)
 
 export default config({
   rootDir:   path.join(__dirname, '../..'),
-  outputDir: 'build',
+  outputDir: isProd ? 'dist' : 'build',
   devtool:   'sourcemap',
   console:   !isProd,
 })

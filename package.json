@@ -8,7 +8,8 @@
     "pretest": "npm run lint",
     "test": "jest",
     "prestart": "webpack --config webpack/server/index.ts",
-    "start": "node build/backend.js"
+    "start": "node build/backend.js",
+    "start:prod": "node dist/backend.js"
   },
   "dependencies": {
     "awesome-typescript-loader": "^3.1.2",
