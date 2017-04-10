@@ -64,11 +64,40 @@ require("source-map-support").install();
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+module.exports = require("path");
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var U = __webpack_require__(11);
+exports.Enum = U.strEnum(['development', 'production']);
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Env = __webpack_require__(1);
+var _1 = __webpack_require__(12);
+exports.default = _1.setup(Env.Enum.development);
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -78,34 +107,176 @@ module.exports = {
 
 
 /***/ }),
-/* 1 */
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = require("chalk");
 
 /***/ }),
-/* 2 */
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 3 */
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = require("react");
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack");
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-dev-middleware");
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-hot-middleware");
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var appConfig = __webpack_require__(3);
+var React = __webpack_require__(6);
+var express = __webpack_require__(5);
+var path = __webpack_require__(0);
+var Chalk = __webpack_require__(4);
+var app = express();
+if (process.env.NODE_ENV !== 'production') {
+    var webpack = __webpack_require__(7);
+    var webpackConfig = __webpack_require__(2).default;
+    var webpackCompiler = webpack(webpackConfig);
+    app.use(__webpack_require__(8)(webpackCompiler, {
+        publicPath: webpackConfig.output.publicPath,
+        stats: { colors: true },
+        noInfo: true,
+        hot: true,
+        inline: true,
+        lazy: false,
+        historyApiFallback: true,
+        quiet: true
+    }));
+    app.use(__webpack_require__(9)(webpackCompiler));
+}
+app.use('/', express.static(path.join(__dirname)));
+app.get('*', function (_, res) {
+    res.status(200).send(renderHTML());
+});
+console.info(Chalk.black.bgGreen("\n\nListening at http://" + appConfig.host + ":" + appConfig.port + "\n"));
+app.listen(appConfig.port);
+function renderHTML() {
+    var html = "\n    <div>\n      <div id=\"root\" />\n      <script src=\"/frontend.js\"></script>\n    </div>\n  ";
+    return "<!doctype html> " + html;
+}
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = __webpack_require__(2);
-var chalk = __webpack_require__(1);
-var config = __webpack_require__(0);
-var app = express();
-app.get('/', function (_, res) {
-    res.send('Hello world');
-});
-console.info(chalk.black.bgGreen("\n\nListening at http://" + config.host + ":" + config.port + "\n"));
-app.listen(config.port);
+// Adopted from:
+//   https://basarat.gitbooks.io/typescript/docs/types/literal-types.html
+function strEnum(o) {
+    return o.reduce(function (res, key) {
+        res[key] = key;
+        return res;
+    }, Object.create(null));
+}
+exports.strEnum = strEnum;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var webpackMerge = __webpack_require__(16);
+var path = __webpack_require__(0);
+var Env = __webpack_require__(1);
+exports.setup = function (env) {
+    var isProd = String(env) === String(Env.Enum.production);
+    var options = {
+        rootDir: path.join(__dirname, '../..'),
+        outputDir: isProd ? 'dist' : 'build',
+        devtool: 'source-map',
+        console: !isProd
+    };
+    return webpackMerge([__webpack_require__(14), __webpack_require__(13)].map(function (m) {
+        return m.partial(options);
+    }));
+};
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var path = __webpack_require__(0);
+exports.partial = function (c) {
+    return {
+        entry: './src/frontend/main.tsx',
+        output: {
+            path: path.join(c.rootDir, c.outputDir),
+            filename: 'frontend.js'
+        },
+        devtool: c.devtool
+    };
+};
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var CheckerPlugin = __webpack_require__(15).CheckerPlugin;
+exports.partial = function () {
+    return {
+        module: {
+            rules: [{
+                test: /\.tsx?$/,
+                loader: 'awesome-typescript-loader',
+                exclude: /node_modules/
+            }]
+        },
+        plugins: [new CheckerPlugin()]
+    };
+};
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = require("awesome-typescript-loader");
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-merge");
 
 /***/ })
 /******/ ]);
