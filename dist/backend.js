@@ -64,7 +64,7 @@ require("source-map-support").install();
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -87,24 +87,48 @@ module.exports = require("chalk");
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = require("express");
+module.exports = require("es6-promise");
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+module.exports = require("express");
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = require("isomorphic-fetch");
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = require("path");
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = __webpack_require__(2);
+var e6p = __webpack_require__(2);
+e6p.polyfill();
+__webpack_require__(4);
+// import * as React   from 'react'
+var express = __webpack_require__(3);
 var chalk = __webpack_require__(1);
+var path = __webpack_require__(5);
 var config = __webpack_require__(0);
 var app = express();
-app.get('/', function (_, res) {
-    res.send('Hello world');
+app.get('*', function (_, res) {
+    res.status(200).send('<h1>Hello world!</h1>');
 });
 console.info(chalk.black.bgGreen("\n\nListening at http://" + config.host + ":" + config.port + "\n"));
+app.use('/public', express.static(path.join(__dirname, '../build/frontend')));
 app.listen(config.port);
 
 /***/ })
