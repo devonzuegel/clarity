@@ -2,11 +2,16 @@
 
 ## Development ##
 
-To continuously run tests whenever related files chnage:
+- `yarn build`:      Build development server (outputs into `/build`)
+- `yarn build:prod`: Build release  (outputs into `/dist`)
+- `yarn lint`:       Lint all Typescript files
+- `yarn pretest`:    Run linter as part of test script
+- `yarn test`:       More info on Jest config below
+- `yarn test:watch`: Run Jest in watch mode
+- `yarn prestart`:   Bundle the server with development environment before start script
+- `yarn start`:      Run development server
+- `yarn start:prod`: Run production server
 
-```shell
-jest --watch
-```
 
 ## Build System ##
 
