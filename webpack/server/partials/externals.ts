@@ -2,8 +2,8 @@ import * as webpack from 'webpack'
 
 const fs = require('fs')
 
-import * as Options  from '../../models/Options'
-import { StrObject } from '../../../utils/models'
+import * as Options  from 'webpack/models/Options'
+import { StrObject } from 'utils/models'
 
 /**
  * By default, Webpack loads modules from the `node_modules` folder and bundle

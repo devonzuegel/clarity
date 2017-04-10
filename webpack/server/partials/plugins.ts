@@ -1,5 +1,5 @@
 import * as webpack from 'webpack'
-import * as Options from '../../models/Options'
+import * as Options from 'webpack/models/Options'
 
 export const partial = (_: Options.Interface): webpack.Configuration => ({
   plugins: [
