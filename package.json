@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack/development.ts",
-    "build:prod": "webpack --config webpack/production.ts",
+    "build": "node tasks build",
+    "build:prod": "node tasks build:prod",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "pretest": "npm run lint",
     "test": "jest --coverage",
@@ -32,6 +32,7 @@
     "@types/redux": "^3.6.0",
     "@types/webpack": "^2.2.14",
     "@types/webpack-merge": "^0.0.4",
+    "child_process": "^1.0.2",
     "jest": "^19.0.2",
     "ts-jest": "^19.0.8",
     "tslint": "^5.0.0",
