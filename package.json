@@ -3,31 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "//": "Build development server",
-    "build": "webpack --config webpack/server/development.ts",
-
-    "//": "Build release and output it into /dist",
-    "build:prod": "webpack --config webpack/server/production.ts",
-
-    "//": "Lint all Typescript files",
+    "build": "webpack --config webpack/development.ts",
+    "build:prod": "webpack --config webpack/production.ts",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
-
-    "//": "Run linter as part of test script",
     "pretest": "npm run lint",
-
-    "//": "More info on Jest config below",
     "test": "jest --coverage",
-
-    "//": "More info on Jest config below",
     "test:watch": "jest --watch --coverage",
-
-    "//": "Bundle the server with development environment before start script",
     "prestart": "yarn build",
-
-    "//": "Run development server",
     "start": "node build/backend.js",
-
-    "//": "Run production server",
     "start:prod": "node dist/backend.js"
   },
   "dependencies": {
