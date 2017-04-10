@@ -1,10 +1,11 @@
 const appConfig = require('./config.js')
 
-const express = require('express')
-const path = require('path')
+const React       = require('react')
+const express     = require('express')
+const path        = require('path')
 const compression = require('compression')
-const Chalk = require('chalk')
-const app = express()
+const Chalk       = require('chalk')
+const app         = express()
 
 app.use(compression())
 

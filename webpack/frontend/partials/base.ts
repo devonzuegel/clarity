@@ -9,5 +9,7 @@ export const partial = (c: Options.Interface): webpack.Configuration => ({
     path:     path.join(c.rootDir, c.outputDir),
     filename: 'frontend.js',
   },
+
+  devtool: c.devtool,
 })
 
