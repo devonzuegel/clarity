@@ -9,7 +9,7 @@ export const setup = (env: Env.Type) => {
   return config({
     rootDir:   path.join(__dirname, '../..'),
     outputDir: isProd ? 'dist' : 'build',
-    devtool:   'sourcemap',
+    devtool:   'source-map',
     console:   !isProd,
   })
 }

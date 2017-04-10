@@ -1,6 +1,8 @@
+import * as webpack from 'webpack'
+
 const { CheckerPlugin } = require('awesome-typescript-loader')
 
-export default {
+export const partial = (): webpack.Configuration => ({
   module: {
     rules: [
       {
@@ -12,4 +14,4 @@ export default {
   },
 
   plugins: [ new CheckerPlugin() ],
-}
+})

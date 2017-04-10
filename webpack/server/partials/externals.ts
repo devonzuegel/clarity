@@ -1,6 +1,9 @@
+import * as webpack from 'webpack'
+
 const fs = require('fs')
 
-import { StrObject } from '../../utils/models'
+import * as Options  from '../../models/Options'
+import { StrObject } from '../../../utils/models'
 
 /**
  * By default, Webpack loads modules from the `node_modules` folder and bundle
@@ -12,9 +15,12 @@ import { StrObject } from '../../utils/models'
  * this in to Webpack's `externals` config option.
  */
 
-export let nodeModules: StrObject = {}
-
+let nodeModules: StrObject = {}
 fs.readdirSync('node_modules')
   .filter((x: string) => ['.bin'].indexOf(x) === -1)
   .forEach((mod: string) => { nodeModules[mod] = 'commonjs ' + mod })
+
+export const partial = (_: Options.Interface): webpack.Configuration => ({
+  externals: nodeModules, // Externals will not be bundled in.
+})
 
