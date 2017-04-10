@@ -4,7 +4,7 @@ import * as webpack from 'webpack'
 import * as Options from '../../models/Options'
 
 export const partial = (c: Options.Interface): webpack.Configuration => ({
-  entry: './src/frontend/main.ts',
+  entry: './src/frontend/main.tsx',
   output: {
     path:     path.join(c.rootDir, c.outputDir),
     filename: 'frontend.js',

@@ -12,7 +12,7 @@ export const partial = (c: Options.Interface): webpack.Configuration => ({
   },
 
   resolve: {
-    extensions: ['.tsx', '.ts']
+    extensions: ['.tsx', '.ts'],
   },
 
   devtool: c.devtool,

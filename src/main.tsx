@@ -1,20 +1,52 @@
-import * as e6p from 'es6-promise'
-(e6p as any).polyfill()
-import 'isomorphic-fetch'
+const appConfig = require('./config.js')
 
-// import * as React   from 'react'
-import * as express from 'express'
-import * as chalk   from 'chalk'
-import * as path    from 'path'
+const express = require('express')
+const path = require('path')
+const compression = require('compression')
+const Chalk = require('chalk')
+const app = express()
 
-const config = require('./config.js')
-const app    = express()
+app.use(compression())
 
-app.get('*', (_: express.Request, res: express.Response) => {
-  res.status(200).send('<h1>Hello world!</h1>')
+if (process.env.NODE_ENV !== 'production') {
+  const webpack         = require('webpack')
+  const webpackConfig   = require('../webpack/frontend/development').default
+  const webpackCompiler = webpack(webpackConfig)
+
+  app.use(require('webpack-dev-middleware')(webpackCompiler, {
+    publicPath:         webpackConfig.output.publicPath,
+    stats:              { colors: true },
+    noInfo:             true,
+    hot:                true,
+    inline:             true,
+    lazy:               false,
+    historyApiFallback: true,
+    quiet:              true,
+  }))
+
+  app.use(require('webpack-hot-middleware')(webpackCompiler))
+}
+
+app.get('*', (_: any, res: any) => {
+  res.status(200).send(renderHTML())
 })
 
-console.info(chalk.black.bgGreen(`\n\nListening at http://${config.host}:${config.port}\n`))
-app.use('/public', express.static(path.join(__dirname, '../build/frontend')))
-app.listen(config.port)
+app.listen(appConfig.port, appConfig.host, (err: any) => {
+  if (err) {
+    console.error(Chalk.bgRed(err))
+  } else {
+    console.info(Chalk.black.bgGreen(
+      `\n\n  Listening at http://${appConfig.host}:${appConfig.port}\n`,
+    ))
+  }
+})
 
+function renderHTML() {
+  const html: string = `
+    <div>
+      <div id="root" />
+      <script src="/frontend.js"></script>
+    </div>
+  `
+  return `<!doctype html> ${html}`
+}
