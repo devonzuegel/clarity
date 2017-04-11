@@ -1,39 +1,21 @@
-const config  = require('./config.js')
-const React   = require('react')
-const express = require('express')
-const path    = require('path')
-const Chalk   = require('chalk')
-const app     = express()
+import * as express                 from 'express'
+import { runHotMiddleware, listen } from './middleware'
 
+const config = require('./config.js')
+const app    = express()
 
-if (process.env.NODE_ENV !== 'production') {
-  const webpack         = require('webpack')
-  const webpackConfig   = require('../../webpack/frontend/development').default
-  const webpackCompiler = webpack(webpackConfig)
-
-  app.use(require('webpack-dev-middleware')(webpackCompiler, {
-    publicPath:         webpackConfig.output.publicPath,
-    stats:              { colors: true },
-    noInfo:             true,
-    hot:                true,
-    inline:             true,
-    lazy:               false,
-    historyApiFallback: true,
-    quiet:              true,
-  }))
-
-  app.use(require('webpack-hot-middleware')(webpackCompiler))
+if (config.env !== 'production') {
+  runHotMiddleware(app)
 }
 
-app.use('/', express.static(path.join(__dirname)))
+app.use('/', express.static(__dirname))
 
-app.get('*', (_: any, res: any) => {
+app.get('*', (_: express.Request, res: express.Response) => {
   res.status(200).send(renderHTML())
 })
 
+listen(app, config)
 
-console.info(Chalk.black.bgGreen(`\n\nListening at http://${config.host}:${config.port}\n`))
-app.listen(config.port)
 
 function renderHTML() {
   const html: string = `
