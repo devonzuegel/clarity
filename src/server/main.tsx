@@ -1,5 +1,4 @@
-const appConfig = require('./config.js')
-
+const config  = require('./config.js')
 const React   = require('react')
 const express = require('express')
 const path    = require('path')
@@ -9,7 +8,7 @@ const app     = express()
 
 if (process.env.NODE_ENV !== 'production') {
   const webpack         = require('webpack')
-  const webpackConfig   = require('../webpack/frontend/development').default
+  const webpackConfig   = require('../../webpack/frontend/development').default
   const webpackCompiler = webpack(webpackConfig)
 
   app.use(require('webpack-dev-middleware')(webpackCompiler, {
@@ -33,8 +32,8 @@ app.get('*', (_: any, res: any) => {
 })
 
 
-console.info(Chalk.black.bgGreen(`\n\nListening at http://${appConfig.host}:${appConfig.port}\n`))
-app.listen(appConfig.port)
+console.info(Chalk.black.bgGreen(`\n\nListening at http://${config.host}:${config.port}\n`))
+app.listen(config.port)
 
 function renderHTML() {
   const html: string = `
