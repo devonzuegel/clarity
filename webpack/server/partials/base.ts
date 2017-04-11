@@ -5,7 +5,7 @@ import * as Options from 'webpack/models/Options'
 
 export const partial = (c: Options.Interface): webpack.Configuration => ({
   // Take the entry point `src/main.js` and generate a file at `build/backend.js`.
-  entry:  './src/main.tsx',
+  entry:  './src/server/main.tsx',
   output: {
     path:     path.join(c.rootDir, c.outputDir),
     filename: 'backend.js',
