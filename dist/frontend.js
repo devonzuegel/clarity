@@ -9491,9 +9491,9 @@ var Counter = function (_super) {
         var _this = this;
         return React.createElement("div", null, React.createElement("button", { onClick: function () {
                 return _this.setState(increment);
-            } }, "Increment"), React.createElement("b", null, this.state.count), React.createElement("button", { onClick: function () {
+            }, id: 'increment-btn' }, "Increment"), React.createElement("b", { id: 'count' }, this.state.count), React.createElement("button", { onClick: function () {
                 return _this.setState(decrement);
-            } }, "Decrement"));
+            }, id: 'decrement-btn' }, "Decrement"));
     };
     return Counter;
 }(React.Component);
