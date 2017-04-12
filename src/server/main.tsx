@@ -4,11 +4,12 @@ import { runHotMiddleware, listen } from './middleware'
 const config = require('./config.js')
 const app    = express()
 
+app.use('/', express.static(__dirname))
+app.use(require('helmet')())
+
 if (config.env !== 'production') {
   runHotMiddleware(app)
 }
-
-app.use('/', express.static(__dirname))
 
 app.get('*', (_: express.Request, res: express.Response) => {
   res.status(200).send(renderHTML())
