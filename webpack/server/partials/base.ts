@@ -11,10 +11,6 @@ export const partial = (c: Options.Interface): webpack.Configuration => ({
     filename: 'backend.js',
   },
 
-  resolve: {
-    extensions: ['.tsx', '.ts'],
-  },
-
   devtool: c.devtool,
 
   target: 'node', // Do not touch any built-in modules (e.g. `fs` or `path`).
