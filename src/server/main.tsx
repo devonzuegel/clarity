@@ -11,8 +11,12 @@ if (config.env !== 'production') {
   runHotMiddleware(app)
 }
 
-app.get('*', (_: express.Request, res: express.Response) => {
+app.get('/', (_: express.Request, res: express.Response) => {
   res.status(200).send(renderHTML())
+})
+
+app.get('/data', (_: express.Request, res: express.Response) => {
+  res.status(200).json([1, 2, 3])
 })
 
 listen(app, config)
