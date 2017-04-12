@@ -1,6 +1,4 @@
-const host = 'localhost'
-const port = 4000
-const url  = `http://${host}:${port}`
+const { url } = require('./config')
 
 module.exports = {
   beforeEach: browser => {
