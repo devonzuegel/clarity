@@ -18,5 +18,6 @@ export const setup = (env: Env.Type) => {
   return webpackMerge([
     require('../loaders/awesome-typescript-loader'),
     require('./partials/base'),
+    require('../partials/aliases'),
   ].map((m): webpack.Configuration => m.partial(options)))
 }

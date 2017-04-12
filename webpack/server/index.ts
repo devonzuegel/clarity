@@ -21,5 +21,6 @@ export const setup = (env: Env.Type) => {
     require('./partials/externals'),
     require('./partials/plugins'),
     require('./partials/node'),
+    require('../partials/aliases'),
   ].map((m): webpack.Configuration => m.partial(options)))
 }
