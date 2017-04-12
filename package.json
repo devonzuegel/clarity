@@ -48,6 +48,7 @@
     "babel-core": "^6.24.1",
     "child_process": "^1.0.2",
     "jest": "^19.0.2",
+    "nightwatch": "^0.9.14",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
     "ts-jest": "^19.0.8",
