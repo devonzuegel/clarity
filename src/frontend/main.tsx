@@ -14,15 +14,15 @@ class Counter extends React.Component<null, IState> {
   render() {
     return (
       <div>
-        <button onClick={() => this.setState(increment)}>
+        <button onClick={() => this.setState(increment)} id='increment-btn'>
           Increment
         </button>
 
-        <b>
+        <b id='count'>
           {this.state.count}
         </b>
 
-        <button onClick={() => this.setState(decrement)}>
+        <button onClick={() => this.setState(decrement)} id='decrement-btn'>
           Decrement
         </button>
       </div>
