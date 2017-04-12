@@ -16,6 +16,16 @@ const tasks = {
     runCmd('webpack --config webpack/frontend/production.ts')
     runCmd('webpack --config webpack/server/production.ts')
   },
+
+  'test:ci': () => {
+    runCmd('jest --coverage')
+    runCmd('ENV=ci nightwatch --config test/nightwatch.js')
+  },
+
+  'test': () => {
+    runCmd('jest --coverage')
+    runCmd('nightwatch --config test/nightwatch.js')
+  },
 }
 
 const taskName = process.argv[2]
