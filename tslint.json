@@ -1,7 +1,7 @@
 {
   "rules": {
     "indent": [ true, "spaces" ],
-    "quotemark": [ true, "single", "jsx-double", "avoid-escape" ],
+    "quotemark": [ true, "single", "jsx-single", "avoid-escape" ],
     "trailing-comma": [true, { "multiline": "always", "singleline": "never" }],
     "no-var-requires": false,
     "ordered-imports": false,
