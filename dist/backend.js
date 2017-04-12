@@ -64,25 +64,25 @@ require("source-map-support").install();
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
-
-module.exports = require("path");
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var U = __webpack_require__(11);
+var U = __webpack_require__(6);
 exports.Enum = U.strEnum(['development', 'production']);
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = require("path");
 
 /***/ }),
 /* 2 */
@@ -92,74 +92,12 @@ exports.Enum = U.strEnum(['development', 'production']);
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Env = __webpack_require__(1);
-var _1 = __webpack_require__(12);
-exports.default = _1.setup(Env.Enum.development);
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = {
-  port: process.env.PORT || 4000,
-  host: process.env.HOST || 'localhost',
-}
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = require("chalk");
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = require("express");
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = require("react");
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = require("webpack");
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports = require("webpack-dev-middleware");
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = require("webpack-hot-middleware");
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var appConfig = __webpack_require__(3);
-var React = __webpack_require__(6);
-var express = __webpack_require__(5);
-var path = __webpack_require__(0);
-var Chalk = __webpack_require__(4);
-var app = express();
-if (process.env.NODE_ENV !== 'production') {
-    var webpack = __webpack_require__(7);
-    var webpackConfig = __webpack_require__(2).default;
+var Chalk = __webpack_require__(12);
+exports.runHotMiddleware = function (app) {
+    var webpack = __webpack_require__(13);
+    var webpackConfig = __webpack_require__(7).default;
     var webpackCompiler = webpack(webpackConfig);
-    app.use(__webpack_require__(8)(webpackCompiler, {
+    app.use(__webpack_require__(14)(webpackCompiler, {
         publicPath: webpackConfig.output.publicPath,
         stats: { colors: true },
         noInfo: true,
@@ -169,21 +107,59 @@ if (process.env.NODE_ENV !== 'production') {
         historyApiFallback: true,
         quiet: true
     }));
-    app.use(__webpack_require__(9)(webpackCompiler));
+    app.use(__webpack_require__(15)(webpackCompiler));
+};
+exports.listen = function (app, _a) {
+    var host = _a.host,
+        port = _a.port;
+    console.info(Chalk.black.bgGreen("\n\nListening at http://" + host + ":" + port + "\n"));
+    app.listen(port);
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  port: process.env.PORT || 4000,
+  host: process.env.HOST || 'localhost',
+  env:  process.env.NODE_ENV || 'development',
 }
-app.use('/', express.static(path.join(__dirname)));
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = require("express");
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var express = __webpack_require__(4);
+var middleware_1 = __webpack_require__(2);
+var config = __webpack_require__(3);
+var app = express();
+if (config.env !== 'production') {
+    middleware_1.runHotMiddleware(app);
+}
+app.use('/', express.static(__dirname));
 app.get('*', function (_, res) {
     res.status(200).send(renderHTML());
 });
-console.info(Chalk.black.bgGreen("\n\nListening at http://" + appConfig.host + ":" + appConfig.port + "\n"));
-app.listen(appConfig.port);
+middleware_1.listen(app, config);
 function renderHTML() {
     var html = "\n    <div>\n      <div id=\"root\" />\n      <script src=\"/frontend.js\"></script>\n    </div>\n  ";
     return "<!doctype html> " + html;
 }
 
 /***/ }),
-/* 11 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -201,7 +177,19 @@ function strEnum(o) {
 exports.strEnum = strEnum;
 
 /***/ }),
-/* 12 */
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Env = __webpack_require__(0);
+var _1 = __webpack_require__(8);
+exports.default = _1.setup(Env.Enum.development);
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -209,8 +197,8 @@ exports.strEnum = strEnum;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var webpackMerge = __webpack_require__(16);
-var path = __webpack_require__(0);
-var Env = __webpack_require__(1);
+var path = __webpack_require__(1);
+var Env = __webpack_require__(0);
 exports.setup = function (env) {
     var isProd = String(env) === String(Env.Enum.production);
     var options = {
@@ -219,20 +207,20 @@ exports.setup = function (env) {
         devtool: 'source-map',
         console: !isProd
     };
-    return webpackMerge([__webpack_require__(14), __webpack_require__(13)].map(function (m) {
+    return webpackMerge([__webpack_require__(10), __webpack_require__(9)].map(function (m) {
         return m.partial(options);
     }));
 };
 
 /***/ }),
-/* 13 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var path = __webpack_require__(0);
+var path = __webpack_require__(1);
 exports.partial = function (c) {
     return {
         entry: './src/frontend/main.tsx',
@@ -245,14 +233,14 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 14 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var CheckerPlugin = __webpack_require__(15).CheckerPlugin;
+var CheckerPlugin = __webpack_require__(11).CheckerPlugin;
 exports.partial = function () {
     return {
         module: {
@@ -267,10 +255,34 @@ exports.partial = function () {
 };
 
 /***/ }),
-/* 15 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = require("awesome-typescript-loader");
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = require("chalk");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack");
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-dev-middleware");
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-hot-middleware");
 
 /***/ }),
 /* 16 */

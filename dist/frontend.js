@@ -9457,10 +9457,47 @@ module.exports = __webpack_require__(19);
 "use strict";
 
 
+var __extends = this && this.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(80);
 var ReactDOM = __webpack_require__(79);
-ReactDOM.render(React.createElement("h1", null, "Hello world!"), document.getElementById('root'));
+var increment = function (prevState) {
+    return { count: prevState.count + 1 };
+};
+var decrement = function (prevState) {
+    return { count: prevState.count - 1 };
+};
+var Counter = function (_super) {
+    __extends(Counter, _super);
+    function Counter() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.state = { count: 0 };
+        return _this;
+    }
+    Counter.prototype.render = function () {
+        var _this = this;
+        return React.createElement("div", null, React.createElement("button", { onClick: function () {
+                return _this.setState(increment);
+            } }, "Increment"), React.createElement("b", null, this.state.count), React.createElement("button", { onClick: function () {
+                return _this.setState(decrement);
+            } }, "Decrement"));
+    };
+    return Counter;
+}(React.Component);
+ReactDOM.render(React.createElement(Counter, null), document.getElementById('root'));
 
 /***/ }),
 /* 82 */
