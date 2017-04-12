@@ -25,8 +25,8 @@ module.exports = {
       selenium_host: 'localhost',
       silent:        true,
       screenshots: {
-        enabled: false,
-        path: ''
+        enabled: true,
+        path: 'test/functional/screenshots'
       },
       'desiredCapabilities': {
         'browserName': 'chrome',
