@@ -40,3 +40,6 @@ node_modules
 
 # Local dev build
 build
+
+# Nightwatch functional test reports
+test/functional/reports

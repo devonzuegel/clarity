@@ -1,5 +1,30 @@
 # Clarity #
 
+## Testing ##
+
+1. [Install the Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) and set up Selenium.
+
+    ```sh
+    yarn
+    brew install selenium-server-standalone
+    brew install chromedriver
+    ```
+
+2. Start the Selenium server and your local dev server.
+
+    ```sh
+    # In separate terminal windows
+    selenium-server
+    yarn start
+    ```
+
+3. Run Nightwatch.
+
+    ```sh
+    nightwatch --config nightwatch.js # Run all tests
+    nightwatch --config nightwatch.js test/functional/myTest.js # Run one test
+    ```
+
 ## Development ##
 
 - `yarn build`:      Build development server (outputs into `/build`)
