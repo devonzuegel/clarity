@@ -28,6 +28,15 @@ function renderHTML() {
     <div>
       <div id="root" />
       <script src="/frontend.js"></script>
+
+      <!-- CDN assets for Palantir's Blueprint UI Kit -->
+      <link href="https://unpkg.com/normalize.css@^4.1.1" rel="stylesheet" />
+      <link href="https://unpkg.com/@blueprintjs/core@^1.11.0/dist/blueprint.css" rel="stylesheet" />
+      <script src="https://unpkg.com/classnames@^2.2"></script>
+      <script src="https://unpkg.com/tether@^1.4"></script>
+      <script src="https://unpkg.com/react@^15.3.1/dist/react-with-addons.min.js"></script>
+      <script src="https://unpkg.com/react-dom@^15.3.1/dist/react-dom.min.js"></script>
+      <script src="https://unpkg.com/@blueprintjs/core@^1.11.0"></script>
     </div>
   `
   return `<!doctype html> ${html}`

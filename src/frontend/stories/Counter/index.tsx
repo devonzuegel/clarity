@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { Button } from '@blueprintjs/core'
+
 interface IState {
   count: number
 }
@@ -7,23 +9,38 @@ interface IState {
 const increment = (prevState: IState): IState => ({ count: prevState.count + 1 })
 const decrement = (prevState: IState): IState => ({ count: prevState.count - 1 })
 
-export class Counter extends React.Component<null, IState> {
+export default class Counter extends React.Component<null, IState> {
   state = {count: 0}
 
   render() {
     return (
       <div>
-        <button onClick={() => this.setState(increment)} id='increment-btn'>
+        <h2>
+          Devon's Toy Counter
+        </h2>
+
+        <Button
+          onClick  ={() => this.setState(increment)}
+          id       ='increment-btn'
+          iconName ='add'
+          intent   ='primary'
+          className='pt-minimal'
+        >
           Increment
-        </button>
+        </Button>
 
         <b id='count'>
           {this.state.count}
         </b>
 
-        <button onClick={() => this.setState(decrement)} id='decrement-btn'>
+        <Button
+          onClick      ={() => this.setState(decrement)}
+          id           ='decrement-btn'
+          rightIconName='add'
+          className    ='pt-minimal'
+        >
           Decrement
-        </button>
+        </Button>
       </div>
     )
   }
