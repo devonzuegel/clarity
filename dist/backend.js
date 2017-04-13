@@ -64,25 +64,25 @@ require("source-map-support").install();
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+module.exports = require("path");
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var U = __webpack_require__(6);
+var U = __webpack_require__(7);
 exports.Enum = U.strEnum(['development', 'production']);
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = require("path");
 
 /***/ }),
 /* 2 */
@@ -92,12 +92,12 @@ module.exports = require("path");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Chalk = __webpack_require__(12);
+var Chalk = __webpack_require__(14);
 exports.runHotMiddleware = function (app) {
-    var webpack = __webpack_require__(13);
-    var webpackConfig = __webpack_require__(7).default;
+    var webpack = __webpack_require__(15);
+    var webpackConfig = __webpack_require__(8).default;
     var webpackCompiler = webpack(webpackConfig);
-    app.use(__webpack_require__(14)(webpackCompiler, {
+    app.use(__webpack_require__(16)(webpackCompiler, {
         publicPath: webpackConfig.output.publicPath,
         stats: { colors: true },
         noInfo: true,
@@ -107,7 +107,7 @@ exports.runHotMiddleware = function (app) {
         historyApiFallback: true,
         quiet: true
     }));
-    app.use(__webpack_require__(15)(webpackCompiler));
+    app.use(__webpack_require__(17)(webpackCompiler));
 };
 exports.listen = function (app, _a) {
     var host = _a.host,
@@ -135,6 +135,12 @@ module.exports = require("express");
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports) {
+
+module.exports = require("helmet");
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145,21 +151,25 @@ var express = __webpack_require__(4);
 var middleware_1 = __webpack_require__(2);
 var config = __webpack_require__(3);
 var app = express();
+app.use(__webpack_require__(5)());
 if (config.env !== 'production') {
     middleware_1.runHotMiddleware(app);
 }
 app.use('/', express.static(__dirname));
-app.get('*', function (_, res) {
+app.get('/', function (_, res) {
     res.status(200).send(renderHTML());
+});
+app.get('/data', function (_, res) {
+    res.status(200).json([1, 2, 3]);
 });
 middleware_1.listen(app, config);
 function renderHTML() {
-    var html = "\n    <div>\n      <div id=\"root\" />\n      <script src=\"/frontend.js\"></script>\n    </div>\n  ";
+    var html = "\n    <div>\n      <div id=\"root\" />\n      <script src=\"/frontend.js\"></script>\n\n      <!-- CDN assets for Palantir's Blueprint UI Kit -->\n      <link href=\"https://unpkg.com/normalize.css@^4.1.1\" rel=\"stylesheet\" />\n      <link href=\"https://unpkg.com/@blueprintjs/core@^1.11.0/dist/blueprint.css\" rel=\"stylesheet\" />\n      <script src=\"https://unpkg.com/classnames@^2.2\"></script>\n      <script src=\"https://unpkg.com/tether@^1.4\"></script>\n      <script src=\"https://unpkg.com/react@^15.3.1/dist/react-with-addons.min.js\"></script>\n      <script src=\"https://unpkg.com/react-dom@^15.3.1/dist/react-dom.min.js\"></script>\n      <script src=\"https://unpkg.com/@blueprintjs/core@^1.11.0\"></script>\n    </div>\n  ";
     return "<!doctype html> " + html;
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -177,18 +187,6 @@ function strEnum(o) {
 exports.strEnum = strEnum;
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Env = __webpack_require__(0);
-var _1 = __webpack_require__(8);
-exports.default = _1.setup(Env.Enum.development);
-
-/***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -196,21 +194,9 @@ exports.default = _1.setup(Env.Enum.development);
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var webpackMerge = __webpack_require__(16);
-var path = __webpack_require__(1);
-var Env = __webpack_require__(0);
-exports.setup = function (env) {
-    var isProd = String(env) === String(Env.Enum.production);
-    var options = {
-        rootDir: path.join(__dirname, '../..'),
-        outputDir: isProd ? 'dist' : 'build',
-        devtool: 'source-map',
-        console: !isProd
-    };
-    return webpackMerge([__webpack_require__(10), __webpack_require__(9)].map(function (m) {
-        return m.partial(options);
-    }));
-};
+var Env = __webpack_require__(1);
+var _1 = __webpack_require__(9);
+exports.default = _1.setup(Env.Enum.development);
 
 /***/ }),
 /* 9 */
@@ -220,7 +206,31 @@ exports.setup = function (env) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var path = __webpack_require__(1);
+var webpackMerge = __webpack_require__(18);
+var path = __webpack_require__(0);
+var Env = __webpack_require__(1);
+exports.setup = function (env) {
+    var isProd = String(env) === String(Env.Enum.production);
+    var options = {
+        rootDir: path.join(__dirname, '../..'),
+        outputDir: isProd ? 'dist' : 'build',
+        devtool: 'source-map',
+        console: !isProd
+    };
+    return webpackMerge([__webpack_require__(11), __webpack_require__(10), __webpack_require__(12)].map(function (m) {
+        return m.partial(options);
+    }));
+};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var path = __webpack_require__(0);
 exports.partial = function (c) {
     return {
         entry: './src/frontend/main.tsx',
@@ -233,14 +243,14 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var CheckerPlugin = __webpack_require__(11).CheckerPlugin;
+var CheckerPlugin = __webpack_require__(13).CheckerPlugin;
 exports.partial = function () {
     return {
         module: {
@@ -255,37 +265,62 @@ exports.partial = function () {
 };
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-module.exports = require("awesome-typescript-loader");
-
-/***/ }),
 /* 12 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("chalk");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var path = __webpack_require__(0);
+exports.partial = function (c) {
+    return {
+        resolve: {
+            modules: ['node_modules', path.join(c.rootDir, 'src')],
+            /**
+             * Though the project's source is in Typescript, we must support Javascript
+             * resolution as well, because some node_modules import JS files.
+             */
+            extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
+            alias: {
+                '~': path.resolve('./src')
+            }
+        }
+    };
+};
 
 /***/ }),
 /* 13 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack");
+module.exports = require("awesome-typescript-loader");
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack-dev-middleware");
+module.exports = require("chalk");
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack-hot-middleware");
+module.exports = require("webpack");
 
 /***/ }),
 /* 16 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-dev-middleware");
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-hot-middleware");
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-merge");
