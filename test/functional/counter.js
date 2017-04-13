@@ -7,16 +7,16 @@ module.exports = {
       .waitForElementVisible('body', 100)
   },
   'Counter increment': browser => {
-    browser.expect.element('b#count').text.to.equal('0')
+    browser.expect.element('#count').text.to.equal('0')
     browser
       .click('button#increment-btn')
-      .expect.element('b#count').text.to.equal('1')
+      .expect.element('#count').text.to.equal('1')
   },
   'Counter decrement': browser => {
-    browser.expect.element('b#count').text.to.equal('0')
+    browser.expect.element('#count').text.to.equal('0')
     browser
       .click('button#decrement-btn')
-      .expect.element('b#count').text.to.equal('-1')
+      .expect.element('#count').text.to.equal('-1')
   },
   after: browser => browser.end(),
 };
