@@ -43,3 +43,4 @@ build
 
 # Nightwatch functional test reports
 test/functional/reports
+test/functional/screenshots

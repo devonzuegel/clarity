@@ -3,7 +3,7 @@ const { url } = require('./config')
 module.exports = {
   beforeEach: browser => {
     browser
-      .url(url)
+      .url(`${url}/counter`)
       .waitForElementVisible('body', 100)
   },
   'Counter increment': browser => {
