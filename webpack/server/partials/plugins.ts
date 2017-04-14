@@ -1,5 +1,4 @@
 import * as webpack from 'webpack'
-
 import * as Options from 'webpack/models/Options'
 
 export const partial = (c: Options.Interface): webpack.Configuration => ({
