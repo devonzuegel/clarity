@@ -8,8 +8,9 @@ import * as Options from 'webpack/models/Options'
 export const partial = (c: Options.Interface): webpack.Configuration => ({
   entry: './src/frontend/main.tsx',
   output: {
-    path:     path.join(c.rootDir, c.outputDir),
-    filename: 'frontend.js',
+    path:       path.join(c.rootDir, c.outputDir),
+    filename:   'frontend.js',
+    publicPath: '/', // Prepended to urls injected by HtmlWebpackPlugin
   },
 
   devtool: c.devtool,

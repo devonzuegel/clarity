@@ -6,11 +6,28 @@ const runCmd = (cmd) => {
   execSync(cmd, { stdio: 'inherit' })
 }
 
+const build = () => {
+  /** Note that this also builds the frontend with the hot-reloading dev server. */
+  runCmd('webpack --config webpack/server/development.ts')
+}
+
+const lint = () => {
+  runCmd("tslint -c tslint.json 'src/**/*.{ts,tsx}'")
+}
+
 const tasks = {
-  'build': () => {
-    runCmd('webpack --config webpack/frontend/development.ts')
-    runCmd('webpack --config webpack/server/development.ts')
+  'lint': lint,
+
+  'start': () => {
+    build()
+    runCmd('node build/backend.js')
   },
+
+  'start:prod': () => {
+    runCmd('node dist/backend.js')
+  },
+
+  'build': build,
 
   'build:prod': () => {
     runCmd('webpack --config webpack/frontend/production.ts')
@@ -18,11 +35,17 @@ const tasks = {
   },
 
   'test:ci': () => {
+    lint()
     runCmd('jest --coverage')
     runCmd('ENV=ci nightwatch --config test/nightwatch.js')
   },
 
+  'test:watch': () => {
+    runCmd('jest --coverage --watch')
+  },
+
   'test': () => {
+    lint()
     runCmd('jest --coverage')
     runCmd('nightwatch --config test/nightwatch.js')
   },
