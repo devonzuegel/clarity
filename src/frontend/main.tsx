@@ -1,32 +1,20 @@
 import * as React    from 'react'
+import * as page     from 'page'
 import * as ReactDOM from 'react-dom'
-import * as fetch    from 'isomorphic-fetch'
+import Counter       from './Counter'
 
-import Counter       from '~/frontend/stories/Counter'
-import BlueprintDemo from '~/frontend/stories/BlueprintDemo'
+const render = (c: JSX.Element) => ReactDOM.render(c, document.getElementById('root'))
 
-export async function getData() {
-  return fetch('/data')
+interface IPage {
+  href: string
+  content: JSX.Element
 }
 
-ReactDOM.render(
-  <div>
-    <div className='pt-card'>
-      <Counter />
-    </div>
-    <div className='pt-card'>
-      <BlueprintDemo />
-    </div>
-  </div>,
-  document.getElementById('root'),
-)
+const pages: IPage[] = [
+  { href: '/counter', content: <Counter />  },
+  { href: '*',        content: <h2>404</h2> },
+]
 
-getData().then((res: any) => {
-  if (res.ok) {
-    res.json().then((r: any) => {
-      console.log(r)
-    })
-  } else {
-    return res.json().then(console.log)
-  }
-})
+pages.map(({ href, content }: IPage) => page(href, () => render(content)))
+
+page()

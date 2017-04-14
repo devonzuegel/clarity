@@ -1,6 +1,8 @@
 import * as path    from 'path'
 import * as webpack from 'webpack'
 
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 import * as Options from 'webpack/models/Options'
 
 export const partial = (c: Options.Interface): webpack.Configuration => ({
@@ -11,5 +13,9 @@ export const partial = (c: Options.Interface): webpack.Configuration => ({
   },
 
   devtool: c.devtool,
+
+  plugins: [
+    new HtmlWebpackPlugin({ template: './src/frontend/index.html' }),
+  ]
 })
 
