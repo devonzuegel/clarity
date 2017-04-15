@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "node tasks build",
+    "build":      "node tasks build",
     "build:prod": "node tasks build:prod",
-    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
-    "pretest": "npm run lint",
-    "test": "node tasks test",
-    "test:ci": "node tasks test:ci",
-    "test:watch": "jest --watch --coverage",
-    "prestart": "yarn build",
-    "start": "node build/backend.js",
-    "start:prod": "node dist/backend.js"
+    "lint":       "node tasks lint",
+    "pretest":    "node tasks lint",
+    "test":       "node tasks test",
+    "test:ci":    "node tasks test:ci",
+    "test:watch": "node tasks test:watch",
+    "start":      "node tasks start",
+    "start:prod": "node tasks start:prod"
   },
   "dependencies": {
     "chalk": "^1.1.3",
