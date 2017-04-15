@@ -168,7 +168,7 @@ app.get('/data', function (_, res) {
     res.status(200).json([1, 2, 3]);
 });
 app.get('*', function (_, res) {
-    var file = path.join(__dirname, 'index.html'); // TODO: Replace with raw-loader require
+    var file = path.join("dist", 'index.html'); // TODO: Replace with raw-loader require
     var html = fs.readFileSync(file).toString();
     res.status(200).send(html);
 });
@@ -243,7 +243,8 @@ exports.partial = function (c) {
         entry: './src/frontend/main.tsx',
         output: {
             path: path.join(c.rootDir, c.outputDir),
-            filename: 'frontend.js'
+            filename: 'frontend.js',
+            publicPath: '/'
         },
         devtool: c.devtool,
         plugins: [new HtmlWebpackPlugin({ template: './src/frontend/index.html' })]

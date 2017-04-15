@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 170);
@@ -20116,6 +20116,10 @@ var Counter_1 = __webpack_require__(134);
 var render = function (c) {
     return ReactDOM.render(c, document.getElementById('root'));
 };
+page('/params/*', function (params) {
+    var content = React.createElement("div", null, React.createElement("h2", null, "Params:"), React.createElement("p", null, "This non-root route now works! Yay!"), React.createElement("pre", null, JSON.stringify(params, null, 2)));
+    render(content);
+});
 var pages = [{ href: '/counter', content: React.createElement(Counter_1.default, null) }, { href: '*', content: React.createElement("h2", null, "404") }];
 pages.map(function (_a) {
     var href = _a.href,
