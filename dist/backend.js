@@ -64,7 +64,7 @@ require("source-map-support").install();
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -81,23 +81,104 @@ module.exports = require("path");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var U = __webpack_require__(8);
-exports.Enum = U.strEnum(['development', 'production']);
+var cls = __webpack_require__(22);
+var Sequelize = __webpack_require__(4);
+var user_1 = __webpack_require__(12);
+var config_1 = __webpack_require__(10);
+var database_url = __webpack_require__(2).database_url;
+var Database = function () {
+    function Database() {
+        var _this = this;
+        this.getModels = function () {
+            return _this.models;
+        };
+        this.getSequelize = function () {
+            return _this.sequelize;
+        };
+        Sequelize.cls = cls.createNamespace('sequelize-transaction');
+        if (database_url) {
+            this.sequelize = new Sequelize(database_url);
+        } else {
+            this.sequelize = new Sequelize(config_1.default.database, config_1.default.username, config_1.default.password, config_1.default);
+        }
+        this.models = {
+            User: user_1.default(this.sequelize)
+        };
+    }
+    return Database;
+}();
+var database = new Database();
+exports.models = database.getModels();
+exports.sequelize = database.getSequelize();
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  port: process.env.PORT || 4000,
+  host: process.env.HOST || 'localhost',
+  env:  process.env.NODE_ENV || 'development',
+  database_url: process.env.DATABASE_URL,
+}
+
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Chalk = __webpack_require__(15);
+var U = __webpack_require__(14);
+exports.Enum = U.strEnum(['development', 'production']);
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = require("sequelize");
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var user_1 = __webpack_require__(13);
+exports.default = function (app) {
+    app.get('/data', function (_, res) {
+        res.status(200).json([1, 2, 3]);
+    });
+    app.get('/users', function (_, res) {
+        user_1.userService.all().then(function (users) {
+            return res.status(200).json(users);
+        });
+    });
+    app.get('/users/create', function (_, res) {
+        user_1.userService.create({ username: 'bork' }).then(function (user) {
+            return res.status(200).json(user);
+        });
+    });
+};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Chalk = __webpack_require__(21);
 exports.runHotMiddleware = function (app) {
-    var webpack = __webpack_require__(17);
-    var webpackConfig = __webpack_require__(9).default;
+    var webpack = __webpack_require__(24);
+    var webpackConfig = __webpack_require__(15).default;
     var webpackCompiler = webpack(webpackConfig);
-    app.use(__webpack_require__(18)(webpackCompiler, {
+    app.use(__webpack_require__(25)(webpackCompiler, {
         publicPath: webpackConfig.output.publicPath,
         stats: { colors: true },
         noInfo: true,
@@ -107,7 +188,7 @@ exports.runHotMiddleware = function (app) {
         historyApiFallback: true,
         quiet: true
     }));
-    app.use(__webpack_require__(19)(webpackCompiler));
+    app.use(__webpack_require__(26)(webpackCompiler));
 };
 exports.listen = function (app, _a) {
     var host = _a.host,
@@ -117,65 +198,146 @@ exports.listen = function (app, _a) {
 };
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = {
-  port: process.env.PORT || 4000,
-  host: process.env.HOST || 'localhost',
-  env:  process.env.NODE_ENV || 'development',
-}
-
-
-/***/ }),
-/* 4 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 5 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
 
 /***/ }),
-/* 6 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("helmet");
 
 /***/ }),
-/* 7 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = __webpack_require__(4);
-var middleware_1 = __webpack_require__(2);
-var fs = __webpack_require__(5);
+var config = {
+    username: 'devonzuegel',
+    password: 'password',
+    database: 'clarity_test',
+    host: 'localhost',
+    port: 5432,
+    dialect: 'postgres',
+    timezone: '+00:00'
+};
+exports.default = config;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var express = __webpack_require__(7);
+var middleware_1 = __webpack_require__(6);
+var api_1 = __webpack_require__(5);
+var db_1 = __webpack_require__(1);
+var fs = __webpack_require__(8);
 var path = __webpack_require__(0);
-var config = __webpack_require__(3);
+var config = __webpack_require__(2);
 var app = express();
-app.use(__webpack_require__(6)());
+app.use(__webpack_require__(9)());
 if (config.env !== 'production') {
     middleware_1.runHotMiddleware(app);
 }
 app.use('/', express.static(__dirname));
-app.get('/data', function (_, res) {
-    res.status(200).json([1, 2, 3]);
-});
+api_1.default(app);
 app.get('*', function (_, res) {
     var file = path.join("dist", 'index.html'); // TODO: Replace with raw-loader require
     var html = fs.readFileSync(file).toString();
     res.status(200).send(html);
 });
-middleware_1.listen(app, config);
+db_1.sequelize.sync().then(function () {
+    return middleware_1.listen(app, config);
+});
 
 /***/ }),
-/* 8 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var SequelizeStatic = __webpack_require__(4);
+exports.default = function (sequelize) {
+    var Schema = {
+        username: { type: SequelizeStatic.STRING, allowNull: false, primaryKey: true }
+    };
+    var Options = {
+        indexes: [],
+        classMethods: {},
+        timestamps: false,
+        freezeTableName: true
+    };
+    return sequelize.define('User', Schema, Options);
+};
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var db_1 = __webpack_require__(1);
+var Logger = function () {
+    function Logger() {}
+    Logger.prototype.error = function (_) {};
+    Logger.prototype.info = function (_) {};
+    return Logger;
+}();
+var logger = new Logger();
+var failure = function (reject) {
+    return function (error) {
+        logger.error(error.message);
+        reject(error);
+    };
+};
+var UserService = function () {
+    function UserService() {}
+    UserService.prototype.create = function (attributes) {
+        return new Promise(function (resolve, reject) {
+            db_1.sequelize.transaction(function () {
+                return db_1.models.User.create(attributes).then(function (user) {
+                    logger.info("Created user with name " + attributes.username + ".");
+                    resolve(user);
+                }).catch(failure(reject));
+            });
+        });
+    };
+    UserService.prototype.all = function () {
+        return new Promise(function (resolve, reject) {
+            db_1.sequelize.transaction(function () {
+                return db_1.models.User.findAll().then(function (products) {
+                    logger.info('Retrieved all products.');
+                    resolve(products);
+                }).catch(failure(reject));
+            });
+        });
+    };
+    return UserService;
+}();
+exports.UserService = UserService;
+exports.userService = new UserService();
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -193,28 +355,28 @@ function strEnum(o) {
 exports.strEnum = strEnum;
 
 /***/ }),
-/* 9 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Env = __webpack_require__(1);
-var _1 = __webpack_require__(10);
+var Env = __webpack_require__(3);
+var _1 = __webpack_require__(16);
 exports.default = _1.setup(Env.Enum.development);
 
 /***/ }),
-/* 10 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var webpackMerge = __webpack_require__(20);
+var webpackMerge = __webpack_require__(27);
 var path = __webpack_require__(0);
-var Env = __webpack_require__(1);
+var Env = __webpack_require__(3);
 exports.setup = function (env) {
     var isProd = String(env) === String(Env.Enum.production);
     var options = {
@@ -223,13 +385,13 @@ exports.setup = function (env) {
         devtool: 'source-map',
         console: !isProd
     };
-    return webpackMerge([__webpack_require__(12), __webpack_require__(11), __webpack_require__(13)].map(function (m) {
+    return webpackMerge([__webpack_require__(18), __webpack_require__(17), __webpack_require__(19)].map(function (m) {
         return m.partial(options);
     }));
 };
 
 /***/ }),
-/* 11 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -237,7 +399,7 @@ exports.setup = function (env) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = __webpack_require__(0);
-var HtmlWebpackPlugin = __webpack_require__(16);
+var HtmlWebpackPlugin = __webpack_require__(23);
 exports.partial = function (c) {
     return {
         entry: './src/frontend/main.tsx',
@@ -252,14 +414,14 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 12 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var CheckerPlugin = __webpack_require__(14).CheckerPlugin;
+var CheckerPlugin = __webpack_require__(20).CheckerPlugin;
 exports.partial = function () {
     return {
         module: {
@@ -274,7 +436,7 @@ exports.partial = function () {
 };
 
 /***/ }),
-/* 13 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -299,43 +461,49 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 14 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = require("awesome-typescript-loader");
 
 /***/ }),
-/* 15 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = require("chalk");
 
 /***/ }),
-/* 16 */
+/* 22 */
+/***/ (function(module, exports) {
+
+module.exports = require("continuation-local-storage");
+
+/***/ }),
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = require("html-webpack-plugin");
 
 /***/ }),
-/* 17 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack");
 
 /***/ }),
-/* 18 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-dev-middleware");
 
 /***/ }),
-/* 19 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-hot-middleware");
 
 /***/ }),
-/* 20 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-merge");
