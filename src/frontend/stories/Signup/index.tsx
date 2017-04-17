@@ -9,7 +9,7 @@ import { IConstraint } from './IConstraint'
 
 const ValidationMsgBox = ({msg}: {msg: string|null}) => (
   <div>
-    <div className='pt-callout pt-intent-danger'>
+    <div className='pt-callout pt-intent-danger' id='signup-form__errors'>
         {msg}
       </div>
     <br />
@@ -82,12 +82,13 @@ export default class Signup extends React.Component<null, IState> {
           value      ={this.state.username}
           onChange   ={this.updateUsername}
           onSubmit   ={this.onSubmit}
+          id         ='signup-form__username'
         />
 
         <Button
           intent ={Intent.PRIMARY}
           onClick={this.onSubmit}
-          id     ='submit-btn'
+          id     ='signup-form__submit'
           style  ={{width: '100px'}}
          >
           {
