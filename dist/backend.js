@@ -149,6 +149,11 @@ module.exports = require("sequelize");
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var user_1 = __webpack_require__(13);
+var jsonError = function (res) {
+    return function (reason) {
+        return res.status(400).json(reason);
+    };
+};
 exports.default = function (app) {
     app.get('/data', function (_, res) {
         res.status(200).json([1, 2, 3]);
@@ -156,13 +161,14 @@ exports.default = function (app) {
     app.get('/users', function (_, res) {
         user_1.userService.all().then(function (users) {
             return res.status(200).json(users);
-        });
+        }).catch(jsonError(res));
     });
-    app.get('/users/create', function (_, res) {
-        user_1.userService.create({ username: 'bork' }).then(function (user) {
+    app.get('/users/create', function (req, res) {
+        user_1.userService.create({ username: req.query.username }).then(function (user) {
             return res.status(200).json(user);
-        });
+        }).catch(jsonError(res));
     });
+    return app;
 };
 
 /***/ }),
@@ -296,41 +302,29 @@ exports.default = function (sequelize) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var db_1 = __webpack_require__(1);
-var Logger = function () {
-    function Logger() {}
-    Logger.prototype.error = function (_) {};
-    Logger.prototype.info = function (_) {};
-    return Logger;
-}();
-var logger = new Logger();
 var failure = function (reject) {
     return function (error) {
-        logger.error(error.message);
-        reject(error);
+        console.error(error); // Log full error
+        reject(error.errors); // Return only the descriptive .errors array
     };
 };
 var UserService = function () {
-    function UserService() {}
-    UserService.prototype.create = function (attributes) {
-        return new Promise(function (resolve, reject) {
-            db_1.sequelize.transaction(function () {
+    function UserService() {
+        this.create = function (attributes) {
+            return new Promise(function (resolve, reject) {
                 return db_1.models.User.create(attributes).then(function (user) {
-                    logger.info("Created user with name " + attributes.username + ".");
-                    resolve(user);
+                    return resolve(user);
                 }).catch(failure(reject));
             });
-        });
-    };
-    UserService.prototype.all = function () {
-        return new Promise(function (resolve, reject) {
-            db_1.sequelize.transaction(function () {
+        };
+        this.all = function () {
+            return new Promise(function (resolve, reject) {
                 return db_1.models.User.findAll().then(function (products) {
-                    logger.info('Retrieved all products.');
-                    resolve(products);
+                    return resolve(products);
                 }).catch(failure(reject));
             });
-        });
-    };
+        };
+    }
     return UserService;
 }();
 exports.UserService = UserService;
