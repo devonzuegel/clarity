@@ -1,0 +1,103 @@
+import * as React from 'react'
+import * as R from 'ramda'
+import { Button, Intent, Spinner } from '@blueprintjs/core'
+
+import { Field } from '~/frontend/components/Field'
+import { updateUsername, beginSubmit, endSubmit, setError, removeError } from './reducers'
+import { IState } from './IState'
+import { IConstraint } from './IConstraint'
+
+const ValidationMsgBox = ({msg}: {msg: string|null}) => (
+  <div>
+    <div className='pt-callout pt-intent-danger'>
+        {msg}
+      </div>
+    <br />
+  </div>
+)
+
+export default class Signup extends React.Component<null, IState> {
+  state: IState = {
+    username: '',
+    submitting: false,
+    errorMsg: null,
+    submitAttempted: false,
+  }
+
+  private updateUsername = (e: React.FormEvent<HTMLInputElement>) => {
+    this.setState(updateUsername(e.currentTarget.value))
+  }
+
+  private constraints: IConstraint[] = [
+    {
+      value:    () => this.state.username,
+      isValid:  (username: string) => !R.isEmpty(username),
+      errorMsg: 'Your username cannot be empty.',
+    },
+  ]
+
+  private validate = (): boolean => {
+    let formIsValid = true
+    this.constraints.map((constraint: IConstraint) => {
+      const value = constraint.value()
+      if (!constraint.isValid(value)) {
+        this.setState(setError(constraint.errorMsg))
+        formIsValid = false
+      }
+    })
+    return formIsValid
+  }
+
+  private onSubmit = () => {
+    this.setState(beginSubmit)
+    setTimeout(() => {
+      if (!this.validate()) {
+        this.setState(endSubmit)
+      } else {
+        // TODO: post data to server
+        this.setState(removeError)
+        this.setState(endSubmit)
+        console.info(JSON.stringify(this.state, null, 2))
+      }
+    }, 500)
+  }
+
+  render () {
+    return (
+      <div>
+        <h2>
+          Welcome!
+        </h2>
+
+        <br />
+
+        {
+          this.state.submitAttempted && this.state.errorMsg &&
+          <ValidationMsgBox msg={this.state.errorMsg} />
+        }
+
+        <Field
+          label      ='Hi! Who are you?'
+          placeholder='Username'
+          value      ={this.state.username}
+          onChange   ={this.updateUsername}
+          onSubmit   ={this.onSubmit}
+        />
+
+        <Button
+          intent ={Intent.PRIMARY}
+          onClick={this.onSubmit}
+          id     ='submit-btn'
+          style  ={{width: '100px'}}
+         >
+          {
+            this.state.submitting
+            ? <Spinner className='pt-small' />
+            : 'Submit'
+          }
+        </Button>
+
+      </div>
+    )
+  }
+}

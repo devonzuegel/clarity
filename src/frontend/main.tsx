@@ -3,32 +3,26 @@ import * as page     from 'page'
 import * as ReactDOM from 'react-dom'
 
 import Counter from './Counter'
+import Signup  from './stories/Signup'
 
 require('./exceptionMonitoring')
 
-const render = (c: JSX.Element) => ReactDOM.render(c, document.getElementById('root'))
+const Wrapper = ({ content }: { content: JSX.Element }) => (
+  <div style={{margin: '50px', maxWidth: '800px'}}>
+    {content}
+  </div>
+)
+
+const render = (c: JSX.Element) =>
+  ReactDOM.render(<Wrapper content={c} />, document.getElementById('root'))
 
 interface IPage {
   href: string
   content: JSX.Element
 }
 
-page('/params/*', (params: any) => {
-  const content = (
-    <div>
-      <h2>
-        Params:
-       </h2>
-      <p>
-        This non-root route now works! Yay!
-      </p>
-      <pre>{JSON.stringify(params, null, 2)}</pre>
-    </div>
-  )
-  render(content)
-})
-
 const pages: IPage[] = [
+  { href: '/',        content: <Signup />  },
   { href: '/counter', content: <Counter />  },
   { href: '*',        content: <h2>404</h2> },
 ]
