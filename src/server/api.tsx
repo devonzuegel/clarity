@@ -27,5 +27,6 @@ export default (app: express.Application) => {
       .catch(jsonError(res))
   })
 
+  return app
 }
 
