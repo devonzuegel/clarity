@@ -44,3 +44,6 @@ build
 # Nightwatch functional test reports
 test/functional/reports
 test/functional/screenshots
+
+# Define local environment variables
+.env
