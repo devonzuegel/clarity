@@ -4,6 +4,8 @@ import * as ReactDOM from 'react-dom'
 
 import Counter from './Counter'
 
+require('./exceptionMonitoring')
+
 const render = (c: JSX.Element) => ReactDOM.render(c, document.getElementById('root'))
 
 interface IPage {
