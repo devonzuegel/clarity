@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 170);
+/******/ 	return __webpack_require__(__webpack_require__.s = 173);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -591,7 +591,7 @@ module.exports = warning;
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var intent_1 = __webpack_require__(73);
+var intent_1 = __webpack_require__(74);
 // modifiers
 exports.DARK = "pt-dark";
 exports.ACTIVE = "pt-active";
@@ -1149,7 +1149,7 @@ module.exports = pureRenderDecorator;
 var _prodInvariant = __webpack_require__(7);
 
 var DOMProperty = __webpack_require__(25);
-var ReactDOMComponentFlags = __webpack_require__(103);
+var ReactDOMComponentFlags = __webpack_require__(105);
 
 var invariant = __webpack_require__(3);
 
@@ -1907,7 +1907,7 @@ module.exports = emptyFunction;
 var debugTool = null;
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactDebugTool = __webpack_require__(105);
+  var ReactDebugTool = __webpack_require__(107);
   debugTool = ReactDebugTool;
 }
 
@@ -1934,9 +1934,9 @@ module.exports = { debugTool: debugTool };
 var _prodInvariant = __webpack_require__(7),
     _assign = __webpack_require__(8);
 
-var CallbackQueue = __webpack_require__(100);
+var CallbackQueue = __webpack_require__(102);
 var PooledClass = __webpack_require__(26);
-var ReactFeatureFlags = __webpack_require__(108);
+var ReactFeatureFlags = __webpack_require__(110);
 var ReactReconciler = __webpack_require__(27);
 var Transaction = __webpack_require__(47);
 
@@ -2190,16 +2190,16 @@ module.exports = ReactUpdates;
 
 var _assign = __webpack_require__(8);
 
-var ReactChildren = __webpack_require__(267);
+var ReactChildren = __webpack_require__(276);
 var ReactComponent = __webpack_require__(71);
-var ReactPureComponent = __webpack_require__(272);
-var ReactClass = __webpack_require__(268);
-var ReactDOMFactories = __webpack_require__(269);
+var ReactPureComponent = __webpack_require__(281);
+var ReactClass = __webpack_require__(277);
+var ReactDOMFactories = __webpack_require__(278);
 var ReactElement = __webpack_require__(28);
-var ReactPropTypes = __webpack_require__(270);
-var ReactVersion = __webpack_require__(276);
+var ReactPropTypes = __webpack_require__(279);
+var ReactVersion = __webpack_require__(285);
 
-var onlyChild = __webpack_require__(132);
+var onlyChild = __webpack_require__(134);
 var warning = __webpack_require__(4);
 
 var createElement = ReactElement.createElement;
@@ -2208,7 +2208,7 @@ var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
   var canDefineProperty = __webpack_require__(50);
-  var ReactElementValidator = __webpack_require__(128);
+  var ReactElementValidator = __webpack_require__(130);
   var didWarnPropTypesDeprecated = false;
   createElement = ReactElementValidator.createElement;
   createFactory = ReactElementValidator.createFactory;
@@ -3022,7 +3022,7 @@ module.exports = PooledClass;
 
 
 
-var ReactRef = __webpack_require__(235);
+var ReactRef = __webpack_require__(244);
 var ReactInstrumentation = __webpack_require__(17);
 
 var warning = __webpack_require__(4);
@@ -3204,7 +3204,7 @@ var warning = __webpack_require__(4);
 var canDefineProperty = __webpack_require__(50);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-var REACT_ELEMENT_TYPE = __webpack_require__(127);
+var REACT_ELEMENT_TYPE = __webpack_require__(129);
 
 var RESERVED_PROPS = {
   key: true,
@@ -3587,11 +3587,11 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(13));
-__export(__webpack_require__(138));
-__export(__webpack_require__(73));
+__export(__webpack_require__(141));
+__export(__webpack_require__(74));
 __export(__webpack_require__(22));
 __export(__webpack_require__(31));
-__export(__webpack_require__(74));
+__export(__webpack_require__(75));
 var classes = __webpack_require__(5);
 var keys = __webpack_require__(24);
 var utils = __webpack_require__(9);
@@ -3677,16 +3677,16 @@ var classNames = __webpack_require__(6);
 var PureRender = __webpack_require__(10);
 var React = __webpack_require__(1);
 var react_dom_1 = __webpack_require__(23);
-var Tether = __webpack_require__(279);
+var Tether = __webpack_require__(288);
 var abstractComponent_1 = __webpack_require__(13);
 var Classes = __webpack_require__(5);
 var Errors = __webpack_require__(15);
 var PosUtils = __webpack_require__(22);
-var TetherUtils = __webpack_require__(74);
+var TetherUtils = __webpack_require__(75);
 var Utils = __webpack_require__(9);
 var overlay_1 = __webpack_require__(44);
 var tooltip_1 = __webpack_require__(54);
-var Arrows = __webpack_require__(154);
+var Arrows = __webpack_require__(157);
 var SVG_SHADOW_PATH = "M8.11 6.302c1.015-.936 1.887-2.922 1.887-4.297v26c0-1.378" +
     "-.868-3.357-1.888-4.297L.925 17.09c-1.237-1.14-1.233-3.034 0-4.17L8.11 6.302z";
 var SVG_ARROW_PATH = "M8.787 7.036c1.22-1.125 2.21-3.376 2.21-5.03V0v30-2.005" +
@@ -4103,7 +4103,7 @@ var DOMNamespaces = __webpack_require__(56);
 var setInnerHTML = __webpack_require__(49);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(64);
-var setTextContent = __webpack_require__(124);
+var setTextContent = __webpack_require__(126);
 
 var ELEMENT_NODE_TYPE = 1;
 var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
@@ -4228,8 +4228,8 @@ var EventPluginRegistry = __webpack_require__(39);
 var EventPluginUtils = __webpack_require__(57);
 var ReactErrorUtils = __webpack_require__(62);
 
-var accumulateInto = __webpack_require__(116);
-var forEachAccumulated = __webpack_require__(118);
+var accumulateInto = __webpack_require__(118);
+var forEachAccumulated = __webpack_require__(120);
 var invariant = __webpack_require__(3);
 
 /**
@@ -4509,8 +4509,8 @@ module.exports = EventPluginHub;
 var EventPluginHub = __webpack_require__(35);
 var EventPluginUtils = __webpack_require__(57);
 
-var accumulateInto = __webpack_require__(116);
-var forEachAccumulated = __webpack_require__(118);
+var accumulateInto = __webpack_require__(118);
+var forEachAccumulated = __webpack_require__(120);
 var warning = __webpack_require__(4);
 
 var getListener = EventPluginHub.getListener;
@@ -4702,7 +4702,7 @@ module.exports = ReactInstanceMap;
 // Therefore we re-export development-only version with all the PropTypes checks here.
 // However if one is migrating to the `prop-types` npm library, they will go through the
 // `index.js` entry point, and it will branch depending on the environment.
-var factory = __webpack_require__(194);
+var factory = __webpack_require__(197);
 module.exports = function(isValidElement) {
   // It is still allowed in 15.5.
   var throwOnDirectAccess = false;
@@ -4991,10 +4991,10 @@ module.exports = EventPluginRegistry;
 var _assign = __webpack_require__(8);
 
 var EventPluginRegistry = __webpack_require__(39);
-var ReactEventEmitterMixin = __webpack_require__(225);
-var ViewportMetrics = __webpack_require__(115);
+var ReactEventEmitterMixin = __webpack_require__(234);
+var ViewportMetrics = __webpack_require__(117);
 
-var getVendorPrefixedEventName = __webpack_require__(121);
+var getVendorPrefixedEventName = __webpack_require__(123);
 var isEventSupported = __webpack_require__(68);
 
 /**
@@ -5386,7 +5386,7 @@ var tslib_1 = __webpack_require__(2);
 // tslint:disable max-classes-per-file
 var React = __webpack_require__(1);
 var props_1 = __webpack_require__(31);
-var abstractButton_1 = __webpack_require__(144);
+var abstractButton_1 = __webpack_require__(147);
 var Button = (function (_super) {
     tslib_1.__extends(Button, _super);
     function Button() {
@@ -5435,7 +5435,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(2);
 var React = __webpack_require__(1);
 var common_1 = __webpack_require__(30);
-var keyCombo_1 = __webpack_require__(82);
+var keyCombo_1 = __webpack_require__(83);
 var Hotkey = (function (_super) {
     tslib_1.__extends(Hotkey, _super);
     function Hotkey() {
@@ -5482,11 +5482,11 @@ var tslib_1 = __webpack_require__(2);
 var classNames = __webpack_require__(6);
 var PureRender = __webpack_require__(10);
 var React = __webpack_require__(1);
-var CSSTransitionGroup = __webpack_require__(195);
+var CSSTransitionGroup = __webpack_require__(204);
 var Classes = __webpack_require__(5);
 var Keys = __webpack_require__(24);
 var utils_1 = __webpack_require__(9);
-var portal_1 = __webpack_require__(85);
+var portal_1 = __webpack_require__(86);
 var Overlay = Overlay_1 = (function (_super) {
     tslib_1.__extends(Overlay, _super);
     function Overlay(props, context) {
@@ -5775,7 +5775,7 @@ module.exports = shallowEqual;
 
 
 var SyntheticUIEvent = __webpack_require__(41);
-var ViewportMetrics = __webpack_require__(115);
+var ViewportMetrics = __webpack_require__(117);
 
 var getEventModifierState = __webpack_require__(66);
 
@@ -6784,13 +6784,13 @@ exports.TooltipFactory = React.createFactory(Tooltip);
 
 
 var DOMLazyTree = __webpack_require__(34);
-var Danger = __webpack_require__(201);
+var Danger = __webpack_require__(210);
 var ReactDOMComponentTree = __webpack_require__(11);
 var ReactInstrumentation = __webpack_require__(17);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(64);
 var setInnerHTML = __webpack_require__(49);
-var setTextContent = __webpack_require__(124);
+var setTextContent = __webpack_require__(126);
 
 function getNodeAfter(parentNode, node) {
   // Special case for text components, which return [open, close] comments
@@ -7337,7 +7337,7 @@ module.exports = KeyEscapeUtils;
 
 var _prodInvariant = __webpack_require__(7);
 
-var ReactPropTypesSecret = __webpack_require__(113);
+var ReactPropTypesSecret = __webpack_require__(115);
 var propTypesFactory = __webpack_require__(38);
 
 var React = __webpack_require__(19);
@@ -7534,15 +7534,15 @@ module.exports = ReactComponentEnvironment;
 
 
 var ReactDOMComponentTree = __webpack_require__(11);
-var ReactDefaultInjection = __webpack_require__(223);
-var ReactMount = __webpack_require__(111);
+var ReactDefaultInjection = __webpack_require__(232);
+var ReactMount = __webpack_require__(113);
 var ReactReconciler = __webpack_require__(27);
 var ReactUpdates = __webpack_require__(18);
-var ReactVersion = __webpack_require__(240);
+var ReactVersion = __webpack_require__(249);
 
-var findDOMNode = __webpack_require__(117);
-var getHostComponentFromComposite = __webpack_require__(119);
-var renderSubtreeIntoContainer = __webpack_require__(262);
+var findDOMNode = __webpack_require__(119);
+var getHostComponentFromComposite = __webpack_require__(121);
+var renderSubtreeIntoContainer = __webpack_require__(271);
 var warning = __webpack_require__(4);
 
 ReactDefaultInjection.inject();
@@ -7619,9 +7619,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 if (process.env.NODE_ENV !== 'production') {
   var ReactInstrumentation = __webpack_require__(17);
-  var ReactDOMUnknownPropertyHook = __webpack_require__(222);
-  var ReactDOMNullInputValuePropHook = __webpack_require__(216);
-  var ReactDOMInvalidARIAHook = __webpack_require__(215);
+  var ReactDOMUnknownPropertyHook = __webpack_require__(231);
+  var ReactDOMNullInputValuePropHook = __webpack_require__(225);
+  var ReactDOMInvalidARIAHook = __webpack_require__(224);
 
   ReactInstrumentation.debugTool.addHook(ReactDOMUnknownPropertyHook);
   ReactInstrumentation.debugTool.addHook(ReactDOMNullInputValuePropHook);
@@ -8858,6 +8858,33 @@ module.exports = ReactNoopUpdateQueue;
 
 /***/ }),
 /* 73 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8885,7 +8912,7 @@ var Intent;
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8978,7 +9005,7 @@ function expandAttachmentClasses(attachments, prefix) {
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9138,7 +9165,7 @@ exports.Collapse = Collapse;
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9238,7 +9265,7 @@ exports.isOpen = isOpen;
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9317,7 +9344,7 @@ exports.DialogFactory = React.createFactory(Dialog);
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9430,7 +9457,7 @@ exports.RadioFactory = React.createFactory(Radio);
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9518,7 +9545,7 @@ exports.InputGroupFactory = React.createFactory(InputGroup);
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9537,16 +9564,16 @@ var common_1 = __webpack_require__(30);
 var hotkey_1 = __webpack_require__(43);
 var hotkey_2 = __webpack_require__(43);
 exports.Hotkey = hotkey_2.Hotkey;
-var keyCombo_1 = __webpack_require__(82);
+var keyCombo_1 = __webpack_require__(83);
 exports.KeyCombo = keyCombo_1.KeyCombo;
-var hotkeysTarget_1 = __webpack_require__(151);
+var hotkeysTarget_1 = __webpack_require__(154);
 exports.HotkeysTarget = hotkeysTarget_1.HotkeysTarget;
 var hotkeyParser_1 = __webpack_require__(51);
 exports.comboMatches = hotkeyParser_1.comboMatches;
 exports.getKeyCombo = hotkeyParser_1.getKeyCombo;
 exports.getKeyComboString = hotkeyParser_1.getKeyComboString;
 exports.parseKeyCombo = hotkeyParser_1.parseKeyCombo;
-var hotkeysDialog_1 = __webpack_require__(81);
+var hotkeysDialog_1 = __webpack_require__(82);
 exports.hideHotkeysDialog = hotkeysDialog_1.hideHotkeysDialog;
 exports.setHotkeysDialogProps = hotkeysDialog_1.setHotkeysDialogProps;
 var Hotkeys = (function (_super) {
@@ -9597,7 +9624,7 @@ exports.Hotkeys = Hotkeys;
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9614,9 +9641,9 @@ var classNames = __webpack_require__(6);
 var React = __webpack_require__(1);
 var ReactDOM = __webpack_require__(23);
 var common_1 = __webpack_require__(30);
-var components_1 = __webpack_require__(83);
+var components_1 = __webpack_require__(84);
 var hotkey_1 = __webpack_require__(43);
-var hotkeys_1 = __webpack_require__(80);
+var hotkeys_1 = __webpack_require__(81);
 var HotkeysDialog = (function () {
     function HotkeysDialog() {
         var _this = this;
@@ -9722,7 +9749,7 @@ exports.hideHotkeysDialog = hideHotkeysDialog;
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9782,7 +9809,7 @@ exports.KeyCombo = KeyCombo;
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9799,57 +9826,57 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 if (typeof window !== "undefined" && typeof document !== "undefined") {
     // tslint:disable-next-line:no-var-requires
-    __webpack_require__(174); // only import actual dom4 if we're in the browser (not server-compatible)
+    __webpack_require__(177); // only import actual dom4 if we're in the browser (not server-compatible)
     // we'll still need dom4 types for the TypeScript to compile, these are included in package.json
 }
-var contextMenu = __webpack_require__(76);
+var contextMenu = __webpack_require__(77);
 exports.ContextMenu = contextMenu;
-__export(__webpack_require__(142));
-__export(__webpack_require__(143));
-__export(__webpack_require__(42));
-__export(__webpack_require__(75));
 __export(__webpack_require__(145));
 __export(__webpack_require__(146));
-__export(__webpack_require__(77));
-__export(__webpack_require__(147));
-__export(__webpack_require__(78));
-__export(__webpack_require__(79));
+__export(__webpack_require__(42));
+__export(__webpack_require__(76));
 __export(__webpack_require__(148));
 __export(__webpack_require__(149));
+__export(__webpack_require__(78));
+__export(__webpack_require__(150));
+__export(__webpack_require__(79));
 __export(__webpack_require__(80));
-__export(__webpack_require__(52));
+__export(__webpack_require__(151));
 __export(__webpack_require__(152));
-__export(__webpack_require__(84));
-__export(__webpack_require__(153));
-__export(__webpack_require__(44));
-__export(__webpack_require__(164));
-__export(__webpack_require__(32));
+__export(__webpack_require__(81));
+__export(__webpack_require__(52));
 __export(__webpack_require__(155));
 __export(__webpack_require__(85));
 __export(__webpack_require__(156));
-__export(__webpack_require__(166));
-__export(__webpack_require__(157));
+__export(__webpack_require__(44));
+__export(__webpack_require__(167));
+__export(__webpack_require__(32));
 __export(__webpack_require__(158));
-__export(__webpack_require__(53));
+__export(__webpack_require__(86));
 __export(__webpack_require__(159));
-__export(__webpack_require__(88));
+__export(__webpack_require__(169));
 __export(__webpack_require__(160));
+__export(__webpack_require__(161));
+__export(__webpack_require__(53));
+__export(__webpack_require__(162));
 __export(__webpack_require__(89));
+__export(__webpack_require__(163));
 __export(__webpack_require__(90));
 __export(__webpack_require__(91));
-__export(__webpack_require__(162));
-__export(__webpack_require__(163));
 __export(__webpack_require__(92));
 __export(__webpack_require__(165));
-__export(__webpack_require__(54));
-__export(__webpack_require__(167));
+__export(__webpack_require__(166));
 __export(__webpack_require__(93));
+__export(__webpack_require__(168));
+__export(__webpack_require__(54));
+__export(__webpack_require__(170));
+__export(__webpack_require__(94));
 
 //# sourceMappingURL=index.js.map
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10016,7 +10043,7 @@ exports.MenuItemFactory = React.createFactory(MenuItem);
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10074,7 +10101,7 @@ exports.Portal = Portal;
 
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10209,7 +10236,7 @@ exports.CoreSlider = CoreSlider;
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10365,7 +10392,7 @@ exports.Handle = Handle;
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10408,7 +10435,7 @@ exports.TabFactory = React.createFactory(Tab);
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10460,7 +10487,7 @@ exports.TabListFactory = React.createFactory(TabList);
 
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10499,7 +10526,7 @@ exports.TabPanelFactory = React.createFactory(TabPanel);
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10545,7 +10572,7 @@ exports.Tab2Factory = React.createFactory(Tab2);
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10644,7 +10671,7 @@ exports.ToastFactory = React.createFactory(Toast);
 
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10661,7 +10688,7 @@ var classNames = __webpack_require__(6);
 var React = __webpack_require__(1);
 var Classes = __webpack_require__(5);
 var utils_1 = __webpack_require__(9);
-var collapse_1 = __webpack_require__(75);
+var collapse_1 = __webpack_require__(76);
 var TreeNode = (function (_super) {
     tslib_1.__extends(TreeNode, _super);
     function TreeNode() {
@@ -10733,7 +10760,7 @@ exports.TreeNode = TreeNode;
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10748,19 +10775,19 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(137));
+__export(__webpack_require__(140));
 __export(__webpack_require__(30));
-__export(__webpack_require__(83));
-var iconClasses_1 = __webpack_require__(168);
+__export(__webpack_require__(84));
+var iconClasses_1 = __webpack_require__(171);
 exports.IconClasses = iconClasses_1.IconClasses;
-var iconStrings_1 = __webpack_require__(169);
+var iconStrings_1 = __webpack_require__(172);
 exports.IconContents = iconStrings_1.IconContents;
 
 //# sourceMappingURL=index.js.map
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10850,7 +10877,7 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10882,7 +10909,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10926,7 +10953,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10947,7 +10974,35 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 99 */
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function isObject(what) {
+    return typeof what === 'object' && what !== null;
+}
+
+// Yanked from https://git.io/vS8DV re-used under CC0
+// with some tiny modifications
+function isError(value) {
+  switch ({}.toString.call(value)) {
+    case '[object Error]': return true;
+    case '[object Exception]': return true;
+    case '[object DOMException]': return true;
+    default: return value instanceof Error;
+  }
+}
+
+module.exports = {
+    isObject: isObject,
+    isError: isError
+};
+
+
+/***/ }),
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11100,7 +11155,7 @@ var CSSProperty = {
 module.exports = CSSProperty;
 
 /***/ }),
-/* 100 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11225,7 +11280,7 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 101 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11245,7 +11300,7 @@ var DOMProperty = __webpack_require__(25);
 var ReactDOMComponentTree = __webpack_require__(11);
 var ReactInstrumentation = __webpack_require__(17);
 
-var quoteAttributeValueForBrowser = __webpack_require__(261);
+var quoteAttributeValueForBrowser = __webpack_require__(270);
 var warning = __webpack_require__(4);
 
 var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
@@ -11468,7 +11523,7 @@ module.exports = DOMPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 102 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11493,11 +11548,11 @@ var ReactCurrentOwner = __webpack_require__(21);
 var ReactErrorUtils = __webpack_require__(62);
 var ReactInstanceMap = __webpack_require__(37);
 var ReactInstrumentation = __webpack_require__(17);
-var ReactNodeTypes = __webpack_require__(112);
+var ReactNodeTypes = __webpack_require__(114);
 var ReactReconciler = __webpack_require__(27);
 
 if (process.env.NODE_ENV !== 'production') {
-  var checkReactTypeSpec = __webpack_require__(255);
+  var checkReactTypeSpec = __webpack_require__(264);
 }
 
 var emptyObject = __webpack_require__(33);
@@ -12376,7 +12431,7 @@ module.exports = ReactCompositeComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 103 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12399,7 +12454,7 @@ var ReactDOMComponentFlags = {
 module.exports = ReactDOMComponentFlags;
 
 /***/ }),
-/* 104 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12605,7 +12660,7 @@ module.exports = ReactDOMSelect;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 105 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12622,12 +12677,12 @@ module.exports = ReactDOMSelect;
 
 
 
-var ReactInvalidSetStateWarningHook = __webpack_require__(229);
-var ReactHostOperationHistoryHook = __webpack_require__(227);
+var ReactInvalidSetStateWarningHook = __webpack_require__(238);
+var ReactHostOperationHistoryHook = __webpack_require__(236);
 var ReactComponentTreeHook = __webpack_require__(14);
 var ExecutionEnvironment = __webpack_require__(12);
 
-var performanceNow = __webpack_require__(189);
+var performanceNow = __webpack_require__(192);
 var warning = __webpack_require__(4);
 
 var hooks = [];
@@ -12970,7 +13025,7 @@ module.exports = ReactDebugTool;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 106 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13043,7 +13098,7 @@ var ReactDefaultBatchingStrategy = {
 module.exports = ReactDefaultBatchingStrategy;
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13078,7 +13133,7 @@ ReactEmptyComponent.injection = ReactEmptyComponentInjection;
 module.exports = ReactEmptyComponent;
 
 /***/ }),
-/* 108 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13105,7 +13160,7 @@ var ReactFeatureFlags = {
 module.exports = ReactFeatureFlags;
 
 /***/ }),
-/* 109 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13179,7 +13234,7 @@ module.exports = ReactHostComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 110 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13195,11 +13250,11 @@ module.exports = ReactHostComponent;
 
 
 
-var ReactDOMSelection = __webpack_require__(218);
+var ReactDOMSelection = __webpack_require__(227);
 
-var containsNode = __webpack_require__(178);
-var focusNode = __webpack_require__(96);
-var getActiveElement = __webpack_require__(97);
+var containsNode = __webpack_require__(181);
+var focusNode = __webpack_require__(97);
+var getActiveElement = __webpack_require__(98);
 
 function isInDocument(node) {
   return containsNode(document.documentElement, node);
@@ -13308,7 +13363,7 @@ var ReactInputSelection = {
 module.exports = ReactInputSelection;
 
 /***/ }),
-/* 111 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13332,18 +13387,18 @@ var React = __webpack_require__(19);
 var ReactBrowserEventEmitter = __webpack_require__(40);
 var ReactCurrentOwner = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(11);
-var ReactDOMContainerInfo = __webpack_require__(210);
-var ReactDOMFeatureFlags = __webpack_require__(212);
-var ReactFeatureFlags = __webpack_require__(108);
+var ReactDOMContainerInfo = __webpack_require__(219);
+var ReactDOMFeatureFlags = __webpack_require__(221);
+var ReactFeatureFlags = __webpack_require__(110);
 var ReactInstanceMap = __webpack_require__(37);
 var ReactInstrumentation = __webpack_require__(17);
-var ReactMarkupChecksum = __webpack_require__(230);
+var ReactMarkupChecksum = __webpack_require__(239);
 var ReactReconciler = __webpack_require__(27);
 var ReactUpdateQueue = __webpack_require__(63);
 var ReactUpdates = __webpack_require__(18);
 
 var emptyObject = __webpack_require__(33);
-var instantiateReactComponent = __webpack_require__(122);
+var instantiateReactComponent = __webpack_require__(124);
 var invariant = __webpack_require__(3);
 var setInnerHTML = __webpack_require__(49);
 var shouldUpdateReactComponent = __webpack_require__(69);
@@ -13852,7 +13907,7 @@ module.exports = ReactMount;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 112 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13898,7 +13953,7 @@ module.exports = ReactNodeTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 113 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13920,7 +13975,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 114 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13938,10 +13993,10 @@ module.exports = ReactPropTypesSecret;
 
 var _assign = __webpack_require__(8);
 
-var CallbackQueue = __webpack_require__(100);
+var CallbackQueue = __webpack_require__(102);
 var PooledClass = __webpack_require__(26);
 var ReactBrowserEventEmitter = __webpack_require__(40);
-var ReactInputSelection = __webpack_require__(110);
+var ReactInputSelection = __webpack_require__(112);
 var ReactInstrumentation = __webpack_require__(17);
 var Transaction = __webpack_require__(47);
 var ReactUpdateQueue = __webpack_require__(63);
@@ -14104,7 +14159,7 @@ module.exports = ReactReconcileTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 115 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14136,7 +14191,7 @@ var ViewportMetrics = {
 module.exports = ViewportMetrics;
 
 /***/ }),
-/* 116 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14200,7 +14255,7 @@ module.exports = accumulateInto;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 117 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14222,7 +14277,7 @@ var ReactCurrentOwner = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(11);
 var ReactInstanceMap = __webpack_require__(37);
 
-var getHostComponentFromComposite = __webpack_require__(119);
+var getHostComponentFromComposite = __webpack_require__(121);
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
 
@@ -14266,7 +14321,7 @@ module.exports = findDOMNode;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 118 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14302,7 +14357,7 @@ function forEachAccumulated(arr, cb, scope) {
 module.exports = forEachAccumulated;
 
 /***/ }),
-/* 119 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14318,7 +14373,7 @@ module.exports = forEachAccumulated;
 
 
 
-var ReactNodeTypes = __webpack_require__(112);
+var ReactNodeTypes = __webpack_require__(114);
 
 function getHostComponentFromComposite(inst) {
   var type;
@@ -14337,7 +14392,7 @@ function getHostComponentFromComposite(inst) {
 module.exports = getHostComponentFromComposite;
 
 /***/ }),
-/* 120 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14375,7 +14430,7 @@ function getTextContentAccessor() {
 module.exports = getTextContentAccessor;
 
 /***/ }),
-/* 121 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14481,7 +14536,7 @@ function getVendorPrefixedEventName(eventName) {
 module.exports = getVendorPrefixedEventName;
 
 /***/ }),
-/* 122 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14500,11 +14555,11 @@ module.exports = getVendorPrefixedEventName;
 var _prodInvariant = __webpack_require__(7),
     _assign = __webpack_require__(8);
 
-var ReactCompositeComponent = __webpack_require__(102);
-var ReactEmptyComponent = __webpack_require__(107);
-var ReactHostComponent = __webpack_require__(109);
+var ReactCompositeComponent = __webpack_require__(104);
+var ReactEmptyComponent = __webpack_require__(109);
+var ReactHostComponent = __webpack_require__(111);
 
-var getNextDebugID = __webpack_require__(131);
+var getNextDebugID = __webpack_require__(133);
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
 
@@ -14616,7 +14671,7 @@ module.exports = instantiateReactComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 123 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14672,7 +14727,7 @@ function isTextInputElement(elem) {
 module.exports = isTextInputElement;
 
 /***/ }),
-/* 124 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14729,7 +14784,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setTextContent;
 
 /***/ }),
-/* 125 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14748,9 +14803,9 @@ module.exports = setTextContent;
 var _prodInvariant = __webpack_require__(7);
 
 var ReactCurrentOwner = __webpack_require__(21);
-var REACT_ELEMENT_TYPE = __webpack_require__(224);
+var REACT_ELEMENT_TYPE = __webpack_require__(233);
 
-var getIteratorFn = __webpack_require__(259);
+var getIteratorFn = __webpack_require__(268);
 var invariant = __webpack_require__(3);
 var KeyEscapeUtils = __webpack_require__(58);
 var warning = __webpack_require__(4);
@@ -14911,7 +14966,7 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 126 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14975,7 +15030,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 127 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15000,7 +15055,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 128 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15027,10 +15082,10 @@ var ReactCurrentOwner = __webpack_require__(21);
 var ReactComponentTreeHook = __webpack_require__(14);
 var ReactElement = __webpack_require__(28);
 
-var checkReactTypeSpec = __webpack_require__(277);
+var checkReactTypeSpec = __webpack_require__(286);
 
 var canDefineProperty = __webpack_require__(50);
-var getIteratorFn = __webpack_require__(130);
+var getIteratorFn = __webpack_require__(132);
 var warning = __webpack_require__(4);
 
 function getDeclarationErrorAddendum() {
@@ -15259,7 +15314,7 @@ module.exports = ReactElementValidator;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 129 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15290,7 +15345,7 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 130 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15336,7 +15391,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 131 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15362,7 +15417,7 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ }),
-/* 132 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15406,7 +15461,7 @@ module.exports = onlyChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 133 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15425,11 +15480,11 @@ module.exports = onlyChild;
 var _prodInvariant = __webpack_require__(29);
 
 var ReactCurrentOwner = __webpack_require__(21);
-var REACT_ELEMENT_TYPE = __webpack_require__(127);
+var REACT_ELEMENT_TYPE = __webpack_require__(129);
 
-var getIteratorFn = __webpack_require__(130);
+var getIteratorFn = __webpack_require__(132);
 var invariant = __webpack_require__(3);
-var KeyEscapeUtils = __webpack_require__(126);
+var KeyEscapeUtils = __webpack_require__(128);
 var warning = __webpack_require__(4);
 
 var SEPARATOR = '.';
@@ -15588,7 +15643,7 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 134 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15672,9 +15727,9 @@ var __generator = this && this.__generator || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(1);
-var fetch = __webpack_require__(191);
-var Counter_1 = __webpack_require__(173);
-var BlueprintDemo_1 = __webpack_require__(171);
+var fetch = __webpack_require__(194);
+var Counter_1 = __webpack_require__(176);
+var BlueprintDemo_1 = __webpack_require__(174);
 function getData() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -15697,7 +15752,24 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 135 */
+/* 137 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Further details on Sentry setup for Javascript/React:
+ *   - docs.sentry.io/clients/javascript/
+ *   - docs.sentry.io/clients/javascript/integrations/react/
+ */
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+// TODO: Sentry Raven config should come from environment variable
+var Raven = __webpack_require__(201);
+Raven.config('https://56cd04eab54d4dae8a9349f1e9ae195e@sentry.io/159491').install();
+
+/***/ }),
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15709,7 +15781,7 @@ exports.default = function () {
    * Module dependencies.
    */
 
-  var pathtoRegexp = __webpack_require__(192);
+  var pathtoRegexp = __webpack_require__(195);
 
   /**
    * Module exports.
@@ -16327,7 +16399,7 @@ exports.default = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 136 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16339,7 +16411,7 @@ exports.default = function () {
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var interactionMode_1 = __webpack_require__(139);
+var interactionMode_1 = __webpack_require__(142);
 exports.FOCUS_DISABLED_CLASS = "pt-focus-disabled";
 /* istanbul ignore next */
 var fakeFocusEngine = {
@@ -16363,7 +16435,7 @@ exports.FocusStyleManager = {
 
 
 /***/ }),
-/* 137 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16378,13 +16450,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(136));
+__export(__webpack_require__(139));
 
 //# sourceMappingURL=index.js.map
 
 
 /***/ }),
-/* 138 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16490,7 +16562,7 @@ exports.Colors = {
 
 
 /***/ }),
-/* 139 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16555,7 +16627,7 @@ exports.InteractionModeEngine = InteractionModeEngine;
 
 
 /***/ }),
-/* 140 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16583,7 +16655,7 @@ exports.Browser = {
 
 
 /***/ }),
-/* 141 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16598,13 +16670,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(140));
+__export(__webpack_require__(143));
 
 //# sourceMappingURL=index.js.map
 
 
 /***/ }),
-/* 142 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16622,7 +16694,7 @@ var React = __webpack_require__(1);
 var common_1 = __webpack_require__(30);
 var Errors = __webpack_require__(15);
 var buttons_1 = __webpack_require__(42);
-var dialog_1 = __webpack_require__(77);
+var dialog_1 = __webpack_require__(78);
 var Alert = (function (_super) {
     tslib_1.__extends(Alert, _super);
     function Alert() {
@@ -16672,7 +16744,7 @@ exports.Alert = Alert;
 
 
 /***/ }),
-/* 143 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16699,7 +16771,7 @@ exports.Breadcrumb = function (breadcrumbProps) {
 
 
 /***/ }),
-/* 144 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16801,7 +16873,7 @@ function isKeyboardClick(keyCode) {
 
 
 /***/ }),
-/* 145 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16820,7 +16892,7 @@ var Classes = __webpack_require__(5);
 var Errors = __webpack_require__(15);
 var position_1 = __webpack_require__(22);
 var menu_1 = __webpack_require__(52);
-var menuItem_1 = __webpack_require__(84);
+var menuItem_1 = __webpack_require__(85);
 var popover_1 = __webpack_require__(32);
 var CollapseFrom;
 (function (CollapseFrom) {
@@ -16894,7 +16966,7 @@ exports.CollapsibleListFactory = React.createFactory(CollapsibleList);
 
 
 /***/ }),
-/* 146 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16908,7 +16980,7 @@ exports.CollapsibleListFactory = React.createFactory(CollapsibleList);
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(1);
 var utils_1 = __webpack_require__(9);
-var ContextMenu = __webpack_require__(76);
+var ContextMenu = __webpack_require__(77);
 function ContextMenuTarget(constructor) {
     var _a = constructor.prototype, render = _a.render, renderContextMenu = _a.renderContextMenu, onContextMenuClose = _a.onContextMenuClose;
     if (!utils_1.isFunction(renderContextMenu)) {
@@ -16948,7 +17020,7 @@ exports.ContextMenuTarget = ContextMenuTarget;
 
 
 /***/ }),
-/* 147 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16968,7 +17040,7 @@ var abstractComponent_1 = __webpack_require__(13);
 var Classes = __webpack_require__(5);
 var Keys = __webpack_require__(24);
 var utils_1 = __webpack_require__(9);
-var compatibility_1 = __webpack_require__(141);
+var compatibility_1 = __webpack_require__(144);
 var BUFFER_WIDTH_EDGE = 5;
 var BUFFER_WIDTH_IE = 30;
 var EditableText = (function (_super) {
@@ -17219,7 +17291,7 @@ exports.EditableTextFactory = React.createFactory(EditableText);
 
 
 /***/ }),
-/* 148 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17238,7 +17310,7 @@ var React = __webpack_require__(1);
 var common_1 = __webpack_require__(30);
 var Errors = __webpack_require__(15);
 var buttons_1 = __webpack_require__(42);
-var inputGroup_1 = __webpack_require__(79);
+var inputGroup_1 = __webpack_require__(80);
 var IncrementDirection;
 (function (IncrementDirection) {
     IncrementDirection[IncrementDirection["DOWN"] = -1] = "DOWN";
@@ -17584,7 +17656,7 @@ var NumericInput_1;
 
 
 /***/ }),
-/* 149 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17601,7 +17673,7 @@ var React = __webpack_require__(1);
 var abstractComponent_1 = __webpack_require__(13);
 var Classes = __webpack_require__(5);
 var Errors = __webpack_require__(15);
-var controls_1 = __webpack_require__(78);
+var controls_1 = __webpack_require__(79);
 var counter = 0;
 function nextName() { return RadioGroup.displayName + "-" + counter++; }
 var RadioGroup = (function (_super) {
@@ -17662,7 +17734,7 @@ exports.RadioGroup = RadioGroup;
 
 
 /***/ }),
-/* 150 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17678,7 +17750,7 @@ var react_1 = __webpack_require__(1);
 var utils_1 = __webpack_require__(9);
 var hotkey_1 = __webpack_require__(43);
 var hotkeyParser_1 = __webpack_require__(51);
-var hotkeysDialog_1 = __webpack_require__(81);
+var hotkeysDialog_1 = __webpack_require__(82);
 var SHOW_DIALOG_KEY = "?";
 var HotkeyScope;
 (function (HotkeyScope) {
@@ -17773,7 +17845,7 @@ exports.HotkeysEvents = HotkeysEvents;
 
 
 /***/ }),
-/* 151 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17787,7 +17859,7 @@ exports.HotkeysEvents = HotkeysEvents;
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(1);
 var utils_1 = __webpack_require__(9);
-var hotkeysEvents_1 = __webpack_require__(150);
+var hotkeysEvents_1 = __webpack_require__(153);
 function HotkeysTarget(constructor) {
     var _a = constructor.prototype, componentWillMount = _a.componentWillMount, componentDidMount = _a.componentDidMount, componentWillUnmount = _a.componentWillUnmount, render = _a.render, renderHotkeys = _a.renderHotkeys;
     if (!utils_1.isFunction(renderHotkeys)) {
@@ -17853,7 +17925,7 @@ exports.HotkeysTarget = HotkeysTarget;
 
 
 /***/ }),
-/* 152 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17896,7 +17968,7 @@ exports.MenuDividerFactory = React.createFactory(MenuDivider);
 
 
 /***/ }),
-/* 153 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17968,7 +18040,7 @@ exports.NonIdealStateFactory = React.createFactory(NonIdealState);
 
 
 /***/ }),
-/* 154 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18051,7 +18123,7 @@ exports.getArrowPositionStyles = getArrowPositionStyles;
 
 
 /***/ }),
-/* 155 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18083,7 +18155,7 @@ exports.SVGPopoverFactory = React.createFactory(SVGPopover);
 
 
 /***/ }),
-/* 156 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18127,7 +18199,7 @@ exports.ProgressBarFactory = React.createFactory(ProgressBar);
 
 
 /***/ }),
-/* 157 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18145,8 +18217,8 @@ var React = __webpack_require__(1);
 var Classes = __webpack_require__(5);
 var Errors = __webpack_require__(15);
 var utils_1 = __webpack_require__(9);
-var coreSlider_1 = __webpack_require__(86);
-var handle_1 = __webpack_require__(87);
+var coreSlider_1 = __webpack_require__(87);
+var handle_1 = __webpack_require__(88);
 var RangeEnd;
 (function (RangeEnd) {
     RangeEnd[RangeEnd["LEFT"] = 0] = "LEFT";
@@ -18248,7 +18320,7 @@ exports.RangeSliderFactory = React.createFactory(RangeSlider);
 
 
 /***/ }),
-/* 158 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18264,8 +18336,8 @@ var tslib_1 = __webpack_require__(2);
 var React = __webpack_require__(1);
 var Classes = __webpack_require__(5);
 var utils_1 = __webpack_require__(9);
-var coreSlider_1 = __webpack_require__(86);
-var handle_1 = __webpack_require__(87);
+var coreSlider_1 = __webpack_require__(87);
+var handle_1 = __webpack_require__(88);
 var Slider = (function (_super) {
     tslib_1.__extends(Slider, _super);
     function Slider() {
@@ -18318,7 +18390,7 @@ exports.SliderFactory = React.createFactory(Slider);
 
 
 /***/ }),
-/* 159 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18354,7 +18426,7 @@ exports.SVGSpinnerFactory = React.createFactory(SVGSpinner);
 
 
 /***/ }),
-/* 160 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18376,9 +18448,9 @@ var Classes = __webpack_require__(5);
 var Errors = __webpack_require__(15);
 var Keys = __webpack_require__(24);
 var Utils = __webpack_require__(9);
-var tab_1 = __webpack_require__(88);
-var tabList_1 = __webpack_require__(89);
-var tabPanel_1 = __webpack_require__(90);
+var tab_1 = __webpack_require__(89);
+var tabList_1 = __webpack_require__(90);
+var tabPanel_1 = __webpack_require__(91);
 var TAB_CSS_SELECTOR = "li[role=tab]";
 var Tabs = (function (_super) {
     tslib_1.__extends(Tabs, _super);
@@ -18665,7 +18737,7 @@ exports.TabsFactory = React.createFactory(Tabs);
 
 
 /***/ }),
-/* 161 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18715,7 +18787,7 @@ exports.generateTabTitleId = generateTabTitleId;
 
 
 /***/ }),
-/* 162 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18735,8 +18807,8 @@ var abstractComponent_1 = __webpack_require__(13);
 var Classes = __webpack_require__(5);
 var Keys = __webpack_require__(24);
 var utils_1 = __webpack_require__(9);
-var tab2_1 = __webpack_require__(91);
-var tabTitle_1 = __webpack_require__(161);
+var tab2_1 = __webpack_require__(92);
+var tabTitle_1 = __webpack_require__(164);
 exports.Expander = function () { return React.createElement("div", { className: "pt-flex-expander" }); };
 var TAB_SELECTOR = "." + Classes.TAB;
 var Tabs2 = (function (_super) {
@@ -18916,7 +18988,7 @@ function isTab(child) {
 
 
 /***/ }),
-/* 163 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18965,7 +19037,7 @@ exports.TagFactory = React.createFactory(Tag);
 
 
 /***/ }),
-/* 164 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19026,7 +19098,7 @@ exports.Text = Text;
 
 
 /***/ }),
-/* 165 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19050,7 +19122,7 @@ var keys_1 = __webpack_require__(24);
 var position_1 = __webpack_require__(22);
 var utils_1 = __webpack_require__(9);
 var overlay_1 = __webpack_require__(44);
-var toast_1 = __webpack_require__(92);
+var toast_1 = __webpack_require__(93);
 var Toaster = Toaster_1 = (function (_super) {
     tslib_1.__extends(Toaster, _super);
     function Toaster() {
@@ -19160,7 +19232,7 @@ var Toaster_1;
 
 
 /***/ }),
-/* 166 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19192,7 +19264,7 @@ exports.SVGTooltipFactory = React.createFactory(SVGTooltip);
 
 
 /***/ }),
-/* 167 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19209,7 +19281,7 @@ var classNames = __webpack_require__(6);
 var React = __webpack_require__(1);
 var Classes = __webpack_require__(5);
 var utils_1 = __webpack_require__(9);
-var treeNode_1 = __webpack_require__(93);
+var treeNode_1 = __webpack_require__(94);
 var Tree = (function (_super) {
     tslib_1.__extends(Tree, _super);
     function Tree() {
@@ -19286,7 +19358,7 @@ exports.TreeFactory = React.createFactory(Tree);
 
 
 /***/ }),
-/* 168 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19694,7 +19766,7 @@ exports.IconClasses = {
 
 
 /***/ }),
-/* 169 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20102,7 +20174,7 @@ exports.IconContents = {
 
 
 /***/ }),
-/* 170 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20110,9 +20182,10 @@ exports.IconContents = {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(1);
-var page = __webpack_require__(135);
+var page = __webpack_require__(138);
 var ReactDOM = __webpack_require__(23);
-var Counter_1 = __webpack_require__(134);
+var Counter_1 = __webpack_require__(136);
+__webpack_require__(137);
 var render = function (c) {
     return ReactDOM.render(c, document.getElementById('root'));
 };
@@ -20131,7 +20204,7 @@ pages.map(function (_a) {
 page();
 
 /***/ }),
-/* 171 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20139,7 +20212,7 @@ page();
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(1);
-var core_1 = __webpack_require__(94);
+var core_1 = __webpack_require__(95);
 exports.default = function () {
     return React.createElement("div", null, React.createElement("h2", null, "And now a nice little ", React.createElement("code", null, "EditableText"), " Element"), React.createElement(core_1.EditableText, { multiline: true, minLines: 3, maxLines: 6, onConfirm: function (val) {
             return alert("You just submitted: \"" + val + "\"");
@@ -20147,7 +20220,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 172 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20170,7 +20243,7 @@ var Grid = function (_a) {
 exports.default = Grid;
 
 /***/ }),
-/* 173 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20192,8 +20265,8 @@ var __extends = this && this.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(1);
-var core_1 = __webpack_require__(94);
-var Grid_1 = __webpack_require__(172);
+var core_1 = __webpack_require__(95);
+var Grid_1 = __webpack_require__(175);
 var increment = function (prevState) {
     return { count: prevState.count + 1 };
 };
@@ -20223,7 +20296,7 @@ var Counter = function (_super) {
 exports.default = Counter;
 
 /***/ }),
-/* 174 */
+/* 177 */
 /***/ (function(module, exports) {
 
 /*!
@@ -21211,7 +21284,7 @@ THE SOFTWARE.
 }(self));
 
 /***/ }),
-/* 175 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21339,7 +21412,7 @@ module.exports = CSSCore;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 176 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21376,7 +21449,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 177 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21393,7 +21466,7 @@ module.exports = camelize;
 
 
 
-var camelize = __webpack_require__(176);
+var camelize = __webpack_require__(179);
 
 var msPattern = /^-ms-/;
 
@@ -21421,7 +21494,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 178 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21438,7 +21511,7 @@ module.exports = camelizeStyleName;
  * 
  */
 
-var isTextNode = __webpack_require__(186);
+var isTextNode = __webpack_require__(189);
 
 /*eslint-disable no-bitwise */
 
@@ -21466,7 +21539,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 179 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21599,7 +21672,7 @@ module.exports = createArrayFromMixed;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 180 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21620,8 +21693,8 @@ module.exports = createArrayFromMixed;
 
 var ExecutionEnvironment = __webpack_require__(12);
 
-var createArrayFromMixed = __webpack_require__(179);
-var getMarkupWrap = __webpack_require__(181);
+var createArrayFromMixed = __webpack_require__(182);
+var getMarkupWrap = __webpack_require__(184);
 var invariant = __webpack_require__(3);
 
 /**
@@ -21689,7 +21762,7 @@ module.exports = createNodesFromMarkup;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 181 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21790,7 +21863,7 @@ module.exports = getMarkupWrap;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 182 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21834,7 +21907,7 @@ function getUnboundedScrollPosition(scrollable) {
 module.exports = getUnboundedScrollPosition;
 
 /***/ }),
-/* 183 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21872,7 +21945,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 184 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21889,7 +21962,7 @@ module.exports = hyphenate;
 
 
 
-var hyphenate = __webpack_require__(183);
+var hyphenate = __webpack_require__(186);
 
 var msPattern = /^ms-/;
 
@@ -21916,7 +21989,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 185 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21946,7 +22019,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 186 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21963,7 +22036,7 @@ module.exports = isNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(185);
+var isNode = __webpack_require__(188);
 
 /**
  * @param {*} object The object to check.
@@ -21976,7 +22049,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 187 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22011,7 +22084,7 @@ function memoizeStringOnly(callback) {
 module.exports = memoizeStringOnly;
 
 /***/ }),
-/* 188 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22039,7 +22112,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 189 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22056,7 +22129,7 @@ module.exports = performance || {};
  * @typechecks
  */
 
-var performance = __webpack_require__(188);
+var performance = __webpack_require__(191);
 
 var performanceNow;
 
@@ -22078,7 +22151,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 190 */
+/* 193 */
 /***/ (function(module, exports) {
 
 module.exports = Array.isArray || function (arr) {
@@ -22087,22 +22160,22 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 191 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // the whatwg-fetch polyfill installs the fetch() function
 // on the global object (window or self)
 //
 // Return that as the export for use in Webpack, Browserify etc.
-__webpack_require__(280);
+__webpack_require__(289);
 module.exports = self.fetch.bind(self);
 
 
 /***/ }),
-/* 192 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isarray = __webpack_require__(190)
+var isarray = __webpack_require__(193)
 
 /**
  * Expose `pathToRegexp`.
@@ -22495,7 +22568,7 @@ function pathToRegexp (path, keys, options) {
 
 
 /***/ }),
-/* 193 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22513,7 +22586,7 @@ function pathToRegexp (path, keys, options) {
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(3);
   var warning = __webpack_require__(4);
-  var ReactPropTypesSecret = __webpack_require__(98);
+  var ReactPropTypesSecret = __webpack_require__(99);
   var loggedTypeFailures = {};
 }
 
@@ -22564,7 +22637,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 194 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22583,8 +22656,8 @@ var emptyFunction = __webpack_require__(16);
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
 
-var ReactPropTypesSecret = __webpack_require__(98);
-var checkPropTypes = __webpack_require__(193);
+var ReactPropTypesSecret = __webpack_require__(99);
+var checkPropTypes = __webpack_require__(196);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -23050,13 +23123,2830 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 195 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(265);
+"use strict";
+
+
+function RavenConfigError(message) {
+    this.name = 'RavenConfigError';
+    this.message = message;
+}
+RavenConfigError.prototype = new Error();
+RavenConfigError.prototype.constructor = RavenConfigError;
+
+module.exports = RavenConfigError;
+
 
 /***/ }),
-/* 196 */
+/* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var wrapMethod = function(console, level, callback) {
+    var originalConsoleLevel = console[level];
+    var originalConsole = console;
+
+    if (!(level in console)) {
+        return;
+    }
+
+    var sentryLevel = level === 'warn'
+        ? 'warning'
+        : level;
+
+    console[level] = function () {
+        var args = [].slice.call(arguments);
+
+        var msg = '' + args.join(' ');
+        var data = {level: sentryLevel, logger: 'console', extra: {'arguments': args}};
+        callback && callback(msg, data);
+
+        // this fails for some browsers. :(
+        if (originalConsoleLevel) {
+            // IE9 doesn't allow calling apply on console functions directly
+            // See: https://stackoverflow.com/questions/5472938/does-ie9-support-console-log-and-is-it-a-real-function#answer-5473193
+            Function.prototype.apply.call(
+                originalConsoleLevel,
+                originalConsole,
+                args
+            );
+        }
+    };
+};
+
+module.exports = {
+    wrapMethod: wrapMethod
+};
+
+
+/***/ }),
+/* 200 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/*global XDomainRequest:false, __DEV__:false*/
+
+
+var TraceKit = __webpack_require__(202);
+var stringify = __webpack_require__(203);
+var RavenConfigError = __webpack_require__(198);
+var utils = __webpack_require__(100);
+
+var isError = utils.isError,
+    isObject = utils.isObject;
+
+var wrapConsoleMethod = __webpack_require__(199).wrapMethod;
+
+var dsnKeys = 'source protocol user pass host port path'.split(' '),
+    dsnPattern = /^(?:(\w+):)?\/\/(?:(\w+)(:\w+)?@)?([\w\.-]+)(?::(\d+))?(\/.*)/;
+
+function now() {
+    return +new Date();
+}
+
+// This is to be defensive in environments where window does not exist (see https://github.com/getsentry/raven-js/pull/785)
+var _window = typeof window !== 'undefined' ? window
+            : typeof global !== 'undefined' ? global
+            : typeof self !== 'undefined' ? self
+            : {};
+var _document = _window.document;
+var _navigator = _window.navigator;
+
+// First, check for JSON support
+// If there is no JSON, we no-op the core features of Raven
+// since JSON is required to encode the payload
+function Raven() {
+    this._hasJSON = !!(typeof JSON === 'object' && JSON.stringify);
+    // Raven can run in contexts where there's no document (react-native)
+    this._hasDocument = !isUndefined(_document);
+    this._hasNavigator = !isUndefined(_navigator);
+    this._lastCapturedException = null;
+    this._lastData = null;
+    this._lastEventId = null;
+    this._globalServer = null;
+    this._globalKey = null;
+    this._globalProject = null;
+    this._globalContext = {};
+    this._globalOptions = {
+        logger: 'javascript',
+        ignoreErrors: [],
+        ignoreUrls: [],
+        whitelistUrls: [],
+        includePaths: [],
+        crossOrigin: 'anonymous',
+        collectWindowErrors: true,
+        maxMessageLength: 0,
+
+        // By default, truncates URL values to 250 chars
+        maxUrlLength: 250,
+        stackTraceLimit: 50,
+        autoBreadcrumbs: true,
+        sampleRate: 1
+    };
+    this._ignoreOnError = 0;
+    this._isRavenInstalled = false;
+    this._originalErrorStackTraceLimit = Error.stackTraceLimit;
+    // capture references to window.console *and* all its methods first
+    // before the console plugin has a chance to monkey patch
+    this._originalConsole = _window.console || {};
+    this._originalConsoleMethods = {};
+    this._plugins = [];
+    this._startTime = now();
+    this._wrappedBuiltIns = [];
+    this._breadcrumbs = [];
+    this._lastCapturedEvent = null;
+    this._keypressTimeout;
+    this._location = _window.location;
+    this._lastHref = this._location && this._location.href;
+    this._resetBackoff();
+
+    for (var method in this._originalConsole) {  // eslint-disable-line guard-for-in
+      this._originalConsoleMethods[method] = this._originalConsole[method];
+    }
+}
+
+/*
+ * The core Raven singleton
+ *
+ * @this {Raven}
+ */
+
+Raven.prototype = {
+    // Hardcode version string so that raven source can be loaded directly via
+    // webpack (using a build step causes webpack #1617). Grunt verifies that
+    // this value matches package.json during build.
+    //   See: https://github.com/getsentry/raven-js/issues/465
+    VERSION: '3.14.2',
+
+    debug: false,
+
+    TraceKit: TraceKit, // alias to TraceKit
+
+    /*
+     * Configure Raven with a DSN and extra options
+     *
+     * @param {string} dsn The public Sentry DSN
+     * @param {object} options Optional set of of global options [optional]
+     * @return {Raven}
+     */
+    config: function(dsn, options) {
+        var self = this;
+
+        if (self._globalServer) {
+                this._logDebug('error', 'Error: Raven has already been configured');
+            return self;
+        }
+        if (!dsn) return self;
+
+        var globalOptions = self._globalOptions;
+
+        // merge in options
+        if (options) {
+            each(options, function(key, value){
+                // tags and extra are special and need to be put into context
+                if (key === 'tags' || key === 'extra' || key === 'user') {
+                    self._globalContext[key] = value;
+                } else {
+                    globalOptions[key] = value;
+                }
+            });
+        }
+
+        self.setDSN(dsn);
+
+        // "Script error." is hard coded into browsers for errors that it can't read.
+        // this is the result of a script being pulled in from an external domain and CORS.
+        globalOptions.ignoreErrors.push(/^Script error\.?$/);
+        globalOptions.ignoreErrors.push(/^Javascript error: Script error\.? on line 0$/);
+
+        // join regexp rules into one big rule
+        globalOptions.ignoreErrors = joinRegExp(globalOptions.ignoreErrors);
+        globalOptions.ignoreUrls = globalOptions.ignoreUrls.length ? joinRegExp(globalOptions.ignoreUrls) : false;
+        globalOptions.whitelistUrls = globalOptions.whitelistUrls.length ? joinRegExp(globalOptions.whitelistUrls) : false;
+        globalOptions.includePaths = joinRegExp(globalOptions.includePaths);
+        globalOptions.maxBreadcrumbs = Math.max(0, Math.min(globalOptions.maxBreadcrumbs || 100, 100)); // default and hard limit is 100
+
+        var autoBreadcrumbDefaults = {
+            xhr: true,
+            console: true,
+            dom: true,
+            location: true
+        };
+
+        var autoBreadcrumbs = globalOptions.autoBreadcrumbs;
+        if ({}.toString.call(autoBreadcrumbs) === '[object Object]') {
+            autoBreadcrumbs = objectMerge(autoBreadcrumbDefaults, autoBreadcrumbs);
+        } else if (autoBreadcrumbs !== false) {
+            autoBreadcrumbs = autoBreadcrumbDefaults;
+        }
+        globalOptions.autoBreadcrumbs = autoBreadcrumbs;
+
+        TraceKit.collectWindowErrors = !!globalOptions.collectWindowErrors;
+
+        // return for chaining
+        return self;
+    },
+
+    /*
+     * Installs a global window.onerror error handler
+     * to capture and report uncaught exceptions.
+     * At this point, install() is required to be called due
+     * to the way TraceKit is set up.
+     *
+     * @return {Raven}
+     */
+    install: function() {
+        var self = this;
+        if (self.isSetup() && !self._isRavenInstalled) {
+            TraceKit.report.subscribe(function () {
+                self._handleOnErrorStackInfo.apply(self, arguments);
+            });
+            self._instrumentTryCatch();
+            if (self._globalOptions.autoBreadcrumbs)
+                self._instrumentBreadcrumbs();
+
+            // Install all of the plugins
+            self._drainPlugins();
+
+            self._isRavenInstalled = true;
+        }
+
+        Error.stackTraceLimit = self._globalOptions.stackTraceLimit;
+        return this;
+    },
+
+    /*
+     * Set the DSN (can be called multiple time unlike config)
+     *
+     * @param {string} dsn The public Sentry DSN
+     */
+    setDSN: function(dsn) {
+        var self = this,
+            uri = self._parseDSN(dsn),
+          lastSlash = uri.path.lastIndexOf('/'),
+          path = uri.path.substr(1, lastSlash);
+
+        self._dsn = dsn;
+        self._globalKey = uri.user;
+        self._globalSecret = uri.pass && uri.pass.substr(1);
+        self._globalProject = uri.path.substr(lastSlash + 1);
+
+        self._globalServer = self._getGlobalServer(uri);
+
+        self._globalEndpoint = self._globalServer +
+            '/' + path + 'api/' + self._globalProject + '/store/';
+
+        // Reset backoff state since we may be pointing at a
+        // new project/server
+        this._resetBackoff();
+    },
+
+    /*
+     * Wrap code within a context so Raven can capture errors
+     * reliably across domains that is executed immediately.
+     *
+     * @param {object} options A specific set of options for this context [optional]
+     * @param {function} func The callback to be immediately executed within the context
+     * @param {array} args An array of arguments to be called with the callback [optional]
+     */
+    context: function(options, func, args) {
+        if (isFunction(options)) {
+            args = func || [];
+            func = options;
+            options = undefined;
+        }
+
+        return this.wrap(options, func).apply(this, args);
+    },
+
+    /*
+     * Wrap code within a context and returns back a new function to be executed
+     *
+     * @param {object} options A specific set of options for this context [optional]
+     * @param {function} func The function to be wrapped in a new context
+     * @param {function} func A function to call before the try/catch wrapper [optional, private]
+     * @return {function} The newly wrapped functions with a context
+     */
+    wrap: function(options, func, _before) {
+        var self = this;
+        // 1 argument has been passed, and it's not a function
+        // so just return it
+        if (isUndefined(func) && !isFunction(options)) {
+            return options;
+        }
+
+        // options is optional
+        if (isFunction(options)) {
+            func = options;
+            options = undefined;
+        }
+
+        // At this point, we've passed along 2 arguments, and the second one
+        // is not a function either, so we'll just return the second argument.
+        if (!isFunction(func)) {
+            return func;
+        }
+
+        // We don't wanna wrap it twice!
+        try {
+            if (func.__raven__) {
+                return func;
+            }
+
+            // If this has already been wrapped in the past, return that
+            if (func.__raven_wrapper__ ){
+                return func.__raven_wrapper__ ;
+            }
+        } catch (e) {
+            // Just accessing custom props in some Selenium environments
+            // can cause a "Permission denied" exception (see raven-js#495).
+            // Bail on wrapping and return the function as-is (defers to window.onerror).
+            return func;
+        }
+
+        function wrapped() {
+            var args = [], i = arguments.length,
+                deep = !options || options && options.deep !== false;
+
+            if (_before && isFunction(_before)) {
+                _before.apply(this, arguments);
+            }
+
+            // Recursively wrap all of a function's arguments that are
+            // functions themselves.
+            while(i--) args[i] = deep ? self.wrap(options, arguments[i]) : arguments[i];
+
+            try {
+                // Attempt to invoke user-land function
+                // NOTE: If you are a Sentry user, and you are seeing this stack frame, it
+                //       means Raven caught an error invoking your application code. This is
+                //       expected behavior and NOT indicative of a bug with Raven.js.
+                return func.apply(this, args);
+            } catch(e) {
+                self._ignoreNextOnError();
+                self.captureException(e, options);
+                throw e;
+            }
+        }
+
+        // copy over properties of the old function
+        for (var property in func) {
+            if (hasKey(func, property)) {
+                wrapped[property] = func[property];
+            }
+        }
+        wrapped.prototype = func.prototype;
+
+        func.__raven_wrapper__ = wrapped;
+        // Signal that this function has been wrapped already
+        // for both debugging and to prevent it to being wrapped twice
+        wrapped.__raven__ = true;
+        wrapped.__inner__ = func;
+
+        return wrapped;
+    },
+
+    /*
+     * Uninstalls the global error handler.
+     *
+     * @return {Raven}
+     */
+    uninstall: function() {
+        TraceKit.report.uninstall();
+
+        this._restoreBuiltIns();
+
+        Error.stackTraceLimit = this._originalErrorStackTraceLimit;
+        this._isRavenInstalled = false;
+
+        return this;
+    },
+
+    /*
+     * Manually capture an exception and send it over to Sentry
+     *
+     * @param {error} ex An exception to be logged
+     * @param {object} options A specific set of options for this error [optional]
+     * @return {Raven}
+     */
+    captureException: function(ex, options) {
+        // If not an Error is passed through, recall as a message instead
+        if (!isError(ex)) {
+            return this.captureMessage(ex, objectMerge({
+                trimHeadFrames: 1,
+                stacktrace: true // if we fall back to captureMessage, default to attempting a new trace
+            }, options));
+        }
+
+        // Store the raw exception object for potential debugging and introspection
+        this._lastCapturedException = ex;
+
+        // TraceKit.report will re-raise any exception passed to it,
+        // which means you have to wrap it in try/catch. Instead, we
+        // can wrap it here and only re-raise if TraceKit.report
+        // raises an exception different from the one we asked to
+        // report on.
+        try {
+            var stack = TraceKit.computeStackTrace(ex);
+            this._handleStackInfo(stack, options);
+        } catch(ex1) {
+            if(ex !== ex1) {
+                throw ex1;
+            }
+        }
+
+        return this;
+    },
+
+    /*
+     * Manually send a message to Sentry
+     *
+     * @param {string} msg A plain message to be captured in Sentry
+     * @param {object} options A specific set of options for this message [optional]
+     * @return {Raven}
+     */
+    captureMessage: function(msg, options) {
+        // config() automagically converts ignoreErrors from a list to a RegExp so we need to test for an
+        // early call; we'll error on the side of logging anything called before configuration since it's
+        // probably something you should see:
+        if (!!this._globalOptions.ignoreErrors.test && this._globalOptions.ignoreErrors.test(msg)) {
+            return;
+        }
+
+        options = options || {};
+
+        var data = objectMerge({
+            message: msg + ''  // Make sure it's actually a string
+        }, options);
+
+        if (this._globalOptions.stacktrace || (options && options.stacktrace)) {
+            var ex;
+            // Generate a "synthetic" stack trace from this point.
+            // NOTE: If you are a Sentry user, and you are seeing this stack frame, it is NOT indicative
+            //       of a bug with Raven.js. Sentry generates synthetic traces either by configuration,
+            //       or if it catches a thrown object without a "stack" property.
+            try {
+                throw new Error(msg);
+            } catch (ex1) {
+                ex = ex1;
+            }
+
+            // null exception name so `Error` isn't prefixed to msg
+            ex.name = null;
+
+            options = objectMerge({
+                // fingerprint on msg, not stack trace (legacy behavior, could be
+                // revisited)
+                fingerprint: msg,
+                // since we know this is a synthetic trace, the top N-most frames
+                // MUST be from Raven.js, so mark them as in_app later by setting
+                // trimHeadFrames
+                trimHeadFrames: (options.trimHeadFrames || 0) + 1
+            }, options);
+
+            var stack = TraceKit.computeStackTrace(ex);
+            var frames = this._prepareFrames(stack, options);
+            data.stacktrace = {
+                // Sentry expects frames oldest to newest
+                frames: frames.reverse()
+            }
+        }
+
+        // Fire away!
+        this._send(data);
+
+        return this;
+    },
+
+    captureBreadcrumb: function (obj) {
+        var crumb = objectMerge({
+            timestamp: now() / 1000
+        }, obj);
+
+        if (isFunction(this._globalOptions.breadcrumbCallback)) {
+            var result = this._globalOptions.breadcrumbCallback(crumb);
+
+            if (isObject(result) && !isEmptyObject(result)) {
+                crumb = result;
+            } else if (result === false) {
+                return this;
+            }
+        }
+
+        this._breadcrumbs.push(crumb);
+        if (this._breadcrumbs.length > this._globalOptions.maxBreadcrumbs) {
+            this._breadcrumbs.shift();
+        }
+        return this;
+    },
+
+    addPlugin: function(plugin /*arg1, arg2, ... argN*/) {
+        var pluginArgs = [].slice.call(arguments, 1);
+
+        this._plugins.push([plugin, pluginArgs]);
+        if (this._isRavenInstalled) {
+            this._drainPlugins();
+        }
+
+        return this;
+    },
+
+    /*
+     * Set/clear a user to be sent along with the payload.
+     *
+     * @param {object} user An object representing user data [optional]
+     * @return {Raven}
+     */
+    setUserContext: function(user) {
+        // Intentionally do not merge here since that's an unexpected behavior.
+        this._globalContext.user = user;
+
+        return this;
+    },
+
+    /*
+     * Merge extra attributes to be sent along with the payload.
+     *
+     * @param {object} extra An object representing extra data [optional]
+     * @return {Raven}
+     */
+    setExtraContext: function(extra) {
+        this._mergeContext('extra', extra);
+
+        return this;
+    },
+
+    /*
+     * Merge tags to be sent along with the payload.
+     *
+     * @param {object} tags An object representing tags [optional]
+     * @return {Raven}
+     */
+    setTagsContext: function(tags) {
+        this._mergeContext('tags', tags);
+
+        return this;
+    },
+
+    /*
+     * Clear all of the context.
+     *
+     * @return {Raven}
+     */
+    clearContext: function() {
+        this._globalContext = {};
+
+        return this;
+    },
+
+    /*
+     * Get a copy of the current context. This cannot be mutated.
+     *
+     * @return {object} copy of context
+     */
+    getContext: function() {
+        // lol javascript
+        return JSON.parse(stringify(this._globalContext));
+    },
+
+
+    /*
+     * Set environment of application
+     *
+     * @param {string} environment Typically something like 'production'.
+     * @return {Raven}
+     */
+    setEnvironment: function(environment) {
+        this._globalOptions.environment = environment;
+
+        return this;
+    },
+
+    /*
+     * Set release version of application
+     *
+     * @param {string} release Typically something like a git SHA to identify version
+     * @return {Raven}
+     */
+    setRelease: function(release) {
+        this._globalOptions.release = release;
+
+        return this;
+    },
+
+    /*
+     * Set the dataCallback option
+     *
+     * @param {function} callback The callback to run which allows the
+     *                            data blob to be mutated before sending
+     * @return {Raven}
+     */
+    setDataCallback: function(callback) {
+        var original = this._globalOptions.dataCallback;
+        this._globalOptions.dataCallback = isFunction(callback)
+          ? function (data) { return callback(data, original); }
+          : callback;
+
+        return this;
+    },
+
+    /*
+     * Set the breadcrumbCallback option
+     *
+     * @param {function} callback The callback to run which allows filtering
+     *                            or mutating breadcrumbs
+     * @return {Raven}
+     */
+    setBreadcrumbCallback: function(callback) {
+        var original = this._globalOptions.breadcrumbCallback;
+        this._globalOptions.breadcrumbCallback = isFunction(callback)
+          ? function (data) { return callback(data, original); }
+          : callback;
+
+        return this;
+    },
+
+    /*
+     * Set the shouldSendCallback option
+     *
+     * @param {function} callback The callback to run which allows
+     *                            introspecting the blob before sending
+     * @return {Raven}
+     */
+    setShouldSendCallback: function(callback) {
+        var original = this._globalOptions.shouldSendCallback;
+        this._globalOptions.shouldSendCallback = isFunction(callback)
+            ? function (data) { return callback(data, original); }
+            : callback;
+
+        return this;
+    },
+
+    /**
+     * Override the default HTTP transport mechanism that transmits data
+     * to the Sentry server.
+     *
+     * @param {function} transport Function invoked instead of the default
+     *                             `makeRequest` handler.
+     *
+     * @return {Raven}
+     */
+    setTransport: function(transport) {
+        this._globalOptions.transport = transport;
+
+        return this;
+    },
+
+    /*
+     * Get the latest raw exception that was captured by Raven.
+     *
+     * @return {error}
+     */
+    lastException: function() {
+        return this._lastCapturedException;
+    },
+
+    /*
+     * Get the last event id
+     *
+     * @return {string}
+     */
+    lastEventId: function() {
+        return this._lastEventId;
+    },
+
+    /*
+     * Determine if Raven is setup and ready to go.
+     *
+     * @return {boolean}
+     */
+    isSetup: function() {
+        if (!this._hasJSON) return false;  // needs JSON support
+        if (!this._globalServer) {
+            if (!this.ravenNotConfiguredError) {
+              this.ravenNotConfiguredError = true;
+              this._logDebug('error', 'Error: Raven has not been configured.');
+            }
+            return false;
+        }
+        return true;
+    },
+
+    afterLoad: function () {
+        // TODO: remove window dependence?
+
+        // Attempt to initialize Raven on load
+        var RavenConfig = _window.RavenConfig;
+        if (RavenConfig) {
+            this.config(RavenConfig.dsn, RavenConfig.config).install();
+        }
+    },
+
+    showReportDialog: function (options) {
+        if (!_document) // doesn't work without a document (React native)
+            return;
+
+        options = options || {};
+
+        var lastEventId = options.eventId || this.lastEventId();
+        if (!lastEventId) {
+            throw new RavenConfigError('Missing eventId');
+        }
+
+        var dsn = options.dsn || this._dsn;
+        if (!dsn) {
+            throw new RavenConfigError('Missing DSN');
+        }
+
+        var encode = encodeURIComponent;
+        var qs = '';
+        qs += '?eventId=' + encode(lastEventId);
+        qs += '&dsn=' + encode(dsn);
+
+        var user = options.user || this._globalContext.user;
+        if (user) {
+            if (user.name)  qs += '&name=' + encode(user.name);
+            if (user.email) qs += '&email=' + encode(user.email);
+        }
+
+        var globalServer = this._getGlobalServer(this._parseDSN(dsn));
+
+        var script = _document.createElement('script');
+        script.async = true;
+        script.src = globalServer + '/api/embed/error-page/' + qs;
+        (_document.head || _document.body).appendChild(script);
+    },
+
+    /**** Private functions ****/
+    _ignoreNextOnError: function () {
+        var self = this;
+        this._ignoreOnError += 1;
+        setTimeout(function () {
+            // onerror should trigger before setTimeout
+            self._ignoreOnError -= 1;
+        });
+    },
+
+    _triggerEvent: function(eventType, options) {
+        // NOTE: `event` is a native browser thing, so let's avoid conflicting wiht it
+        var evt, key;
+
+        if (!this._hasDocument)
+            return;
+
+        options = options || {};
+
+        eventType = 'raven' + eventType.substr(0,1).toUpperCase() + eventType.substr(1);
+
+        if (_document.createEvent) {
+            evt = _document.createEvent('HTMLEvents');
+            evt.initEvent(eventType, true, true);
+        } else {
+            evt = _document.createEventObject();
+            evt.eventType = eventType;
+        }
+
+        for (key in options) if (hasKey(options, key)) {
+            evt[key] = options[key];
+        }
+
+        if (_document.createEvent) {
+            // IE9 if standards
+            _document.dispatchEvent(evt);
+        } else {
+            // IE8 regardless of Quirks or Standards
+            // IE9 if quirks
+            try {
+                _document.fireEvent('on' + evt.eventType.toLowerCase(), evt);
+            } catch(e) {
+                // Do nothing
+            }
+        }
+    },
+
+    /**
+     * Wraps addEventListener to capture UI breadcrumbs
+     * @param evtName the event name (e.g. "click")
+     * @returns {Function}
+     * @private
+     */
+    _breadcrumbEventHandler: function(evtName) {
+        var self = this;
+        return function (evt) {
+            // reset keypress timeout; e.g. triggering a 'click' after
+            // a 'keypress' will reset the keypress debounce so that a new
+            // set of keypresses can be recorded
+            self._keypressTimeout = null;
+
+            // It's possible this handler might trigger multiple times for the same
+            // event (e.g. event propagation through node ancestors). Ignore if we've
+            // already captured the event.
+            if (self._lastCapturedEvent === evt)
+                return;
+
+            self._lastCapturedEvent = evt;
+
+            // try/catch both:
+            // - accessing evt.target (see getsentry/raven-js#838, #768)
+            // - `htmlTreeAsString` because it's complex, and just accessing the DOM incorrectly
+            //   can throw an exception in some circumstances.
+            var target;
+            try {
+                target = htmlTreeAsString(evt.target);
+            } catch (e) {
+                target = '<unknown>';
+            }
+
+            self.captureBreadcrumb({
+                category: 'ui.' + evtName, // e.g. ui.click, ui.input
+                message: target
+            });
+        };
+    },
+
+    /**
+     * Wraps addEventListener to capture keypress UI events
+     * @returns {Function}
+     * @private
+     */
+    _keypressEventHandler: function() {
+        var self = this,
+            debounceDuration = 1000; // milliseconds
+
+        // TODO: if somehow user switches keypress target before
+        //       debounce timeout is triggered, we will only capture
+        //       a single breadcrumb from the FIRST target (acceptable?)
+        return function (evt) {
+            var target;
+            try {
+                target = evt.target;
+            } catch (e) {
+                // just accessing event properties can throw an exception in some rare circumstances
+                // see: https://github.com/getsentry/raven-js/issues/838
+                return;
+            }
+            var tagName = target && target.tagName;
+
+            // only consider keypress events on actual input elements
+            // this will disregard keypresses targeting body (e.g. tabbing
+            // through elements, hotkeys, etc)
+            if (!tagName || tagName !== 'INPUT' && tagName !== 'TEXTAREA' && !target.isContentEditable)
+                return;
+
+            // record first keypress in a series, but ignore subsequent
+            // keypresses until debounce clears
+            var timeout = self._keypressTimeout;
+            if (!timeout) {
+                self._breadcrumbEventHandler('input')(evt);
+            }
+            clearTimeout(timeout);
+            self._keypressTimeout = setTimeout(function () {
+                self._keypressTimeout = null;
+            }, debounceDuration);
+        };
+    },
+
+    /**
+     * Captures a breadcrumb of type "navigation", normalizing input URLs
+     * @param to the originating URL
+     * @param from the target URL
+     * @private
+     */
+    _captureUrlChange: function(from, to) {
+        var parsedLoc = parseUrl(this._location.href);
+        var parsedTo = parseUrl(to);
+        var parsedFrom = parseUrl(from);
+
+        // because onpopstate only tells you the "new" (to) value of location.href, and
+        // not the previous (from) value, we need to track the value of the current URL
+        // state ourselves
+        this._lastHref = to;
+
+        // Use only the path component of the URL if the URL matches the current
+        // document (almost all the time when using pushState)
+        if (parsedLoc.protocol === parsedTo.protocol && parsedLoc.host === parsedTo.host)
+            to = parsedTo.relative;
+        if (parsedLoc.protocol === parsedFrom.protocol && parsedLoc.host === parsedFrom.host)
+            from = parsedFrom.relative;
+
+        this.captureBreadcrumb({
+            category: 'navigation',
+            data: {
+                to: to,
+                from: from
+            }
+        });
+    },
+
+    /**
+     * Install any queued plugins
+     */
+    _instrumentTryCatch: function() {
+        var self = this;
+
+        var wrappedBuiltIns = self._wrappedBuiltIns;
+
+        function wrapTimeFn(orig) {
+            return function (fn, t) { // preserve arity
+                // Make a copy of the arguments to prevent deoptimization
+                // https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#32-leaking-arguments
+                var args = new Array(arguments.length);
+                for(var i = 0; i < args.length; ++i) {
+                    args[i] = arguments[i];
+                }
+                var originalCallback = args[0];
+                if (isFunction(originalCallback)) {
+                    args[0] = self.wrap(originalCallback);
+                }
+
+                // IE < 9 doesn't support .call/.apply on setInterval/setTimeout, but it
+                // also supports only two arguments and doesn't care what this is, so we
+                // can just call the original function directly.
+                if (orig.apply) {
+                    return orig.apply(this, args);
+                } else {
+                    return orig(args[0], args[1]);
+                }
+            };
+        }
+
+        var autoBreadcrumbs = this._globalOptions.autoBreadcrumbs;
+
+        function wrapEventTarget(global) {
+            var proto = _window[global] && _window[global].prototype;
+            if (proto && proto.hasOwnProperty && proto.hasOwnProperty('addEventListener')) {
+                fill(proto, 'addEventListener', function(orig) {
+                    return function (evtName, fn, capture, secure) { // preserve arity
+                        try {
+                            if (fn && fn.handleEvent) {
+                                fn.handleEvent = self.wrap(fn.handleEvent);
+                            }
+                        } catch (err) {
+                            // can sometimes get 'Permission denied to access property "handle Event'
+                        }
+
+                        // More breadcrumb DOM capture ... done here and not in `_instrumentBreadcrumbs`
+                        // so that we don't have more than one wrapper function
+                        var before,
+                            clickHandler,
+                            keypressHandler;
+
+                        if (autoBreadcrumbs && autoBreadcrumbs.dom && (global === 'EventTarget' || global === 'Node')) {
+                            // NOTE: generating multiple handlers per addEventListener invocation, should
+                            //       revisit and verify we can just use one (almost certainly)
+                            clickHandler = self._breadcrumbEventHandler('click');
+                            keypressHandler = self._keypressEventHandler();
+                            before = function (evt) {
+                                // need to intercept every DOM event in `before` argument, in case that
+                                // same wrapped method is re-used for different events (e.g. mousemove THEN click)
+                                // see #724
+                                if (!evt) return;
+
+                                var eventType;
+                                try {
+                                    eventType = evt.type
+                                } catch (e) {
+                                    // just accessing event properties can throw an exception in some rare circumstances
+                                    // see: https://github.com/getsentry/raven-js/issues/838
+                                    return;
+                                }
+                                if (eventType === 'click')
+                                    return clickHandler(evt);
+                                else if (eventType === 'keypress')
+                                    return keypressHandler(evt);
+                            };
+                        }
+                        return orig.call(this, evtName, self.wrap(fn, undefined, before), capture, secure);
+                    };
+                }, wrappedBuiltIns);
+                fill(proto, 'removeEventListener', function (orig) {
+                    return function (evt, fn, capture, secure) {
+                        try {
+                            fn = fn && (fn.__raven_wrapper__ ? fn.__raven_wrapper__  : fn);
+                        } catch (e) {
+                            // ignore, accessing __raven_wrapper__ will throw in some Selenium environments
+                        }
+                        return orig.call(this, evt, fn, capture, secure);
+                    };
+                }, wrappedBuiltIns);
+            }
+        }
+
+        fill(_window, 'setTimeout', wrapTimeFn, wrappedBuiltIns);
+        fill(_window, 'setInterval', wrapTimeFn, wrappedBuiltIns);
+        if (_window.requestAnimationFrame) {
+            fill(_window, 'requestAnimationFrame', function (orig) {
+                return function (cb) {
+                    return orig(self.wrap(cb));
+                };
+            }, wrappedBuiltIns);
+        }
+
+        // event targets borrowed from bugsnag-js:
+        // https://github.com/bugsnag/bugsnag-js/blob/master/src/bugsnag.js#L666
+        var eventTargets = ['EventTarget', 'Window', 'Node', 'ApplicationCache', 'AudioTrackList', 'ChannelMergerNode', 'CryptoOperation', 'EventSource', 'FileReader', 'HTMLUnknownElement', 'IDBDatabase', 'IDBRequest', 'IDBTransaction', 'KeyOperation', 'MediaController', 'MessagePort', 'ModalWindow', 'Notification', 'SVGElementInstance', 'Screen', 'TextTrack', 'TextTrackCue', 'TextTrackList', 'WebSocket', 'WebSocketWorker', 'Worker', 'XMLHttpRequest', 'XMLHttpRequestEventTarget', 'XMLHttpRequestUpload'];
+        for (var i = 0; i < eventTargets.length; i++) {
+            wrapEventTarget(eventTargets[i]);
+        }
+    },
+
+
+    /**
+     * Instrument browser built-ins w/ breadcrumb capturing
+     *  - XMLHttpRequests
+     *  - DOM interactions (click/typing)
+     *  - window.location changes
+     *  - console
+     *
+     * Can be disabled or individually configured via the `autoBreadcrumbs` config option
+     */
+    _instrumentBreadcrumbs: function () {
+        var self = this;
+        var autoBreadcrumbs = this._globalOptions.autoBreadcrumbs;
+
+        var wrappedBuiltIns = self._wrappedBuiltIns;
+
+        function wrapProp(prop, xhr) {
+            if (prop in xhr && isFunction(xhr[prop])) {
+                fill(xhr, prop, function (orig) {
+                    return self.wrap(orig);
+                }); // intentionally don't track filled methods on XHR instances
+            }
+        }
+
+        if (autoBreadcrumbs.xhr && 'XMLHttpRequest' in _window) {
+            var xhrproto = XMLHttpRequest.prototype;
+            fill(xhrproto, 'open', function(origOpen) {
+                return function (method, url) { // preserve arity
+
+                    // if Sentry key appears in URL, don't capture
+                    if (isString(url) && url.indexOf(self._globalKey) === -1) {
+                        this.__raven_xhr = {
+                            method: method,
+                            url: url,
+                            status_code: null
+                        };
+                    }
+
+                    return origOpen.apply(this, arguments);
+                };
+            }, wrappedBuiltIns);
+
+            fill(xhrproto, 'send', function(origSend) {
+                return function (data) { // preserve arity
+                    var xhr = this;
+
+                    function onreadystatechangeHandler() {
+                        if (xhr.__raven_xhr && (xhr.readyState === 1 || xhr.readyState === 4)) {
+                            try {
+                                // touching statusCode in some platforms throws
+                                // an exception
+                                xhr.__raven_xhr.status_code = xhr.status;
+                            } catch (e) { /* do nothing */ }
+                            self.captureBreadcrumb({
+                                type: 'http',
+                                category: 'xhr',
+                                data: xhr.__raven_xhr
+                            });
+                        }
+                    }
+
+                    var props = ['onload', 'onerror', 'onprogress'];
+                    for (var j = 0; j < props.length; j++) {
+                        wrapProp(props[j], xhr);
+                    }
+
+                    if ('onreadystatechange' in xhr && isFunction(xhr.onreadystatechange)) {
+                        fill(xhr, 'onreadystatechange', function (orig) {
+                            return self.wrap(orig, undefined, onreadystatechangeHandler);
+                        } /* intentionally don't track this instrumentation */);
+                    } else {
+                        // if onreadystatechange wasn't actually set by the page on this xhr, we
+                        // are free to set our own and capture the breadcrumb
+                        xhr.onreadystatechange = onreadystatechangeHandler;
+                    }
+
+                    return origSend.apply(this, arguments);
+                };
+            }, wrappedBuiltIns);
+        }
+
+        if (autoBreadcrumbs.xhr && 'fetch' in _window) {
+            fill(_window, 'fetch', function(origFetch) {
+                return function (fn, t) { // preserve arity
+                    // Make a copy of the arguments to prevent deoptimization
+                    // https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#32-leaking-arguments
+                    var args = new Array(arguments.length);
+                    for (var i = 0; i < args.length; ++i) {
+                        args[i] = arguments[i];
+                    }
+
+                    var fetchInput = args[0];
+                    var method = 'GET';
+                    var url;
+
+                    if (typeof fetchInput === 'string') {
+                        url = fetchInput;
+                    } else {
+                        url = fetchInput.url;
+                        if (fetchInput.method) {
+                            method = fetchInput.method;
+                        }
+                    }
+
+                    if (args[1] && args[1].method) {
+                        method = args[1].method;
+                    }
+
+                    var fetchData = {
+                        method: method,
+                        url: url,
+                        status_code: null
+                    };
+
+                    self.captureBreadcrumb({
+                        type: 'http',
+                        category: 'fetch',
+                        data: fetchData
+                    });
+
+                    return origFetch.apply(this, args).then(function (response) {
+                        fetchData.status_code = response.status;
+
+                        return response;
+                    });
+                };
+            }, wrappedBuiltIns);
+        }
+
+        // Capture breadcrumbs from any click that is unhandled / bubbled up all the way
+        // to the document. Do this before we instrument addEventListener.
+        if (autoBreadcrumbs.dom && this._hasDocument) {
+            if (_document.addEventListener) {
+                _document.addEventListener('click', self._breadcrumbEventHandler('click'), false);
+                _document.addEventListener('keypress', self._keypressEventHandler(), false);
+            }
+            else {
+                // IE8 Compatibility
+                _document.attachEvent('onclick', self._breadcrumbEventHandler('click'));
+                _document.attachEvent('onkeypress', self._keypressEventHandler());
+            }
+        }
+
+        // record navigation (URL) changes
+        // NOTE: in Chrome App environment, touching history.pushState, *even inside
+        //       a try/catch block*, will cause Chrome to output an error to console.error
+        // borrowed from: https://github.com/angular/angular.js/pull/13945/files
+        var chrome = _window.chrome;
+        var isChromePackagedApp = chrome && chrome.app && chrome.app.runtime;
+        var hasPushState = !isChromePackagedApp && _window.history && history.pushState;
+        if (autoBreadcrumbs.location && hasPushState) {
+            // TODO: remove onpopstate handler on uninstall()
+            var oldOnPopState = _window.onpopstate;
+            _window.onpopstate = function () {
+                var currentHref = self._location.href;
+                self._captureUrlChange(self._lastHref, currentHref);
+
+                if (oldOnPopState) {
+                    return oldOnPopState.apply(this, arguments);
+                }
+            };
+
+            fill(history, 'pushState', function (origPushState) {
+                // note history.pushState.length is 0; intentionally not declaring
+                // params to preserve 0 arity
+                return function (/* state, title, url */) {
+                    var url = arguments.length > 2 ? arguments[2] : undefined;
+
+                    // url argument is optional
+                    if (url) {
+                        // coerce to string (this is what pushState does)
+                        self._captureUrlChange(self._lastHref, url + '');
+                    }
+
+                    return origPushState.apply(this, arguments);
+                };
+            }, wrappedBuiltIns);
+        }
+
+        if (autoBreadcrumbs.console && 'console' in _window && console.log) {
+            // console
+            var consoleMethodCallback = function (msg, data) {
+                self.captureBreadcrumb({
+                    message: msg,
+                    level: data.level,
+                    category: 'console'
+                });
+            };
+
+            each(['debug', 'info', 'warn', 'error', 'log'], function (_, level) {
+                wrapConsoleMethod(console, level, consoleMethodCallback);
+            });
+        }
+
+    },
+
+    _restoreBuiltIns: function () {
+        // restore any wrapped builtins
+        var builtin;
+        while (this._wrappedBuiltIns.length) {
+            builtin = this._wrappedBuiltIns.shift();
+
+            var obj = builtin[0],
+              name = builtin[1],
+              orig = builtin[2];
+
+            obj[name] = orig;
+        }
+    },
+
+    _drainPlugins: function() {
+        var self = this;
+
+        // FIX ME TODO
+        each(this._plugins, function(_, plugin) {
+            var installer = plugin[0];
+            var args = plugin[1];
+            installer.apply(self, [self].concat(args));
+        });
+    },
+
+    _parseDSN: function(str) {
+        var m = dsnPattern.exec(str),
+            dsn = {},
+            i = 7;
+
+        try {
+            while (i--) dsn[dsnKeys[i]] = m[i] || '';
+        } catch(e) {
+            throw new RavenConfigError('Invalid DSN: ' + str);
+        }
+
+        if (dsn.pass && !this._globalOptions.allowSecretKey) {
+            throw new RavenConfigError('Do not specify your secret key in the DSN. See: http://bit.ly/raven-secret-key');
+        }
+
+        return dsn;
+    },
+
+    _getGlobalServer: function(uri) {
+        // assemble the endpoint from the uri pieces
+        var globalServer = '//' + uri.host +
+            (uri.port ? ':' + uri.port : '');
+
+        if (uri.protocol) {
+            globalServer = uri.protocol + ':' + globalServer;
+        }
+        return globalServer;
+    },
+
+    _handleOnErrorStackInfo: function() {
+        // if we are intentionally ignoring errors via onerror, bail out
+        if (!this._ignoreOnError) {
+            this._handleStackInfo.apply(this, arguments);
+        }
+    },
+
+    _handleStackInfo: function(stackInfo, options) {
+        var frames = this._prepareFrames(stackInfo, options);
+
+        this._triggerEvent('handle', {
+            stackInfo: stackInfo,
+            options: options
+        });
+
+        this._processException(
+            stackInfo.name,
+            stackInfo.message,
+            stackInfo.url,
+            stackInfo.lineno,
+            frames,
+            options
+        );
+    },
+
+    _prepareFrames: function(stackInfo, options) {
+        var self = this;
+        var frames = [];
+        if (stackInfo.stack && stackInfo.stack.length) {
+            each(stackInfo.stack, function(i, stack) {
+                var frame = self._normalizeFrame(stack);
+                if (frame) {
+                    frames.push(frame);
+                }
+            });
+
+            // e.g. frames captured via captureMessage throw
+            if (options && options.trimHeadFrames) {
+                for (var j = 0; j < options.trimHeadFrames && j < frames.length; j++) {
+                    frames[j].in_app = false;
+                }
+            }
+        }
+        frames = frames.slice(0, this._globalOptions.stackTraceLimit);
+        return frames;
+    },
+
+
+    _normalizeFrame: function(frame) {
+        if (!frame.url) return;
+
+        // normalize the frames data
+        var normalized = {
+            filename:   frame.url,
+            lineno:     frame.line,
+            colno:      frame.column,
+            'function': frame.func || '?'
+        };
+
+        normalized.in_app = !( // determine if an exception came from outside of our app
+            // first we check the global includePaths list.
+            !!this._globalOptions.includePaths.test && !this._globalOptions.includePaths.test(normalized.filename) ||
+            // Now we check for fun, if the function name is Raven or TraceKit
+            /(Raven|TraceKit)\./.test(normalized['function']) ||
+            // finally, we do a last ditch effort and check for raven.min.js
+            /raven\.(min\.)?js$/.test(normalized.filename)
+        );
+
+        return normalized;
+    },
+
+    _processException: function(type, message, fileurl, lineno, frames, options) {
+        var stacktrace;
+        if (!!this._globalOptions.ignoreErrors.test && this._globalOptions.ignoreErrors.test(message)) return;
+
+        message += '';
+
+        if (frames && frames.length) {
+            fileurl = frames[0].filename || fileurl;
+            // Sentry expects frames oldest to newest
+            // and JS sends them as newest to oldest
+            frames.reverse();
+            stacktrace = {frames: frames};
+        } else if (fileurl) {
+            stacktrace = {
+                frames: [{
+                    filename: fileurl,
+                    lineno: lineno,
+                    in_app: true
+                }]
+            };
+        }
+
+        if (!!this._globalOptions.ignoreUrls.test && this._globalOptions.ignoreUrls.test(fileurl)) return;
+        if (!!this._globalOptions.whitelistUrls.test && !this._globalOptions.whitelistUrls.test(fileurl)) return;
+
+        var data = objectMerge({
+            // sentry.interfaces.Exception
+            exception: {
+                values: [{
+                    type: type,
+                    value: message,
+                    stacktrace: stacktrace
+                }]
+            },
+            culprit: fileurl
+        }, options);
+
+        // Fire away!
+        this._send(data);
+    },
+
+    _trimPacket: function(data) {
+        // For now, we only want to truncate the two different messages
+        // but this could/should be expanded to just trim everything
+        var max = this._globalOptions.maxMessageLength;
+        if (data.message) {
+            data.message = truncate(data.message, max);
+        }
+        if (data.exception) {
+            var exception = data.exception.values[0];
+            exception.value = truncate(exception.value, max);
+        }
+
+        var request = data.request;
+        if (request) {
+            if (request.url) {
+                request.url = truncate(request.url, this._globalOptions.maxUrlLength);
+            }
+            if (request.Referer) {
+                request.Referer = truncate(request.Referer, this._globalOptions.maxUrlLength);
+            }
+        }
+
+        if (data.breadcrumbs && data.breadcrumbs.values)
+            this._trimBreadcrumbs(data.breadcrumbs);
+
+        return data;
+    },
+
+    /**
+     * Truncate breadcrumb values (right now just URLs)
+     */
+    _trimBreadcrumbs: function (breadcrumbs) {
+        // known breadcrumb properties with urls
+        // TODO: also consider arbitrary prop values that start with (https?)?://
+        var urlProps = ['to', 'from', 'url'],
+            urlProp,
+            crumb,
+            data;
+
+        for (var i = 0; i < breadcrumbs.values.length; ++i) {
+            crumb = breadcrumbs.values[i];
+            if (!crumb.hasOwnProperty('data') || !isObject(crumb.data))
+                continue;
+
+            data = crumb.data;
+            for (var j = 0; j < urlProps.length; ++j) {
+                urlProp = urlProps[j];
+                if (data.hasOwnProperty(urlProp)) {
+                    data[urlProp] = truncate(data[urlProp], this._globalOptions.maxUrlLength);
+                }
+            }
+        }
+    },
+
+    _getHttpData: function() {
+        if (!this._hasNavigator && !this._hasDocument) return;
+        var httpData = {};
+
+        if (this._hasNavigator && _navigator.userAgent) {
+            httpData.headers = {
+              'User-Agent': navigator.userAgent
+            };
+        }
+
+        if (this._hasDocument) {
+            if (_document.location && _document.location.href) {
+                httpData.url = _document.location.href;
+            }
+            if (_document.referrer) {
+                if (!httpData.headers) httpData.headers = {};
+                httpData.headers.Referer = _document.referrer;
+            }
+        }
+
+        return httpData;
+    },
+
+    _resetBackoff: function() {
+        this._backoffDuration = 0;
+        this._backoffStart = null;
+    },
+
+    _shouldBackoff: function() {
+        return this._backoffDuration && now() - this._backoffStart < this._backoffDuration;
+    },
+
+    /**
+     * Returns true if the in-process data payload matches the signature
+     * of the previously-sent data
+     *
+     * NOTE: This has to be done at this level because TraceKit can generate
+     *       data from window.onerror WITHOUT an exception object (IE8, IE9,
+     *       other old browsers). This can take the form of an "exception"
+     *       data object with a single frame (derived from the onerror args).
+     */
+    _isRepeatData: function (current) {
+        var last = this._lastData;
+
+        if (!last ||
+            current.message !== last.message || // defined for captureMessage
+            current.culprit !== last.culprit)   // defined for captureException/onerror
+            return false;
+
+        // Stacktrace interface (i.e. from captureMessage)
+        if (current.stacktrace || last.stacktrace) {
+            return isSameStacktrace(current.stacktrace, last.stacktrace);
+        }
+        // Exception interface (i.e. from captureException/onerror)
+        else if (current.exception || last.exception) {
+            return isSameException(current.exception, last.exception);
+        }
+
+        return true;
+    },
+
+    _setBackoffState: function(request) {
+        // If we are already in a backoff state, don't change anything
+        if (this._shouldBackoff()) {
+            return;
+        }
+
+        var status = request.status;
+
+        // 400 - project_id doesn't exist or some other fatal
+        // 401 - invalid/revoked dsn
+        // 429 - too many requests
+        if (!(status === 400 || status === 401 || status === 429))
+            return;
+
+        var retry;
+        try {
+            // If Retry-After is not in Access-Control-Expose-Headers, most
+            // browsers will throw an exception trying to access it
+            retry = request.getResponseHeader('Retry-After');
+            retry = parseInt(retry, 10) * 1000; // Retry-After is returned in seconds
+        } catch (e) {
+            /* eslint no-empty:0 */
+        }
+
+
+        this._backoffDuration = retry
+            // If Sentry server returned a Retry-After value, use it
+            ? retry
+            // Otherwise, double the last backoff duration (starts at 1 sec)
+            : this._backoffDuration * 2 || 1000;
+
+        this._backoffStart = now();
+    },
+
+    _send: function(data) {
+        var globalOptions = this._globalOptions;
+
+        var baseData = {
+            project: this._globalProject,
+            logger: globalOptions.logger,
+            platform: 'javascript'
+        }, httpData = this._getHttpData();
+
+        if (httpData) {
+            baseData.request = httpData;
+        }
+
+        // HACK: delete `trimHeadFrames` to prevent from appearing in outbound payload
+        if (data.trimHeadFrames) delete data.trimHeadFrames;
+
+        data = objectMerge(baseData, data);
+
+        // Merge in the tags and extra separately since objectMerge doesn't handle a deep merge
+        data.tags = objectMerge(objectMerge({}, this._globalContext.tags), data.tags);
+        data.extra = objectMerge(objectMerge({}, this._globalContext.extra), data.extra);
+
+        // Send along our own collected metadata with extra
+        data.extra['session:duration'] = now() - this._startTime;
+
+        if (this._breadcrumbs && this._breadcrumbs.length > 0) {
+            // intentionally make shallow copy so that additions
+            // to breadcrumbs aren't accidentally sent in this request
+            data.breadcrumbs = {
+                values: [].slice.call(this._breadcrumbs, 0)
+            };
+        }
+
+        // If there are no tags/extra, strip the key from the payload alltogther.
+        if (isEmptyObject(data.tags)) delete data.tags;
+
+        if (this._globalContext.user) {
+            // sentry.interfaces.User
+            data.user = this._globalContext.user;
+        }
+
+        // Include the environment if it's defined in globalOptions
+        if (globalOptions.environment) data.environment = globalOptions.environment;
+
+        // Include the release if it's defined in globalOptions
+        if (globalOptions.release) data.release = globalOptions.release;
+
+        // Include server_name if it's defined in globalOptions
+        if (globalOptions.serverName) data.server_name = globalOptions.serverName;
+
+        if (isFunction(globalOptions.dataCallback)) {
+            data = globalOptions.dataCallback(data) || data;
+        }
+
+        // Why??????????
+        if (!data || isEmptyObject(data)) {
+            return;
+        }
+
+        // Check if the request should be filtered or not
+        if (isFunction(globalOptions.shouldSendCallback) && !globalOptions.shouldSendCallback(data)) {
+            return;
+        }
+
+        // Backoff state: Sentry server previously responded w/ an error (e.g. 429 - too many requests),
+        // so drop requests until "cool-off" period has elapsed.
+        if (this._shouldBackoff()) {
+            this._logDebug('warn', 'Raven dropped error due to backoff: ', data);
+            return;
+        }
+
+        if (typeof globalOptions.sampleRate === 'number') {
+            if (Math.random() < globalOptions.sampleRate) {
+                this._sendProcessedPayload(data);
+            }
+        } else {
+            this._sendProcessedPayload(data);
+        }
+    },
+
+    _getUuid: function () {
+      return uuid4();
+    },
+
+    _sendProcessedPayload: function(data, callback) {
+        var self = this;
+        var globalOptions = this._globalOptions;
+
+        if (!this.isSetup()) return;
+
+        // Send along an event_id if not explicitly passed.
+        // This event_id can be used to reference the error within Sentry itself.
+        // Set lastEventId after we know the error should actually be sent
+        this._lastEventId = data.event_id || (data.event_id = this._getUuid());
+
+        // Try and clean up the packet before sending by truncating long values
+        data = this._trimPacket(data);
+
+        // ideally duplicate error testing should occur *before* dataCallback/shouldSendCallback,
+        // but this would require copying an un-truncated copy of the data packet, which can be
+        // arbitrarily deep (extra_data) -- could be worthwhile? will revisit
+        if (!this._globalOptions.allowDuplicates && this._isRepeatData(data)) {
+            this._logDebug('warn', 'Raven dropped repeat event: ', data);
+            return;
+        }
+
+        // Store outbound payload after trim
+        this._lastData = data;
+
+        this._logDebug('debug', 'Raven about to send:', data);
+
+        var auth = {
+            sentry_version: '7',
+            sentry_client: 'raven-js/' + this.VERSION,
+            sentry_key: this._globalKey
+        };
+        if (this._globalSecret) {
+            auth.sentry_secret = this._globalSecret;
+        }
+
+        var exception = data.exception && data.exception.values[0];
+        this.captureBreadcrumb({
+            category: 'sentry',
+            message: exception
+                ? (exception.type ? exception.type + ': ' : '') + exception.value
+                : data.message,
+            event_id: data.event_id,
+            level: data.level || 'error' // presume error unless specified
+        });
+
+        var url = this._globalEndpoint;
+        (globalOptions.transport || this._makeRequest).call(this, {
+            url: url,
+            auth: auth,
+            data: data,
+            options: globalOptions,
+            onSuccess: function success() {
+                self._resetBackoff();
+
+                self._triggerEvent('success', {
+                    data: data,
+                    src: url
+                });
+                callback && callback();
+            },
+            onError: function failure(error) {
+                self._logDebug('error', 'Raven transport failed to send: ', error);
+
+                if (error.request) {
+                    self._setBackoffState(error.request);
+                }
+
+                self._triggerEvent('failure', {
+                    data: data,
+                    src: url
+                });
+                error = error || new Error('Raven send failed (no additional details provided)');
+                callback && callback(error);
+            }
+        });
+    },
+
+    _makeRequest: function(opts) {
+        var request = new XMLHttpRequest();
+
+        // if browser doesn't support CORS (e.g. IE7), we are out of luck
+        var hasCORS =
+            'withCredentials' in request ||
+            typeof XDomainRequest !== 'undefined';
+
+        if (!hasCORS) return;
+
+        var url = opts.url;
+
+        if ('withCredentials' in request) {
+            request.onreadystatechange = function () {
+                if (request.readyState !== 4) {
+                    return;
+                } else if (request.status === 200) {
+                    opts.onSuccess && opts.onSuccess();
+                } else if (opts.onError) {
+                    var err = new Error('Sentry error code: ' + request.status);
+                    err.request = request;
+                    opts.onError(err);
+                }
+            };
+        } else {
+            request = new XDomainRequest();
+            // xdomainrequest cannot go http -> https (or vice versa),
+            // so always use protocol relative
+            url = url.replace(/^https?:/, '');
+
+            // onreadystatechange not supported by XDomainRequest
+            if (opts.onSuccess) {
+                request.onload = opts.onSuccess;
+            }
+            if (opts.onError) {
+                request.onerror = function () {
+                    var err = new Error('Sentry error code: XDomainRequest');
+                    err.request = request;
+                    opts.onError(err);
+                }
+            }
+        }
+
+        // NOTE: auth is intentionally sent as part of query string (NOT as custom
+        //       HTTP header) so as to avoid preflight CORS requests
+        request.open('POST', url + '?' + urlencode(opts.auth));
+        request.send(stringify(opts.data));
+    },
+
+    _logDebug: function(level) {
+        if (this._originalConsoleMethods[level] && this.debug) {
+            // In IE<10 console methods do not have their own 'apply' method
+            Function.prototype.apply.call(
+                this._originalConsoleMethods[level],
+                this._originalConsole,
+                [].slice.call(arguments, 1)
+            );
+        }
+    },
+
+    _mergeContext: function(key, context) {
+        if (isUndefined(context)) {
+            delete this._globalContext[key];
+        } else {
+            this._globalContext[key] = objectMerge(this._globalContext[key] || {}, context);
+        }
+    }
+};
+
+/*------------------------------------------------
+ * utils
+ *
+ * conditionally exported for test via Raven.utils
+ =================================================
+ */
+var objectPrototype = Object.prototype;
+
+function isUndefined(what) {
+    return what === void 0;
+}
+
+function isFunction(what) {
+    return typeof what === 'function';
+}
+
+function isString(what) {
+    return objectPrototype.toString.call(what) === '[object String]';
+}
+
+
+function isEmptyObject(what) {
+    for (var _ in what) return false;  // eslint-disable-line guard-for-in, no-unused-vars
+    return true;
+}
+
+function each(obj, callback) {
+    var i, j;
+
+    if (isUndefined(obj.length)) {
+        for (i in obj) {
+            if (hasKey(obj, i)) {
+                callback.call(null, i, obj[i]);
+            }
+        }
+    } else {
+        j = obj.length;
+        if (j) {
+            for (i = 0; i < j; i++) {
+                callback.call(null, i, obj[i]);
+            }
+        }
+    }
+}
+
+function objectMerge(obj1, obj2) {
+    if (!obj2) {
+        return obj1;
+    }
+    each(obj2, function(key, value){
+        obj1[key] = value;
+    });
+    return obj1;
+}
+
+function truncate(str, max) {
+    return !max || str.length <= max ? str : str.substr(0, max) + '\u2026';
+}
+
+/**
+ * hasKey, a better form of hasOwnProperty
+ * Example: hasKey(MainHostObject, property) === true/false
+ *
+ * @param {Object} host object to check property
+ * @param {string} key to check
+ */
+function hasKey(object, key) {
+    return objectPrototype.hasOwnProperty.call(object, key);
+}
+
+function joinRegExp(patterns) {
+    // Combine an array of regular expressions and strings into one large regexp
+    // Be mad.
+    var sources = [],
+        i = 0, len = patterns.length,
+        pattern;
+
+    for (; i < len; i++) {
+        pattern = patterns[i];
+        if (isString(pattern)) {
+            // If it's a string, we need to escape it
+            // Taken from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+            sources.push(pattern.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1'));
+        } else if (pattern && pattern.source) {
+            // If it's a regexp already, we want to extract the source
+            sources.push(pattern.source);
+        }
+        // Intentionally skip other cases
+    }
+    return new RegExp(sources.join('|'), 'i');
+}
+
+function urlencode(o) {
+    var pairs = [];
+    each(o, function(key, value) {
+        pairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+    });
+    return pairs.join('&');
+}
+
+// borrowed from https://tools.ietf.org/html/rfc3986#appendix-B
+// intentionally using regex and not <a/> href parsing trick because React Native and other
+// environments where DOM might not be available
+function parseUrl(url) {
+    var match = url.match(/^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/);
+    if (!match) return {};
+
+    // coerce to undefined values to empty string so we don't get 'undefined'
+    var query = match[6] || '';
+    var fragment = match[8] || '';
+    return {
+        protocol: match[2],
+        host: match[4],
+        path: match[5],
+        relative: match[5] + query + fragment // everything minus origin
+    };
+}
+function uuid4() {
+    var crypto = _window.crypto || _window.msCrypto;
+
+    if (!isUndefined(crypto) && crypto.getRandomValues) {
+        // Use window.crypto API if available
+        var arr = new Uint16Array(8);
+        crypto.getRandomValues(arr);
+
+        // set 4 in byte 7
+        arr[3] = arr[3] & 0xFFF | 0x4000;
+        // set 2 most significant bits of byte 9 to '10'
+        arr[4] = arr[4] & 0x3FFF | 0x8000;
+
+        var pad = function(num) {
+            var v = num.toString(16);
+            while (v.length < 4) {
+                v = '0' + v;
+            }
+            return v;
+        };
+
+        return pad(arr[0]) + pad(arr[1]) + pad(arr[2]) + pad(arr[3]) + pad(arr[4]) +
+        pad(arr[5]) + pad(arr[6]) + pad(arr[7]);
+    } else {
+        // http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript/2117523#2117523
+        return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random()*16|0,
+                v = c === 'x' ? r : r&0x3|0x8;
+            return v.toString(16);
+        });
+    }
+}
+
+/**
+ * Given a child DOM element, returns a query-selector statement describing that
+ * and its ancestors
+ * e.g. [HTMLElement] => body > div > input#foo.btn[name=baz]
+ * @param elem
+ * @returns {string}
+ */
+function htmlTreeAsString(elem) {
+    /* eslint no-extra-parens:0*/
+    var MAX_TRAVERSE_HEIGHT = 5,
+        MAX_OUTPUT_LEN = 80,
+        out = [],
+        height = 0,
+        len = 0,
+        separator = ' > ',
+        sepLength = separator.length,
+        nextStr;
+
+    while (elem && height++ < MAX_TRAVERSE_HEIGHT) {
+
+        nextStr = htmlElementAsString(elem);
+        // bail out if
+        // - nextStr is the 'html' element
+        // - the length of the string that would be created exceeds MAX_OUTPUT_LEN
+        //   (ignore this limit if we are on the first iteration)
+        if (nextStr === 'html' || height > 1 && len + (out.length * sepLength) + nextStr.length >= MAX_OUTPUT_LEN) {
+            break;
+        }
+
+        out.push(nextStr);
+
+        len += nextStr.length;
+        elem = elem.parentNode;
+    }
+
+    return out.reverse().join(separator);
+}
+
+/**
+ * Returns a simple, query-selector representation of a DOM element
+ * e.g. [HTMLElement] => input#foo.btn[name=baz]
+ * @param HTMLElement
+ * @returns {string}
+ */
+function htmlElementAsString(elem) {
+    var out = [],
+        className,
+        classes,
+        key,
+        attr,
+        i;
+
+    if (!elem || !elem.tagName) {
+        return '';
+    }
+
+    out.push(elem.tagName.toLowerCase());
+    if (elem.id) {
+        out.push('#' + elem.id);
+    }
+
+    className = elem.className;
+    if (className && isString(className)) {
+        classes = className.split(/\s+/);
+        for (i = 0; i < classes.length; i++) {
+            out.push('.' + classes[i]);
+        }
+    }
+    var attrWhitelist = ['type', 'name', 'title', 'alt'];
+    for (i = 0; i < attrWhitelist.length; i++) {
+        key = attrWhitelist[i];
+        attr = elem.getAttribute(key);
+        if (attr) {
+            out.push('[' + key + '="' + attr + '"]');
+        }
+    }
+    return out.join('');
+}
+
+/**
+ * Returns true if either a OR b is truthy, but not both
+ */
+function isOnlyOneTruthy(a, b) {
+    return !!(!!a ^ !!b);
+}
+
+/**
+ * Returns true if the two input exception interfaces have the same content
+ */
+function isSameException(ex1, ex2) {
+    if (isOnlyOneTruthy(ex1, ex2))
+        return false;
+
+    ex1 = ex1.values[0];
+    ex2 = ex2.values[0];
+
+    if (ex1.type !== ex2.type ||
+        ex1.value !== ex2.value)
+        return false;
+
+    return isSameStacktrace(ex1.stacktrace, ex2.stacktrace);
+}
+
+/**
+ * Returns true if the two input stack trace interfaces have the same content
+ */
+function isSameStacktrace(stack1, stack2) {
+    if (isOnlyOneTruthy(stack1, stack2))
+        return false;
+
+    var frames1 = stack1.frames;
+    var frames2 = stack2.frames;
+
+    // Exit early if frame count differs
+    if (frames1.length !== frames2.length)
+        return false;
+
+    // Iterate through every frame; bail out if anything differs
+    var a, b;
+    for (var i = 0; i < frames1.length; i++) {
+        a = frames1[i];
+        b = frames2[i];
+        if (a.filename !== b.filename ||
+            a.lineno !== b.lineno ||
+            a.colno !== b.colno ||
+            a['function'] !== b['function'])
+            return false;
+    }
+    return true;
+}
+
+/**
+ * Polyfill a method
+ * @param obj object e.g. `document`
+ * @param name method name present on object e.g. `addEventListener`
+ * @param replacement replacement function
+ * @param track {optional} record instrumentation to an array
+ */
+function fill(obj, name, replacement, track) {
+    var orig = obj[name];
+    obj[name] = replacement(orig);
+    if (track) {
+        track.push([obj, name, orig]);
+    }
+}
+
+if (typeof __DEV__ !== 'undefined' && __DEV__) {
+    Raven.utils = {
+        isUndefined: isUndefined,
+        isFunction: isFunction,
+        isString: isString,
+        isObject: isObject,
+        isEmptyObject: isEmptyObject,
+        isError: isError,
+        each: each,
+        objectMerge: objectMerge,
+        truncate: truncate,
+        hasKey: hasKey,
+        joinRegExp: joinRegExp,
+        urlencode: urlencode,
+        uuid4: uuid4,
+        htmlTreeAsString: htmlTreeAsString,
+        htmlElementAsString: htmlElementAsString,
+        parseUrl: parseUrl,
+        fill: fill
+    };
+};
+
+// Deprecations
+Raven.prototype.setUser = Raven.prototype.setUserContext;
+Raven.prototype.setReleaseContext = Raven.prototype.setRelease;
+
+module.exports = Raven;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(73)))
+
+/***/ }),
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/**
+ * Enforces a single instance of the Raven client, and the
+ * main entry point for Raven. If you are a consumer of the
+ * Raven library, you SHOULD load this file (vs raven.js).
+ **/
+
+
+
+var RavenConstructor = __webpack_require__(200);
+
+// This is to be defensive in environments where window does not exist (see https://github.com/getsentry/raven-js/pull/785)
+var _window = typeof window !== 'undefined' ? window
+            : typeof global !== 'undefined' ? global
+            : typeof self !== 'undefined' ? self
+            : {};
+var _Raven = _window.Raven;
+
+var Raven = new RavenConstructor();
+
+/*
+ * Allow multiple versions of Raven to be installed.
+ * Strip Raven from the global context and returns the instance.
+ *
+ * @return {Raven}
+ */
+Raven.noConflict = function () {
+	_window.Raven = _Raven;
+	return Raven;
+};
+
+Raven.afterLoad();
+
+module.exports = Raven;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(73)))
+
+/***/ }),
+/* 202 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+var utils = __webpack_require__(100);
+
+/*
+ TraceKit - Cross brower stack traces
+
+ This was originally forked from github.com/occ/TraceKit, but has since been
+ largely re-written and is now maintained as part of raven-js.  Tests for
+ this are in test/vendor.
+
+ MIT license
+*/
+
+var TraceKit = {
+    collectWindowErrors: true,
+    debug: false
+};
+
+// This is to be defensive in environments where window does not exist (see https://github.com/getsentry/raven-js/pull/785)
+var _window = typeof window !== 'undefined' ? window
+            : typeof global !== 'undefined' ? global
+            : typeof self !== 'undefined' ? self
+            : {};
+
+// global reference to slice
+var _slice = [].slice;
+var UNKNOWN_FUNCTION = '?';
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error#Error_types
+var ERROR_TYPES_RE = /^(?:[Uu]ncaught (?:exception: )?)?(?:((?:Eval|Internal|Range|Reference|Syntax|Type|URI|)Error): )?(.*)$/;
+
+function getLocationHref() {
+    if (typeof document === 'undefined' || typeof document.location === 'undefined')
+        return '';
+
+    return document.location.href;
+}
+
+
+/**
+ * TraceKit.report: cross-browser processing of unhandled exceptions
+ *
+ * Syntax:
+ *   TraceKit.report.subscribe(function(stackInfo) { ... })
+ *   TraceKit.report.unsubscribe(function(stackInfo) { ... })
+ *   TraceKit.report(exception)
+ *   try { ...code... } catch(ex) { TraceKit.report(ex); }
+ *
+ * Supports:
+ *   - Firefox: full stack trace with line numbers, plus column number
+ *              on top frame; column number is not guaranteed
+ *   - Opera:   full stack trace with line and column numbers
+ *   - Chrome:  full stack trace with line and column numbers
+ *   - Safari:  line and column number for the top frame only; some frames
+ *              may be missing, and column number is not guaranteed
+ *   - IE:      line and column number for the top frame only; some frames
+ *              may be missing, and column number is not guaranteed
+ *
+ * In theory, TraceKit should work on all of the following versions:
+ *   - IE5.5+ (only 8.0 tested)
+ *   - Firefox 0.9+ (only 3.5+ tested)
+ *   - Opera 7+ (only 10.50 tested; versions 9 and earlier may require
+ *     Exceptions Have Stacktrace to be enabled in opera:config)
+ *   - Safari 3+ (only 4+ tested)
+ *   - Chrome 1+ (only 5+ tested)
+ *   - Konqueror 3.5+ (untested)
+ *
+ * Requires TraceKit.computeStackTrace.
+ *
+ * Tries to catch all unhandled exceptions and report them to the
+ * subscribed handlers. Please note that TraceKit.report will rethrow the
+ * exception. This is REQUIRED in order to get a useful stack trace in IE.
+ * If the exception does not reach the top of the browser, you will only
+ * get a stack trace from the point where TraceKit.report was called.
+ *
+ * Handlers receive a stackInfo object as described in the
+ * TraceKit.computeStackTrace docs.
+ */
+TraceKit.report = (function reportModuleWrapper() {
+    var handlers = [],
+        lastArgs = null,
+        lastException = null,
+        lastExceptionStack = null;
+
+    /**
+     * Add a crash handler.
+     * @param {Function} handler
+     */
+    function subscribe(handler) {
+        installGlobalHandler();
+        handlers.push(handler);
+    }
+
+    /**
+     * Remove a crash handler.
+     * @param {Function} handler
+     */
+    function unsubscribe(handler) {
+        for (var i = handlers.length - 1; i >= 0; --i) {
+            if (handlers[i] === handler) {
+                handlers.splice(i, 1);
+            }
+        }
+    }
+
+    /**
+     * Remove all crash handlers.
+     */
+    function unsubscribeAll() {
+        uninstallGlobalHandler();
+        handlers = [];
+    }
+
+    /**
+     * Dispatch stack information to all handlers.
+     * @param {Object.<string, *>} stack
+     */
+    function notifyHandlers(stack, isWindowError) {
+        var exception = null;
+        if (isWindowError && !TraceKit.collectWindowErrors) {
+          return;
+        }
+        for (var i in handlers) {
+            if (handlers.hasOwnProperty(i)) {
+                try {
+                    handlers[i].apply(null, [stack].concat(_slice.call(arguments, 2)));
+                } catch (inner) {
+                    exception = inner;
+                }
+            }
+        }
+
+        if (exception) {
+            throw exception;
+        }
+    }
+
+    var _oldOnerrorHandler, _onErrorHandlerInstalled;
+
+    /**
+     * Ensures all global unhandled exceptions are recorded.
+     * Supported by Gecko and IE.
+     * @param {string} message Error message.
+     * @param {string} url URL of script that generated the exception.
+     * @param {(number|string)} lineNo The line number at which the error
+     * occurred.
+     * @param {?(number|string)} colNo The column number at which the error
+     * occurred.
+     * @param {?Error} ex The actual Error object.
+     */
+    function traceKitWindowOnError(message, url, lineNo, colNo, ex) {
+        var stack = null;
+
+        if (lastExceptionStack) {
+            TraceKit.computeStackTrace.augmentStackTraceWithInitialElement(lastExceptionStack, url, lineNo, message);
+            processLastException();
+        } else if (ex && utils.isError(ex)) {
+            // non-string `ex` arg; attempt to extract stack trace
+
+            // New chrome and blink send along a real error object
+            // Let's just report that like a normal error.
+            // See: https://mikewest.org/2013/08/debugging-runtime-errors-with-window-onerror
+            stack = TraceKit.computeStackTrace(ex);
+            notifyHandlers(stack, true);
+        } else {
+            var location = {
+                'url': url,
+                'line': lineNo,
+                'column': colNo
+            };
+
+            var name = undefined;
+            var msg = message; // must be new var or will modify original `arguments`
+            var groups;
+            if ({}.toString.call(message) === '[object String]') {
+                var groups = message.match(ERROR_TYPES_RE);
+                if (groups) {
+                    name = groups[1];
+                    msg = groups[2];
+                }
+            }
+
+            location.func = UNKNOWN_FUNCTION;
+
+            stack = {
+                'name': name,
+                'message': msg,
+                'url': getLocationHref(),
+                'stack': [location]
+            };
+            notifyHandlers(stack, true);
+        }
+
+        if (_oldOnerrorHandler) {
+            return _oldOnerrorHandler.apply(this, arguments);
+        }
+
+        return false;
+    }
+
+    function installGlobalHandler ()
+    {
+        if (_onErrorHandlerInstalled) {
+            return;
+        }
+        _oldOnerrorHandler = _window.onerror;
+        _window.onerror = traceKitWindowOnError;
+        _onErrorHandlerInstalled = true;
+    }
+
+    function uninstallGlobalHandler ()
+    {
+        if (!_onErrorHandlerInstalled) {
+            return;
+        }
+        _window.onerror = _oldOnerrorHandler;
+        _onErrorHandlerInstalled = false;
+        _oldOnerrorHandler = undefined;
+    }
+
+    function processLastException() {
+        var _lastExceptionStack = lastExceptionStack,
+            _lastArgs = lastArgs;
+        lastArgs = null;
+        lastExceptionStack = null;
+        lastException = null;
+        notifyHandlers.apply(null, [_lastExceptionStack, false].concat(_lastArgs));
+    }
+
+    /**
+     * Reports an unhandled Error to TraceKit.
+     * @param {Error} ex
+     * @param {?boolean} rethrow If false, do not re-throw the exception.
+     * Only used for window.onerror to not cause an infinite loop of
+     * rethrowing.
+     */
+    function report(ex, rethrow) {
+        var args = _slice.call(arguments, 1);
+        if (lastExceptionStack) {
+            if (lastException === ex) {
+                return; // already caught by an inner catch block, ignore
+            } else {
+              processLastException();
+            }
+        }
+
+        var stack = TraceKit.computeStackTrace(ex);
+        lastExceptionStack = stack;
+        lastException = ex;
+        lastArgs = args;
+
+        // If the stack trace is incomplete, wait for 2 seconds for
+        // slow slow IE to see if onerror occurs or not before reporting
+        // this exception; otherwise, we will end up with an incomplete
+        // stack trace
+        setTimeout(function () {
+            if (lastException === ex) {
+                processLastException();
+            }
+        }, (stack.incomplete ? 2000 : 0));
+
+        if (rethrow !== false) {
+            throw ex; // re-throw to propagate to the top level (and cause window.onerror)
+        }
+    }
+
+    report.subscribe = subscribe;
+    report.unsubscribe = unsubscribe;
+    report.uninstall = unsubscribeAll;
+    return report;
+}());
+
+/**
+ * TraceKit.computeStackTrace: cross-browser stack traces in JavaScript
+ *
+ * Syntax:
+ *   s = TraceKit.computeStackTrace(exception) // consider using TraceKit.report instead (see below)
+ * Returns:
+ *   s.name              - exception name
+ *   s.message           - exception message
+ *   s.stack[i].url      - JavaScript or HTML file URL
+ *   s.stack[i].func     - function name, or empty for anonymous functions (if guessing did not work)
+ *   s.stack[i].args     - arguments passed to the function, if known
+ *   s.stack[i].line     - line number, if known
+ *   s.stack[i].column   - column number, if known
+ *
+ * Supports:
+ *   - Firefox:  full stack trace with line numbers and unreliable column
+ *               number on top frame
+ *   - Opera 10: full stack trace with line and column numbers
+ *   - Opera 9-: full stack trace with line numbers
+ *   - Chrome:   full stack trace with line and column numbers
+ *   - Safari:   line and column number for the topmost stacktrace element
+ *               only
+ *   - IE:       no line numbers whatsoever
+ *
+ * Tries to guess names of anonymous functions by looking for assignments
+ * in the source code. In IE and Safari, we have to guess source file names
+ * by searching for function bodies inside all page scripts. This will not
+ * work for scripts that are loaded cross-domain.
+ * Here be dragons: some function names may be guessed incorrectly, and
+ * duplicate functions may be mismatched.
+ *
+ * TraceKit.computeStackTrace should only be used for tracing purposes.
+ * Logging of unhandled exceptions should be done with TraceKit.report,
+ * which builds on top of TraceKit.computeStackTrace and provides better
+ * IE support by utilizing the window.onerror event to retrieve information
+ * about the top of the stack.
+ *
+ * Note: In IE and Safari, no stack trace is recorded on the Error object,
+ * so computeStackTrace instead walks its *own* chain of callers.
+ * This means that:
+ *  * in Safari, some methods may be missing from the stack trace;
+ *  * in IE, the topmost function in the stack trace will always be the
+ *    caller of computeStackTrace.
+ *
+ * This is okay for tracing (because you are likely to be calling
+ * computeStackTrace from the function you want to be the topmost element
+ * of the stack trace anyway), but not okay for logging unhandled
+ * exceptions (because your catch block will likely be far away from the
+ * inner function that actually caused the exception).
+ *
+ */
+TraceKit.computeStackTrace = (function computeStackTraceWrapper() {
+    // Contents of Exception in various browsers.
+    //
+    // SAFARI:
+    // ex.message = Can't find variable: qq
+    // ex.line = 59
+    // ex.sourceId = 580238192
+    // ex.sourceURL = http://...
+    // ex.expressionBeginOffset = 96
+    // ex.expressionCaretOffset = 98
+    // ex.expressionEndOffset = 98
+    // ex.name = ReferenceError
+    //
+    // FIREFOX:
+    // ex.message = qq is not defined
+    // ex.fileName = http://...
+    // ex.lineNumber = 59
+    // ex.columnNumber = 69
+    // ex.stack = ...stack trace... (see the example below)
+    // ex.name = ReferenceError
+    //
+    // CHROME:
+    // ex.message = qq is not defined
+    // ex.name = ReferenceError
+    // ex.type = not_defined
+    // ex.arguments = ['aa']
+    // ex.stack = ...stack trace...
+    //
+    // INTERNET EXPLORER:
+    // ex.message = ...
+    // ex.name = ReferenceError
+    //
+    // OPERA:
+    // ex.message = ...message... (see the example below)
+    // ex.name = ReferenceError
+    // ex.opera#sourceloc = 11  (pretty much useless, duplicates the info in ex.message)
+    // ex.stacktrace = n/a; see 'opera:config#UserPrefs|Exceptions Have Stacktrace'
+
+    /**
+     * Computes stack trace information from the stack property.
+     * Chrome and Gecko use this property.
+     * @param {Error} ex
+     * @return {?Object.<string, *>} Stack trace information.
+     */
+    function computeStackTraceFromStackProp(ex) {
+        if (typeof ex.stack === 'undefined' || !ex.stack) return;
+
+        var chrome = /^\s*at (.*?) ?\(((?:file|https?|blob|chrome-extension|native|eval|webpack|<anonymous>|\/).*?)(?::(\d+))?(?::(\d+))?\)?\s*$/i,
+            gecko = /^\s*(.*?)(?:\((.*?)\))?(?:^|@)((?:file|https?|blob|chrome|webpack|resource|\[native).*?)(?::(\d+))?(?::(\d+))?\s*$/i,
+            winjs = /^\s*at (?:((?:\[object object\])?.+) )?\(?((?:file|ms-appx|https?|webpack|blob):.*?):(\d+)(?::(\d+))?\)?\s*$/i,
+
+            // Used to additionally parse URL/line/column from eval frames
+            geckoEval = /(\S+) line (\d+)(?: > eval line \d+)* > eval/i,
+            chromeEval = /\((\S*)(?::(\d+))(?::(\d+))\)/,
+
+            lines = ex.stack.split('\n'),
+            stack = [],
+            submatch,
+            parts,
+            element,
+            reference = /^(.*) is undefined$/.exec(ex.message);
+
+        for (var i = 0, j = lines.length; i < j; ++i) {
+            if ((parts = chrome.exec(lines[i]))) {
+                var isNative = parts[2] && parts[2].indexOf('native') === 0; // start of line
+                var isEval = parts[2] && parts[2].indexOf('eval') === 0; // start of line
+                if (isEval && (submatch = chromeEval.exec(parts[2]))) {
+                    // throw out eval line/column and use top-most line/column number
+                    parts[2] = submatch[1]; // url
+                    parts[3] = submatch[2]; // line
+                    parts[4] = submatch[3]; // column
+                }
+                element = {
+                    'url': !isNative ? parts[2] : null,
+                    'func': parts[1] || UNKNOWN_FUNCTION,
+                    'args': isNative ? [parts[2]] : [],
+                    'line': parts[3] ? +parts[3] : null,
+                    'column': parts[4] ? +parts[4] : null
+                };
+            } else if ( parts = winjs.exec(lines[i]) ) {
+                element = {
+                    'url': parts[2],
+                    'func': parts[1] || UNKNOWN_FUNCTION,
+                    'args': [],
+                    'line': +parts[3],
+                    'column': parts[4] ? +parts[4] : null
+                };
+            } else if ((parts = gecko.exec(lines[i]))) {
+                var isEval = parts[3] && parts[3].indexOf(' > eval') > -1;
+                if (isEval && (submatch = geckoEval.exec(parts[3]))) {
+                    // throw out eval line/column and use top-most line number
+                    parts[3] = submatch[1];
+                    parts[4] = submatch[2];
+                    parts[5] = null; // no column when eval
+                } else if (i === 0 && !parts[5] && typeof ex.columnNumber !== 'undefined') {
+                    // FireFox uses this awesome columnNumber property for its top frame
+                    // Also note, Firefox's column number is 0-based and everything else expects 1-based,
+                    // so adding 1
+                    // NOTE: this hack doesn't work if top-most frame is eval
+                    stack[0].column = ex.columnNumber + 1;
+                }
+                element = {
+                    'url': parts[3],
+                    'func': parts[1] || UNKNOWN_FUNCTION,
+                    'args': parts[2] ? parts[2].split(',') : [],
+                    'line': parts[4] ? +parts[4] : null,
+                    'column': parts[5] ? +parts[5] : null
+                };
+            } else {
+                continue;
+            }
+
+            if (!element.func && element.line) {
+                element.func = UNKNOWN_FUNCTION;
+            }
+
+            stack.push(element);
+        }
+
+        if (!stack.length) {
+            return null;
+        }
+
+        return {
+            'name': ex.name,
+            'message': ex.message,
+            'url': getLocationHref(),
+            'stack': stack
+        };
+    }
+
+    /**
+     * Adds information about the first frame to incomplete stack traces.
+     * Safari and IE require this to get complete data on the first frame.
+     * @param {Object.<string, *>} stackInfo Stack trace information from
+     * one of the compute* methods.
+     * @param {string} url The URL of the script that caused an error.
+     * @param {(number|string)} lineNo The line number of the script that
+     * caused an error.
+     * @param {string=} message The error generated by the browser, which
+     * hopefully contains the name of the object that caused the error.
+     * @return {boolean} Whether or not the stack information was
+     * augmented.
+     */
+    function augmentStackTraceWithInitialElement(stackInfo, url, lineNo, message) {
+        var initial = {
+            'url': url,
+            'line': lineNo
+        };
+
+        if (initial.url && initial.line) {
+            stackInfo.incomplete = false;
+
+            if (!initial.func) {
+                initial.func = UNKNOWN_FUNCTION;
+            }
+
+            if (stackInfo.stack.length > 0) {
+                if (stackInfo.stack[0].url === initial.url) {
+                    if (stackInfo.stack[0].line === initial.line) {
+                        return false; // already in stack trace
+                    } else if (!stackInfo.stack[0].line && stackInfo.stack[0].func === initial.func) {
+                        stackInfo.stack[0].line = initial.line;
+                        return false;
+                    }
+                }
+            }
+
+            stackInfo.stack.unshift(initial);
+            stackInfo.partial = true;
+            return true;
+        } else {
+            stackInfo.incomplete = true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Computes stack trace information by walking the arguments.caller
+     * chain at the time the exception occurred. This will cause earlier
+     * frames to be missed but is the only way to get any stack trace in
+     * Safari and IE. The top frame is restored by
+     * {@link augmentStackTraceWithInitialElement}.
+     * @param {Error} ex
+     * @return {?Object.<string, *>} Stack trace information.
+     */
+    function computeStackTraceByWalkingCallerChain(ex, depth) {
+        var functionName = /function\s+([_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*)?\s*\(/i,
+            stack = [],
+            funcs = {},
+            recursion = false,
+            parts,
+            item,
+            source;
+
+        for (var curr = computeStackTraceByWalkingCallerChain.caller; curr && !recursion; curr = curr.caller) {
+            if (curr === computeStackTrace || curr === TraceKit.report) {
+                // console.log('skipping internal function');
+                continue;
+            }
+
+            item = {
+                'url': null,
+                'func': UNKNOWN_FUNCTION,
+                'line': null,
+                'column': null
+            };
+
+            if (curr.name) {
+                item.func = curr.name;
+            } else if ((parts = functionName.exec(curr.toString()))) {
+                item.func = parts[1];
+            }
+
+            if (typeof item.func === 'undefined') {
+              try {
+                item.func = parts.input.substring(0, parts.input.indexOf('{'));
+              } catch (e) { }
+            }
+
+            if (funcs['' + curr]) {
+                recursion = true;
+            }else{
+                funcs['' + curr] = true;
+            }
+
+            stack.push(item);
+        }
+
+        if (depth) {
+            // console.log('depth is ' + depth);
+            // console.log('stack is ' + stack.length);
+            stack.splice(0, depth);
+        }
+
+        var result = {
+            'name': ex.name,
+            'message': ex.message,
+            'url': getLocationHref(),
+            'stack': stack
+        };
+        augmentStackTraceWithInitialElement(result, ex.sourceURL || ex.fileName, ex.line || ex.lineNumber, ex.message || ex.description);
+        return result;
+    }
+
+    /**
+     * Computes a stack trace for an exception.
+     * @param {Error} ex
+     * @param {(string|number)=} depth
+     */
+    function computeStackTrace(ex, depth) {
+        var stack = null;
+        depth = (depth == null ? 0 : +depth);
+
+        try {
+            stack = computeStackTraceFromStackProp(ex);
+            if (stack) {
+                return stack;
+            }
+        } catch (e) {
+            if (TraceKit.debug) {
+                throw e;
+            }
+        }
+
+        try {
+            stack = computeStackTraceByWalkingCallerChain(ex, depth + 1);
+            if (stack) {
+                return stack;
+            }
+        } catch (e) {
+            if (TraceKit.debug) {
+                throw e;
+            }
+        }
+        return {
+            'name': ex.name,
+            'message': ex.message,
+            'url': getLocationHref()
+        };
+    }
+
+    computeStackTrace.augmentStackTraceWithInitialElement = augmentStackTraceWithInitialElement;
+    computeStackTrace.computeStackTraceFromStackProp = computeStackTraceFromStackProp;
+
+    return computeStackTrace;
+}());
+
+module.exports = TraceKit;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(73)))
+
+/***/ }),
+/* 203 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+ json-stringify-safe
+ Like JSON.stringify, but doesn't throw on circular references.
+
+ Originally forked from https://github.com/isaacs/json-stringify-safe
+ version 5.0.1 on 3/8/2017 and modified for IE8 compatibility.
+ Tests for this are in test/vendor.
+
+ ISC license: https://github.com/isaacs/json-stringify-safe/blob/master/LICENSE
+*/
+
+exports = module.exports = stringify
+exports.getSerialize = serializer
+
+function indexOf(haystack, needle) {
+  for (var i = 0; i < haystack.length; ++i) {
+    if (haystack[i] === needle) return i;
+  }
+  return -1;
+}
+
+function stringify(obj, replacer, spaces, cycleReplacer) {
+  return JSON.stringify(obj, serializer(replacer, cycleReplacer), spaces)
+}
+
+function serializer(replacer, cycleReplacer) {
+  var stack = [], keys = []
+
+  if (cycleReplacer == null) cycleReplacer = function(key, value) {
+    if (stack[0] === value) return '[Circular ~]'
+    return '[Circular ~.' + keys.slice(0, indexOf(stack, value)).join('.') + ']'
+  }
+
+  return function(key, value) {
+    if (stack.length > 0) {
+      var thisPos = indexOf(stack, this);
+      ~thisPos ? stack.splice(thisPos + 1) : stack.push(this)
+      ~thisPos ? keys.splice(thisPos, Infinity, key) : keys.push(key)
+      if (~indexOf(stack, value)) value = cycleReplacer.call(this, key, value)
+    }
+    else stack.push(value)
+
+    return replacer == null ? value : replacer.call(this, key, value)
+  }
+}
+
+
+/***/ }),
+/* 204 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(274);
+
+/***/ }),
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23135,7 +26025,7 @@ var ARIADOMPropertyConfig = {
 module.exports = ARIADOMPropertyConfig;
 
 /***/ }),
-/* 197 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23153,7 +26043,7 @@ module.exports = ARIADOMPropertyConfig;
 
 var ReactDOMComponentTree = __webpack_require__(11);
 
-var focusNode = __webpack_require__(96);
+var focusNode = __webpack_require__(97);
 
 var AutoFocusUtils = {
   focusDOMComponent: function () {
@@ -23164,7 +26054,7 @@ var AutoFocusUtils = {
 module.exports = AutoFocusUtils;
 
 /***/ }),
-/* 198 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23182,9 +26072,9 @@ module.exports = AutoFocusUtils;
 
 var EventPropagators = __webpack_require__(36);
 var ExecutionEnvironment = __webpack_require__(12);
-var FallbackCompositionState = __webpack_require__(205);
-var SyntheticCompositionEvent = __webpack_require__(246);
-var SyntheticInputEvent = __webpack_require__(249);
+var FallbackCompositionState = __webpack_require__(214);
+var SyntheticCompositionEvent = __webpack_require__(255);
+var SyntheticInputEvent = __webpack_require__(258);
 
 var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 var START_KEYCODE = 229;
@@ -23554,7 +26444,7 @@ var BeforeInputEventPlugin = {
 module.exports = BeforeInputEventPlugin;
 
 /***/ }),
-/* 199 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23570,14 +26460,14 @@ module.exports = BeforeInputEventPlugin;
 
 
 
-var CSSProperty = __webpack_require__(99);
+var CSSProperty = __webpack_require__(101);
 var ExecutionEnvironment = __webpack_require__(12);
 var ReactInstrumentation = __webpack_require__(17);
 
-var camelizeStyleName = __webpack_require__(177);
-var dangerousStyleValue = __webpack_require__(256);
-var hyphenateStyleName = __webpack_require__(184);
-var memoizeStringOnly = __webpack_require__(187);
+var camelizeStyleName = __webpack_require__(180);
+var dangerousStyleValue = __webpack_require__(265);
+var hyphenateStyleName = __webpack_require__(187);
+var memoizeStringOnly = __webpack_require__(190);
 var warning = __webpack_require__(4);
 
 var processStyleName = memoizeStringOnly(function (styleName) {
@@ -23769,7 +26659,7 @@ module.exports = CSSPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 200 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23794,7 +26684,7 @@ var SyntheticEvent = __webpack_require__(20);
 
 var getEventTarget = __webpack_require__(67);
 var isEventSupported = __webpack_require__(68);
-var isTextInputElement = __webpack_require__(123);
+var isTextInputElement = __webpack_require__(125);
 
 var eventTypes = {
   change: {
@@ -24120,7 +27010,7 @@ var ChangeEventPlugin = {
 module.exports = ChangeEventPlugin;
 
 /***/ }),
-/* 201 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24141,7 +27031,7 @@ var _prodInvariant = __webpack_require__(7);
 var DOMLazyTree = __webpack_require__(34);
 var ExecutionEnvironment = __webpack_require__(12);
 
-var createNodesFromMarkup = __webpack_require__(180);
+var createNodesFromMarkup = __webpack_require__(183);
 var emptyFunction = __webpack_require__(16);
 var invariant = __webpack_require__(3);
 
@@ -24174,7 +27064,7 @@ module.exports = Danger;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 202 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24205,7 +27095,7 @@ var DefaultEventPluginOrder = ['ResponderEventPlugin', 'SimpleEventPlugin', 'Tap
 module.exports = DefaultEventPluginOrder;
 
 /***/ }),
-/* 203 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24310,7 +27200,7 @@ var EnterLeaveEventPlugin = {
 module.exports = EnterLeaveEventPlugin;
 
 /***/ }),
-/* 204 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24407,7 +27297,7 @@ var EventConstants = {
 module.exports = EventConstants;
 
 /***/ }),
-/* 205 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24427,7 +27317,7 @@ var _assign = __webpack_require__(8);
 
 var PooledClass = __webpack_require__(26);
 
-var getTextContentAccessor = __webpack_require__(120);
+var getTextContentAccessor = __webpack_require__(122);
 
 /**
  * This helper class stores information about text content of a target node,
@@ -24507,7 +27397,7 @@ PooledClass.addPoolingTo(FallbackCompositionState);
 module.exports = FallbackCompositionState;
 
 /***/ }),
-/* 206 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24748,7 +27638,7 @@ var HTMLDOMPropertyConfig = {
 module.exports = HTMLDOMPropertyConfig;
 
 /***/ }),
-/* 207 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24766,10 +27656,10 @@ module.exports = HTMLDOMPropertyConfig;
 
 var ReactReconciler = __webpack_require__(27);
 
-var instantiateReactComponent = __webpack_require__(122);
+var instantiateReactComponent = __webpack_require__(124);
 var KeyEscapeUtils = __webpack_require__(58);
 var shouldUpdateReactComponent = __webpack_require__(69);
-var traverseAllChildren = __webpack_require__(125);
+var traverseAllChildren = __webpack_require__(127);
 var warning = __webpack_require__(4);
 
 var ReactComponentTreeHook;
@@ -24908,7 +27798,7 @@ module.exports = ReactChildReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 208 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24925,7 +27815,7 @@ module.exports = ReactChildReconciler;
 
 
 var DOMChildrenOperations = __webpack_require__(55);
-var ReactDOMIDOperations = __webpack_require__(213);
+var ReactDOMIDOperations = __webpack_require__(222);
 
 /**
  * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -24943,7 +27833,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 /***/ }),
-/* 209 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24964,24 +27854,24 @@ module.exports = ReactComponentBrowserEnvironment;
 var _prodInvariant = __webpack_require__(7),
     _assign = __webpack_require__(8);
 
-var AutoFocusUtils = __webpack_require__(197);
-var CSSPropertyOperations = __webpack_require__(199);
+var AutoFocusUtils = __webpack_require__(206);
+var CSSPropertyOperations = __webpack_require__(208);
 var DOMLazyTree = __webpack_require__(34);
 var DOMNamespaces = __webpack_require__(56);
 var DOMProperty = __webpack_require__(25);
-var DOMPropertyOperations = __webpack_require__(101);
+var DOMPropertyOperations = __webpack_require__(103);
 var EventPluginHub = __webpack_require__(35);
 var EventPluginRegistry = __webpack_require__(39);
 var ReactBrowserEventEmitter = __webpack_require__(40);
-var ReactDOMComponentFlags = __webpack_require__(103);
+var ReactDOMComponentFlags = __webpack_require__(105);
 var ReactDOMComponentTree = __webpack_require__(11);
-var ReactDOMInput = __webpack_require__(214);
-var ReactDOMOption = __webpack_require__(217);
-var ReactDOMSelect = __webpack_require__(104);
-var ReactDOMTextarea = __webpack_require__(220);
+var ReactDOMInput = __webpack_require__(223);
+var ReactDOMOption = __webpack_require__(226);
+var ReactDOMSelect = __webpack_require__(106);
+var ReactDOMTextarea = __webpack_require__(229);
 var ReactInstrumentation = __webpack_require__(17);
-var ReactMultiChild = __webpack_require__(231);
-var ReactServerRenderingTransaction = __webpack_require__(236);
+var ReactMultiChild = __webpack_require__(240);
+var ReactServerRenderingTransaction = __webpack_require__(245);
 
 var emptyFunction = __webpack_require__(16);
 var escapeTextContentForBrowser = __webpack_require__(48);
@@ -25950,7 +28840,7 @@ module.exports = ReactDOMComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 210 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25989,7 +28879,7 @@ module.exports = ReactDOMContainerInfo;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 211 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26054,7 +28944,7 @@ _assign(ReactDOMEmptyComponent.prototype, {
 module.exports = ReactDOMEmptyComponent;
 
 /***/ }),
-/* 212 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26078,7 +28968,7 @@ var ReactDOMFeatureFlags = {
 module.exports = ReactDOMFeatureFlags;
 
 /***/ }),
-/* 213 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26117,7 +29007,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 /***/ }),
-/* 214 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26136,7 +29026,7 @@ module.exports = ReactDOMIDOperations;
 var _prodInvariant = __webpack_require__(7),
     _assign = __webpack_require__(8);
 
-var DOMPropertyOperations = __webpack_require__(101);
+var DOMPropertyOperations = __webpack_require__(103);
 var LinkedValueUtils = __webpack_require__(59);
 var ReactDOMComponentTree = __webpack_require__(11);
 var ReactUpdates = __webpack_require__(18);
@@ -26408,7 +29298,7 @@ module.exports = ReactDOMInput;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 215 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26507,7 +29397,7 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 216 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26556,7 +29446,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 217 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26576,7 +29466,7 @@ var _assign = __webpack_require__(8);
 
 var React = __webpack_require__(19);
 var ReactDOMComponentTree = __webpack_require__(11);
-var ReactDOMSelect = __webpack_require__(104);
+var ReactDOMSelect = __webpack_require__(106);
 
 var warning = __webpack_require__(4);
 var didWarnInvalidOptionChildren = false;
@@ -26685,7 +29575,7 @@ module.exports = ReactDOMOption;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 218 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26703,8 +29593,8 @@ module.exports = ReactDOMOption;
 
 var ExecutionEnvironment = __webpack_require__(12);
 
-var getNodeForCharacterOffset = __webpack_require__(260);
-var getTextContentAccessor = __webpack_require__(120);
+var getNodeForCharacterOffset = __webpack_require__(269);
+var getTextContentAccessor = __webpack_require__(122);
 
 /**
  * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -26902,7 +29792,7 @@ var ReactDOMSelection = {
 module.exports = ReactDOMSelection;
 
 /***/ }),
-/* 219 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27072,7 +29962,7 @@ module.exports = ReactDOMTextComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 220 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27238,7 +30128,7 @@ module.exports = ReactDOMTextarea;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 221 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27380,7 +30270,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 222 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27498,7 +30388,7 @@ module.exports = ReactDOMUnknownPropertyHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 223 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27514,25 +30404,25 @@ module.exports = ReactDOMUnknownPropertyHook;
 
 
 
-var ARIADOMPropertyConfig = __webpack_require__(196);
-var BeforeInputEventPlugin = __webpack_require__(198);
-var ChangeEventPlugin = __webpack_require__(200);
-var DefaultEventPluginOrder = __webpack_require__(202);
-var EnterLeaveEventPlugin = __webpack_require__(203);
-var HTMLDOMPropertyConfig = __webpack_require__(206);
-var ReactComponentBrowserEnvironment = __webpack_require__(208);
-var ReactDOMComponent = __webpack_require__(209);
+var ARIADOMPropertyConfig = __webpack_require__(205);
+var BeforeInputEventPlugin = __webpack_require__(207);
+var ChangeEventPlugin = __webpack_require__(209);
+var DefaultEventPluginOrder = __webpack_require__(211);
+var EnterLeaveEventPlugin = __webpack_require__(212);
+var HTMLDOMPropertyConfig = __webpack_require__(215);
+var ReactComponentBrowserEnvironment = __webpack_require__(217);
+var ReactDOMComponent = __webpack_require__(218);
 var ReactDOMComponentTree = __webpack_require__(11);
-var ReactDOMEmptyComponent = __webpack_require__(211);
-var ReactDOMTreeTraversal = __webpack_require__(221);
-var ReactDOMTextComponent = __webpack_require__(219);
-var ReactDefaultBatchingStrategy = __webpack_require__(106);
-var ReactEventListener = __webpack_require__(226);
-var ReactInjection = __webpack_require__(228);
-var ReactReconcileTransaction = __webpack_require__(114);
-var SVGDOMPropertyConfig = __webpack_require__(241);
-var SelectEventPlugin = __webpack_require__(242);
-var SimpleEventPlugin = __webpack_require__(243);
+var ReactDOMEmptyComponent = __webpack_require__(220);
+var ReactDOMTreeTraversal = __webpack_require__(230);
+var ReactDOMTextComponent = __webpack_require__(228);
+var ReactDefaultBatchingStrategy = __webpack_require__(108);
+var ReactEventListener = __webpack_require__(235);
+var ReactInjection = __webpack_require__(237);
+var ReactReconcileTransaction = __webpack_require__(116);
+var SVGDOMPropertyConfig = __webpack_require__(250);
+var SelectEventPlugin = __webpack_require__(251);
+var SimpleEventPlugin = __webpack_require__(252);
 
 var alreadyInjected = false;
 
@@ -27589,7 +30479,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 224 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27614,7 +30504,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 225 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27652,7 +30542,7 @@ var ReactEventEmitterMixin = {
 module.exports = ReactEventEmitterMixin;
 
 /***/ }),
-/* 226 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27670,14 +30560,14 @@ module.exports = ReactEventEmitterMixin;
 
 var _assign = __webpack_require__(8);
 
-var EventListener = __webpack_require__(95);
+var EventListener = __webpack_require__(96);
 var ExecutionEnvironment = __webpack_require__(12);
 var PooledClass = __webpack_require__(26);
 var ReactDOMComponentTree = __webpack_require__(11);
 var ReactUpdates = __webpack_require__(18);
 
 var getEventTarget = __webpack_require__(67);
-var getUnboundedScrollPosition = __webpack_require__(182);
+var getUnboundedScrollPosition = __webpack_require__(185);
 
 /**
  * Find the deepest React component completely containing the root of the
@@ -27812,7 +30702,7 @@ var ReactEventListener = {
 module.exports = ReactEventListener;
 
 /***/ }),
-/* 227 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27851,7 +30741,7 @@ var ReactHostOperationHistoryHook = {
 module.exports = ReactHostOperationHistoryHook;
 
 /***/ }),
-/* 228 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27871,9 +30761,9 @@ var DOMProperty = __webpack_require__(25);
 var EventPluginHub = __webpack_require__(35);
 var EventPluginUtils = __webpack_require__(57);
 var ReactComponentEnvironment = __webpack_require__(60);
-var ReactEmptyComponent = __webpack_require__(107);
+var ReactEmptyComponent = __webpack_require__(109);
 var ReactBrowserEventEmitter = __webpack_require__(40);
-var ReactHostComponent = __webpack_require__(109);
+var ReactHostComponent = __webpack_require__(111);
 var ReactUpdates = __webpack_require__(18);
 
 var ReactInjection = {
@@ -27890,7 +30780,7 @@ var ReactInjection = {
 module.exports = ReactInjection;
 
 /***/ }),
-/* 229 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27933,7 +30823,7 @@ module.exports = ReactInvalidSetStateWarningHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 230 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27949,7 +30839,7 @@ module.exports = ReactInvalidSetStateWarningHook;
 
 
 
-var adler32 = __webpack_require__(254);
+var adler32 = __webpack_require__(263);
 
 var TAG_END = /\/?>/;
 var COMMENT_START = /^<\!\-\-/;
@@ -27988,7 +30878,7 @@ var ReactMarkupChecksum = {
 module.exports = ReactMarkupChecksum;
 
 /***/ }),
-/* 231 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28012,10 +30902,10 @@ var ReactInstrumentation = __webpack_require__(17);
 
 var ReactCurrentOwner = __webpack_require__(21);
 var ReactReconciler = __webpack_require__(27);
-var ReactChildReconciler = __webpack_require__(207);
+var ReactChildReconciler = __webpack_require__(216);
 
 var emptyFunction = __webpack_require__(16);
-var flattenChildren = __webpack_require__(257);
+var flattenChildren = __webpack_require__(266);
 var invariant = __webpack_require__(3);
 
 /**
@@ -28444,7 +31334,7 @@ module.exports = ReactMultiChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 232 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28544,7 +31434,7 @@ module.exports = ReactOwner;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 233 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28565,7 +31455,7 @@ var _assign = __webpack_require__(8);
 
 var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var ReactDebugTool = __webpack_require__(105);
+var ReactDebugTool = __webpack_require__(107);
 var warning = __webpack_require__(4);
 var alreadyWarned = false;
 
@@ -29051,7 +31941,7 @@ module.exports = ReactPerfAnalysis;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 234 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29082,7 +31972,7 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 235 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29099,7 +31989,7 @@ module.exports = ReactPropTypeLocationNames;
 
 
 
-var ReactOwner = __webpack_require__(232);
+var ReactOwner = __webpack_require__(241);
 
 var ReactRef = {};
 
@@ -29176,7 +32066,7 @@ ReactRef.detachRefs = function (instance, element) {
 module.exports = ReactRef;
 
 /***/ }),
-/* 236 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29197,7 +32087,7 @@ var _assign = __webpack_require__(8);
 var PooledClass = __webpack_require__(26);
 var Transaction = __webpack_require__(47);
 var ReactInstrumentation = __webpack_require__(17);
-var ReactServerUpdateQueue = __webpack_require__(237);
+var ReactServerUpdateQueue = __webpack_require__(246);
 
 /**
  * Executed within the scope of the `Transaction` instance. Consider these as
@@ -29272,7 +32162,7 @@ module.exports = ReactServerRenderingTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 237 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29417,7 +32307,7 @@ module.exports = ReactServerUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 238 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29439,14 +32329,14 @@ var _prodInvariant = __webpack_require__(7),
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var React = __webpack_require__(19);
-var ReactCompositeComponent = __webpack_require__(102);
-var ReactDefaultBatchingStrategy = __webpack_require__(106);
+var ReactCompositeComponent = __webpack_require__(104);
+var ReactDefaultBatchingStrategy = __webpack_require__(108);
 var ReactReconciler = __webpack_require__(27);
-var ReactReconcileTransaction = __webpack_require__(114);
+var ReactReconcileTransaction = __webpack_require__(116);
 var ReactUpdates = __webpack_require__(18);
 
 var emptyObject = __webpack_require__(33);
-var getNextDebugID = __webpack_require__(131);
+var getNextDebugID = __webpack_require__(133);
 var invariant = __webpack_require__(3);
 
 function injectDefaults() {
@@ -29574,7 +32464,7 @@ module.exports = ReactShallowRenderer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 239 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29593,7 +32483,7 @@ module.exports = ReactShallowRenderer;
 var _prodInvariant = __webpack_require__(7),
     _assign = __webpack_require__(8);
 
-var EventConstants = __webpack_require__(204);
+var EventConstants = __webpack_require__(213);
 var EventPluginHub = __webpack_require__(35);
 var EventPluginRegistry = __webpack_require__(39);
 var EventPropagators = __webpack_require__(36);
@@ -29604,9 +32494,9 @@ var ReactBrowserEventEmitter = __webpack_require__(40);
 var ReactInstanceMap = __webpack_require__(37);
 var ReactUpdates = __webpack_require__(18);
 var SyntheticEvent = __webpack_require__(20);
-var ReactShallowRenderer = __webpack_require__(238);
+var ReactShallowRenderer = __webpack_require__(247);
 
-var findDOMNode = __webpack_require__(117);
+var findDOMNode = __webpack_require__(119);
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
 
@@ -30002,7 +32892,7 @@ module.exports = ReactTestUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 240 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30021,7 +32911,7 @@ module.exports = ReactTestUtils;
 module.exports = '15.5.4';
 
 /***/ }),
-/* 241 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30328,7 +33218,7 @@ Object.keys(ATTRS).forEach(function (key) {
 module.exports = SVGDOMPropertyConfig;
 
 /***/ }),
-/* 242 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30347,11 +33237,11 @@ module.exports = SVGDOMPropertyConfig;
 var EventPropagators = __webpack_require__(36);
 var ExecutionEnvironment = __webpack_require__(12);
 var ReactDOMComponentTree = __webpack_require__(11);
-var ReactInputSelection = __webpack_require__(110);
+var ReactInputSelection = __webpack_require__(112);
 var SyntheticEvent = __webpack_require__(20);
 
-var getActiveElement = __webpack_require__(97);
-var isTextInputElement = __webpack_require__(123);
+var getActiveElement = __webpack_require__(98);
+var isTextInputElement = __webpack_require__(125);
 var shallowEqual = __webpack_require__(45);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
@@ -30524,7 +33414,7 @@ var SelectEventPlugin = {
 module.exports = SelectEventPlugin;
 
 /***/ }),
-/* 243 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30543,20 +33433,20 @@ module.exports = SelectEventPlugin;
 
 var _prodInvariant = __webpack_require__(7);
 
-var EventListener = __webpack_require__(95);
+var EventListener = __webpack_require__(96);
 var EventPropagators = __webpack_require__(36);
 var ReactDOMComponentTree = __webpack_require__(11);
-var SyntheticAnimationEvent = __webpack_require__(244);
-var SyntheticClipboardEvent = __webpack_require__(245);
+var SyntheticAnimationEvent = __webpack_require__(253);
+var SyntheticClipboardEvent = __webpack_require__(254);
 var SyntheticEvent = __webpack_require__(20);
-var SyntheticFocusEvent = __webpack_require__(248);
-var SyntheticKeyboardEvent = __webpack_require__(250);
+var SyntheticFocusEvent = __webpack_require__(257);
+var SyntheticKeyboardEvent = __webpack_require__(259);
 var SyntheticMouseEvent = __webpack_require__(46);
-var SyntheticDragEvent = __webpack_require__(247);
-var SyntheticTouchEvent = __webpack_require__(251);
-var SyntheticTransitionEvent = __webpack_require__(252);
+var SyntheticDragEvent = __webpack_require__(256);
+var SyntheticTouchEvent = __webpack_require__(260);
+var SyntheticTransitionEvent = __webpack_require__(261);
 var SyntheticUIEvent = __webpack_require__(41);
-var SyntheticWheelEvent = __webpack_require__(253);
+var SyntheticWheelEvent = __webpack_require__(262);
 
 var emptyFunction = __webpack_require__(16);
 var getEventCharCode = __webpack_require__(65);
@@ -30758,7 +33648,7 @@ module.exports = SimpleEventPlugin;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 244 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30802,7 +33692,7 @@ SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 module.exports = SyntheticAnimationEvent;
 
 /***/ }),
-/* 245 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30845,7 +33735,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 /***/ }),
-/* 246 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30886,7 +33776,7 @@ SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface
 module.exports = SyntheticCompositionEvent;
 
 /***/ }),
-/* 247 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30927,7 +33817,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 module.exports = SyntheticDragEvent;
 
 /***/ }),
-/* 248 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30968,7 +33858,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 module.exports = SyntheticFocusEvent;
 
 /***/ }),
-/* 249 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31010,7 +33900,7 @@ SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 module.exports = SyntheticInputEvent;
 
 /***/ }),
-/* 250 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31029,7 +33919,7 @@ module.exports = SyntheticInputEvent;
 var SyntheticUIEvent = __webpack_require__(41);
 
 var getEventCharCode = __webpack_require__(65);
-var getEventKey = __webpack_require__(258);
+var getEventKey = __webpack_require__(267);
 var getEventModifierState = __webpack_require__(66);
 
 /**
@@ -31099,7 +33989,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 module.exports = SyntheticKeyboardEvent;
 
 /***/ }),
-/* 251 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31149,7 +34039,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 module.exports = SyntheticTouchEvent;
 
 /***/ }),
-/* 252 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31193,7 +34083,7 @@ SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 module.exports = SyntheticTransitionEvent;
 
 /***/ }),
-/* 253 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31252,7 +34142,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 module.exports = SyntheticWheelEvent;
 
 /***/ }),
-/* 254 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31301,7 +34191,7 @@ function adler32(data) {
 module.exports = adler32;
 
 /***/ }),
-/* 255 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31319,8 +34209,8 @@ module.exports = adler32;
 
 var _prodInvariant = __webpack_require__(7);
 
-var ReactPropTypeLocationNames = __webpack_require__(234);
-var ReactPropTypesSecret = __webpack_require__(113);
+var ReactPropTypeLocationNames = __webpack_require__(243);
+var ReactPropTypesSecret = __webpack_require__(115);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -31394,7 +34284,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 256 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31410,7 +34300,7 @@ module.exports = checkReactTypeSpec;
 
 
 
-var CSSProperty = __webpack_require__(99);
+var CSSProperty = __webpack_require__(101);
 var warning = __webpack_require__(4);
 
 var isUnitlessNumber = CSSProperty.isUnitlessNumber;
@@ -31479,7 +34369,7 @@ module.exports = dangerousStyleValue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 257 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31497,7 +34387,7 @@ module.exports = dangerousStyleValue;
 
 
 var KeyEscapeUtils = __webpack_require__(58);
-var traverseAllChildren = __webpack_require__(125);
+var traverseAllChildren = __webpack_require__(127);
 var warning = __webpack_require__(4);
 
 var ReactComponentTreeHook;
@@ -31561,7 +34451,7 @@ module.exports = flattenChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 258 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31668,7 +34558,7 @@ function getEventKey(nativeEvent) {
 module.exports = getEventKey;
 
 /***/ }),
-/* 259 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31714,7 +34604,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 260 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31793,7 +34683,7 @@ function getNodeForCharacterOffset(root, offset) {
 module.exports = getNodeForCharacterOffset;
 
 /***/ }),
-/* 261 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31824,7 +34714,7 @@ function quoteAttributeValueForBrowser(value) {
 module.exports = quoteAttributeValueForBrowser;
 
 /***/ }),
-/* 262 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31840,12 +34730,12 @@ module.exports = quoteAttributeValueForBrowser;
 
 
 
-var ReactMount = __webpack_require__(111);
+var ReactMount = __webpack_require__(113);
 
 module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ }),
-/* 263 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31963,7 +34853,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 264 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31991,14 +34881,14 @@ if (process.env.NODE_ENV !== 'production') {
 
   exports.getReactPerf = function () {
     if (!ReactPerf) {
-      ReactPerf = __webpack_require__(233);
+      ReactPerf = __webpack_require__(242);
     }
     return ReactPerf;
   };
 
   exports.getReactTestUtils = function () {
     if (!ReactTestUtils) {
-      ReactTestUtils = __webpack_require__(239);
+      ReactTestUtils = __webpack_require__(248);
     }
     return ReactTestUtils;
   };
@@ -32006,7 +34896,7 @@ if (process.env.NODE_ENV !== 'production') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 265 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32034,8 +34924,8 @@ var React = __webpack_require__(19);
 var propTypesFactory = __webpack_require__(38);
 var PropTypes = propTypesFactory(React.isValidElement);
 
-var ReactTransitionGroup = __webpack_require__(275);
-var ReactCSSTransitionGroupChild = __webpack_require__(266);
+var ReactTransitionGroup = __webpack_require__(284);
+var ReactCSSTransitionGroupChild = __webpack_require__(275);
 
 function createTransitionTimeoutPropValidator(transitionType) {
   var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -32118,7 +35008,7 @@ ReactCSSTransitionGroup.defaultProps = {
 module.exports = ReactCSSTransitionGroup;
 
 /***/ }),
-/* 266 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32141,15 +35031,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var React = __webpack_require__(19);
-var ReactAddonsDOMDependencies = __webpack_require__(264);
+var ReactAddonsDOMDependencies = __webpack_require__(273);
 
 var propTypesFactory = __webpack_require__(38);
 var PropTypes = propTypesFactory(React.isValidElement);
 
-var CSSCore = __webpack_require__(175);
-var ReactTransitionEvents = __webpack_require__(274);
+var CSSCore = __webpack_require__(178);
+var ReactTransitionEvents = __webpack_require__(283);
 
-var onlyChild = __webpack_require__(132);
+var onlyChild = __webpack_require__(134);
 
 var TICK = 17;
 
@@ -32308,7 +35198,7 @@ ReactCSSTransitionGroupChild.propTypes = {
 module.exports = ReactCSSTransitionGroupChild;
 
 /***/ }),
-/* 267 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32324,11 +35214,11 @@ module.exports = ReactCSSTransitionGroupChild;
 
 
 
-var PooledClass = __webpack_require__(263);
+var PooledClass = __webpack_require__(272);
 var ReactElement = __webpack_require__(28);
 
 var emptyFunction = __webpack_require__(16);
-var traverseAllChildren = __webpack_require__(133);
+var traverseAllChildren = __webpack_require__(135);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -32504,7 +35394,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 268 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32525,7 +35415,7 @@ var _prodInvariant = __webpack_require__(29),
 
 var ReactComponent = __webpack_require__(71);
 var ReactElement = __webpack_require__(28);
-var ReactPropTypeLocationNames = __webpack_require__(129);
+var ReactPropTypeLocationNames = __webpack_require__(131);
 var ReactNoopUpdateQueue = __webpack_require__(72);
 
 var emptyObject = __webpack_require__(33);
@@ -33233,7 +36123,7 @@ module.exports = ReactClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 269 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33258,7 +36148,7 @@ var ReactElement = __webpack_require__(28);
  */
 var createDOMFactory = ReactElement.createFactory;
 if (process.env.NODE_ENV !== 'production') {
-  var ReactElementValidator = __webpack_require__(128);
+  var ReactElementValidator = __webpack_require__(130);
   createDOMFactory = ReactElementValidator.createFactory;
 }
 
@@ -33409,7 +36299,7 @@ module.exports = ReactDOMFactories;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 270 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33433,7 +36323,7 @@ var factory = __webpack_require__(38);
 module.exports = factory(isValidElement);
 
 /***/ }),
-/* 271 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33455,7 +36345,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 272 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33502,7 +36392,7 @@ ReactPureComponent.prototype.isPureReactComponent = true;
 module.exports = ReactPureComponent;
 
 /***/ }),
-/* 273 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33518,7 +36408,7 @@ module.exports = ReactPureComponent;
 
 
 
-var flattenChildren = __webpack_require__(278);
+var flattenChildren = __webpack_require__(287);
 
 var ReactTransitionChildMapping = {
   /**
@@ -33611,7 +36501,7 @@ module.exports = ReactTransitionChildMapping;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 274 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33629,7 +36519,7 @@ module.exports = ReactTransitionChildMapping;
 
 var ExecutionEnvironment = __webpack_require__(12);
 
-var getVendorPrefixedEventName = __webpack_require__(121);
+var getVendorPrefixedEventName = __webpack_require__(123);
 
 var endEvents = [];
 
@@ -33689,7 +36579,7 @@ var ReactTransitionEvents = {
 module.exports = ReactTransitionEvents;
 
 /***/ }),
-/* 275 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33714,7 +36604,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var React = __webpack_require__(19);
-var ReactTransitionChildMapping = __webpack_require__(273);
+var ReactTransitionChildMapping = __webpack_require__(282);
 
 var propTypesFactory = __webpack_require__(38);
 var PropTypes = propTypesFactory(React.isValidElement);
@@ -33926,7 +36816,7 @@ ReactTransitionGroup.defaultProps = {
 module.exports = ReactTransitionGroup;
 
 /***/ }),
-/* 276 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33945,7 +36835,7 @@ module.exports = ReactTransitionGroup;
 module.exports = '15.5.4';
 
 /***/ }),
-/* 277 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33963,8 +36853,8 @@ module.exports = '15.5.4';
 
 var _prodInvariant = __webpack_require__(29);
 
-var ReactPropTypeLocationNames = __webpack_require__(129);
-var ReactPropTypesSecret = __webpack_require__(271);
+var ReactPropTypeLocationNames = __webpack_require__(131);
+var ReactPropTypesSecret = __webpack_require__(280);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -34038,7 +36928,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 278 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34055,8 +36945,8 @@ module.exports = checkReactTypeSpec;
 
 
 
-var KeyEscapeUtils = __webpack_require__(126);
-var traverseAllChildren = __webpack_require__(133);
+var KeyEscapeUtils = __webpack_require__(128);
+var traverseAllChildren = __webpack_require__(135);
 var warning = __webpack_require__(4);
 
 var ReactComponentTreeHook;
@@ -34120,7 +37010,7 @@ module.exports = flattenChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 279 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! tether 1.4.0 */
@@ -35941,7 +38831,7 @@ return Tether;
 
 
 /***/ }),
-/* 280 */
+/* 289 */
 /***/ (function(module, exports) {
 
 (function(self) {
