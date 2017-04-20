@@ -1,5 +1,6 @@
 import * as express from 'express'
 import { runHotMiddleware, listen } from './middleware'
+import { monitorExceptions } from './exceptionMonitoring'
 import api from './api'
 import {sequelize} from './db'
 
@@ -11,6 +12,8 @@ const app    = express()
 declare var __OUTPUT_DIR__: boolean // Defined by webpack.DefinePlugin at compile time
 
 app.use(require('helmet')())
+
+monitorExceptions(config)(app)
 
 if (config.env !== 'production') {
   runHotMiddleware(app)
