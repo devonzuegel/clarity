@@ -64,7 +64,7 @@ require("source-map-support").install();
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -77,15 +77,52 @@ module.exports = require("path");
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/**
+ * Load environment variables from .env for local development.
+ * If no .env file is to be found at
+ */
+const path  = __webpack_require__(0)
+const chalk = __webpack_require__(4)
+const env   = __webpack_require__(25).config({ path: path.resolve('.env') })
+
+if (env.error) {
+  console.warn(chalk.yellow(`No config file was found at ${env.error.path}`))
+} else {
+  console.info(chalk.green('Environment variables loaded from .env:'))
+  console.info(chalk.grey(JSON.stringify(env, null, 2)))
+}
+
+module.exports = {
+  port:         process.env.PORT || 4000,
+  host:         process.env.HOST || 'localhost',
+  env:          process.env.NODE_ENV || 'development',
+  database_url: process.env.DATABASE_URL,
+  sentry_dsn:   process.env.SENTRY_DSN,
+  db: {
+    database: process.env.DB_NAME,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    host:     process.env.DB_HOST,
+    port:     process.env.DB_PORT,
+    dialect:  'postgres',
+    timezone: '+00:00',
+  }
+}
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var cls = __webpack_require__(23);
+var cls = __webpack_require__(24);
 var Sequelize = __webpack_require__(5);
-var user_1 = __webpack_require__(14);
+var user_1 = __webpack_require__(13);
 var config_1 = __webpack_require__(12);
-var database_url = __webpack_require__(2).database_url;
+var database_url = __webpack_require__(1).database_url;
 var Database = function () {
     function Database() {
         var _this = this;
@@ -110,34 +147,6 @@ var Database = function () {
 var database = new Database();
 exports.models = database.getModels();
 exports.sequelize = database.getSequelize();
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Load environment variables from .env for local development.
- * If no .env file is to be found at
- */
-const path  = __webpack_require__(0)
-const chalk = __webpack_require__(4)
-const env   = __webpack_require__(24).config({ path: path.resolve('.env') })
-
-if (env.error) {
-  console.warn(chalk.yellow(`No config file was found at ${env.error.path}`))
-} else {
-  console.info(chalk.green('Environment variables loaded from .env:'))
-  console.info(chalk.grey(JSON.stringify(env, null, 2)))
-}
-
-module.exports = {
-  port:         process.env.PORT || 4000,
-  host:         process.env.HOST || 'localhost',
-  env:          process.env.NODE_ENV || 'development',
-  database_url: process.env.DATABASE_URL,
-  sentry_dsn:   process.env.SENTRY_DSN,
-}
-
 
 /***/ }),
 /* 3 */
@@ -185,7 +194,7 @@ exports.default = function (app) {
             return res.status(200).json(users);
         }).catch(jsonError(res));
     });
-    app.get('/users/create', function (req, res) {
+    app.post('/users/create', function (req, res) {
         user_1.userService.create({ username: req.query.username }).then(function (user) {
             return res.status(200).json(user);
         }).catch(jsonError(res));
@@ -206,7 +215,7 @@ exports.default = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Raven = __webpack_require__(26);
+var Raven = __webpack_require__(27);
 exports.monitorExceptions = function (config) {
     return function (app) {
         // Must configure Raven before doing anything else with it
@@ -228,10 +237,10 @@ exports.monitorExceptions = function (config) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Chalk = __webpack_require__(4);
 exports.runHotMiddleware = function (app) {
-    var webpack = __webpack_require__(27);
+    var webpack = __webpack_require__(28);
     var webpackConfig = __webpack_require__(17).default;
     var webpackCompiler = webpack(webpackConfig);
-    app.use(__webpack_require__(28)(webpackCompiler, {
+    app.use(__webpack_require__(29)(webpackCompiler, {
         publicPath: webpackConfig.output.publicPath,
         stats: { colors: true },
         noInfo: true,
@@ -241,7 +250,7 @@ exports.runHotMiddleware = function (app) {
         historyApiFallback: true,
         quiet: true
     }));
-    app.use(__webpack_require__(29)(webpackCompiler));
+    app.use(__webpack_require__(30)(webpackCompiler));
 };
 exports.listen = function (app, _a) {
     var host = _a.host,
@@ -276,15 +285,7 @@ module.exports = require("helmet");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var config = {
-    username: 'devonzuegel',
-    password: 'password',
-    database: 'clarity_test',
-    host: 'localhost',
-    port: 5432,
-    dialect: 'postgres',
-    timezone: '+00:00'
-};
+var config = __webpack_require__(22);
 exports.default = config;
 
 /***/ }),
@@ -295,14 +296,34 @@ exports.default = config;
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var SequelizeStatic = __webpack_require__(5);
+exports.default = function (sequelize) {
+    var Schema = {
+        username: {
+            type: SequelizeStatic.STRING,
+            allowNull: false,
+            unique: true
+        }
+    };
+    return sequelize.define('User', Schema, {});
+};
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
 var express = __webpack_require__(9);
 var middleware_1 = __webpack_require__(8);
 var exceptionMonitoring_1 = __webpack_require__(7);
 var api_1 = __webpack_require__(6);
-var db_1 = __webpack_require__(1);
+var db_1 = __webpack_require__(2);
 var fs = __webpack_require__(10);
 var path = __webpack_require__(0);
-var config = __webpack_require__(2);
+var config = __webpack_require__(1);
 var app = express();
 app.use(__webpack_require__(11)());
 exceptionMonitoring_1.monitorExceptions(config)(app);
@@ -321,28 +342,6 @@ db_1.sequelize.sync().then(function () {
 });
 
 /***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var SequelizeStatic = __webpack_require__(5);
-exports.default = function (sequelize) {
-    var Schema = {
-        username: { type: SequelizeStatic.STRING, allowNull: false, primaryKey: true }
-    };
-    var Options = {
-        indexes: [],
-        classMethods: {},
-        timestamps: false,
-        freezeTableName: true
-    };
-    return sequelize.define('User', Schema, Options);
-};
-
-/***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -350,7 +349,7 @@ exports.default = function (sequelize) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var db_1 = __webpack_require__(1);
+var db_1 = __webpack_require__(2);
 var failure = function (reject) {
     return function (error) {
         console.error(error); // Log full error
@@ -417,7 +416,7 @@ exports.default = _1.setup(Env.Enum.development);
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var webpackMerge = __webpack_require__(30);
+var webpackMerge = __webpack_require__(31);
 var path = __webpack_require__(0);
 var Env = __webpack_require__(3);
 exports.setup = function (env) {
@@ -442,7 +441,7 @@ exports.setup = function (env) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = __webpack_require__(0);
-var HtmlWebpackPlugin = __webpack_require__(25);
+var HtmlWebpackPlugin = __webpack_require__(26);
 exports.partial = function (c) {
     return {
         entry: './src/frontend/main.tsx',
@@ -464,7 +463,7 @@ exports.partial = function (c) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var CheckerPlugin = __webpack_require__(22).CheckerPlugin;
+var CheckerPlugin = __webpack_require__(23).CheckerPlugin;
 exports.partial = function () {
     return {
         module: {
@@ -505,54 +504,70 @@ exports.partial = function (c) {
 
 /***/ }),
 /* 22 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("awesome-typescript-loader");
+/**
+ * NOTE: The Sequelize CLI expects config to be either .json or .js. As
+ * as result, this JS file has to exist in order to execute migrations.
+ * The index.ts file in this same directory is identical to this, but
+ * enforces the typed IDatabaseConfig interface.
+ */
+
+const appConfig = __webpack_require__(1)
+
+module.exports = appConfig.db
+
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = require("continuation-local-storage");
+module.exports = require("awesome-typescript-loader");
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = require("dotenv");
+module.exports = require("continuation-local-storage");
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = require("html-webpack-plugin");
+module.exports = require("dotenv");
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports) {
 
-module.exports = require("raven");
+module.exports = require("html-webpack-plugin");
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack");
+module.exports = require("raven");
 
 /***/ }),
 /* 28 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack-dev-middleware");
+module.exports = require("webpack");
 
 /***/ }),
 /* 29 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack-hot-middleware");
+module.exports = require("webpack-dev-middleware");
 
 /***/ }),
 /* 30 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-hot-middleware");
+
+/***/ }),
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-merge");
