@@ -6,7 +6,7 @@ export const setupSession = (app: express.Application) => {
   const options: session.SessionOptions = {
     secret: 'ssshhhhh', // TODO: get secret from env
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
   }
 
   app.use(session(options))

@@ -1,13 +1,8 @@
 import * as express from 'express'
-import {userService} from './service/user'
-import {UserInstance} from './db/models/user'
+import {jsonError} from '../../../utils/test/results'
+import {userService} from '../service/user'
+import {UserInstance} from '../db/models/user'
 
-interface IError {
-  message: string
-}
-
-const jsonError = (res: express.Response) => (reason: IError) =>
-  res.status(400).json(reason)
 
 export default (app: express.Application) => {
 
@@ -27,6 +22,5 @@ export default (app: express.Application) => {
       .catch(jsonError(res))
   })
 
-  return app
 }
 

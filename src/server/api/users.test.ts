@@ -1,16 +1,19 @@
 import * as express from 'express'
 import * as supertest from 'supertest'
-import {MockUserService} from './service/user.mock'
+import {initSession} from '../../../utils/test/session'
+import {MockUserService} from '../service/user.mock'
 
-jest.mock('./service/user', () => ({
+jest.mock('../service/user', () => ({
   userService: new MockUserService(),
 }))
 
-import api from './api'
+import UsersAPI from './users'
 
-const app = api(express())
+const app = express()
+initSession(app)
+UsersAPI(app)
 
-describe('API', () => {
+describe('Users API', () => {
   describe('/users', () => {
     it('retrieves list of users', () => {
       supertest(app)

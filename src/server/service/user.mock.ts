@@ -1,13 +1,24 @@
 import {UserAttributes, UserInstance} from '../db/models/user'
 
 export class MockUserService {
-  create = (attributes: UserAttributes): Promise<UserInstance> =>
-    new Promise<UserInstance>((resolve: Function, _: Function) => {
+  findByUsername (username: string): Promise<UserInstance> {
+    return new Promise<UserInstance>((resolve: Function, reject: Function) => {
+      if (username == 'thisUsernameDoesntExist') {
+        reject({message: 'That user does not exist'})
+      }
+      resolve({username})
+    })
+  }
+
+  create (attributes: UserAttributes): Promise<UserInstance> {
+    return new Promise<UserInstance>((resolve: Function, _: Function) => {
       resolve(attributes)
     })
+  }
 
-  all = (): Promise<Array<UserInstance>> =>
-    new Promise<Array<UserInstance>>((resolve: Function, _: Function) => {
+  all (): Promise<Array<UserInstance>> {
+    return new Promise<Array<UserInstance>>((resolve: Function, _: Function) => {
       resolve([{username: 'foobar'}])
     })
+  }
 }
