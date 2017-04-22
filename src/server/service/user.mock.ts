@@ -1,4 +1,4 @@
-import {UserAttributes, UserInstance} from '../models/user'
+import {UserAttributes, UserInstance} from '../db/models/user'
 
 export class MockUserService {
   create = (attributes: UserAttributes): Promise<UserInstance> =>

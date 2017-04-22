@@ -1,7 +1,7 @@
 import * as Sequelize from 'sequelize'
 
 import {models} from '../db'
-import {UserAttributes, UserInstance} from '../models/user'
+import {UserAttributes, UserInstance} from '../db/models/user'
 
 const failure = (reject: Function) => (error: Sequelize.ValidationError) => {
   console.error(error) // Log full error

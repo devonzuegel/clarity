@@ -1,6 +1,6 @@
 import * as cls from 'continuation-local-storage'
 import * as Sequelize from 'sequelize'
-import UserModel from '../models/user'
+import UserModel from '../db/models/user'
 import c from './config'
 const database_url = require('../config.js').database_url
 

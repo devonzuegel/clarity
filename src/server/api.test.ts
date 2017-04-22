@@ -21,7 +21,7 @@ describe('API', () => {
   describe('/users/create', () => {
     it('returns a created user', () => {
       supertest(app)
-        .get('/users/create?username=baz')
+        .post('/users/create?username=baz')
         .then((res) => expect(res.body).toEqual({username: 'baz'}))
     })
   })
