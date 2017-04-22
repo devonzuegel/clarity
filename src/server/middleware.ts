@@ -1,5 +1,4 @@
 import * as express from 'express'
-import * as Chalk   from 'chalk'
 
 export const runHotMiddleware = (app: express.Application) => {
   const webpack         = require('webpack')
@@ -18,9 +17,4 @@ export const runHotMiddleware = (app: express.Application) => {
   }))
 
   app.use(require('webpack-hot-middleware')(webpackCompiler))
-}
-
-export const listen = (app: express.Application, { host, port }: { host: string, port: number }) => {
-  console.info(Chalk.black.bgGreen(`\n\nListening at http://${host}:${port}\n`))
-  app.listen(port)
 }

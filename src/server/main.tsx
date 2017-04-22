@@ -1,8 +1,10 @@
-import api                          from './api'
-import { serveFrontend            } from './serveFrontend'
-import { runHotMiddleware, listen } from './middleware'
-import { monitorExceptions        } from './exceptionMonitoring'
-import { sequelize                } from './db'
+import api                   from './api'
+import { runHotMiddleware  } from './middleware'
+import { listen            } from './listen'
+import { monitorExceptions } from './exceptionMonitoring'
+import { serveFrontend     } from './serveFrontend'
+import { sequelize         } from './db'
+import { setupSession      } from './session'
 
 const config = require('./config.js')
 const app    = require('express')()
@@ -10,9 +12,9 @@ const app    = require('express')()
 app.use(require('helmet')())
 
 monitorExceptions(config)(app)
-
 api(app)
 serveFrontend(app)
+setupSession(app)
 
 if (config.env !== 'production') {
   runHotMiddleware(app)
