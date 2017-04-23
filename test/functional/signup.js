@@ -3,7 +3,7 @@ const { url } = require('./config')
 module.exports = {
   beforeEach: browser => {
     browser
-      .url(url)
+      .url(`${url}/signin`)
       .waitForElementVisible('body', 100)
   },
   'Submit a valid username': browser => {
