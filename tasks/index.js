@@ -41,7 +41,7 @@ const tasks = {
   },
 
   'test:watch': () => {
-    runCmd('jest --coverage --watch')
+    runCmd('jest --watch')
   },
 
   'test': () => {

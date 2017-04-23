@@ -8,3 +8,13 @@ export const initSession = (app: express.Application) => (
     saveUninitialized: true,
   }))
 )
+
+export const mockSession: Express.Session = {
+  id:         'xxx',
+  regenerate: (_: any) => null,
+  destroy:    (_: any) => null,
+  reload:     (_: any) => null,
+  save:       (_: any) => null,
+  touch:      (_: any) => null,
+  cookie:     <Express.SessionCookie>{},
+}

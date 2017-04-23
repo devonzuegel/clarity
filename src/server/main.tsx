@@ -1,4 +1,4 @@
-import api                   from './api'
+import api                   from './http'
 import { runHotMiddleware  } from './middleware'
 import { listen            } from './listen'
 import { monitorExceptions } from './exceptionMonitoring'
