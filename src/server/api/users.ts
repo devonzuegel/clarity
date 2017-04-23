@@ -1,5 +1,5 @@
 import * as express from 'express'
-import {jsonError} from '../../../utils/test/results'
+import {jsonError} from '../../../utils/api'
 import {userService} from '../service/user'
 import {UserInstance} from '../db/models/user'
 

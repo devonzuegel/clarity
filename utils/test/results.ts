@@ -1,9 +1,3 @@
-import * as express from 'express'
-
-interface IError {
-  message: string
-}
-
-export const jsonError = (res: express.Response) => (error: IError) => {
-  res.status(500).json(error)
+export const bodyMatches = (expected: any) => (res: any) => {
+  expect(res.body).toEqual(expected)
 }

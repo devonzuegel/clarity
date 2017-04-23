@@ -7,4 +7,3 @@ export default (app: express.Application) => {
   UsersAPI(app)
   AuthenticationAPI(app)
 }
-
