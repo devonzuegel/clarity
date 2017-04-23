@@ -1,25 +1,11 @@
 import * as React from 'react'
-import * as fetch from 'isomorphic-fetch'
 
 import Layout from '~/frontend/components/Layout'
 
 import Counter       from '~/frontend/stories/Counter'
 import BlueprintDemo from '~/frontend/stories/BlueprintDemo'
 
-export async function getData() {
-  return fetch('/data')
-}
-
 export default () => {
-  getData().then((res: any) => {
-    if (res.ok) {
-      res.json().then((r: any) => {
-        console.log(r)
-      })
-    } else {
-      return res.json().then(console.log)
-    }
-  })
   return (
     <Layout>
       <div className='pt-card'>

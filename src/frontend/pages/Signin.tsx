@@ -1,27 +1,17 @@
 import * as React from 'react'
-import * as fetch from 'isomorphic-fetch'
+import {UserAttributes} from '../../server/db/models/user'
 
 import Layout from '~/frontend/components/Layout'
-
 import Signin from '~/frontend/stories/Signin'
 
-export async function getData() {
-  return fetch('/data')
+class SigninPage extends React.Component<null, {user: UserAttributes|undefined}> {
+  render() {
+    return (
+      <Layout>
+        <Signin />
+      </Layout>
+    )
+  }
 }
 
-export default () => {
-  // getData().then((res: any) => {
-  //   if (res.ok) {
-  //     res.json().then((r: any) => {
-  //       console.log(r)
-  //     })
-  //   } else {
-  //     return res.json().then(console.log)
-  //   }
-  // })
-  return (
-    <Layout>
-      <Signin />
-    </Layout>
-  )
-}
+export default SigninPage

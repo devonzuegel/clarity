@@ -1,14 +1,10 @@
 import * as express from 'express'
-import {jsonError} from '../../../utils/api'
+import {jsonError} from '../../../utils/api/requests'
 import {userService} from '../service/user'
 import {UserInstance} from '../db/models/user'
 
 
 export default (app: express.Application) => {
-
-  app.get('/data', (_: express.Request, res: express.Response) => {
-    res.status(200).json([1, 2, 3])
-  })
 
   app.get('/users', (_: express.Request, res: express.Response) => {
     userService.all()

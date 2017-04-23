@@ -4,9 +4,9 @@ import {models} from '../db'
 import {UserAttributes, UserInstance} from '../db/models/user'
 import {MockUserService} from './user.mock'
 
-const failure = (reject: Function) => (error: Sequelize.ValidationError) => {
+const sequelizeFailure = (reject: Function) => (error: Sequelize.ValidationError) => {
   console.error(error) // Log full error
-  reject(error.errors) // Return only the descriptive .errors array
+  reject(error.errors[0]) // Return only the descriptive .errors array
 }
 
 export class UserService extends MockUserService {
@@ -15,7 +15,7 @@ export class UserService extends MockUserService {
       return models.User
         .findOne({where: {username}})
         .then((user: UserInstance) => resolve(user))
-        .catch(failure(reject))
+        .catch(sequelizeFailure(reject))
     })
   }
 
@@ -24,7 +24,7 @@ export class UserService extends MockUserService {
       return models.User
         .create(attributes)
         .then((user: UserInstance) => resolve(user))
-        .catch(failure(reject))
+        .catch(sequelizeFailure(reject))
     })
   }
 
@@ -33,7 +33,7 @@ export class UserService extends MockUserService {
       return models.User
         .findAll()
         .then((users: Array<UserInstance>) => resolve(users))
-        .catch(failure(reject))
+        .catch(sequelizeFailure(reject))
     })
   }
 }

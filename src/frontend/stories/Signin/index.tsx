@@ -1,6 +1,10 @@
 import * as React from 'react'
 import * as R from 'ramda'
 import { Button, Intent, Spinner } from '@blueprintjs/core'
+import * as page from 'page'
+
+import {UserAttributes} from '../../../server/db/models/user'
+import {post, sendRequest} from '../../../../utils/api/responses'
 
 import { Field } from '~/frontend/components/Field'
 import { updateUsername, beginSubmit, endSubmit, setError, removeError } from './reducers'
@@ -10,8 +14,8 @@ import { IConstraint } from './IConstraint'
 const ValidationMsgBox = ({msg}: {msg: string|null}) => (
   <div>
     <div className='pt-callout pt-intent-danger' id='signup-form__errors'>
-        {msg}
-      </div>
+      {msg}
+    </div>
     <br />
   </div>
 )
@@ -54,10 +58,16 @@ export default class Signup extends React.Component<null, IState> {
       if (!this.validate()) {
         this.setState(endSubmit)
       } else {
-        // TODO: post data to server
-        this.setState(removeError)
-        this.setState(endSubmit)
-        console.info(JSON.stringify(this.state, null, 2))
+        sendRequest(post(`/signup?username=${this.state.username}`))
+          .then((_: UserAttributes) => {
+            this.setState(removeError)
+            this.setState(endSubmit)
+            page.redirect('/counter')
+          })
+          .catch((error) => {
+            this.setState(setError(error.message || 'Sorry, there has been a technical issue'))
+            this.setState(endSubmit)
+          })
       }
     }, 500)
   }
