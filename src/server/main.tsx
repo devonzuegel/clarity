@@ -13,11 +13,12 @@ app.use(require('helmet')())
 
 monitorExceptions(config)(app)
 api(app)
-serveFrontend(app)
 setupSession(app)
 
 if (config.env !== 'production') {
   runHotMiddleware(app)
 }
+
+serveFrontend(app)
 
 sequelize.sync().then(() => listen(app, config))
