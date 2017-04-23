@@ -480,11 +480,11 @@ var app = __webpack_require__(3)();
 app.use(__webpack_require__(15)());
 exceptionMonitoring_1.monitorExceptions(config)(app);
 api_1.default(app);
-serveFrontend_1.serveFrontend(app);
 session_1.setupSession(app);
 if (config.env !== 'production') {
     middleware_1.runHotMiddleware(app);
 }
+serveFrontend_1.serveFrontend(app);
 db_1.sequelize.sync().then(function () {
     return listen_1.listen(app, config);
 });
