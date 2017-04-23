@@ -3,6 +3,7 @@ import * as supertest from 'supertest'
 import {initSession} from '../../../utils/test/session'
 import {bodyMatches} from '../../../utils/test/results'
 import {MockUserService} from '../service/user.mock'
+import {GuestInstance} from '../db/models/guest'
 
 jest.mock('../service/user', () => ({
   userService: new MockUserService(),
@@ -35,7 +36,7 @@ describe('Authentication HTTP', () => {
     it('returns an error when the given username does not belong to an existing user', () => {
       supertest(app)
         .post('/login?username=thisUsernameDoesntExist')
-        .then(bodyMatches({message: 'That user does not exist'}, 500))
+        .then(bodyMatches({message: `User with username "thisUsernameDoesntExist" does not exist`}, 500))
     })
   })
 
@@ -43,7 +44,7 @@ describe('Authentication HTTP', () => {
     it('returns an error when there is no active session', () => {
       supertest(app)
         .get('/session')
-        .then(bodyMatches({message: 'There is no active session'}, 500))
+        .then(bodyMatches(new GuestInstance))
     })
   })
 

@@ -2,16 +2,13 @@ import * as React    from 'react'
 import * as page     from 'page'
 import * as ReactDOM from 'react-dom'
 
+import Wrapper     from './components/Wrapper'
 import CounterPage from './pages/Counter'
+import MePage      from './pages/Me'
 import SigninPage  from './pages/Signin'
 
 require('./exceptionMonitoring')
-
-const Wrapper = ({ content }: { content: JSX.Element }) => (
-  <div style={{padding: '20px 50px', margin: 'auto', maxWidth: '950px'}}>
-    {content}
-  </div>
-)
+require('./routes/authentication')
 
 const render = (c: JSX.Element) =>
   ReactDOM.render(<Wrapper content={c} />, document.getElementById('root'))
@@ -24,6 +21,7 @@ interface IPage {
 const pages: IPage[] = [
   { href: '/signin',  content: <SigninPage />  },
   { href: '/counter', content: <CounterPage /> },
+  { href: '/me',      content: <MePage />      },
   { href: '*',        content: <h2>404</h2>    },
 ]
 
