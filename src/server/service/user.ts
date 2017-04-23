@@ -27,6 +27,7 @@ export class UserService extends MockUserService {
         .catch(failure(reject))
     })
   }
+
   all() {
     return new Promise<Array<UserInstance>>((resolve: Function, reject: Function) => {
       return models.User
