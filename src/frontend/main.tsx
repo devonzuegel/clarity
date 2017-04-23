@@ -3,12 +3,13 @@ import * as page     from 'page'
 import * as ReactDOM from 'react-dom'
 
 import Counter from './Counter'
-import Signup  from './stories/Signup'
+import Signin  from './stories/Signin'
+import Layout  from './components/Layout'
 
 require('./exceptionMonitoring')
 
 const Wrapper = ({ content }: { content: JSX.Element }) => (
-  <div style={{margin: '50px', maxWidth: '800px'}}>
+  <div style={{padding: '20px 50px', margin: 'auto', maxWidth: '950px'}}>
     {content}
   </div>
 )
@@ -22,7 +23,8 @@ interface IPage {
 }
 
 const pages: IPage[] = [
-  { href: '/',        content: <Signup />  },
+  { href: '/',        content: <Layout />   },
+  { href: '/signin',  content: <Layout><Signin /></Layout> },
   { href: '/counter', content: <Counter />  },
   { href: '*',        content: <h2>404</h2> },
 ]

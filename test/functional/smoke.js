@@ -8,7 +8,7 @@ module.exports = {
   },
   'Smoke test': browser => {
     browser
-      .assert.visible('#root h2', 'Check if app has rendered with React')
+      .assert.visible('#root', 'Check if app has rendered with React')
       .assert.title('') // TODO: Add title
   },
   after: browser => browser.end(),

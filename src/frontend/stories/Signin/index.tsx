@@ -64,7 +64,7 @@ export default class Signup extends React.Component<null, IState> {
 
   render () {
     return (
-      <div>
+      <div style={{display: 'block'}}>
         <h2>
           Welcome!
         </h2>
