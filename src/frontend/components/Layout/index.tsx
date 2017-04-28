@@ -35,7 +35,7 @@ const LayoutComponent = ({user, children}: ILayout) => (
         {
           user.username
           ? <NavBtn title='Sign out' url='/logout' icon='log-out' />
-          : <NavBtn title='Sign in'  url='/signin'  icon='log-in'  />
+          : <NavBtn title='Sign in'  url='/login'  icon='log-in'  />
         }
       </div>
     </nav>

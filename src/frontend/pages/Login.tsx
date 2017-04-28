@@ -2,16 +2,16 @@ import * as React from 'react'
 import {UserAttributes} from '../../server/db/models/user'
 
 import Layout from '~/frontend/components/Layout'
-import Signin from '~/frontend/stories/Signin'
+import Login from '~/frontend/stories/Login'
 
-class SigninPage extends React.Component<null, {user: UserAttributes|undefined}> {
+class LoginPage extends React.Component<null, {user: UserAttributes|undefined}> {
   render() {
     return (
       <Layout>
-        <Signin />
+        <Login />
       </Layout>
     )
   }
 }
 
-export default SigninPage
+export default LoginPage

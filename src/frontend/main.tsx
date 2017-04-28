@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom'
 import Wrapper     from './components/Wrapper'
 import CounterPage from './pages/Counter'
 import MePage      from './pages/Me'
-import SigninPage  from './pages/Signin'
+import LoginPage  from './pages/Login'
 
 require('./exceptionMonitoring')
 require('./routes/authentication')
@@ -19,7 +19,7 @@ interface IPage {
 }
 
 const pages: IPage[] = [
-  { href: '/signin',  content: <SigninPage />  },
+  { href: '/signin',  content: <LoginPage />  },
   { href: '/counter', content: <CounterPage /> },
   { href: '/me',      content: <MePage />      },
   { href: '*',        content: <h2>404</h2>    },
