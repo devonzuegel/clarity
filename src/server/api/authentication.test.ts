@@ -1,5 +1,6 @@
 import {MockUserService} from '../service/user.mock'
 import {mockSession} from '../../../utils/test/session'
+import {GuestInstance} from '../db/models/guest'
 
 // TODO: refactor to inject the UserService dependency rather than manually mocking it out
 jest.mock('../service/user', () => ({
@@ -106,7 +107,7 @@ describe('Authentication API', () => {
 
     it('returns an error when no username is set on the session', () => {
       getCurrentUser(mockSession)
-        .then(equals({}))
+        .then(equals(new GuestInstance))
     })
 
     it('returns an error when the username on the session does not belong to an existing user', () => {

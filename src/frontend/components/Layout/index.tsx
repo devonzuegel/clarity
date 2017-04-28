@@ -1,11 +1,9 @@
 import * as React from 'react'
-import {UserAttributes}   from '../../../server/db/models/user'
-import {GuestInstance}    from '../../../server/db/models/guest'
-import {get, sendRequest} from '../../../../utils/api/responses'
+import {IPerson}   from '~/server/db/models/person'
 
 interface ILayout {
   children?: Element
-  user: UserAttributes|GuestInstance
+  user: IPerson
 }
 
 const NavBtn = ({url, title, icon}: {url: string, title: string, icon: string}) => (
@@ -35,7 +33,7 @@ const LayoutComponent = ({user, children}: ILayout) => (
         {
           user.username
           ? <NavBtn title='Sign out' url='/logout' icon='log-out' />
-          : <NavBtn title='Sign in'  url='/login'  icon='log-in'  />
+          : <NavBtn title='Sign in'  url='/signin' icon='log-in'  />
         }
       </div>
     </nav>
@@ -47,25 +45,18 @@ const LayoutComponent = ({user, children}: ILayout) => (
 )
 
 interface IState {
-  user: UserAttributes|GuestInstance
+  user: IPerson
 }
 
-export const setCurrentUser = (user: UserAttributes|GuestInstance) => (prevState: IState): IState => ({
+export const setCurrentUser = (user: IPerson) => (prevState: IState): IState => ({
   ...prevState,
   user,
 })
 
-class Layout extends React.Component<null, IState> {
-  state = {user: new GuestInstance}
-
-  componentDidMount () {
-    sendRequest(get('/session'))
-      .then((user: UserAttributes|GuestInstance) => this.setState(setCurrentUser(user)))
-  }
-
+class Layout extends React.Component<ILayout, IState> {
   render () {
     return (
-      <LayoutComponent user={this.state.user}>
+      <LayoutComponent user={this.props.user}>
         <pre>
           {JSON.stringify(this.state, null, 2)}
         </pre>

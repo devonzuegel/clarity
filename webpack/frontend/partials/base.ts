@@ -5,8 +5,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 import * as Options from 'webpack/models/Options'
 
+const entryFile = './src/frontend/main.tsx'
 export const partial = (c: Options.Interface): webpack.Configuration => ({
-  entry: './src/frontend/main.tsx',
+  entry: c.isProd ? entryFile : {app: ['webpack-hot-middleware/client?reload=true', entryFile]},
+
   output: {
     path:       path.join(c.rootDir, c.outputDir),
     filename:   'frontend.js',
@@ -16,6 +18,7 @@ export const partial = (c: Options.Interface): webpack.Configuration => ({
   devtool: c.devtool,
 
   plugins: [
+    ...(c.isProd ? [] : [new webpack.HotModuleReplacementPlugin()]),
     new HtmlWebpackPlugin({ template: './src/frontend/index.html' }),
   ]
 })

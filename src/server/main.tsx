@@ -19,7 +19,7 @@ monitorExceptions(config)(app)
 setupSession(app) // Must happen before initializing the API
 http(app)
 
-if (config.env !== 'production') {
+if (config.env === 'development') {
   runHotMiddleware(app)
 }
 

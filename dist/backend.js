@@ -64,7 +64,7 @@ require("source-map-support").install();
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 26);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -82,8 +82,8 @@ module.exports = require("path");
  * If no .env file is to be found at
  */
 const path  = __webpack_require__(0)
-const chalk = __webpack_require__(7)
-const env   = __webpack_require__(34).config({ path: path.resolve('.env') })
+const chalk = __webpack_require__(10)
+const env   = __webpack_require__(35).config({ path: path.resolve('.env') })
 
 if (env.error) {
   console.warn(chalk.yellow(`No config file was found at ${env.error.path}`))
@@ -118,10 +118,10 @@ module.exports = {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var cls = __webpack_require__(33);
-var Sequelize = __webpack_require__(8);
-var user_1 = __webpack_require__(20);
-var config_1 = __webpack_require__(18);
+var cls = __webpack_require__(34);
+var Sequelize = __webpack_require__(11);
+var user_1 = __webpack_require__(23);
+var config_1 = __webpack_require__(21);
 var database_url = __webpack_require__(1).database_url;
 var Database = function () {
     function Database() {
@@ -177,7 +177,7 @@ var __extends = this && this.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var db_1 = __webpack_require__(2);
-var user_mock_1 = __webpack_require__(24);
+var user_mock_1 = __webpack_require__(27);
 var sequelizeFailure = function (reject) {
     return function (error) {
         console.error(error); // Log full error
@@ -225,13 +225,11 @@ exports.userService = new UserService();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.jsonError = function (res) {
     return function (error) {
-        console.log("jsonError: " + error);
         res.status(500).json(error);
     };
 };
 exports.jsonSuccess = function (res) {
     return function (json) {
-        console.log("jsonSuccess: " + json);
         res.status(200).json(json);
     };
 };
@@ -244,70 +242,107 @@ exports.jsonSuccess = function (res) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var U = __webpack_require__(25);
-exports.Enum = U.strEnum(['development', 'production']);
+var path = __webpack_require__(0);
+var webpack = __webpack_require__(12);
+var HtmlWebpackPlugin = __webpack_require__(38);
+var entryFile = './src/frontend/main.tsx';
+exports.partial = function (c) {
+    return {
+        entry: c.isProd ? entryFile : { app: ['webpack-hot-middleware/client?reload=true', entryFile] },
+        output: {
+            path: path.join(c.rootDir, c.outputDir),
+            filename: 'frontend.js',
+            publicPath: '/'
+        },
+        devtool: c.devtool,
+        plugins: (c.isProd ? [] : [new webpack.HotModuleReplacementPlugin()]).concat([new HtmlWebpackPlugin({ template: './src/frontend/index.html' })])
+    };
+};
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var U = __webpack_require__(28);
+exports.Enum = U.strEnum(['development', 'production']);
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var path = __webpack_require__(0);
+exports.partial = function (c) {
+    return {
+        resolve: {
+            modules: ['node_modules', path.join(c.rootDir, 'src')],
+            /**
+             * Though the project's source is in Typescript, we must support Javascript
+             * resolution as well, because some node_modules import JS files.
+             */
+            extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
+            alias: {
+                '~': path.resolve('./src')
+            }
+        }
+    };
+};
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = require("awesome-typescript-loader");
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("chalk");
 
 /***/ }),
-/* 8 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = require("sequelize");
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 12 */
+/***/ (function(module, exports) {
 
-"use strict";
-/**
- * Further details on Sentry setup for Express/Node:
- *   - docs.sentry.io/clients/node/integrations/express/
- *   - docs.sentry.io/clients/node/config/
- */
-
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Raven = __webpack_require__(39);
-exports.monitorExceptions = function (config) {
-    return function (app) {
-        // Must configure Raven before doing anything else with it
-        Raven.config(config.sentry_dsn, { environment: config.env }).install();
-        // The request handler must be the first middleware on the app
-        app.use(Raven.requestHandler());
-        // The error handler must be before any other error middleware
-        app.use(Raven.errorHandler());
-    };
-};
+module.exports = require("webpack");
 
 /***/ }),
-/* 10 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var users_1 = __webpack_require__(22);
-var authentication_1 = __webpack_require__(21);
+var users_1 = __webpack_require__(25);
+var authentication_1 = __webpack_require__(24);
 exports.default = function (app) {
     users_1.default(app);
     authentication_1.default(app);
 };
 
 /***/ }),
-/* 11 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Chalk = __webpack_require__(7);
+var Chalk = __webpack_require__(10);
 exports.listen = function (app, _a) {
     var host = _a.host,
         port = _a.port;
@@ -316,7 +351,7 @@ exports.listen = function (app, _a) {
 };
 
 /***/ }),
-/* 12 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -324,8 +359,8 @@ exports.listen = function (app, _a) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.runHotMiddleware = function (app) {
-    var webpack = __webpack_require__(40);
-    var webpackConfig = __webpack_require__(26).default;
+    var webpack = __webpack_require__(12);
+    var webpackConfig = __webpack_require__(29).default;
     var webpackCompiler = webpack(webpackConfig);
     app.use(__webpack_require__(41)(webpackCompiler, {
         publicPath: webpackConfig.output.publicPath,
@@ -341,7 +376,7 @@ exports.runHotMiddleware = function (app) {
 };
 
 /***/ }),
-/* 13 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -350,7 +385,7 @@ exports.runHotMiddleware = function (app) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = __webpack_require__(3);
 exports.serveFrontend = function (app) {
-    var fs = __webpack_require__(36);
+    var fs = __webpack_require__(37);
     var path = __webpack_require__(0);
     app.use('/', express.static(__dirname));
     app.get('*', function (_, res) {
@@ -361,14 +396,14 @@ exports.serveFrontend = function (app) {
 };
 
 /***/ }),
-/* 14 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var session = __webpack_require__(35);
+var session = __webpack_require__(36);
 exports.setupSession = function (app) {
     /** More info: github.com/expressjs/session#options */
     var options = {
@@ -380,27 +415,27 @@ exports.setupSession = function (app) {
 };
 
 /***/ }),
-/* 15 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = require("body-parser");
 
 /***/ }),
-/* 16 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = require("helmet");
 
 /***/ }),
-/* 17 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var R = __webpack_require__(38);
-var guest_1 = __webpack_require__(19);
+var R = __webpack_require__(39);
+var guest_1 = __webpack_require__(22);
 var user_1 = __webpack_require__(4);
 exports.signup = function (username, session) {
     return new Promise(function (resolve, reject) {
@@ -466,18 +501,18 @@ exports.getCurrentUser = function (session) {
 };
 
 /***/ }),
-/* 18 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var config = __webpack_require__(31);
+var config = __webpack_require__(33);
 exports.default = config;
 
 /***/ }),
-/* 19 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -485,20 +520,22 @@ exports.default = config;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var GuestInstance = function () {
-    function GuestInstance() {}
+    function GuestInstance() {
+        this.username = null;
+    }
     return GuestInstance;
 }();
 exports.GuestInstance = GuestInstance;
 
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var SequelizeStatic = __webpack_require__(8);
+var SequelizeStatic = __webpack_require__(11);
 exports.default = function (sequelize) {
     var Schema = {
         username: {
@@ -511,7 +548,7 @@ exports.default = function (sequelize) {
 };
 
 /***/ }),
-/* 21 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -519,7 +556,7 @@ exports.default = function (sequelize) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var requests_1 = __webpack_require__(5);
-var authentication_1 = __webpack_require__(17);
+var authentication_1 = __webpack_require__(20);
 exports.default = function (app) {
     app.post('/signup', function (req, res) {
         authentication_1.signup(req.query.username, req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
@@ -536,7 +573,7 @@ exports.default = function (app) {
 };
 
 /***/ }),
-/* 22 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -559,7 +596,7 @@ exports.default = function (app) {
 };
 
 /***/ }),
-/* 23 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -567,22 +604,22 @@ exports.default = function (app) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = __webpack_require__(3);
-var bodyParser = __webpack_require__(15);
-var http_1 = __webpack_require__(10);
-var middleware_1 = __webpack_require__(12);
-var listen_1 = __webpack_require__(11);
-var exceptionMonitoring_1 = __webpack_require__(9);
-var serveFrontend_1 = __webpack_require__(13);
+var bodyParser = __webpack_require__(18);
+var http_1 = __webpack_require__(13);
+var middleware_1 = __webpack_require__(15);
+var listen_1 = __webpack_require__(14);
+// import { monitorExceptions } from './exceptionMonitoring'
+var serveFrontend_1 = __webpack_require__(16);
 var db_1 = __webpack_require__(2);
-var session_1 = __webpack_require__(14);
+var session_1 = __webpack_require__(17);
 var config = __webpack_require__(1);
 var app = express();
 app.use(bodyParser.json());
-app.use(__webpack_require__(16)());
-exceptionMonitoring_1.monitorExceptions(config)(app);
+app.use(__webpack_require__(19)());
+// monitorExceptions(config)(app)
 session_1.setupSession(app); // Must happen before initializing the API
 http_1.default(app);
-if (config.env !== 'production') {
+if (config.env === 'development') {
     middleware_1.runHotMiddleware(app);
 }
 serveFrontend_1.serveFrontend(app);
@@ -591,7 +628,7 @@ db_1.sequelize.sync().then(function () {
 });
 
 /***/ }),
-/* 24 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -626,7 +663,7 @@ var MockUserService = function () {
 exports.MockUserService = MockUserService;
 
 /***/ }),
-/* 25 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -644,19 +681,19 @@ function strEnum(o) {
 exports.strEnum = strEnum;
 
 /***/ }),
-/* 26 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Env = __webpack_require__(6);
-var _1 = __webpack_require__(27);
+var Env = __webpack_require__(7);
+var _1 = __webpack_require__(30);
 exports.default = _1.setup(Env.Enum.development);
 
 /***/ }),
-/* 27 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -665,52 +702,53 @@ exports.default = _1.setup(Env.Enum.development);
 Object.defineProperty(exports, "__esModule", { value: true });
 var webpackMerge = __webpack_require__(43);
 var path = __webpack_require__(0);
-var Env = __webpack_require__(6);
+var Env = __webpack_require__(7);
 exports.setup = function (env) {
     var isProd = String(env) === String(Env.Enum.production);
     var options = {
         rootDir: path.join(__dirname, '../..'),
         outputDir: isProd ? 'dist' : 'build',
         devtool: 'source-map',
-        console: !isProd
+        console: !isProd,
+        isProd: isProd
     };
-    return webpackMerge([__webpack_require__(29), __webpack_require__(28), __webpack_require__(30)].map(function (m) {
+    var partials = isProd ? [__webpack_require__(32), __webpack_require__(6), __webpack_require__(8)] : [__webpack_require__(31), __webpack_require__(6), __webpack_require__(8)];
+    return webpackMerge(partials.map(function (m) {
         return m.partial(options);
     }));
 };
 
 /***/ }),
-/* 28 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var path = __webpack_require__(0);
-var HtmlWebpackPlugin = __webpack_require__(37);
-exports.partial = function (c) {
+var CheckerPlugin = __webpack_require__(9).CheckerPlugin;
+exports.partial = function () {
     return {
-        entry: './src/frontend/main.tsx',
-        output: {
-            path: path.join(c.rootDir, c.outputDir),
-            filename: 'frontend.js',
-            publicPath: '/'
+        module: {
+            rules: [{
+                test: /\.tsx?$/,
+                loader: __webpack_require__(40)(['react-hot-loader', 'awesome-typescript-loader']),
+                exclude: /node_modules/
+            }]
         },
-        devtool: c.devtool,
-        plugins: [new HtmlWebpackPlugin({ template: './src/frontend/index.html' })]
+        plugins: [new CheckerPlugin()]
     };
 };
 
 /***/ }),
-/* 29 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var CheckerPlugin = __webpack_require__(32).CheckerPlugin;
+var CheckerPlugin = __webpack_require__(9).CheckerPlugin;
 exports.partial = function () {
     return {
         module: {
@@ -725,32 +763,7 @@ exports.partial = function () {
 };
 
 /***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var path = __webpack_require__(0);
-exports.partial = function (c) {
-    return {
-        resolve: {
-            modules: ['node_modules', path.join(c.rootDir, 'src')],
-            /**
-             * Though the project's source is in Typescript, we must support Javascript
-             * resolution as well, because some node_modules import JS files.
-             */
-            extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
-            alias: {
-                '~': path.resolve('./src')
-            }
-        }
-    };
-};
-
-/***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -766,58 +779,46 @@ module.exports = appConfig.db
 
 
 /***/ }),
-/* 32 */
-/***/ (function(module, exports) {
-
-module.exports = require("awesome-typescript-loader");
-
-/***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 module.exports = require("continuation-local-storage");
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-session");
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = require("html-webpack-plugin");
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = require("ramda");
 
 /***/ }),
-/* 39 */
-/***/ (function(module, exports) {
-
-module.exports = require("raven");
-
-/***/ }),
 /* 40 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack");
+module.exports = require("webpack-combine-loaders");
 
 /***/ }),
 /* 41 */

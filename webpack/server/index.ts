@@ -13,10 +13,11 @@ export const setup = (env: Env.Type) => {
     outputDir: isProd ? 'dist' : 'build',
     devtool:   'source-map',
     console:   !isProd,
+    isProd,
   }
 
   return webpackMerge([
-    require('../loaders/awesome-typescript-loader'),
+    require('../loaders/typescript-loader'),
     require('./partials/base'),
     require('./partials/externals'),
     require('./partials/plugins'),

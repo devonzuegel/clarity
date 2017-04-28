@@ -1,7 +1,8 @@
 import * as SequelizeStatic from 'sequelize'
 import {Instance, Sequelize} from 'sequelize'
+import {IPerson} from './person'
 
-export interface UserAttributes {
+export interface UserAttributes extends IPerson {
   username: string
 }
 

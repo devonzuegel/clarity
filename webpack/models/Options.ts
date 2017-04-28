@@ -5,4 +5,5 @@ export interface Interface {
   outputDir: string,       // Directory name in which to output build.
   devtool:   Devtool.Type,
   console:   boolean,
+  isProd:    boolean,
 }

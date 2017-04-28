@@ -1,17 +1,28 @@
 import * as React    from 'react'
 import * as page     from 'page'
 import * as ReactDOM from 'react-dom'
+import {Provider}    from 'react-redux'
+
+import {configureStore} from './redux/store'
 
 import Wrapper     from './components/Wrapper'
 import CounterPage from './pages/Counter'
 import MePage      from './pages/Me'
-import LoginPage  from './pages/Login'
+import LoginPage   from './pages/Login'
 
 require('./exceptionMonitoring')
 require('./routes/authentication')
 
-const render = (c: JSX.Element) =>
-  ReactDOM.render(<Wrapper content={c} />, document.getElementById('root'))
+const store = configureStore()
+
+const render = (c: JSX.Element) => {
+  const reduxComponent = (
+    <Provider store={store}>
+      <Wrapper content={c} />
+    </Provider>
+  )
+  ReactDOM.render(reduxComponent, document.getElementById('root'))
+}
 
 interface IPage {
   href: string
@@ -19,7 +30,7 @@ interface IPage {
 }
 
 const pages: IPage[] = [
-  { href: '/signin',  content: <LoginPage />  },
+  { href: '/signin',  content: <LoginPage />   },
   { href: '/counter', content: <CounterPage /> },
   { href: '/me',      content: <MePage />      },
   { href: '*',        content: <h2>404</h2>    },

@@ -13,11 +13,21 @@ export const setup = (env: Env.Type) => {
     outputDir: isProd ? 'dist' : 'build',
     devtool:   'source-map',
     console:   !isProd,
+    isProd,
   }
 
-  return webpackMerge([
-    require('../loaders/awesome-typescript-loader'),
-    require('./partials/base'),
-    require('../partials/aliases'),
-  ].map((m): webpack.Configuration => m.partial(options)))
+  const partials = (
+    isProd
+    ? [
+      require('../loaders/typescript-loader'),
+      require('./partials/base'),
+      require('../partials/aliases'),
+    ]
+    : [
+      require('../loaders/hot-typescript-loader'),
+      require('./partials/base'),
+      require('../partials/aliases'),
+    ]
+  )
+  return webpackMerge(partials.map((m): webpack.Configuration => m.partial(options)))
 }
