@@ -25980,8 +25980,8 @@ var React = __webpack_require__(2);
 var NavBtn = function (_a) {
     var url = _a.url,
         title = _a.title,
-        icon = _a.icon;
-    return React.createElement("a", { href: url }, React.createElement("button", { className: "pt-button pt-minimal pt-icon-" + icon }, title));
+        name = _a.name;
+    return React.createElement("a", { href: url, id: "nav--" + name }, React.createElement("button", { className: "pt-button pt-minimal pt-icon-" + name }, title));
 };
 var Brand = function () {
     return React.createElement("div", { className: 'pt-navbar-group pt-align-left' }, React.createElement("div", { className: 'pt-navbar-heading' }, "Clarity"));
@@ -25989,7 +25989,7 @@ var Brand = function () {
 var LayoutComponent = function (_a) {
     var user = _a.user,
         children = _a.children;
-    return React.createElement("div", null, React.createElement("nav", { style: { display: 'flow-root', marginBottom: '25px' } }, React.createElement(Brand, null), React.createElement("div", { className: 'pt-navbar-group pt-align-right' }, React.createElement(NavBtn, { title: 'Counter', url: '/counter', icon: 'calculator' }), React.createElement("span", { className: 'pt-navbar-divider' }), user.username && React.createElement(NavBtn, { title: user.username, url: '/me', icon: 'user' }), user.username ? React.createElement(NavBtn, { title: 'Sign out', url: '/logout', icon: 'log-out' }) : React.createElement(NavBtn, { title: 'Sign in', url: '/signin', icon: 'log-in' }))), React.createElement("main", null, children));
+    return React.createElement("div", null, React.createElement("nav", { style: { display: 'flow-root', marginBottom: '25px' } }, React.createElement(Brand, null), React.createElement("div", { className: 'pt-navbar-group pt-align-right' }, React.createElement(NavBtn, { title: 'Counter', url: '/counter', name: 'calculator' }), React.createElement("span", { className: 'pt-navbar-divider' }), user.username && React.createElement(NavBtn, { title: user.username, url: '/me', name: 'user' }), user.username ? React.createElement(NavBtn, { title: 'Sign out', url: '/logout', name: 'log-out' }) : React.createElement(NavBtn, { title: 'Sign in', url: '/signin', name: 'log-in' }))), React.createElement("main", null, children));
 };
 exports.setCurrentUser = function (user) {
     return function (prevState) {
