@@ -6,9 +6,9 @@ interface ILayout {
   user: IPerson
 }
 
-const NavBtn = ({url, title, icon}: {url: string, title: string, icon: string}) => (
-  <a href={url}>
-    <button className={`pt-button pt-minimal pt-icon-${icon}`}>
+const NavBtn = ({url, title, name}: {url: string, title: string, name: string}) => (
+  <a href={url} id={`nav--${name}`}>
+    <button className={`pt-button pt-minimal pt-icon-${name}`}>
       {title}
     </button>
   </a>
@@ -27,13 +27,13 @@ const LayoutComponent = ({user, children}: ILayout) => (
     <nav style={{display: 'flow-root', marginBottom: '25px'}}>
       <Brand />
       <div className='pt-navbar-group pt-align-right'>
-        <NavBtn title='Counter' url='/counter' icon='calculator' />
+        <NavBtn title='Counter' url='/counter' name='calculator' />
         <span className='pt-navbar-divider' />
-        {user.username && <NavBtn title={user.username} url='/me'  icon='user' />}
+        {user.username && <NavBtn title={user.username} url='/me'  name='user' />}
         {
           user.username
-          ? <NavBtn title='Sign out' url='/logout' icon='log-out' />
-          : <NavBtn title='Sign in'  url='/signin' icon='log-in'  />
+          ? <NavBtn title='Sign out' url='/logout' name='log-out' />
+          : <NavBtn title='Sign in'  url='/signin' name='log-in'  />
         }
       </div>
     </nav>
