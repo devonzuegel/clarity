@@ -73,6 +73,7 @@
     "child_process": "^1.0.2",
     "html-webpack-plugin": "^2.28.0",
     "jest": "^19.0.2",
+    "nightmare": "^2.10.0",
     "nightwatch": "^0.9.14",
     "sequelize-cli": "^2.7.0",
     "supertest": "^3.0.0",
@@ -99,6 +100,6 @@
     "coveragePathIgnorePatterns": [
       ".*\\.mock\\.(ts|tsx)$"
     ],
-    "testRegex": ".*\\.test\\.(ts|tsx)$"
+    "testRegex": ".*\\.(ft|test)\\.(ts|tsx)$"
   }
 }
