@@ -19,6 +19,31 @@ AuthenticationAPI(app)
 
 describe('Authentication HTTP', () => {
 
+  describe('/signup', () => {
+    it('returns successfully', () => {
+      const username = 'foobar'
+      supertest(app)
+        .post(`/signup?username=${username}`)
+        .then(bodyMatches({username}))
+    })
+
+    it('returns successfully', () => {
+      const username = 'thisUsernameIsntAvailable'
+      supertest(app)
+        .post(`/signup?username=${username}`)
+        .then(bodyMatches({message: `Sorry, "${username}" is not available`}, 500))
+    })
+
+    it('returns an error when no username given', () => {
+      supertest(app)
+        .post('/signup')
+        .then(bodyMatches({message: 'You must provide a username'}, 500))
+      supertest(app)
+        .post('/signup?username=')
+        .then(bodyMatches({message: 'You must provide a username'}, 500))
+    })
+  })
+
   describe('/login', () => {
     it('returns successfully', () => {
       const username = 'foobar'
@@ -30,6 +55,9 @@ describe('Authentication HTTP', () => {
     it('returns an error when no username given', () => {
       supertest(app)
         .post('/login')
+        .then(bodyMatches({message: 'You must provide a username'}, 500))
+      supertest(app)
+        .post('/login?username=')
         .then(bodyMatches({message: 'You must provide a username'}, 500))
     })
 
