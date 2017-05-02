@@ -1,13 +1,14 @@
+const env  = require('./environment') || 'ci'
 const host = 'localhost'
 const port = 4000
-const env  = process.env.ENV || 'development'
 const ci   = env === 'ci'
 
-module.exports = {
+export default ({
+  env,
   ci,
   url: (
     ci
     ? 'http://clarity-develop.herokuapp.com'
     : `http://${host}:${port}`
   ),
-}
+})
