@@ -1,6 +1,5 @@
-const { url } = require('./config')
-
-const randomStr = () => Math.random().toString(36).substr(2, 5)
+const { url       } = require('./config')
+const { randomStr } = require('./utils')
 
 module.exports = {
   beforeEach: browser => {
