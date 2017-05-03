@@ -1,3 +1,5 @@
+const config = require('./functional/config')
+
 module.exports = {
   src_folders:            'test/functional',
   output_folder:          'test/functional/reports',
@@ -25,7 +27,7 @@ module.exports = {
       selenium_host: 'localhost',
       silent:        true,
       screenshots: {
-        enabled: true,
+        enabled: config.ci,
         path: 'test/functional/screenshots'
       },
       'desiredCapabilities': {
