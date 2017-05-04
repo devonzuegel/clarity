@@ -19,59 +19,59 @@ AuthenticationAPI(app)
 
 describe('Authentication HTTP', () => {
 
-  describe('/signup', () => {
+  describe('/api/signup', () => {
     it('returns successfully', () => {
       const username = 'foobar'
       supertest(app)
-        .post(`/signup?username=${username}`)
+        .post(`/api/signup?username=${username}`)
         .then(bodyMatches({username}))
     })
 
     it('returns successfully', () => {
       const username = 'thisUsernameIsntAvailable'
       supertest(app)
-        .post(`/signup?username=${username}`)
+        .post(`/api/signup?username=${username}`)
         .then(bodyMatches({message: `Sorry, "${username}" is not available`}, 500))
     })
 
     it('returns an error when no username given', () => {
       supertest(app)
-        .post('/signup')
+        .post('/api/signup')
         .then(bodyMatches({message: 'You must provide a username'}, 500))
       supertest(app)
-        .post('/signup?username=')
+        .post('/api/signup?username=')
         .then(bodyMatches({message: 'You must provide a username'}, 500))
     })
   })
 
-  describe('/login', () => {
+  describe('/api/signin', () => {
     it('returns successfully', () => {
       const username = 'foobar'
       supertest(app)
-        .post(`/login?username=${username}`)
+        .post(`/api/signIn?username=${username}`)
         .then(bodyMatches({username}))
     })
 
     it('returns an error when no username given', () => {
       supertest(app)
-        .post('/login')
+        .post('/api/signin')
         .then(bodyMatches({message: 'You must provide a username'}, 500))
       supertest(app)
-        .post('/login?username=')
+        .post('/api/signin?username=')
         .then(bodyMatches({message: 'You must provide a username'}, 500))
     })
 
     it('returns an error when the given username does not belong to an existing user', () => {
       supertest(app)
-        .post('/login?username=thisUsernameDoesntExist')
+        .post('/api/signin?username=thisUsernameDoesntExist')
         .then(bodyMatches({message: `User with username "thisUsernameDoesntExist" does not exist`}, 500))
     })
   })
 
-  describe('/session', () => {
+  describe('/api/session', () => {
     it('returns an error when there is no active session', () => {
       supertest(app)
-        .get('/session')
+        .get('/api/session')
         .then(bodyMatches(new GuestInstance))
     })
   })

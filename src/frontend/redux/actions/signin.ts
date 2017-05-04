@@ -1,5 +1,5 @@
 export const types = {
-  SET_USERNAME: 'login/set-username',
+  SET_USERNAME: 'signIn/set-username',
 }
 
 export type IAction = {

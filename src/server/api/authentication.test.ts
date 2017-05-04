@@ -7,7 +7,7 @@ jest.mock('../service/user', () => ({
   userService: new MockUserService(),
 }))
 
-import {signup, login, getCurrentUser, logout} from './authentication'
+import {signup, signIn, getCurrentUser, signout} from './authentication'
 
 const equals = (expected: any) => (u: any) => expect(u).toEqual(expected)
 const unexpectedSuccess = () => { throw Error }
@@ -52,9 +52,9 @@ describe('Authentication API', () => {
     })
   })
 
-  describe('login', () => {
+  describe('signIn', () => {
     it('returns successfully', () => {
-      login('foobar', mockSession)
+      signIn('foobar', mockSession)
         .then(equals({username: 'foobar'}))
     })
 
@@ -68,33 +68,33 @@ describe('Authentication API', () => {
        * effects.
        */
       expect(mockSession['username']).toEqual(undefined)
-      login('foobar', mockSession)
+      signIn('foobar', mockSession)
         .then(_ => expect(mockSession['username']).toEqual('foobar'))
     })
 
     it('returns an error when no username given', () => {
-      login(undefined, mockSession)
+      signIn(undefined, mockSession)
         .then(unexpectedSuccess)
         .catch(equals({message: 'You must provide a username'}))
     })
 
     it('returns an error when the given username does not belong to an existing user', () => {
-      login('thisUsernameDoesntExist', mockSession)
+      signIn('thisUsernameDoesntExist', mockSession)
         .then(unexpectedSuccess)
         .catch(equals({message: 'User with username \"thisUsernameDoesntExist\" does not exist'}))
     })
 
     it('returns an error when there is no session', () => {
-      login('foobar', undefined)
+      signIn('foobar', undefined)
         .then(unexpectedSuccess)
         .catch(equals({message: 'You must initialize the API with a session'}))
     })
   })
 
-  describe('logout', () => {
+  describe('signout', () => {
     it('returns successfully', () => {
       const session = {...mockSession, username: 'foobar'}
-      logout(session)
+      signout(session)
         .then(() => expect(session['username']).toEqual(undefined))
     })
   })
