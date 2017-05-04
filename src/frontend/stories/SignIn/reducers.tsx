@@ -5,15 +5,15 @@ export const updateUsername = (newUsername: string) => (prevState: IState): ISta
   username: newUsername,
 })
 
-export const beginSubmit = (prevState: IState): IState => ({
+export const beginSubmit = (action: 'signup'|'signin') => (prevState: IState): IState => ({
   ...prevState,
   submitAttempted: true,
-  submitting: true,
+  submitting: action,
 })
 
 export const endSubmit = (prevState: IState): IState => ({
   ...prevState,
-  submitting: false,
+  submitting: undefined,
 })
 
 export const setError = (errorMsg: string) => (prevState: IState) => ({
