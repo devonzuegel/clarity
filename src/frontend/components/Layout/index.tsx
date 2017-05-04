@@ -32,8 +32,8 @@ const LayoutComponent = ({user, children}: ILayout) => (
         {user.username && <NavBtn title={user.username} url='/me'  name='user' />}
         {
           user.username
-          ? <NavBtn title='Sign out' url='/logout' name='log-out' />
-          : <NavBtn title='Sign in'  url='/signin' name='log-in'  />
+          ? <NavBtn title='Sign out' url='/signout' name='log-out' />
+          : <NavBtn title='Sign in'  url='/signin'  name='log-in'  />
         }
       </div>
     </nav>

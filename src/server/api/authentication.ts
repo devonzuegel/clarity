@@ -23,7 +23,7 @@ export const signup = (username: string|undefined, session: Express.Session|unde
   })
 )
 
-export const login = (username: string|undefined, session: Express.Session|undefined) => (
+export const signIn = (username: string|undefined, session: Express.Session|undefined) => (
   new Promise<UserInstance>((resolve: Function, reject: Function) => {
     if (!username) {
       return reject({message: 'You must provide a username'})
@@ -41,7 +41,7 @@ export const login = (username: string|undefined, session: Express.Session|undef
   })
 )
 
-export const logout = (session: Express.Session|undefined) => (
+export const signout = (session: Express.Session|undefined) => (
   new Promise<UserInstance>((resolve: Function, reject: Function) => {
     if (!session) {
       return reject({message: 'You must initialize the API with a session'})

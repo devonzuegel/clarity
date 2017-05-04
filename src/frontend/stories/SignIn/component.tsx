@@ -7,13 +7,13 @@ import {post, get, sendRequest} from '../../../../utils/api/responses'
 
 import {Field}        from '~/frontend/components/Field'
 import {ErrorMessage} from '~/frontend/components/ErrorMessage'
-import {IActions}     from '~/frontend/redux/actions/login'
+import {IActions}     from '~/frontend/redux/actions/signIn'
 
 import {updateUsername, setError, beginSubmit, endSubmit, removeError} from './reducers'
 import {IState}      from './IState'
 import {IConstraint} from './IConstraint'
 
-class Login extends React.Component<{actions: IActions}, IState> {
+class SignIn extends React.Component<{actions: IActions}, IState> {
   state = {
     username:        '',
     submitting:      false,
@@ -26,7 +26,7 @@ class Login extends React.Component<{actions: IActions}, IState> {
   }
 
   componentWillMount () {
-    sendRequest(get('/session'))
+    sendRequest(get('/api/session'))
       .then((u: IPerson) => this.props.actions.setUsername(u.username))
   }
 
@@ -68,7 +68,7 @@ class Login extends React.Component<{actions: IActions}, IState> {
       if (!this.validate()) {
         return this.setState(endSubmit)
       }
-      sendRequest(post(`/signup?username=${this.state.username}`))
+      sendRequest(post(`/api/signup?username=${this.state.username}`))
         .then(this.signupSuccess)
         .catch(this.signupFailure)
     }, 500)
@@ -115,4 +115,4 @@ class Login extends React.Component<{actions: IActions}, IState> {
   }
 }
 
-export default Login
+export default SignIn

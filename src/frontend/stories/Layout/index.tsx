@@ -1,6 +1,6 @@
 import {connect}            from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {actions}            from '~/frontend/redux/actions/login'
+import {actions}            from '~/frontend/redux/actions/signIn'
 
 import {IPerson} from '~/server/db/models/person'
 
@@ -10,8 +10,8 @@ interface IState {
   user: IPerson
 }
 
-const mapStateToProps = (state: {loginReducer: IState}): IState => ({
-  user: state.loginReducer.user,
+const mapStateToProps = (state: {signInReducer: IState}): IState => ({
+  user: state.signInReducer.user,
 })
 
 const mapDispatchToProps = (dispatch: any) => ({

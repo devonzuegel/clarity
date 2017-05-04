@@ -8,7 +8,7 @@ import {configureStore} from './redux/store'
 import Wrapper     from './components/Wrapper'
 import CounterPage from './pages/Counter'
 import MePage      from './pages/Me'
-import LoginPage   from './pages/Login'
+import SignInPage  from './pages/SignIn'
 
 require('./exceptionMonitoring')
 require('./routes/authentication')
@@ -30,7 +30,7 @@ interface IPage {
 }
 
 const pages: IPage[] = [
-  { href: '/signin',  content: <LoginPage />   },
+  { href: '/signin',  content: <SignInPage />   },
   { href: '/counter', content: <CounterPage /> },
   { href: '/me',      content: <MePage />      },
   { href: '*',        content: <h2>404</h2>    },

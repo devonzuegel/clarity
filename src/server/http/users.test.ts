@@ -14,17 +14,17 @@ initSession(app)
 UsersAPI(app)
 
 describe('Users HTTP', () => {
-  describe('/users', () => {
+  describe('/api/users', () => {
     it('retrieves list of users', () => {
       supertest(app)
-        .get('/users')
+        .get('/api/users')
         .then((res) => expect(res.body).toEqual([{username: 'foobar'}]))
     })
   })
-  describe('/users/create', () => {
+  describe('/api/users/create', () => {
     it('returns a created user', () => {
       supertest(app)
-        .post('/users/create?username=baz')
+        .post('/api/users/create?username=baz')
         .then((res) => expect(res.body).toEqual({username: 'baz'}))
     })
   })
