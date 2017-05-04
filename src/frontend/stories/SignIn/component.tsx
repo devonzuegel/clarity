@@ -16,7 +16,7 @@ import {IConstraint} from './IConstraint'
 class SignIn extends React.Component<{actions: IActions}, IState> {
   state = {
     username:        '',
-    submitting:      false,
+    submitting:      undefined,
     errorMsg:        null,
     submitAttempted: false,
   }
@@ -62,13 +62,13 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
     this.setState(endSubmit)
   }
 
-  private onSubmit = () => {
-    this.setState(beginSubmit)
+  private submit = (action: 'signup'|'signin') => () => {
+    this.setState(beginSubmit(action))
     setTimeout(() => {
       if (!this.validate()) {
         return this.setState(endSubmit)
       }
-      sendRequest(post(`/api/signup?username=${this.state.username}`))
+      sendRequest(post(`/api/${action}?username=${this.state.username}`))
         .then(this.signupSuccess)
         .catch(this.signupFailure)
     }, 500)
@@ -93,23 +93,35 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
           placeholder='Username'
           value      ={this.state.username}
           onChange   ={this.updateUsername}
-          onSubmit   ={this.onSubmit}
           id         ='signup-form__username'
         />
 
         <Button
-          intent ={Intent.PRIMARY}
-          onClick={this.onSubmit}
-          id     ='signup-form__submit'
-          style  ={{width: '100px'}}
+          intent  ={Intent.PRIMARY}
+          onClick ={this.submit('signup')}
+          disabled={!!this.state.submitting}
+          id      ='signup-form__submit'
+          style   ={{width: '100px', marginRight: '12px'}}
          >
           {
-            this.state.submitting
+            this.state.submitting === 'signup'
             ? <Spinner className='pt-small' />
-            : 'Submit'
+            : 'Sign up'
           }
         </Button>
-
+        <Button
+          intent  ={Intent.NONE}
+          onClick ={this.submit('signin')}
+          disabled={!!this.state.submitting}
+          id      ='signup-form__submit'
+          style   ={{width: '100px'}}
+         >
+          {
+            this.state.submitting === 'signin'
+            ? <Spinner className='pt-small' />
+            : 'Sign in'
+          }
+        </Button>
       </div>
     )
   }

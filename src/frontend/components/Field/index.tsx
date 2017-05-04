@@ -5,7 +5,7 @@ interface IField {
   label: string
   placeholder?: string
   onChange: (e: React.FormEvent<HTMLInputElement>) => void
-  onSubmit: Function
+  onSubmit?: Function
   id: string
 }
 
@@ -19,7 +19,7 @@ export const Field = ({value, onChange, label, onSubmit, placeholder, id}: IFiel
       id         ={id}
       onChange   ={onChange}
       onKeyUp    ={(e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.keyCode === 13) {
+        if (onSubmit && e.keyCode === 13) {
           onSubmit()
         }
       }}
