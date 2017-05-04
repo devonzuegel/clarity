@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { Button, Tag } from '@blueprintjs/core'
-import Grid from './Grid'
+import Grid from '~/frontend/components/Grid'
 
 interface IState {
   count: number
