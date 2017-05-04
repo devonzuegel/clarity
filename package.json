@@ -100,6 +100,6 @@
     "coveragePathIgnorePatterns": [
       ".*\\.mock\\.(ts|tsx)$"
     ],
-    "testRegex": ".*\\.(ft|test)\\.(ts|tsx)$"
+    "testRegex": ".*\\.(ut|ft)\\.(ts|tsx)$"
   }
 }

@@ -57,9 +57,6 @@ class Layout extends React.Component<ILayout, IState> {
   render () {
     return (
       <LayoutComponent user={this.props.user}>
-        <pre>
-          {JSON.stringify(this.state, null, 2)}
-        </pre>
         {this.props.children}
       </LayoutComponent>
     )
