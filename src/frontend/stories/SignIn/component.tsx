@@ -85,7 +85,7 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
 
         {
           this.state.submitAttempted && this.state.errorMsg &&
-          <ErrorMessage msg={this.state.errorMsg} id='signup-form__errors' />
+          <ErrorMessage msg={this.state.errorMsg} id='signin-form__errors' />
         }
 
         <Field
@@ -93,14 +93,14 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
           placeholder='Username'
           value      ={this.state.username}
           onChange   ={this.updateUsername}
-          id         ='signup-form__username'
+          id         ='signin-form__username'
         />
 
         <Button
           intent  ={Intent.PRIMARY}
           onClick ={this.submit('signup')}
           disabled={!!this.state.submitting}
-          id      ='signup-form__submit'
+          id      ='signin-form__signup-button'
           style   ={{width: '100px', marginRight: '12px'}}
          >
           {
@@ -113,7 +113,7 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
           intent  ={Intent.NONE}
           onClick ={this.submit('signin')}
           disabled={!!this.state.submitting}
-          id      ='signup-form__submit'
+          id      ='signin-form__signin-button'
           style   ={{width: '100px'}}
          >
           {
