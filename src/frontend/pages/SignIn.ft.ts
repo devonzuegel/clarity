@@ -21,9 +21,9 @@ describe('Sign up', () => {
     const nightmare = Nightmare()
     nightmare
       .goto(SIGNIN_URL)
-      .type('input#signup-form__username', username)
-      .click('button#signup-form__submit')
-      .exists('#signup-form__errors')
+      .type('input#signin-form__username', username)
+      .click('button#signin-form__signup-button')
+      .exists('#signin-form__errors')
       .end()
       .then((elemExists: boolean) => {
         expect(elemExists).toEqual(false)
