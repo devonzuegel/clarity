@@ -1,7 +1,7 @@
 import * as R from 'ramda'
-import {UserInstance} from '../db/models/user'
+import {UserInstance}  from '../db/models/user'
 import {GuestInstance} from '../db/models/guest'
-import {userService} from '../service/user'
+import {userService}   from '../service/user'
 
 export const signup = (username: string|undefined, session: Express.Session|undefined) => (
   new Promise<UserInstance>((resolve: Function, reject: Function) => {

@@ -1,7 +1,6 @@
 import {GuestInstance} from './guest'
 
 describe('GuestInstance', () => {
-
   it('can be instantiated', () => {
     const g = new GuestInstance
     expect(g instanceof GuestInstance).toEqual(true)
@@ -12,7 +11,6 @@ describe('GuestInstance', () => {
     const fn = (guest: GuestInstance) => guest
     fn(g)
   })
-
 })
 
 

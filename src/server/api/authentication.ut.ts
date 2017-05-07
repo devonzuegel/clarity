@@ -17,10 +17,10 @@ describe('Authentication API', () => {
   describe('signup', () => {
     it('returns successfully', () => {
       signup('foobar', mockSession)
-        .then(equals({username: 'foobar'}))
+        .then(equals({dataValues: {username: 'foobar'}}))
     })
 
-    it('returns successfully', () => {
+    it('rejects an unavailable username', () => {
       signup('thisUsernameIsntAvailable', mockSession)
         .catch(equals({message: 'Sorry, "thisUsernameIsntAvailable" is not available'}))
     })
@@ -55,7 +55,7 @@ describe('Authentication API', () => {
   describe('signIn', () => {
     it('returns successfully', () => {
       signIn('foobar', mockSession)
-        .then(equals({username: 'foobar'}))
+        .then(equals({dataValues: {username: 'foobar', id: 123}}))
     })
 
     it('updates the session to include the `username` key', () => {
@@ -102,7 +102,7 @@ describe('Authentication API', () => {
   describe('getCurrentUser', () => {
     it('returns successfully', () => {
       getCurrentUser({...mockSession, username: 'foobar'})
-        .then(equals({username: 'foobar'}))
+        .then(equals({dataValues: {username: 'foobar', id: 123}}))
     })
 
     it('returns an error when no username is set on the session', () => {

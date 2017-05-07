@@ -6,7 +6,7 @@ export class MockUserService {
       if (username == 'thisUsernameDoesntExist') {
         reject({message: `User with username "${username}" does not exist`})
       }
-      resolve({username})
+      resolve({dataValues: {username, id: 123}})
     })
   }
 
@@ -15,7 +15,7 @@ export class MockUserService {
       if (attributes.username == 'thisUsernameIsntAvailable') {
         reject({message: `Sorry, "${attributes.username}" is not available`})
       }
-      resolve(attributes)
+      resolve({dataValues: attributes})
     })
   }
 

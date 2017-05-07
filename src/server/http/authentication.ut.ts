@@ -24,7 +24,7 @@ describe('Authentication HTTP', () => {
       const username = 'foobar'
       supertest(app)
         .post(`/api/signup?username=${username}`)
-        .then(bodyMatches({username}))
+        .then(bodyMatches({dataValues: {username}}))
     })
 
     it('returns successfully', () => {
@@ -49,7 +49,7 @@ describe('Authentication HTTP', () => {
       const username = 'foobar'
       supertest(app)
         .post(`/api/signIn?username=${username}`)
-        .then(bodyMatches({username}))
+        .then(bodyMatches({dataValues: {username, id: 123}}))
     })
 
     it('returns an error when no username given', () => {
