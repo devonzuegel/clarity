@@ -24,6 +24,7 @@ declare module 'nightmare' {
     evaluate<T>(fn: (arg: T) => void, cb: () => void, arg: T): Nightmare;
     evaluate<R>(fn: () => R, cb: (result: R) => void): Nightmare;
     evaluate(fn: () => void): Nightmare;
+    evaluate(fn: (s: any) => any, s2: string): Nightmare;
     wait(): Nightmare;
     wait(ms: number): Nightmare;
     wait(selector: string): Nightmare;
