@@ -1,7 +1,7 @@
 import * as Sequelize from 'sequelize'
 
 import {models} from '../db'
-import {UserAttributes, UserInstance} from '../db/models/user'
+import {UserInstance} from '../db/models/user'
 import {MockUserService} from './user.mock'
 
 const sequelizeFailure = (reject: Function) => (error: Sequelize.ValidationError) => {
@@ -19,7 +19,7 @@ export class UserService extends MockUserService {
     })
   }
 
-  create(attributes: UserAttributes) {
+  create(attributes: {username: string}) {
     return new Promise<UserInstance>((resolve: Function, reject: Function) => {
       return models.User
         .create(attributes)
