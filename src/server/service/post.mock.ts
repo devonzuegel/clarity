@@ -11,7 +11,11 @@ export class MockPostService {
 
   all (): Promise<Array<PostInstance>> {
     return new Promise<Array<PostInstance>>((resolve: Function, _: Function) => {
-      resolve([])
+      resolve([
+        {dataValues: {userId: 1}},
+        {dataValues: {userId: 2}},
+        {dataValues: {userId: 2}},
+      ])
     })
   }
 }
