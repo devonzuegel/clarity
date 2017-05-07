@@ -481,7 +481,7 @@ exports.signup = function (username, session) {
         });
     });
 };
-exports.login = function (username, session) {
+exports.signIn = function (username, session) {
     return new Promise(function (resolve, reject) {
         if (!username) {
             return reject({ message: 'You must provide a username' });
@@ -500,7 +500,7 @@ exports.login = function (username, session) {
         });
     });
 };
-exports.logout = function (session) {
+exports.signout = function (session) {
     return new Promise(function (resolve, reject) {
         if (!session) {
             return reject({ message: 'You must initialize the API with a session' });
@@ -583,16 +583,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var requests_1 = __webpack_require__(5);
 var authentication_1 = __webpack_require__(21);
 exports.default = function (app) {
-    app.post('/signup', function (req, res) {
+    app.post('/api/signup', function (req, res) {
         authentication_1.signup(req.query.username, req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
     });
-    app.post('/login', function (req, res) {
-        authentication_1.login(req.query.username, req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
+    app.post('/api/signin', function (req, res) {
+        authentication_1.signIn(req.query.username, req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
     });
-    app.post('/logout', function (req, res) {
-        authentication_1.logout(req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
+    app.post('/api/signout', function (req, res) {
+        authentication_1.signout(req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
     });
-    app.get('/session', function (req, res) {
+    app.get('/api/session', function (req, res) {
         authentication_1.getCurrentUser(req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
     });
 };
@@ -608,12 +608,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var requests_1 = __webpack_require__(5);
 var user_1 = __webpack_require__(4);
 exports.default = function (app) {
-    app.get('/users', function (_, res) {
+    app.get('/api/users', function (_, res) {
         user_1.userService.all().then(function (users) {
             return res.status(200).json(users);
         }).catch(requests_1.jsonError(res));
     });
-    app.post('/users/create', function (req, res) {
+    app.post('/api/users/create', function (req, res) {
         user_1.userService.create({ username: req.query.username }).then(function (user) {
             return res.status(200).json(user);
         }).catch(requests_1.jsonError(res));

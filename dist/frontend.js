@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 312);
+/******/ 	return __webpack_require__(__webpack_require__.s = 313);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -9055,7 +9055,7 @@ exports.IconContents = iconStrings_1.IconContents;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.types = {
-    SET_USERNAME: 'login/set-username'
+    SET_USERNAME: 'signIn/set-username'
 };
 exports.actions = {
     setUsername: function (username) {
@@ -9076,16 +9076,16 @@ exports.actions = {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_redux_1 = __webpack_require__(96);
 var redux_1 = __webpack_require__(69);
-var login_1 = __webpack_require__(102);
+var signIn_1 = __webpack_require__(102);
 var component_1 = __webpack_require__(318);
 var mapStateToProps = function (state) {
     return {
-        user: state.loginReducer.user
+        user: state.signInReducer.user
     };
 };
 var mapDispatchToProps = function (dispatch) {
     return {
-        actions: redux_1.bindActionCreators(login_1.actions, dispatch)
+        actions: redux_1.bindActionCreators(signIn_1.actions, dispatch)
     };
 };
 exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(component_1.default);
@@ -22054,7 +22054,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(2);
 var Layout_1 = __webpack_require__(103);
 var Counter_1 = __webpack_require__(317);
-var BlueprintDemo_1 = __webpack_require__(315);
+var BlueprintDemo_1 = __webpack_require__(316);
 exports.default = function () {
     return React.createElement(Layout_1.default, null, React.createElement("div", { className: 'pt-card' }, React.createElement(Counter_1.default, null)), React.createElement("br", null), React.createElement("div", { className: 'pt-card' }, React.createElement(BlueprintDemo_1.default, null)));
 };
@@ -22069,11 +22069,9 @@ exports.default = function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(2);
 var Layout_1 = __webpack_require__(103);
-var Login_1 = __webpack_require__(320);
-var LoginPage = function () {
-    return React.createElement(Layout_1.default, null, React.createElement(Login_1.default, null));
+exports.default = function () {
+    return React.createElement(Layout_1.default, null);
 };
-exports.default = LoginPage;
 
 /***/ }),
 /* 272 */
@@ -22085,9 +22083,11 @@ exports.default = LoginPage;
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(2);
 var Layout_1 = __webpack_require__(103);
-exports.default = function () {
-    return React.createElement(Layout_1.default, null);
+var SignIn_1 = __webpack_require__(320);
+var SignInPage = function () {
+    return React.createElement(Layout_1.default, null, React.createElement(SignIn_1.default, null));
 };
+exports.default = SignInPage;
 
 /***/ }),
 /* 273 */
@@ -22098,7 +22098,7 @@ exports.default = function () {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Redux = __webpack_require__(69);
-var reducers_1 = __webpack_require__(313);
+var reducers_1 = __webpack_require__(314);
 exports.configureStore = function () {
     var store = Redux.createStore(reducers_1.rootReducer);
     if (false) {
@@ -22119,18 +22119,11 @@ exports.configureStore = function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var page = __webpack_require__(95);
 var responses_1 = __webpack_require__(104);
-page('/logout', function () {
-    responses_1.sendRequest(responses_1.post('/logout')).then(function () {
+page('/signout', function () {
+    responses_1.sendRequest(responses_1.post('/api/signout')).then(function () {
         return page.redirect('/signin');
     }).catch(function () {
         return page.redirect('/signin');
-    });
-});
-page('/login', function () {
-    responses_1.sendRequest(responses_1.post('/login?username=bork')).then(function () {
-        return page.redirect('/counter');
-    }).catch(function () {
-        return page.redirect('/counter');
     });
 });
 
@@ -25941,7 +25934,7 @@ exports.Field = function (_a) {
         placeholder = _a.placeholder,
         id = _a.id;
     return React.createElement("label", { className: 'pt-label pt-text-muted' }, label, React.createElement("input", { className: 'pt-input', type: 'text', value: value, id: id, onChange: onChange, onKeyUp: function (e) {
-            if (e.keyCode === 13) {
+            if (onSubmit && e.keyCode === 13) {
                 onSubmit();
             }
         }, placeholder: placeholder || label }));
@@ -25949,6 +25942,29 @@ exports.Field = function (_a) {
 
 /***/ }),
 /* 311 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(2);
+var Grid = function (_a) {
+        var items = _a.items;
+        return React.createElement("div", { style: {
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        width: '30%',
+                        minWidth: '380px',
+                        alignItems: 'center'
+                } }, items.map(function (item, i) {
+                return React.createElement("div", { style: { width: '32%', textAlign: 'center' }, key: i }, item);
+        }));
+};
+exports.default = Grid;
+
+/***/ }),
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25989,7 +26005,7 @@ var Brand = function () {
 var LayoutComponent = function (_a) {
     var user = _a.user,
         children = _a.children;
-    return React.createElement("div", null, React.createElement("nav", { style: { display: 'flow-root', marginBottom: '25px' } }, React.createElement(Brand, null), React.createElement("div", { className: 'pt-navbar-group pt-align-right' }, React.createElement(NavBtn, { title: 'Counter', url: '/counter', name: 'calculator' }), React.createElement("span", { className: 'pt-navbar-divider' }), user.username && React.createElement(NavBtn, { title: user.username, url: '/me', name: 'user' }), user.username ? React.createElement(NavBtn, { title: 'Sign out', url: '/logout', name: 'log-out' }) : React.createElement(NavBtn, { title: 'Sign in', url: '/signin', name: 'log-in' }))), React.createElement("main", null, children));
+    return React.createElement("div", null, React.createElement("nav", { style: { display: 'flow-root', marginBottom: '25px' } }, React.createElement(Brand, null), React.createElement("div", { className: 'pt-navbar-group pt-align-right' }, React.createElement(NavBtn, { title: 'Counter', url: '/counter', name: 'calculator' }), React.createElement("span", { className: 'pt-navbar-divider' }), user.username && React.createElement(NavBtn, { title: user.username, url: '/me', name: 'user' }), user.username ? React.createElement(NavBtn, { title: 'Sign out', url: '/signout', name: 'sign-out' }) : React.createElement(NavBtn, { title: 'Sign in', url: '/signin', name: 'sign-in' }))), React.createElement("main", null, children));
 };
 exports.setCurrentUser = function (user) {
     return function (prevState) {
@@ -26002,14 +26018,14 @@ var Layout = function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Layout.prototype.render = function () {
-        return React.createElement(LayoutComponent, { user: this.props.user }, React.createElement("pre", null, JSON.stringify(this.state, null, 2)), this.props.children);
+        return React.createElement(LayoutComponent, { user: this.props.user }, this.props.children);
     };
     return Layout;
 }(React.Component);
 exports.default = Layout;
 
 /***/ }),
-/* 312 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26023,8 +26039,8 @@ var react_redux_1 = __webpack_require__(96);
 var store_1 = __webpack_require__(273);
 var Wrapper_1 = __webpack_require__(268);
 var Counter_1 = __webpack_require__(270);
-var Me_1 = __webpack_require__(272);
-var Login_1 = __webpack_require__(271);
+var Me_1 = __webpack_require__(271);
+var SignIn_1 = __webpack_require__(272);
 __webpack_require__(269);
 __webpack_require__(274);
 var store = store_1.configureStore();
@@ -26032,7 +26048,7 @@ var render = function (c) {
     var reduxComponent = React.createElement(react_redux_1.Provider, { store: store }, React.createElement(Wrapper_1.default, { content: c }));
     ReactDOM.render(reduxComponent, document.getElementById('root'));
 };
-var pages = [{ href: '/signin', content: React.createElement(Login_1.default, null) }, { href: '/counter', content: React.createElement(Counter_1.default, null) }, { href: '/me', content: React.createElement(Me_1.default, null) }, { href: '*', content: React.createElement("h2", null, "404") }];
+var pages = [{ href: '/signin', content: React.createElement(SignIn_1.default, null) }, { href: '/counter', content: React.createElement(Counter_1.default, null) }, { href: '/me', content: React.createElement(Me_1.default, null) }, { href: '*', content: React.createElement("h2", null, "404") }];
 pages.map(function (_a) {
     var href = _a.href,
         content = _a.content;
@@ -26043,20 +26059,6 @@ pages.map(function (_a) {
 page();
 
 /***/ }),
-/* 313 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var redux_1 = __webpack_require__(69);
-var login_1 = __webpack_require__(314);
-exports.rootReducer = redux_1.combineReducers({
-    loginReducer: login_1.loginReducer
-});
-
-/***/ }),
 /* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -26064,15 +26066,29 @@ exports.rootReducer = redux_1.combineReducers({
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var redux_1 = __webpack_require__(69);
+var signIn_1 = __webpack_require__(315);
+exports.rootReducer = redux_1.combineReducers({
+    signInReducer: signIn_1.signInReducer
+});
+
+/***/ }),
+/* 315 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
 var guest_1 = __webpack_require__(322);
-var login_1 = __webpack_require__(102);
+var signIn_1 = __webpack_require__(102);
 var initialState = { user: new guest_1.GuestInstance() };
-exports.loginReducer = function (state, action) {
+exports.signInReducer = function (state, action) {
     if (state === void 0) {
         state = initialState;
     }
     switch (action.type) {
-        case login_1.types.SET_USERNAME:
+        case signIn_1.types.SET_USERNAME:
             return { user: { username: action.username } };
         default:
             return state;
@@ -26080,7 +26096,7 @@ exports.loginReducer = function (state, action) {
 };
 
 /***/ }),
-/* 315 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26094,29 +26110,6 @@ exports.default = function () {
             return alert("You just submitted: \"" + val + "\"");
         } }));
 };
-
-/***/ }),
-/* 316 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(2);
-var Grid = function (_a) {
-        var items = _a.items;
-        return React.createElement("div", { style: {
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        width: '30%',
-                        minWidth: '380px',
-                        alignItems: 'center'
-                } }, items.map(function (item, i) {
-                return React.createElement("div", { style: { width: '32%', textAlign: 'center' }, key: i }, item);
-        }));
-};
-exports.default = Grid;
 
 /***/ }),
 /* 317 */
@@ -26142,7 +26135,7 @@ var __extends = this && this.__extends || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(2);
 var core_1 = __webpack_require__(101);
-var Grid_1 = __webpack_require__(316);
+var Grid_1 = __webpack_require__(311);
 var increment = function (prevState) {
     return { count: prevState.count + 1 };
 };
@@ -26195,7 +26188,7 @@ var __extends = this && this.__extends || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(2);
 var responses_1 = __webpack_require__(104);
-var Layout_1 = __webpack_require__(311);
+var Layout_1 = __webpack_require__(312);
 var Layout = function (_super) {
     __extends(Layout, _super);
     function Layout() {
@@ -26203,7 +26196,7 @@ var Layout = function (_super) {
     }
     Layout.prototype.componentWillMount = function () {
         var _this = this;
-        responses_1.sendRequest(responses_1.get('/session')).then(function (u) {
+        responses_1.sendRequest(responses_1.get('/api/session')).then(function (u) {
             return _this.props.actions.setUsername(u.username);
         });
     };
@@ -26244,13 +26237,13 @@ var responses_1 = __webpack_require__(104);
 var Field_1 = __webpack_require__(310);
 var ErrorMessage_1 = __webpack_require__(309);
 var reducers_1 = __webpack_require__(321);
-var Login = function (_super) {
-    __extends(Login, _super);
-    function Login() {
+var SignIn = function (_super) {
+    __extends(SignIn, _super);
+    function SignIn() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.state = {
             username: '',
-            submitting: false,
+            submitting: undefined,
             errorMsg: null,
             submitAttempted: false
         };
@@ -26287,29 +26280,31 @@ var Login = function (_super) {
             _this.setState(reducers_1.setError(error.message || 'Sorry, there has been a technical issue'));
             _this.setState(reducers_1.endSubmit);
         };
-        _this.onSubmit = function () {
-            _this.setState(reducers_1.beginSubmit);
-            setTimeout(function () {
-                if (!_this.validate()) {
-                    return _this.setState(reducers_1.endSubmit);
-                }
-                responses_1.sendRequest(responses_1.post("/signup?username=" + _this.state.username)).then(_this.signupSuccess).catch(_this.signupFailure);
-            }, 500);
+        _this.submit = function (action) {
+            return function () {
+                _this.setState(reducers_1.beginSubmit(action));
+                setTimeout(function () {
+                    if (!_this.validate()) {
+                        return _this.setState(reducers_1.endSubmit);
+                    }
+                    responses_1.sendRequest(responses_1.post("/api/" + action + "?username=" + _this.state.username)).then(_this.signupSuccess).catch(_this.signupFailure);
+                }, 500);
+            };
         };
         return _this;
     }
-    Login.prototype.componentWillMount = function () {
+    SignIn.prototype.componentWillMount = function () {
         var _this = this;
-        responses_1.sendRequest(responses_1.get('/session')).then(function (u) {
+        responses_1.sendRequest(responses_1.get('/api/session')).then(function (u) {
             return _this.props.actions.setUsername(u.username);
         });
     };
-    Login.prototype.render = function () {
-        return React.createElement("div", { style: { display: 'block' } }, React.createElement("h2", null, "Welcome!"), React.createElement("br", null), this.state.submitAttempted && this.state.errorMsg && React.createElement(ErrorMessage_1.ErrorMessage, { msg: this.state.errorMsg, id: 'signup-form__errors' }), React.createElement(Field_1.Field, { label: 'Hi! Who are you?', placeholder: 'Username', value: this.state.username, onChange: this.updateUsername, onSubmit: this.onSubmit, id: 'signup-form__username' }), React.createElement(core_1.Button, { intent: core_1.Intent.PRIMARY, onClick: this.onSubmit, id: 'signup-form__submit', style: { width: '100px' } }, this.state.submitting ? React.createElement(core_1.Spinner, { className: 'pt-small' }) : 'Submit'));
+    SignIn.prototype.render = function () {
+        return React.createElement("div", { style: { display: 'block' } }, React.createElement("h2", null, "Welcome!"), React.createElement("br", null), this.state.submitAttempted && this.state.errorMsg && React.createElement(ErrorMessage_1.ErrorMessage, { msg: this.state.errorMsg, id: 'signin-form__errors' }), React.createElement(Field_1.Field, { label: 'Hi! Who are you?', placeholder: 'Username', value: this.state.username, onChange: this.updateUsername, id: 'signin-form__username' }), React.createElement(core_1.Button, { intent: core_1.Intent.PRIMARY, onClick: this.submit('signup'), disabled: !!this.state.submitting, id: 'signin-form__signup-button', style: { width: '100px', marginRight: '12px' } }, this.state.submitting === 'signup' ? React.createElement(core_1.Spinner, { className: 'pt-small' }) : 'Sign up'), React.createElement(core_1.Button, { intent: core_1.Intent.NONE, onClick: this.submit('signin'), disabled: !!this.state.submitting, id: 'signin-form__signin-button', style: { width: '100px' } }, this.state.submitting === 'signin' ? React.createElement(core_1.Spinner, { className: 'pt-small' }) : 'Sign in'));
     };
-    return Login;
+    return SignIn;
 }(React.Component);
-exports.default = Login;
+exports.default = SignIn;
 
 /***/ }),
 /* 320 */
@@ -26321,14 +26316,14 @@ exports.default = Login;
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_redux_1 = __webpack_require__(96);
 var redux_1 = __webpack_require__(69);
-var login_1 = __webpack_require__(102);
+var signIn_1 = __webpack_require__(102);
 var component_1 = __webpack_require__(319);
 var mapStateToProps = function (_state) {
     return {};
 };
 var mapDispatchToProps = function (dispatch) {
     return {
-        actions: redux_1.bindActionCreators(login_1.actions, dispatch)
+        actions: redux_1.bindActionCreators(signIn_1.actions, dispatch)
     };
 };
 exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(component_1.default);
@@ -26353,11 +26348,13 @@ exports.updateUsername = function (newUsername) {
         return __assign({}, prevState, { username: newUsername });
     };
 };
-exports.beginSubmit = function (prevState) {
-    return __assign({}, prevState, { submitAttempted: true, submitting: true });
+exports.beginSubmit = function (action) {
+    return function (prevState) {
+        return __assign({}, prevState, { submitAttempted: true, submitting: action });
+    };
 };
 exports.endSubmit = function (prevState) {
-    return __assign({}, prevState, { submitting: false });
+    return __assign({}, prevState, { submitting: undefined });
 };
 exports.setError = function (errorMsg) {
     return function (prevState) {
