@@ -5,7 +5,6 @@ import {UserInstance} from '../db/models/user'
 import {MockUserService} from './user.mock'
 
 const sequelizeFailure = (reject: Function) => (error: Sequelize.ValidationError) => {
-  console.error(error) // Log full error
   reject(error.errors[0]) // Return only the descriptive .errors array
 }
 

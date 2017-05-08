@@ -7,15 +7,18 @@ import Layout from '~/frontend/stories/Layout'
 
 interface IState {posts?: Object[]}
 
+const updatePostsList = (posts: PostAttributes[]) => (_: IState) => ({posts})
+
 class Me extends React.Component<{}, IState> {
   state = {posts: undefined}
 
-  updatePostsList = (posts: PostAttributes[]) => (_: IState) => ({posts})
-
-  componentWillMount () {
-    sendRequest(get('/api/posts')).then((posts: PostAttributes[]) => {
-      this.setState(this.updatePostsList(posts))
-    })
+   async componentWillMount () {
+    try {
+      const posts: PostAttributes[] = await sendRequest(get('/api/posts'))
+      this.setState(updatePostsList(posts))
+    } catch (e) {
+      console.warn(e)
+    }
   }
 
   render () {

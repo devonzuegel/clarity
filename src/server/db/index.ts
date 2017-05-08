@@ -9,9 +9,9 @@ import c from './config'
 const database_url = require('../config.js').database_url
 
 interface IModels {
-  User: any,
-  Post: any,
-  Iteration: any,
+  User:      any, // TODO: IUserModel,
+  Post:      any, // TODO: IPostModel,
+  Iteration: any, // TODO: IIterationModel,
 }
 
 class Database {
@@ -24,7 +24,7 @@ class Database {
   constructor() {
     (Sequelize as any).cls = cls.createNamespace('sequelize-transaction')
     if (database_url) {
-      this.sequelize = new Sequelize(database_url)
+      this.sequelize = new Sequelize(database_url, c)
     } else {
       this.sequelize = new Sequelize(c.database, c.username, c.password, c)
     }

@@ -30,7 +30,7 @@ interface IPage {
 }
 
 const pages: IPage[] = [
-  { href: '/signin',  content: <SignInPage />   },
+  { href: '/signin',  content: <SignInPage />  },
   { href: '/counter', content: <CounterPage /> },
   { href: '/me',      content: <MePage />      },
   { href: '*',        content: <h2>404</h2>    },

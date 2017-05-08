@@ -29,7 +29,8 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       title: {
-        type: Sequelize.STRING,
+        type:      Sequelize.STRING,
+        allowNull: false,
       },
     })
   ),

@@ -1,22 +1,39 @@
 import * as Sequelize from 'sequelize'
 
-import {models} from '../db'
+import {models, sequelize} from '../db'
 import {PostInstance} from '../db/models/post'
 import {MockPostService} from './post.mock'
 import {UserInstance} from '../db/models/user'
 
 const sequelizeFailure = (reject: Function) => (error: Sequelize.ValidationError) => {
-  console.error(error) // Log full error
-  reject(error.errors[0]) // Return only the descriptive .errors array
+  console.warn(error) // Log full error
+  reject(error) // Return only the descriptive .errors array
+  // reject(error.errors[0]) // Return only the descriptive .errors array
 }
 
+type IIteration = {body?: string, title: string}
+
+const initPost = (resolve: Function, userId: number, iteration: IIteration) => (
+  (t: Sequelize.Transaction) =>
+    models.Post
+      .create({userId}, {transaction: t})
+      .then((post: PostInstance) => (
+        models.Iteration
+          .create({...iteration, postId: post.dataValues.id})
+          .then((_: IIteration) => resolve(post))
+      ))
+)
+
 export class PostService extends MockPostService {
-  create(user: UserInstance) {
+  create(user: UserInstance, iteration: IIteration) {
     return new Promise<PostInstance>((resolve: Function, reject: Function) => {
-      return models.Post
-        .create({userId: user.dataValues.id})
+      if (!user || !user.dataValues.id) {
+        return reject('Please provide a user')
+      }
+      return sequelize
+        .transaction(initPost(resolve, user.dataValues.id, iteration))
         .then((post: PostInstance) => resolve(post))
-        .catch(sequelizeFailure(reject))
+        .catch((err: Error) => reject(err))
     })
   }
 

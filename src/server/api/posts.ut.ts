@@ -19,12 +19,16 @@ const user = {
     id: 123,
   },
 }
+const iteration = {
+  title: 'baz',
+  body:  'qux',
+}
 
 describe('Posts API', () => {
 
   describe('create', () => {
     it('returns successfully', () => {
-      create('foobar').then(equals({
+      create('foobar', iteration).then(equals({
         dataValues: {
           userId: user.dataValues.id,
         },
@@ -32,7 +36,7 @@ describe('Posts API', () => {
     })
 
     it('fails when the username is not associated with an existing user', () => {
-      create('thisUsernameDoesntExist')
+      create('thisUsernameDoesntExist', iteration)
         .then(equals({
           dataValues: {
             userId: user.dataValues.id,

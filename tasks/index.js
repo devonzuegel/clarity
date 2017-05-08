@@ -20,7 +20,7 @@ const tasks = {
 
   'start': () => {
     build()
-    runCmd('node build/backend.js')
+    runCmd('NODE_ENV=development node build/backend.js')
   },
 
   'start:prod': () => {
@@ -40,12 +40,12 @@ const tasks = {
   },
 
   'test:watch': () => {
-    runCmd('jest --watch')
+    runCmd('NODE_ENV=test jest --watch')
   },
 
   'test': () => {
     lint()
-    runCmd('jest --coverage')
+    runCmd('NODE_ENV=test jest')
   },
 }
 

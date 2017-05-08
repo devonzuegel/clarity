@@ -3,9 +3,9 @@ import {Instance, Sequelize} from 'sequelize'
 import {IUserModel} from './user'
 
 export interface PostAttributes {
-  userId: number
-  id: number
-  createdAt: Date
+  userId:     number
+  id?:        number
+  createdAt?: Date
   // NOTE: updatedAt is not part of the Post interface
 }
 

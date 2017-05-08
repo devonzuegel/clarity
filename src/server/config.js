@@ -16,7 +16,7 @@ if (env.error) {
 module.exports = {
   port:         process.env.PORT || 4000,
   host:         process.env.HOST || 'localhost',
-  env:          process.env.NODE_ENV || 'development',
+  env:          process.env.NODE_ENV,
   database_url: process.env.DATABASE_URL,
   sentry_dsn:   process.env.SENTRY_DSN,
   db: {
@@ -26,6 +26,7 @@ module.exports = {
     host:     process.env.DB_HOST,
     port:     process.env.DB_PORT,
     dialect:  'postgres',
+    logging:  process.env.NODE_ENV !== 'test' && console.log,
     timezone: '+00:00',
   }
 }

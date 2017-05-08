@@ -6,7 +6,15 @@ export class MockUserService {
       if (username == 'thisUsernameDoesntExist') {
         reject({message: `User with username "${username}" does not exist`})
       }
-      resolve({dataValues: {username, id: 123}})
+      resolve({
+        dataValues: {username, id: 123},
+        get: (key: string) => {
+          switch (key) {
+            case 'id': return 123
+            default:   throw Error(`Value for key "${key}" is undefined on mock user`)
+          }
+        },
+      })
     })
   }
 

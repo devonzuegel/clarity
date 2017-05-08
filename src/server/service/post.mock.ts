@@ -3,7 +3,7 @@ import {UserInstance} from '../db/models/user'
 
 
 export class MockPostService {
-  create (user: UserInstance): Promise<PostInstance> {
+  create (user: UserInstance, _iteration: {body?: string, title: string}): Promise<PostInstance> {
     return new Promise<PostInstance>((resolve: Function, _: Function) => {
       resolve({dataValues: {userId: user.dataValues.id}})
     })

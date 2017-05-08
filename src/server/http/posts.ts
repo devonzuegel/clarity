@@ -14,7 +14,12 @@ export default (app: express.Application) => {
 
   app.post('/api/posts/create', (req: express.Request, res: express.Response) => {
     userService.findByUsername(req.query.username).then((user) => {
-      postService.create(user)
+      const iteration = {
+        title: req.query.title,
+        body:  req.query.body,
+      }
+      postService
+        .create(user, iteration)
         .then((post: PostInstance) => res.status(200).json(post))
         .catch(jsonError(res))
     })
