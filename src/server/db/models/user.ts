@@ -13,7 +13,7 @@ export interface UserInstance extends Instance<UserAttributes> {
   dataValues: UserAttributes
 }
 
-type IUserModel = SequelizeStatic.Model<UserInstance, UserAttributes>
+export type IUserModel = SequelizeStatic.Model<UserInstance, UserAttributes>
 
 export default (sequelize: Sequelize): IUserModel => {
   const Schema = {

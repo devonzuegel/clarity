@@ -1,5 +1,6 @@
 import * as SequelizeStatic from 'sequelize'
 import {Instance, Sequelize} from 'sequelize'
+import {IUserModel} from './user'
 
 export interface PostAttributes {
   userId: number
@@ -12,7 +13,7 @@ export interface PostInstance extends Instance<PostAttributes> {
   dataValues: PostAttributes
 }
 
-type IPostModel = SequelizeStatic.Model<PostInstance, PostAttributes>
+export type IPostModel = SequelizeStatic.Model<PostInstance, PostAttributes>
 
 export default (sequelize: Sequelize): IPostModel => {
   const Schema = {
@@ -33,7 +34,7 @@ export default (sequelize: Sequelize): IPostModel => {
   }
   const Post = sequelize.define<PostInstance, PostAttributes>('Post', Schema, {
     classMethods: {
-      associate: (models: {User: IPostModel}) => Post.belongsTo(models.User),
+      associate: (models: {User: IUserModel}) => Post.belongsTo(models.User),
     },
   })
   return Post

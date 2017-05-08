@@ -1,13 +1,17 @@
-import * as cls from 'continuation-local-storage'
+import * as cls       from 'continuation-local-storage'
 import * as Sequelize from 'sequelize'
-import UserModel from '../db/models/user'
-import PostModel from '../db/models/post'
+
+import UserModel      from '../db/models/user'
+import PostModel      from '../db/models/post'
+import IterationModel from '../db/models/iteration'
+
 import c from './config'
 const database_url = require('../config.js').database_url
 
 interface IModels {
   User: any,
   Post: any,
+  Iteration: any,
 }
 
 class Database {
@@ -25,8 +29,9 @@ class Database {
       this.sequelize = new Sequelize(c.database, c.username, c.password, c)
     }
     this.models = {
-      User: UserModel(this.sequelize),
-      Post: PostModel(this.sequelize),
+      User:      UserModel(this.sequelize),
+      Post:      PostModel(this.sequelize),
+      Iteration: IterationModel(this.sequelize),
     }
   }
 
