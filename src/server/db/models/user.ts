@@ -3,9 +3,7 @@ import {Instance, Sequelize} from 'sequelize'
 import {IPerson} from './person'
 
 export interface UserAttributes extends IPerson {
-  username:   string
-  id?:        number
-  createdAt?: Date
+  username: string
 }
 
 export interface UserInstance extends Instance<UserAttributes> {

@@ -27,11 +27,11 @@ const initPost = (resolve: Function, userId: number, iteration: IIteration) => (
 export class PostService extends MockPostService {
   create(user: UserInstance, iteration: IIteration) {
     return new Promise<PostInstance>((resolve: Function, reject: Function) => {
-      if (!user || !user.dataValues.id) {
+      if (!user || !user.get('id')) {
         return reject('Please provide a user')
       }
       return sequelize
-        .transaction(initPost(resolve, user.dataValues.id, iteration))
+        .transaction(initPost(resolve, user.get('id'), iteration))
         .then((post: PostInstance) => resolve(post))
         .catch((err: Error) => reject(err))
     })

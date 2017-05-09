@@ -28,8 +28,6 @@ describe('Posts HTTP', () => {
           {dataValues: {userId: 2}},
         ]))
     })
-    xit('requires a username to be provided', () => {})
-    xit('requires an existing username to be provided', () => {})
   })
   describe('/api/posts/create', () => {
     it('returns a created post', () => {
@@ -37,8 +35,6 @@ describe('Posts HTTP', () => {
         .post('/api/posts/create?username=baz')
         .then((res) => expect(res.body.dataValues).toEqual({userId: 123}))
     })
-    xit('requires a username to be provided', () => {})
-    xit('requires an existing username to be provided', () => {})
   })
 })
 

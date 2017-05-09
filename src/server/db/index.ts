@@ -1,7 +1,7 @@
 import * as cls       from 'continuation-local-storage'
 import * as Sequelize from 'sequelize'
 
-import UserModel      from '../db/models/user'
+import UserModel, {IUserModel} from '../db/models/user'
 import PostModel      from '../db/models/post'
 import IterationModel from '../db/models/iteration'
 
@@ -9,10 +9,11 @@ import c from './config'
 const database_url = require('../config.js').database_url
 
 interface IModels {
-  User:      any, // TODO: IUserModel,
+  User:      IUserModel,
   Post:      any, // TODO: IPostModel,
   Iteration: any, // TODO: IIterationModel,
 }
+
 
 class Database {
   /** Models supported by our DB. */
