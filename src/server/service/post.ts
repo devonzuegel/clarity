@@ -14,14 +14,11 @@ const sequelizeFailure = (reject: Function) => (error: Sequelize.ValidationError
 type IIteration = {body?: string, title: string}
 
 const initPost = (resolve: Function, userId: number, iteration: IIteration) => (
-  (t: Sequelize.Transaction) =>
-    models.Post
-      .create({userId}, {transaction: t})
-      .then((post: PostInstance) => (
-        models.Iteration
-          .create({...iteration, postId: post.dataValues.id})
-          .then((_: IIteration) => resolve(post))
-      ))
+  async (t: Sequelize.Transaction) => {
+    const post: PostInstance = await models.Post.create({userId}, {transaction: t})
+    await models.Iteration.create({...iteration, postId: post.get('id')})
+    resolve(post)
+  }
 )
 
 export class PostService extends MockPostService {

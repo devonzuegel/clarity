@@ -4,20 +4,15 @@ import {IPostModel} from './post'
 
 export interface IterationAttributes {
   postId: number
-  body:   string
+  body?:  string
   title:  string
 }
 
-export interface IterationSchema extends IterationAttributes {
-  id:        number
-  createdAt: Date
+export interface IterationInstance extends Instance<IterationAttributes> {
+  dataValues: IterationAttributes
 }
 
-export interface IterationInstance extends Instance<IterationSchema> {
-  dataValues: IterationSchema
-}
-
-export type IIterationModel = SequelizeStatic.Model<IterationInstance, IterationSchema>
+export type IIterationModel = SequelizeStatic.Model<IterationInstance, IterationAttributes>
 
 export default (sequelize: Sequelize): IIterationModel => {
   const Schema = {
@@ -43,7 +38,7 @@ export default (sequelize: Sequelize): IIterationModel => {
       allowNull: false,
     },
   }
-  const Iteration = sequelize.define<IterationInstance, IterationSchema>('Iteration', Schema, {
+  const Iteration = sequelize.define<IterationInstance, IterationAttributes>('Iteration', Schema, {
     classMethods: {
       associate: (models: {Post: IPostModel}) => Iteration.belongsTo(models.Post),
     },
