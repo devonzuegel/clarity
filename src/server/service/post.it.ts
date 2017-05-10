@@ -1,39 +1,27 @@
 import {userService} from '../service/user'
 import {postService} from '../service/post'
 import {iterationService} from '../service/iteration'
-import {PostInstance} from '../db/models/post'
-import {UserInstance} from '../db/models/user'
-
-const createPost = (done: Function) => (user: UserInstance) => {
-  postService
-    .create(user, {title: 'baz'})
-    .then((_: PostInstance) => done())
-}
 
 describe('Posts Service', () => {
-  beforeAll((done) => {
-    userService
-      .create({username: 'foobar'})
-      .then(createPost(done))
-      .catch(_ => {
-        userService
-          .findByUsername('foobar')
-          .then(createPost(done))
-      })
+  beforeAll(async () => {
+    let user
+    try {
+      user = await userService.create({username: 'foobar'})
+    } catch (e) {
+      user = await userService.findByUsername('foobar')
+    }
+    await postService.create(user, {title: 'baz'})
   })
 
   describe('#all', () => {
-    xit('retrieves a list of posts', (done) => {
-      postService.all()
-        .then((posts: PostInstance[]) => {
-          expect(posts.length).toBeGreaterThan(0)
-          done()
-        })
+    xit('retrieves a list of posts', async () => {
+      const posts = await postService.all()
+      expect(posts.length).toBeGreaterThan(0)
     })
   })
 
   describe('#create', () => {
-    xit('creates a new post and initializes it with a first iteration', async (done) => {
+    xit('creates a new post and initializes it with a first iteration', async () => {
       const user = await userService.findByUsername('foobar')
       const intiialCounts = {
         posts:      (await postService.all()).length,
@@ -48,7 +36,19 @@ describe('Posts Service', () => {
       }
       expect(counts.posts).toEqual(intiialCounts.posts + 1)
       expect(counts.iterations).toEqual(intiialCounts.iterations + 1)
-      done()
+    })
+  })
+
+  describe('#iterations', () => {
+    xit(`retrieves a post's iterations`, async () => {
+      const [title, body] = ['baz', 'qux']
+      const user       = await userService.findByUsername('foobar')
+      const post       = await postService.create(user, {title, body})
+      const iterations = await postService.iterations(post.get('id'))
+
+      expect(iterations.length).toEqual(1)
+      expect(iterations[0].getDataValue('title')).toEqual(title)
+      expect(iterations[0].getDataValue('body')).toEqual(body)
     })
   })
 })

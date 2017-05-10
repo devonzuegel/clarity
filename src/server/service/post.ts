@@ -4,6 +4,8 @@ import {models, sequelize} from '../db'
 import {PostInstance} from '../db/models/post'
 import {MockPostService} from './post.mock'
 import {UserInstance} from '../db/models/user'
+import {IterationInstance} from '../db/models/iteration'
+
 
 const sequelizeFailure = (reject: Function) => (error: Sequelize.ValidationError) => {
   console.warn(error) // Log full error
@@ -35,11 +37,18 @@ export class PostService extends MockPostService {
   }
 
   all() {
-    return new Promise<Array<PostInstance>>((resolve: Function, reject: Function) => {
+    return new Promise<PostInstance[]>((resolve: Function, reject: Function) => {
       return models.Post
         .findAll()
-        .then((posts: Array<PostInstance>) => resolve(posts))
+        .then((posts: PostInstance[]) => resolve(posts))
         .catch(sequelizeFailure(reject))
+    })
+  }
+
+  iterations (postId: number) {
+    return new Promise<IterationInstance[]>(async (resolve, _reject) => {
+      const iterations = await models.Iteration.findAll({where: {postId}})
+      resolve(iterations)
     })
   }
 }
