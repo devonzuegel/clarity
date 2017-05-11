@@ -28,6 +28,7 @@ const LayoutComponent = ({user, children}: ILayout) => (
       <Brand />
       <div className='pt-navbar-group pt-align-right'>
         <NavBtn title='Counter' url='/counter' name='calculator' />
+        <NavBtn title='Posts'   url='/posts'   name='note' />
         <span className='pt-navbar-divider' />
         {user.username && <NavBtn title={user.username} url='/me'  name='user' />}
         {
