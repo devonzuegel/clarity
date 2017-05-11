@@ -51,6 +51,13 @@ export class PostService extends MockPostService {
       resolve(iterations)
     })
   }
+
+  comments (iterationId: number) {
+    return new Promise<IterationInstance[]>(async (resolve, _reject) => {
+      iterationId
+      resolve([])
+    })
+  }
 }
 
 export const postService = new PostService
