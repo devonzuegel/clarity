@@ -37,4 +37,14 @@ router.get('/:id', async (req: express.Request, res: express.Response) => {
   }
 })
 
+router.post('/:id/iterate', async (req: express.Request, res: express.Response) => {
+  try {
+    console.log(req.query)
+    const iteration = await postService.iterate(req.params.id, req.query)
+    res.status(200).json(iteration)
+  } catch (e) {
+    jsonError(res)(e)
+  }
+})
+
 export default router
