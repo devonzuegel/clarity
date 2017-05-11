@@ -46,9 +46,18 @@ export class PostService extends MockPostService {
   }
 
   iterations (postId: number) {
-    return new Promise<IterationInstance[]>(async (resolve, _reject) => {
-      const iterations = await models.Iteration.findAll({where: {postId}})
-      resolve(iterations)
+    return new Promise<IterationInstance[]>(async (resolve, reject) => {
+      return models.Iteration.findAll({where: {postId}})
+        .then(resolve)
+        .catch(reject)
+    })
+  }
+
+  iterate (postId: number, data: IIteration) {
+    return new Promise<IterationInstance>(async (resolve, reject) => {
+      return models.Iteration.create({postId, ...data})
+        .then(resolve)
+        .catch(reject)
     })
   }
 

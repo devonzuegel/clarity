@@ -39,16 +39,40 @@ describe('Posts Service', () => {
     })
   })
 
-  // describe('#iterations', () => {
-  //   it(`retrieves a post's iterations`, async () => {
-  //     const [title, body] = ['baz', 'qux']
-  //     const user       = await userService.findByUsername('foobar')
-  //     const post       = await postService.create(user, {title, body})
-  //     const iterations = await postService.iterations(post.get('id'))
+  describe('#iterations', () => {
+    it(`retrieves a post's iterations`, async () => {
+      const [title, body] = ['baz', 'qux']
+      const user       = await userService.findByUsername('foobar')
+      const post       = await postService.create(user, {title, body})
+      const iterations = await postService.iterations(post.get('id'))
 
-  //     expect(iterations.length).toEqual(1)
-  //     expect(iterations[0].getDataValue('title')).toEqual(title)
-  //     expect(iterations[0].getDataValue('body')).toEqual(body)
-  //   })
-  // })
+      expect(iterations.length).toEqual(1)
+      expect(iterations[0].getDataValue('title')).toEqual(title)
+      expect(iterations[0].getDataValue('body')).toEqual(body)
+    })
+  })
+
+  describe('#iterate', () => {
+    it(`creates an iteration for the given post with the provided title, body`, async () => {
+      const [oldTitle, oldBody] = ['baz', 'qux']
+      const [newTitle, newBody] = ['foo', 'bar']
+      const user       = await userService.findByUsername('foobar')
+      const post       = await postService.create(user, {title: oldTitle, body: oldBody})
+      const iteration  = await postService.iterate(post.get('id'), {title: newTitle, body: newBody})
+      const iterations = await postService.iterations(post.get('id'))
+
+      expect(iterations.length).toEqual(2)
+      expect(iteration.getDataValue('title')).toEqual(newTitle)
+      expect(iteration.getDataValue('body')).toEqual(newBody)
+      expect(iterations[1].getDataValue('title')).toEqual(newTitle)
+      expect(iterations[1].getDataValue('body')).toEqual(newBody)
+    })
+    it(`rejects an id that does not correspond to an existing post`, async () => {
+      try {
+        await postService.iterate(123, {title: 'newTitle', body: 'newBody'})
+      } catch (e) {
+        expect(e.name).toEqual('SequelizeForeignKeyConstraintError')
+      }
+    })
+  })
 })

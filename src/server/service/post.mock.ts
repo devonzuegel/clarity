@@ -35,4 +35,10 @@ export class MockPostService {
       }
     })
   }
+
+  iterate (postId: number, data: {body?: string, title: string}) {
+    return new Promise<IterationInstance>(async (resolve, _) => {
+      resolve(<IterationInstance>{dataValues: {postId, ...data}})
+    })
+  }
 }
