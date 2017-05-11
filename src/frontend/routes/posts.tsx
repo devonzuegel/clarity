@@ -10,7 +10,12 @@ import render    from '../render'
 const renderWithLayout = (component: JSX.Element) =>
   render(<Layout>{component}</Layout>)
 
-export default () => {
+export const urls = {
+  post: (id: number) => `/posts/${id}`,
+  posts:                `/posts`,
+}
+
+export const routes = () => {
   page('/posts/:id', ({params}) => renderWithLayout(<PostPage postId={params.id} />))
   page('/posts',     ()         => renderWithLayout(<PostsPage />))
 }
