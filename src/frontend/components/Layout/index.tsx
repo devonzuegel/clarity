@@ -1,5 +1,7 @@
 import * as React from 'react'
 import {IPerson}   from '~/server/db/models/person'
+import {urls} from '~/frontend/routes'
+
 
 interface ILayout {
   children?: Element
@@ -27,14 +29,14 @@ const LayoutComponent = ({user, children}: ILayout) => (
     <nav style={{display: 'flow-root', marginBottom: '25px'}}>
       <Brand />
       <div className='pt-navbar-group pt-align-right'>
-        <NavBtn title='Counter' url='/counter' name='calculator' />
-        <NavBtn title='Posts'   url='/posts'   name='note' />
+        <NavBtn title='Counter' url={urls.counter} name='calculator' />
+        <NavBtn title='Posts'   url={urls.posts}   name='note' />
         <span className='pt-navbar-divider' />
         {user.username && <NavBtn title={user.username} url='/me'  name='user' />}
         {
           user.username
-          ? <NavBtn title='Sign out' url='/signout' name='sign-out' />
-          : <NavBtn title='Sign in'  url='/signin'  name='sign-in'  />
+          ? <NavBtn title='Sign out' url={urls.signout} name='sign-out' />
+          : <NavBtn title='Sign in'  url={urls.signin}  name='sign-in'  />
         }
       </div>
     </nav>

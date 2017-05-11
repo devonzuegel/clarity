@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import {get, sendRequest} from '../../../utils/api/responses'
 import {PostAttributes} from '../../server/db/models/post'
+import {urls} from '~/frontend/routes'
 
 
 interface IState {posts?: Object[]}
@@ -11,7 +12,7 @@ const updatePostsList = (posts: PostAttributes[]) => (_: IState) => ({posts})
 const Post = ({id, ...otherProps}: {id: number}, k: number) => (
   <div key={k}>
     {id !== 0 && <br />}
-    <a href={`/posts/${id}`}>
+    <a href={urls.post(id)}>
       Link to post #{id}
     </a>
     <pre style={{fontSize: '0.7em'}}>
