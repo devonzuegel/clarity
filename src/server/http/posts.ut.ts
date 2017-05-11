@@ -19,21 +19,19 @@ app.use('/api/posts', PostsRouter)
 
 describe('Posts HTTP', () => {
   describe('GET /api/posts', () => {
-    it('retrieves list of posts', () => {
-      supertest(app)
-        .get('/api/posts') // ?username=foobar')
-        .then((res) => expect(res.body).toEqual([
-          {dataValues: {userId: 1}},
-          {dataValues: {userId: 2}},
-          {dataValues: {userId: 2}},
-        ]))
+    it('retrieves list of posts', async () => {
+      const res = await supertest(app).get('/api/posts') // ?username=foobar')
+      expect(res.body).toEqual([
+        {dataValues: {userId: 1}},
+        {dataValues: {userId: 2}},
+        {dataValues: {userId: 2}},
+      ])
     })
   })
   describe('/api/posts/create', () => {
-    it('returns a created post', () => {
-      supertest(app)
-        .post('/api/posts/create?username=baz')
-        .then((res) => expect(res.body.dataValues).toEqual({userId: 123}))
+    it('returns a created post', async () => {
+      const res = await supertest(app).post('/api/posts/create?username=baz')
+      expect(res.body.dataValues).toEqual({userId: 123})
     })
   })
 
