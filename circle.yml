@@ -2,6 +2,9 @@ machine:
   node:
     version: 7.2.1
 test:
+  pre:
+    - npm install -g sequelize-cli
+    - sequelize db:migrate
   override:
     - yarn test:ci
 dependencies:

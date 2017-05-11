@@ -14,14 +14,14 @@ describe('Posts Service', () => {
   })
 
   describe('#all', () => {
-    xit('retrieves a list of posts', async () => {
+    it('retrieves a list of posts', async () => {
       const posts = await postService.all()
       expect(posts.length).toBeGreaterThan(0)
     })
   })
 
   describe('#create', () => {
-    xit('creates a new post and initializes it with a first iteration', async () => {
+    it('creates a new post and initializes it with a first iteration', async () => {
       const user = await userService.findByUsername('foobar')
       const intiialCounts = {
         posts:      (await postService.all()).length,
@@ -39,16 +39,16 @@ describe('Posts Service', () => {
     })
   })
 
-  describe('#iterations', () => {
-    xit(`retrieves a post's iterations`, async () => {
-      const [title, body] = ['baz', 'qux']
-      const user       = await userService.findByUsername('foobar')
-      const post       = await postService.create(user, {title, body})
-      const iterations = await postService.iterations(post.get('id'))
+  // describe('#iterations', () => {
+  //   it(`retrieves a post's iterations`, async () => {
+  //     const [title, body] = ['baz', 'qux']
+  //     const user       = await userService.findByUsername('foobar')
+  //     const post       = await postService.create(user, {title, body})
+  //     const iterations = await postService.iterations(post.get('id'))
 
-      expect(iterations.length).toEqual(1)
-      expect(iterations[0].getDataValue('title')).toEqual(title)
-      expect(iterations[0].getDataValue('body')).toEqual(body)
-    })
-  })
+  //     expect(iterations.length).toEqual(1)
+  //     expect(iterations[0].getDataValue('title')).toEqual(title)
+  //     expect(iterations[0].getDataValue('body')).toEqual(body)
+  //   })
+  // })
 })
