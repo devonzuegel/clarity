@@ -14,18 +14,21 @@ const unexpectedSuccess = () => { throw Error }
 
 describe('Authentication API', () => {
 
-  xdescribe('signup', () => {
-    it('returns successfully', () => {
-      signup('foobar', mockSession)
-        .then(equals({dataValues: {username: 'foobar'}}))
+  describe('signup', () => {
+    it('returns successfully', async () => {
+      const user = await signup('foobar', mockSession())
+      expect(user.dataValues).toEqual({username: 'foobar'})
     })
 
-    it('rejects an unavailable username', () => {
-      signup('thisUsernameIsntAvailable', mockSession)
-        .catch(equals({message: 'Sorry, "thisUsernameIsntAvailable" is not available'}))
+    it('rejects an unavailable username', async () => {
+      try {
+         await signup('thisUsernameIsntAvailable', mockSession())
+      } catch (e) {
+        expect(e).toEqual({message: 'Sorry, "thisUsernameIsntAvailable" is not available'})
+      }
     })
 
-    it('updates the session to include the `username` key upon successful signup', () => {
+    it('updates the session to include the `username` key upon successful signup', async () => {
       /**
        * NOTE: Javascript passes objects by shared reference. As a result, we can get side
        * effects like updating the contents of the session object.
@@ -34,31 +37,31 @@ describe('Authentication API', () => {
        * mutating the internals of the passed-in session object) in order to avoid side
        * effects.
        */
-      expect(mockSession['username']).toEqual(undefined)
-      signup('foobar', mockSession)
-        .then(_ => expect(mockSession['username']).toEqual('foobar'))
+      const session = mockSession()
+      await signup('foobar', session)
+      expect(session['username']).toEqual('foobar')
     })
 
-    it('returns an error when no username given', () => {
-      signup(undefined, mockSession)
+    it('returns an error when no username given', async () => {
+      signup(undefined, mockSession())
         .then(unexpectedSuccess)
         .catch(equals({message: 'You must provide a username'}))
     })
 
-    it('returns an error when there is no session', () => {
+    it('returns an error when there is no session', async () => {
       signup('foobar', undefined)
         .then(unexpectedSuccess)
         .catch(equals({message: 'You must initialize the API with a session'}))
     })
   })
 
-  xdescribe('signIn', () => {
-    it('returns successfully', () => {
-      signIn('foobar', mockSession)
-        .then(equals({dataValues: {username: 'foobar', id: 123}}))
+  describe('signIn', () => {
+    it('returns successfully', async () => {
+      const user = await signIn('foobar', mockSession())
+      expect(user.dataValues).toEqual({username: 'foobar', id: 123})
     })
 
-    it('updates the session to include the `username` key', () => {
+    it('updates the session to include the `username` key', async () => {
       /**
        * NOTE: Javascript passes objects by shared reference. As a result, we can get side
        * effects like updating the contents of the session object.
@@ -67,24 +70,25 @@ describe('Authentication API', () => {
        * mutating the internals of the passed-in session object) in order to avoid side
        * effects.
        */
-      expect(mockSession['username']).toEqual(undefined)
-      signIn('foobar', mockSession)
-        .then(_ => expect(mockSession['username']).toEqual('foobar'))
+      const session = mockSession()
+      expect(session['username']).toEqual(undefined)
+      signIn('foobar', session)
+        .then(_ => expect(session['username']).toEqual('foobar'))
     })
 
-    it('returns an error when no username given', () => {
-      signIn(undefined, mockSession)
+    it('returns an error when no username given', async () => {
+      signIn(undefined, mockSession())
         .then(unexpectedSuccess)
         .catch(equals({message: 'You must provide a username'}))
     })
 
-    it('returns an error when the given username does not belong to an existing user', () => {
-      signIn('thisUsernameDoesntExist', mockSession)
+    it('returns an error when the given username does not belong to an existing user', async () => {
+      signIn('thisUsernameDoesntExist', mockSession())
         .then(unexpectedSuccess)
         .catch(equals({message: 'User with username \"thisUsernameDoesntExist\" does not exist'}))
     })
 
-    it('returns an error when there is no session', () => {
+    it('returns an error when there is no session', async () => {
       signIn('foobar', undefined)
         .then(unexpectedSuccess)
         .catch(equals({message: 'You must initialize the API with a session'}))
@@ -93,26 +97,26 @@ describe('Authentication API', () => {
 
   describe('signout', () => {
     it('returns successfully', async () => {
-      const session = {...mockSession, username: 'foobar'}
+      const session = {...mockSession(), username: 'foobar'}
       await signout(session)
       expect(session['username']).toEqual(undefined)
     })
   })
 
-  describe('getCurrentUser', () => {
+  describe('getCurrentUser', async () => {
     it('returns successfully', async () => {
-      const user = await getCurrentUser({...mockSession, username: 'foobar'})
+      const user = await getCurrentUser({...mockSession(), username: 'foobar'})
       expect(user.dataValues).toEqual({username: 'foobar', id: 123})
     })
 
     it('returns an error when no username is set on the session', async () => {
-      const user = await getCurrentUser(mockSession)
+      const user = await getCurrentUser(mockSession())
       expect(user).toEqual(new GuestInstance)
     })
 
     it('errors when username on the session does not belong to an existing user', async () => {
       try {
-        await getCurrentUser({...mockSession, username: 'thisUsernameDoesntExist'})
+        await getCurrentUser({...mockSession(), username: 'thisUsernameDoesntExist'})
       } catch (e) {
         const message = 'User with username "thisUsernameDoesntExist" does not exist'
         expect(e).toEqual({message})

@@ -9,7 +9,7 @@ export const initSession = (app: express.Application) => (
   }))
 )
 
-export const mockSession: Express.Session = {
+export const mockSession = (): Express.Session => ({
   id:         'xxx',
   regenerate: (_: any) => null,
   destroy:    (_: any) => null,
@@ -17,4 +17,4 @@ export const mockSession: Express.Session = {
   save:       (_: any) => null,
   touch:      (_: any) => null,
   cookie:     <Express.SessionCookie>{},
-}
+})
