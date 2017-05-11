@@ -24,7 +24,7 @@ class Posts extends React.Component<{postId: number}, IState> {
   }
 
   private Iteration = ({title, body, createdAt}: IIteration, k: number) => (
-    <div key={k} style={this.state.selected === k ? {backgroundColor: '#eee'} : {}}>
+    <div key={k} className={`pt-card ${this.state.selected === k && 'pt-elevation-0'}`}>
       <h1>
         {title}
       </h1>
@@ -33,9 +33,7 @@ class Posts extends React.Component<{postId: number}, IState> {
           {new Date(Date.parse(createdAt)).toLocaleString()}
         </i>
       </label>
-      <p>
-        {body}
-      </p>
+      {body && body.split(`\n`).map((s, k) => <p key={k}>{s}</p>)}
     </div>
   )
 
