@@ -29,8 +29,7 @@ const LayoutComponent = ({user, children}: ILayout) => (
     <nav style={{display: 'flow-root', marginBottom: '25px'}}>
       <Brand />
       <div className='pt-navbar-group pt-align-right'>
-        <NavBtn title='Counter' url={urls.counter} name='calculator' />
-        <NavBtn title='Posts'   url={urls.posts}   name='note' />
+        <NavBtn title='Posts' url={urls.posts} name='note' />
         <span className='pt-navbar-divider' />
         {user.username && <NavBtn title={user.username} url='/me'  name='user' />}
         {

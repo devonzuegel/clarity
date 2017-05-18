@@ -8,6 +8,7 @@ import {post, get, sendRequest} from '../../../../utils/api/responses'
 import {Field}        from '~/frontend/components/Field'
 import {ErrorMessage} from '~/frontend/components/ErrorMessage'
 import {IActions}     from '~/frontend/redux/actions/signIn'
+import {urls}         from '~/frontend/routes'
 
 import {updateUsername, setError, beginSubmit, endSubmit, removeError} from './reducers'
 import {IState}      from './IState'
@@ -54,7 +55,7 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
     this.props.actions.setUsername(this.state.username)
     this.setState(removeError)
     this.setState(endSubmit)
-    page.redirect('/counter')
+    page.redirect(urls.me)
   }
 
   private signupFailure = (error: {message: string}) => {
