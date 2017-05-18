@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import {get, sendRequest} from '../../../utils/api/responses'
 import {PostAttributes} from '../../server/db/models/post'
 import {urls} from '~/frontend/routes'
+import * as api from '~/frontend/api'
 
 
 interface IState {posts?: Object[]}
@@ -26,7 +26,7 @@ class Posts extends React.Component<{}, IState> {
 
    async componentWillMount () {
     try {
-      const posts: PostAttributes[] = await sendRequest(get('/api/posts'))
+      const posts = await api.getPosts()
       this.setState(updatePostsList(posts))
     } catch (e) {
       console.warn(e)

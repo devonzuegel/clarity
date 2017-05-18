@@ -8,6 +8,10 @@ export interface IterationAttributes {
   title:  string
 }
 
+export interface IterationSchema extends IterationAttributes {
+  createdAt: string
+}
+
 export interface IterationInstance extends Instance<IterationAttributes> {
   dataValues: IterationAttributes
 }

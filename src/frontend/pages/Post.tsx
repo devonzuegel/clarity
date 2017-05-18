@@ -1,18 +1,14 @@
 import * as React from 'react'
 
 import * as api from '~/frontend/api'
+import {IterationSchema} from '~/server/db/models/iteration'
 
-interface IIteration {
-  title: string
-  body?: string
-  createdAt: string
-}
 interface IState {
-  iterations?: IIteration[]
+  iterations?: IterationSchema[]
   selected?: number
 }
 
-const updatePostsList = (iterations: IIteration[]) => (_: IState) => ({
+const updatePostsList = (iterations: IterationSchema[]) => (_: IState) => ({
   iterations,
   selected: iterations.length - 1, // Last iteration
 })
@@ -23,7 +19,7 @@ class Posts extends React.Component<{postId: number}, IState> {
     selected:   undefined,
   }
 
-  private Iteration = ({title, body, createdAt}: IIteration, k: number) => (
+  private Iteration = ({title, body, createdAt}: IterationSchema, k: number) => (
     <div key={k} className={`pt-card ${this.state.selected === k && 'pt-elevation-0'}`}>
       <h1>
         {title}
@@ -39,7 +35,7 @@ class Posts extends React.Component<{postId: number}, IState> {
 
    async componentWillMount () {
     try {
-      const iterations: IIteration[] = await api.getIterations(this.props.postId)
+      const iterations: IterationSchema[] = await api.getIterations(this.props.postId)
       this.setState(updatePostsList(iterations))
     } catch (e) {
       console.warn(e)

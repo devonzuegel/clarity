@@ -1,13 +1,15 @@
 import * as React from 'react'
+
 import {IPerson} from '~/server/db/models/person'
 
-import {get, sendRequest} from '../../../../utils/api/responses'
-import {IActions} from '~/frontend/redux/actions/signIn'
+import * as api        from '~/frontend/api'
+import {IActions}      from '~/frontend/redux/actions/signIn'
 import LayoutComponent from '~/frontend/components/Layout'
+
 
 class Layout extends React.Component<{actions: IActions, user: IPerson}, {}> {
   componentWillMount () {
-    sendRequest(get('/api/session'))
+    api.getSession()
       .then((u: IPerson) => this.props.actions.setUsername(u.username))
   }
 

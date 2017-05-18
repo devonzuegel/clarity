@@ -1,6 +1,5 @@
 import * as page from 'page'
-
-import {post, sendRequest} from '../../../utils/api/responses'
+import * as api  from '~/frontend/api'
 
 
 export const urls = {
@@ -9,7 +8,7 @@ export const urls = {
 
 export const routes = () => {
   page('/signout', () => {
-    sendRequest(post('/api/signout'))
+    api.signout()
       .then (() => page.redirect('/signin'))
       .catch(() => page.redirect('/signin'))
   })
