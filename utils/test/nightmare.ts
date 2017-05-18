@@ -3,7 +3,7 @@ import config from './config'
 
 const nightmare = () => <Nightmare>new Nightmare({
   show: !config.ci,
-  waitTimeout: 1000,
+  waitTimeout: 10000,
 })
 
 export default nightmare

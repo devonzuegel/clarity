@@ -1,0 +1,17 @@
+import {connect} from 'react-redux'
+
+import {IPerson} from '~/server/db/models/person'
+
+import New from './component'
+
+
+type IState = {signInReducer: {user: IPerson}}
+type IProps = {username: string|null}
+
+const mapStateToProps = (state: IState): IProps =>
+  state.signInReducer.user
+
+const mapDispatchToProps = (_dispatch: any) =>
+  ({})
+
+export default connect(mapStateToProps, mapDispatchToProps)(New)

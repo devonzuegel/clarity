@@ -3,7 +3,6 @@ import * as React from 'react'
 import {PostAttributes} from '../../server/db/models/post'
 
 import * as api from '~/frontend/api'
-import Layout from '~/frontend/stories/Layout'
 
 interface IState {posts?: Object[]}
 
@@ -25,15 +24,13 @@ class Me extends React.Component<{}, IState> {
 
   render () {
     return (
-      <Layout>
-        <pre>
-          {
-            this.state.posts
-            ? JSON.stringify(this.state.posts, null, 2)
-            : 'Retrieving posts...'
-          }
-        </pre>
-      </Layout>
+      <pre>
+        {
+          this.state.posts
+          ? JSON.stringify(this.state.posts, null, 2)
+          : 'Retrieving posts...'
+        }
+      </pre>
     )
   }
 }

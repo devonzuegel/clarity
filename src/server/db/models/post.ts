@@ -4,9 +4,12 @@ import {IUserModel} from './user'
 
 export interface PostAttributes {
   userId:     number
-  id?:        number
   createdAt?: Date
   // NOTE: updatedAt is not part of the Post interface
+}
+
+export interface PostSchema extends PostAttributes {
+  id: number
 }
 
 export interface PostInstance extends Instance<PostAttributes> {

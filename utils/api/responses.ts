@@ -1,4 +1,6 @@
+import * as R     from 'ramda'
 import * as fetch from 'isomorphic-fetch'
+
 
 export const get = async (url: string) => {
   return fetch(url, {
@@ -34,3 +36,12 @@ export const sendRequest = async (request: Promise<Response>) => {
     }
   }
 }
+
+export const buildQuery = (v: {[k: string]: any}) =>
+  R.keys(v)
+    .filter((k) => v[k])
+    .reduce((soFar, k, i) => {
+      const delimeter = i === 0 ? '?' : '&'
+      const value     = v[k]
+      return soFar + delimeter + k + '=' + value
+    }, '')

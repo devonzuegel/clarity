@@ -1,13 +1,32 @@
 import * as React from 'react'
 
-import {PostAttributes} from '../../server/db/models/post'
+import {PostSchema} from '../../server/db/models/post'
+import {IterationSchema} from '../../server/db/models/iteration'
 import {urls} from '~/frontend/routes'
 import * as api from '~/frontend/api'
 
+interface IPost extends PostSchema {
+  iterations?: IterationSchema[]
+}
 
-interface IState {posts?: Object[]}
+interface IState {
+  posts?: IPost[]
+}
 
-const updatePostsList = (posts: PostAttributes[]) => (_: IState) => ({posts})
+const reducers = {
+  updatePostsList: (posts: PostSchema[]) => (_: IState) => ({
+    posts,
+  }),
+
+  addIterations: (iPost: number, iterations: IterationSchema[]) => (prevState: IState) => {
+    let posts = prevState.posts
+    if (!posts) {
+      return prevState
+    }
+    posts[iPost].iterations = iterations
+    return {posts}
+  },
+}
 
 const Post = ({id, ...otherProps}: {id: number}, k: number) => (
   <div key={k}>
@@ -24,10 +43,20 @@ const Post = ({id, ...otherProps}: {id: number}, k: number) => (
 class Posts extends React.Component<{}, IState> {
   state = {posts: undefined}
 
-   async componentWillMount () {
+  componentWillMount () {
+    this.retrieveData()
+  }
+
+  retrieveIterations = async (p: PostSchema, i: number) => {
+    const iterations: IterationSchema[] = await api.getIterations(p.id)
+    this.setState(reducers.addIterations(i, iterations))
+  }
+
+  async retrieveData () {
     try {
       const posts = await api.getPosts()
-      this.setState(updatePostsList(posts))
+      this.setState(reducers.updatePostsList(posts))
+      posts.map(this.retrieveIterations)
     } catch (e) {
       console.warn(e)
     }

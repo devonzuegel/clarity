@@ -31,6 +31,10 @@ declare module 'nightmare' {
     wait(fn: () => any, value: any, delay?: number): Nightmare;
     use(plugin: (nightmare: Nightmare) => void): Nightmare;
     run(cb?: (err: any, nightmare: Nightmare) => void): Nightmare;
+    cookies: any;
+    // {
+    //   get: ():
+    // };
 
     // Extract
     exists(selector: string): Nightmare;

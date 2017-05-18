@@ -91,8 +91,8 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
         }
 
         <Field
-          label      ='Hi! Who are you?'
-          placeholder='Username'
+          label      ='Username'
+          placeholder='Hi! Who are you?'
           value      ={this.state.username}
           onChange   ={this.updateUsername}
           id         ='signin-form__username'

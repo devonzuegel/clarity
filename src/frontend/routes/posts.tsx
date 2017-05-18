@@ -1,21 +1,21 @@
 import * as React from 'react'
 import * as page  from 'page'
 
-import Layout from '~/frontend/stories/Layout'
+import {renderWithLayout as layoutRender} from './utils'
 
-import PostPage  from '../pages/Post'
-import PostsPage from '../pages/Posts'
-import render    from '../render'
+import PostPage    from '~/frontend/pages/Post'
+import PostsPage   from '~/frontend/pages/Posts'
+import NewPostPage from '~/frontend/pages/Posts/New'
 
-const renderWithLayout = (component: JSX.Element) =>
-  render(<Layout>{component}</Layout>)
 
 export const urls = {
   post: (id: number) => `/posts/${id}`,
   posts:                `/posts`,
+  newPost:              `/posts/new`,
 }
 
 export const routes = () => {
-  page('/posts/:id', ({params}) => renderWithLayout(<PostPage postId={params.id} />))
-  page('/posts',     ()         => renderWithLayout(<PostsPage />))
+  page('/posts/new', ({_})      => layoutRender(<NewPostPage username='changeme' />))
+  page('/posts/:id', ({params}) => layoutRender(<PostPage postId={params.id} />))
+  page('/posts',     ()         => layoutRender(<PostsPage />))
 }

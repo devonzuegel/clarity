@@ -16,6 +16,7 @@ router.get('/', async (_: express.Request, res: express.Response) => {
 })
 
 router.post('/create', async (req: express.Request, res: express.Response) => {
+  console.log(JSON.stringify(req.query))
   try {
     const user = await userService.findByUsername(req.query.username)
     const post = await postService.create(user, {
