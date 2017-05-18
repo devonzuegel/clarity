@@ -7,7 +7,12 @@ import {IActions}      from '~/frontend/redux/actions/signIn'
 import LayoutComponent from '~/frontend/components/Layout'
 
 
-class Layout extends React.Component<{actions: IActions, user: IPerson}, {}> {
+interface ILayout {
+  actions: IActions
+  user: IPerson
+}
+
+class Layout extends React.Component<ILayout, {}> {
   componentWillMount () {
     api.getSession()
       .then((u: IPerson) => this.props.actions.setUsername(u.username))
