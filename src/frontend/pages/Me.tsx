@@ -1,21 +1,23 @@
 import * as React from 'react'
 
-import {get, sendRequest} from '../../../utils/api/responses'
 import {PostAttributes} from '../../server/db/models/post'
 
+import * as api from '~/frontend/api'
 import Layout from '~/frontend/stories/Layout'
 
 interface IState {posts?: Object[]}
 
-const updatePostsList = (posts: PostAttributes[]) => (_: IState) => ({posts})
+const reducers = {
+  updatePostsList: (posts: PostAttributes[]) => (_: IState) => ({posts}),
+}
 
 class Me extends React.Component<{}, IState> {
   state = {posts: undefined}
 
    async componentWillMount () {
     try {
-      const posts: PostAttributes[] = await sendRequest(get('/api/posts'))
-      this.setState(updatePostsList(posts))
+      const posts: PostAttributes[] = await api.getPosts()
+      this.setState(reducers.updatePostsList(posts))
     } catch (e) {
       console.warn(e)
     }

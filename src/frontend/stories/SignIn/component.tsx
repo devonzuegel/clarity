@@ -28,7 +28,7 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
   }
 
   componentWillMount () {
-    api.getSession
+    api.getSession()
       .then((u: IPerson) => this.props.actions.setUsername(u.username))
   }
 

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import {get, sendRequest} from '../../../utils/api/responses'
+import * as api from '~/frontend/api'
 
 interface IIteration {
   title: string
@@ -39,7 +39,7 @@ class Posts extends React.Component<{postId: number}, IState> {
 
    async componentWillMount () {
     try {
-      const iterations: IIteration[] = await sendRequest(get(`/api/posts/${this.props.postId}`))
+      const iterations: IIteration[] = await api.getIterations(this.props.postId)
       this.setState(updatePostsList(iterations))
     } catch (e) {
       console.warn(e)
