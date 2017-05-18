@@ -1,16 +1,17 @@
-import * as R     from 'ramda'
-import * as React from 'react'
-import {Button, Intent, Spinner} from '@blueprintjs/core'
-import * as page from 'page'
+import * as R         from 'ramda'
+import * as React     from 'react'
+import * as Blueprint from '@blueprintjs/core'
+import * as page      from 'page'
+
 import {IPerson} from '~/server/db/models/person'
-import {post, get, sendRequest} from '../../../../utils/api/responses'
 
 import {Field}        from '~/frontend/components/Field'
 import {ErrorMessage} from '~/frontend/components/ErrorMessage'
 import {IActions}     from '~/frontend/redux/actions/signIn'
 import {urls}         from '~/frontend/routes'
+import * as api       from '~/frontend/api'
 
-import {updateUsername, setError, beginSubmit, endSubmit, removeError} from './reducers'
+import * as reducers from './reducers'
 import {IState}      from './IState'
 import {IConstraint} from './IConstraint'
 
@@ -23,11 +24,11 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
   }
 
   private updateUsername = (e: React.FormEvent<HTMLInputElement>) => {
-    this.setState(updateUsername(e.currentTarget.value))
+    this.setState(reducers.updateUsername(e.currentTarget.value))
   }
 
   componentWillMount () {
-    sendRequest(get('/api/session'))
+    api.getSession
       .then((u: IPerson) => this.props.actions.setUsername(u.username))
   }
 
@@ -44,7 +45,7 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
     this.constraints.map((constraint: IConstraint) => {
       const value = constraint.value()
       if (!constraint.isValid(value)) {
-        this.setState(setError(constraint.errorMsg))
+        this.setState(reducers.setError(constraint.errorMsg))
         formIsValid = false
       }
     })
@@ -53,23 +54,23 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
 
   private signupSuccess = (_: IPerson) => {
     this.props.actions.setUsername(this.state.username)
-    this.setState(removeError)
-    this.setState(endSubmit)
+    this.setState(reducers.removeError)
+    this.setState(reducers.endSubmit)
     page.redirect(urls.me)
   }
 
   private signupFailure = (error: {message: string}) => {
-    this.setState(setError(error.message || 'Sorry, there has been a technical issue'))
-    this.setState(endSubmit)
+    this.setState(reducers.setError(error.message || 'Sorry, there has been a technical issue'))
+    this.setState(reducers.endSubmit)
   }
 
   private submit = (action: 'signup'|'signin') => () => {
-    this.setState(beginSubmit(action))
+    this.setState(reducers.beginSubmit(action))
     setTimeout(() => {
       if (!this.validate()) {
-        return this.setState(endSubmit)
+        return this.setState(reducers.endSubmit)
       }
-      sendRequest(post(`/api/${action}?username=${this.state.username}`))
+      api.signupOrSignin(action, this.state.username)
         .then(this.signupSuccess)
         .catch(this.signupFailure)
     }, 500)
@@ -97,8 +98,8 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
           id         ='signin-form__username'
         />
 
-        <Button
-          intent  ={Intent.PRIMARY}
+        <Blueprint.Button
+          intent  ={Blueprint.Intent.PRIMARY}
           onClick ={this.submit('signup')}
           disabled={!!this.state.submitting}
           id      ='signin-form__signup-button'
@@ -106,12 +107,12 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
          >
           {
             this.state.submitting === 'signup'
-            ? <Spinner className='pt-small' />
+            ? <Blueprint.Spinner className='pt-small' />
             : 'Sign up'
           }
-        </Button>
-        <Button
-          intent  ={Intent.NONE}
+        </Blueprint.Button>
+        <Blueprint.Button
+          intent  ={Blueprint.Intent.NONE}
           onClick ={this.submit('signin')}
           disabled={!!this.state.submitting}
           id      ='signin-form__signin-button'
@@ -119,10 +120,10 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
          >
           {
             this.state.submitting === 'signin'
-            ? <Spinner className='pt-small' />
+            ? <Blueprint.Spinner className='pt-small' />
             : 'Sign in'
           }
-        </Button>
+        </Blueprint.Button>
       </div>
     )
   }
