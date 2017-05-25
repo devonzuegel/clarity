@@ -3,6 +3,9 @@ import {UserAttributes, UserInstance} from '../db/models/user'
 export class MockUserService {
   findByUsername (username: string): Promise<UserInstance> {
     return new Promise<UserInstance>((resolve: Function, reject: Function) => {
+      if (!username) {
+        reject({message: `Please provide a username`})
+      }
       if (username == 'thisUsernameDoesntExist') {
         reject({message: `User with username "${username}" does not exist`})
       }

@@ -2,8 +2,12 @@ import {PostInstance} from '../db/models/post'
 import {UserInstance} from '../db/models/user'
 import {IterationInstance} from '../db/models/iteration'
 
-
 export class MockPostService {
+  public mockPost = {
+    postId: 9,
+    title:  'aslkdfj',
+  }
+
   create (user: UserInstance, _iteration: {body?: string, title: string}) {
     return new Promise<PostInstance>((resolve, _) => {
       const mock = {dataValues: {userId: user.get('id')}}
@@ -38,7 +42,8 @@ export class MockPostService {
 
   iterate (postId: number, data: {body?: string, title: string}) {
     return new Promise<IterationInstance>(async (resolve, _) => {
-      resolve(<IterationInstance>{dataValues: {postId, ...data}})
+      const mock = {dataValues: {...this.mockPost, ...data, postId}}
+      resolve(<IterationInstance>mock)
     })
   }
 }

@@ -1,6 +1,8 @@
-import * as express from 'express'
+import * as express   from 'express'
 import * as supertest from 'supertest'
+
 import {initSession} from '../../../utils/test/session'
+
 import {MockUserService} from '../service/user.mock'
 import {MockPostService} from '../service/post.mock'
 
@@ -12,6 +14,7 @@ jest.mock('../service/post', () => ({
 }))
 
 import PostsRouter from './posts'
+
 
 const app = express()
 initSession(app)
@@ -28,10 +31,16 @@ describe('Posts HTTP', () => {
       ])
     })
   })
+
   describe('/api/posts/create', () => {
     it('returns a created post', async () => {
       const res = await supertest(app).post('/api/posts/create?username=baz')
       expect(res.body.dataValues).toEqual({userId: 123})
+    })
+
+    xit('returns a useful error message when not provided a username', async () => {
+      const res = await supertest(app).post('/api/posts/create')
+      expect(res.body.dataValues).toEqual({message: 'Please provide a username'})
     })
   })
 
@@ -50,6 +59,19 @@ describe('Posts HTTP', () => {
 
     it(`error message when id doesn't correspond to a post`, async () => {
       expect(await getIterations(nonexistentId)).toEqual({message: 'Cannot find post with id 2'})
+    })
+  })
+
+  describe('/api/posts/:id/iterate', () => {
+    const postId = 1
+    const iterate = async (id: number) =>
+      (await supertest(app).post(`/api/posts/${id}/iterate`)).body
+
+    fit(`creates a new iteration`, async () => {
+      expect(await iterate(postId)).toEqual({dataValues: {
+        ...new MockPostService().mockPost,
+        postId,
+      }})
     })
   })
 })
