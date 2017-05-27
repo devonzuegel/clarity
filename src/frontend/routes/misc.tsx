@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as page  from 'page'
 
 import MePage             from '../pages/Me'
+import NotFoundPage       from '../pages/NotFound'
 import SignInPage         from '../pages/SignIn'
 import {renderWithLayout} from './utils'
 
@@ -18,9 +19,9 @@ export const urls = {
 
 export const routes = () => {
   const pages: IPage[] = [
-    { href: '/signin', content: <SignInPage /> },
-    { href: '/me',     content: <MePage />     },
-    { href: '*',       content: <h2>404</h2>   },
+    { href: '/signin', content: <SignInPage />   },
+    { href: '/me',     content: <MePage />       },
+    { href: '*',       content: <NotFoundPage /> },
   ]
   pages.map(({href, content}: IPage) => page(href, () => renderWithLayout(content)))
 }

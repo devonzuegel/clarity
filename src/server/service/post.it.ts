@@ -50,6 +50,10 @@ describe('Posts Service', () => {
       expect(iterations[0].getDataValue('title')).toEqual(title)
       expect(iterations[0].getDataValue('body')).toEqual(body)
     })
+    it('returns an empty a post with postId does not exist', async () => {
+      const iterations = await postService.iterations(123)
+      expect(iterations).toEqual([])
+    })
   })
 
   describe('#iterate', () => {

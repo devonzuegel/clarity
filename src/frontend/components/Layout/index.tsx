@@ -29,8 +29,8 @@ const LayoutComponent = ({user, children}: ILayout) => (
     <nav style={{display: 'flow-root', marginBottom: '25px'}}>
       <Brand />
       <div className='pt-navbar-group pt-align-right'>
-        <NavBtn title='Posts'    url={urls.posts}   name='note' />
-        <NavBtn title='New post' url={urls.newPost} name='plus' />
+        <NavBtn title='Posts'    url={urls.posts}   name='document' />
+        <NavBtn title='New post' url={urls.newPost} name='plus'     />
         <span className='pt-navbar-divider' />
         {
           user.username &&
@@ -38,8 +38,8 @@ const LayoutComponent = ({user, children}: ILayout) => (
         }
         {
           user.username
-          ? <NavBtn title='Sign out' url={urls.signout} name='sign-out' />
-          : <NavBtn title='Sign in'  url={urls.signin}  name='sign-in'  />
+          ? <NavBtn title='Sign out' url={urls.signout} name='log-out' />
+          : <NavBtn title='Sign in'  url={urls.signin}  name='log-in'  />
         }
       </div>
     </nav>

@@ -46,7 +46,7 @@ export class PostService extends MockPostService {
   }
 
   iterations (postId: number) {
-    return new Promise<IterationInstance[]>(async (resolve, reject) => {
+    return new Promise<IterationInstance[]>((resolve, reject) => {
       return models.Iteration.findAll({where: {postId}})
         .then(resolve)
         .catch(reject)
@@ -54,7 +54,7 @@ export class PostService extends MockPostService {
   }
 
   iterate (postId: number, data: IIteration) {
-    return new Promise<IterationInstance>(async (resolve, reject) => {
+    return new Promise<IterationInstance>((resolve, reject) => {
       return models.Iteration.create({postId, ...data})
         .then(resolve)
         .catch(reject)
@@ -62,7 +62,7 @@ export class PostService extends MockPostService {
   }
 
   comments (iterationId: number) {
-    return new Promise<IterationInstance[]>(async (resolve, _reject) => {
+    return new Promise<IterationInstance[]>((resolve, _reject) => {
       iterationId
       resolve([])
     })

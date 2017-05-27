@@ -22,9 +22,9 @@ export const getPosts = (): Promise<PostSchema[]> =>
 export const getIterations = (postId: number): Promise<IterationSchema[]> =>
   sendRequest(get(`/api/posts/${postId}`))
 
-export const iterate = ({postId, title, body}: IterationAttributes): Promise<IterationSchema> => {
-  const query = buildQuery({title, body})
-  return sendRequest(get(`/api/posts/${postId}/iterate${query}`))
+export const iterate = (postId: number, i: Partial<IterationAttributes>): Promise<IterationSchema> => {
+  const query = buildQuery(i)
+  return sendRequest(post(`/api/posts/${postId}/iterate${query}`))
 }
 
 type IPostDetails = {

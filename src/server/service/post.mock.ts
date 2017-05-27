@@ -2,6 +2,7 @@ import {PostInstance} from '../db/models/post'
 import {UserInstance} from '../db/models/user'
 import {IterationInstance} from '../db/models/iteration'
 
+
 export class MockPostService {
   public mockPost = {
     postId: 9,

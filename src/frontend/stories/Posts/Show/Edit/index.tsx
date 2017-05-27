@@ -1,9 +1,10 @@
 import * as React     from 'react'
 import * as Blueprint from '@blueprintjs/core'
-import {Field}        from '~/frontend/components/Field'
 
-import * as api from '~/frontend/api'
 
+import * as api          from '~/frontend/api'
+import {Field}           from '~/frontend/components/Field'
+import {IterationSchema} from '~/server/db/models/iteration'
 
 interface IState {title: string, body: string}
 
@@ -18,15 +19,22 @@ export const reducers = {
   }),
 }
 
-export default class New extends React.Component<{username: string}, IState> {
-  state = {title: '', body: ''}
+type IEditProps = {
+  iteration: IterationSchema,
+  addIteration: (i: IterationSchema) => void,
+}
+
+class Edit extends React.Component<IEditProps, IState> {
+  state = {
+    title: this.props.iteration.title,
+    body:  this.props.iteration.body || '',
+  }
 
   submit = async () => {
     try {
-      await api.newPost({
-        ...this.state,
-        username: this.props.username,
-      })
+      const newIteration = await api.iterate(this.props.iteration.postId, this.state)
+      console.log(newIteration)
+      this.props.addIteration(newIteration)
     } catch (e) {
       console.error(e)
     }
@@ -42,7 +50,7 @@ export default class New extends React.Component<{username: string}, IState> {
 
   render () {
     return (
-      <div>
+      <div className='pt-card'>
         <Field
           label   =''
           value   ={this.state.title}
@@ -62,9 +70,12 @@ export default class New extends React.Component<{username: string}, IState> {
           id      ='post--new__create-button'
           style   ={{width: '100px', marginRight: '12px'}}
          >
-          Create
+          Revise
         </Blueprint.Button>
       </div>
     )
   }
 }
+
+
+export default Edit
