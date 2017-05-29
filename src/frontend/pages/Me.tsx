@@ -1,36 +1,22 @@
 import * as React from 'react'
 
-import {PostAttributes} from '../../server/db/models/post'
+import MarkdownEditor from '~/frontend/components/MarkdownEditor'
 
-import * as api from '~/frontend/api'
-
-interface IState {posts?: Object[]}
-
-const reducers = {
-  updatePostsList: (posts: PostAttributes[]) => (_: IState) => ({posts}),
-}
-
-class Me extends React.Component<{}, IState> {
-  state = {posts: undefined}
-
-   async componentWillMount () {
-    try {
-      const posts: PostAttributes[] = await api.getPosts()
-      this.setState(reducers.updatePostsList(posts))
-    } catch (e) {
-      console.warn(e)
-    }
-  }
+class Me extends React.Component<{}, {text: string}> {
+  initialState = {text: 'hello'}
+  state        = this.initialState
 
   render () {
     return (
-      <pre>
-        {
-          this.state.posts
-          ? JSON.stringify(this.state.posts, null, 2)
-          : 'Retrieving posts...'
-        }
-      </pre>
+      <div style={{height: '20%'}}>
+        <pre>
+          {JSON.stringify(this.state, null, 2)}
+        </pre>
+        <MarkdownEditor
+          options={{initialValue: this.initialState.text}}
+          onChange={(text: string) => this.setState({text})}
+        />
+      </div>
     )
   }
 }

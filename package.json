@@ -39,6 +39,7 @@
     "react-router": "^4.0.0",
     "react-router-redux": "^4.0.8",
     "sequelize": "^3.30.4",
+    "simplemde": "latest",
     "source-map-support": "^0.4.14",
     "webpack": "^2.3.3",
     "webpack-merge": "^4.1.0"
