@@ -33,7 +33,6 @@ class Edit extends React.Component<IEditProps, IState> {
   submit = async () => {
     try {
       const newIteration = await api.iterate(this.props.iteration.postId, this.state)
-      console.log(newIteration)
       this.props.addIteration(newIteration)
     } catch (e) {
       console.error(e)
