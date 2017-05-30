@@ -153,7 +153,7 @@ module.exports = {
     host:     process.env.DB_HOST,
     port:     process.env.DB_PORT,
     dialect:  'postgres',
-    logging:  process.env.NODE_ENV !== 'test' && console.log,
+    logging:  process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'ci' && console.log,
     timezone: '+00:00',
   }
 }
@@ -388,11 +388,18 @@ exports.listen = function (app, _a) {
 "use strict";
 
 
+var __assign = this && this.__assign || Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.runHotMiddleware = function (app) {
     var webpack = __webpack_require__(12);
     var webpackConfig = __webpack_require__(35).default;
-    var webpackCompiler = webpack(webpackConfig);
+    var webpackCompiler = webpack(__assign({}, webpackConfig, { entry: './src/frontend/main.tsx' }));
     app.use(__webpack_require__(48)(webpackCompiler, {
         publicPath: webpackConfig.output.publicPath,
         stats: { colors: true },
