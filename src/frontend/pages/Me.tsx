@@ -8,7 +8,7 @@ class Me extends React.Component<{}, {text: string}> {
 
   render () {
     return (
-      <div style={{height: '20%'}}>
+      <div>
         <pre>
           {JSON.stringify(this.state, null, 2)}
         </pre>

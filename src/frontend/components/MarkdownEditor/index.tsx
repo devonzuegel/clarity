@@ -72,6 +72,10 @@ const Dependencies = () => (
   <div>
     <style>
       {`
+        .CodeMirror {
+          max-height: 400px !important;
+
+        }
         .CodeMirror-line {
           box-shadow: none;
         }

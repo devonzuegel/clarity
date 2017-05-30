@@ -1,9 +1,9 @@
 import * as React     from 'react'
 import * as Blueprint from '@blueprintjs/core'
 
-
-import {Field}     from '~/frontend/components/Field'
-import {dasherize} from '~/../utils/test/string'
+import MarkdownEditor from '~/frontend/components/MarkdownEditor'
+import {Field}        from '~/frontend/components/Field'
+import {dasherize}    from '~/../utils/test/string'
 
 import * as reducers from './reducers'
 
@@ -33,19 +33,17 @@ class Form extends React.Component<IFormProps, reducers.IState> {
   render () {
     const formId = `post-form--${dasherize(this.props.buttonText)}`
     return (
-      <div className='pt-card' id={formId}>
+      <div className='' id={formId}>
         <Field
-          label   =''
-          value   ={this.state.title}
-          onChange={this.updateTitle}
-          id      ={`${formId}__title`}
+          label      =''
+          placeholder='Title'
+          value      ={this.state.title}
+          onChange   ={this.updateTitle}
+          id         ={`${formId}__title`}
         />
-        <Blueprint.EditableText
-          multiline
-          value   ={this.state.body}
+        <MarkdownEditor
+          options ={{initialValue: this.props.iteration.body, placeholder: 'Start writing!'}}
           onChange={this.updateBody}
-          minLines={3}
-          maxLines={6}
         />
         <Blueprint.Button
           intent  ={Blueprint.Intent.PRIMARY}
