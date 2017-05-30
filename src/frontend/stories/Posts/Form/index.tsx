@@ -2,19 +2,18 @@ import * as React     from 'react'
 import * as Blueprint from '@blueprintjs/core'
 
 
-import {Field}           from '~/frontend/components/Field'
-import {IterationSchema} from '~/server/db/models/iteration'
+import {Field} from '~/frontend/components/Field'
 
 import * as reducers from './reducers'
 
 type IFormProps = {
-  iteration: IterationSchema,
+  iteration: {title?: string, body?: string},
   onSubmit:  (i: reducers.IState) => void,
 }
 
 class Form extends React.Component<IFormProps, reducers.IState> {
   state = {
-    title: this.props.iteration.title,
+    title: this.props.iteration.title || '',
     body:  this.props.iteration.body || '',
   }
 
