@@ -2,7 +2,8 @@ import * as React     from 'react'
 import * as Blueprint from '@blueprintjs/core'
 
 
-import {Field} from '~/frontend/components/Field'
+import {Field}     from '~/frontend/components/Field'
+import {dasherize} from '~/../utils/test/string'
 
 import * as reducers from './reducers'
 
@@ -30,13 +31,14 @@ class Form extends React.Component<IFormProps, reducers.IState> {
   }
 
   render () {
+    const formId = `post-form--${dasherize(this.props.buttonText)}`
     return (
-      <div className='pt-card'>
+      <div className='pt-card' id={formId}>
         <Field
           label   =''
           value   ={this.state.title}
           onChange={this.updateTitle}
-          id      ='post--new__title'
+          id      ={`${formId}__title`}
         />
         <Blueprint.EditableText
           multiline
@@ -48,7 +50,7 @@ class Form extends React.Component<IFormProps, reducers.IState> {
         <Blueprint.Button
           intent  ={Blueprint.Intent.PRIMARY}
           onClick ={this.submit}
-          id      ='post--new__create-button'  // TODO: rename
+          id      ={`${formId}__create-button`}
           style   ={{width: '100px', marginRight: '12px'}}
          >
           {this.props.buttonText}
