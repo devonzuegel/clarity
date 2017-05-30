@@ -27,7 +27,7 @@ module.exports = {
       selenium_host: 'localhost',
       silent:        true,
       screenshots: {
-        enabled: config.ci,
+        enabled: false, // !config.ci,
         path: 'test/functional/screenshots'
       },
       'desiredCapabilities': {

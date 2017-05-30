@@ -37,6 +37,7 @@ const tasks = {
   'test:ci': () => {
     lint()
     runCmd('NODE_ENV=ci jest')
+    runCmd('NODE_ENV=ci nightwatch --config test/nightwatch.js')
   },
 
   'test:watch': () => {
@@ -45,7 +46,8 @@ const tasks = {
 
   'test': () => {
     lint()
-    runCmd('NODE_ENV=test jest')
+    runCmd('NODE_ENV=test jest --coverage')
+    runCmd('NODE_ENV=test nightwatch --config test/nightwatch.js')
   },
 }
 
