@@ -4,6 +4,7 @@ import {IterationSchema} from '~/server/db/models/iteration'
 
 
 type IItemProps = {
+  id:            string
   children?:     any,
   isSelected:    Boolean,
   onClick:       () => void,
@@ -13,6 +14,7 @@ type IItemProps = {
 
 const Item = (props: IItemProps) => (
   <button
+    id          ={props.id}
     className   ={`pt-button ${props.isSelected ? 'pt-active' : ''}`}
     onClick     ={props.onClick}
     onMouseEnter={props.onMouseEnter}
@@ -39,6 +41,7 @@ const Timeline = (props: ITimelineProps) => (
       props.iterations.length &&
       props.iterations.map((_: IterationSchema, k: number) => (
         <Item
+          id          ={`iteration-${k}`}
           onClick     ={() => props.select(k)}
           onMouseEnter={() => props.select(k)}
           isSelected  ={props.isSelected(k)}
@@ -50,6 +53,7 @@ const Timeline = (props: ITimelineProps) => (
 
     }
     <Item
+      id        ='posts--show--iterate-btn'
       onClick   ={props.startRevision}
       isSelected={props.isSelected(props.iterations.length)}
       key       ={props.iterations.length}

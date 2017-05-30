@@ -5,7 +5,7 @@ import {IterationSchema} from '~/server/db/models/iteration'
 
 const Show = (iteration: IterationSchema) => (
   <div className='pt-card'>
-    <h1>
+    <h1 id='iteration-title'>
       {iteration.title}
     </h1>
 
@@ -15,7 +15,9 @@ const Show = (iteration: IterationSchema) => (
       </i>
     </label>
 
-    {iteration.body && iteration.body.split(`\n`).map((s, k) => <p key={k}>{s}</p>)}
+    <div id='iteration-body'>
+      {iteration.body && iteration.body.split(`\n`).map((s, k) => <p key={k}>{s}</p>)}
+    </div>
   </div>
 )
 

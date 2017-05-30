@@ -1,9 +1,10 @@
 import * as React from 'react'
 
-import {PostSchema} from '../../server/db/models/post'
-import {IterationSchema} from '../../server/db/models/iteration'
-import {urls} from '~/frontend/routes'
-import * as api from '~/frontend/api'
+import * as U            from '~/../utils/date'
+import {PostSchema}      from '~/server/db/models/post'
+import {IterationSchema} from '~/server/db/models/iteration'
+import {urls}            from '~/frontend/routes'
+import * as api          from '~/frontend/api'
 
 interface IPost extends PostSchema {
   iterations?: IterationSchema[]
@@ -28,17 +29,26 @@ const reducers = {
   },
 }
 
-const Post = ({id, ...otherProps}: {id: number}, k: number) => (
-  <div key={k}>
-    {id !== 0 && <br />}
-    <a href={urls.post(id)}>
-      Link to post #{id}
-    </a>
-    <pre style={{fontSize: '0.7em'}}>
-      {JSON.stringify(otherProps, null, 2)}
-    </pre>
-  </div>
-)
+const Post = ({id, iterations}: {id: number, iterations: {title: string, createdAt: string}[]}, k: number) => {
+  if (!iterations) {
+    return null
+  }
+  const lastIteration = iterations[iterations.length - 1]
+  return (
+    <div key={k}>
+      {id !== 0 && <br />}
+      <h4 className='post-list--post-title'>
+        <a href={urls.post(id)}>
+          {lastIteration.title}
+        </a>
+      </h4>
+      <label className='pt-text-muted'>
+        {U.formatDateStr(lastIteration.createdAt)}
+      </label>
+      <br />
+    </div>
+  )
+}
 
 class Posts extends React.Component<{}, IState> {
   state = {posts: undefined}
@@ -64,7 +74,7 @@ class Posts extends React.Component<{}, IState> {
 
   render () {
     return (
-      <div>
+      <div id='posts-list'>
         <h3>
           All posts
         </h3>
