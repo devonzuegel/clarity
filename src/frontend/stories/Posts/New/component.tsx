@@ -15,7 +15,13 @@ const New = ({username}: INewProps) => {
       console.error(e)
     }
   }
-  return <Form iteration={{}} onSubmit={onSubmit} />
+  return (
+    <Form
+      iteration ={{}}
+      onSubmit  ={onSubmit}
+      buttonText='Create'
+    />
+  )
 }
 
 export default New

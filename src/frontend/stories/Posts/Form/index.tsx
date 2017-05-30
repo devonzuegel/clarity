@@ -7,8 +7,9 @@ import {Field} from '~/frontend/components/Field'
 import * as reducers from './reducers'
 
 type IFormProps = {
-  iteration: {title?: string, body?: string},
-  onSubmit:  (i: reducers.IState) => void,
+  iteration:  {title?: string, body?: string},
+  onSubmit:   (i: reducers.IState) => void,
+  buttonText: string,
 }
 
 class Form extends React.Component<IFormProps, reducers.IState> {
@@ -49,7 +50,7 @@ class Form extends React.Component<IFormProps, reducers.IState> {
           id      ='post--new__create-button'  // TODO: rename
           style   ={{width: '100px', marginRight: '12px'}}
          >
-          Revise
+          {this.props.buttonText}
         </Blueprint.Button>
       </div>
     )

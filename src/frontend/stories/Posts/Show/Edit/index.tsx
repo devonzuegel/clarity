@@ -20,7 +20,13 @@ const Edit = (props: IEditProps) => {
       console.error(e)
     }
   }
-  return <Form iteration={props.iteration} onSubmit={onSubmit} />
+  return (
+    <Form
+      iteration ={props.iteration}
+      onSubmit  ={onSubmit}
+      buttonText='Revise'
+    />
+  )
 }
 
 export default Edit
