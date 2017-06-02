@@ -13,7 +13,7 @@ export const get = async (url: string) => {
   })
 }
 
-export const post = async (url: string) => {
+export const post = async (url: string, data?: Object) => {
   return fetch(url, {
     method: 'POST',
     credentials: 'same-origin',
@@ -21,6 +21,7 @@ export const post = async (url: string) => {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
+    body: JSON.stringify(data || {}),
   })
 }
 

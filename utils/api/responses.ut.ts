@@ -1,6 +1,11 @@
-import {buildQuery} from './responses'
+import {
+  // post,
+  // sendRequest,
+  buildQuery,
+} from './responses'
 
-describe('buildQuery', () => {
+
+xdescribe('buildQuery', () => {
   it('builds a query', () => {
     const values   = {a: 123, b: 'mystring'}
     const expected = '?a=123&b=mystring'
@@ -19,4 +24,3 @@ describe('buildQuery', () => {
     expect(buildQuery(values)).toEqual(expected)
   })
 })
-

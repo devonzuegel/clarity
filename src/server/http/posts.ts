@@ -17,10 +17,10 @@ router.get('/', async (_: express.Request, res: express.Response) => {
 
 router.post('/create', async (req: express.Request, res: express.Response) => {
   try {
-    const user = await userService.findByUsername(req.query.username)
+    const user = await userService.findByUsername(req.body.username)
     const post = await postService.create(user, {
-      title: req.query.title,
-      body:  req.query.body,
+      title: req.body.title,
+      body:  req.body.body,
     })
     res.status(200).json(post)
   } catch (e) {
@@ -40,7 +40,7 @@ router.get('/:id', async (req: express.Request, res: express.Response) => {
 router.post('/:id/iterate', async (req: express.Request, res: express.Response) => {
   try {
     const postId    = Number(req.params.id)
-    const iteration = await postService.iterate(postId, req.query)
+    const iteration = await postService.iterate(postId, req.body)
     res.status(200).json(iteration)
   } catch (e) {
     jsonError(res)(e)

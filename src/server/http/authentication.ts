@@ -6,13 +6,13 @@ import {signup, signIn, signout, getCurrentUser} from '../api/authentication'
 export default (app: express.Application) => {
 
   app.post('/api/signup', (req: express.Request, res: express.Response) => {
-    signup(req.query.username, req.session)
+    signup(req.body.username, req.session)
       .then(jsonSuccess(res))
       .catch(jsonError(res))
   })
 
   app.post('/api/signin', (req: express.Request, res: express.Response) => {
-    signIn(req.query.username, req.session)
+    signIn(req.body.username, req.session)
       .then(jsonSuccess(res))
       .catch(jsonError(res))
   })

@@ -38,7 +38,7 @@ describe('Posts HTTP', () => {
       expect(res.body.dataValues).toEqual({userId: 123})
     })
 
-    xit('returns a useful error message when not provided a username', async () => {
+    it('returns a useful error message when not provided a username', async () => {
       const res = await supertest(app).post('/api/posts/create')
       expect(res.body.dataValues).toEqual({message: 'Please provide a username'})
     })

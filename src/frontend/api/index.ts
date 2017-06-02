@@ -1,4 +1,4 @@
-import {post, get, sendRequest, buildQuery}   from '../../../utils/api/responses'
+import {post, get, sendRequest}               from '~/../utils/api/responses'
 import {PostSchema}                           from '~/server/db/models/post'
 import {IterationSchema, IterationAttributes} from '~/server/db/models/iteration'
 
@@ -9,7 +9,7 @@ export const getSession = () =>
   sendRequest(get('/api/session'))
 
 export const signupOrSignin = (action: 'signup'|'signin', username: string) =>
-  sendRequest(post(`/api/${action}?username=${username}`))
+  sendRequest(post(`/api/${action}`, {username}))
 
 export const signout = () =>
   sendRequest(post('/api/signout'))
@@ -23,8 +23,7 @@ export const getIterations = (postId: number): Promise<IterationSchema[]> =>
   sendRequest(get(`/api/posts/${postId}`))
 
 export const iterate = (postId: number, i: Partial<IterationAttributes>): Promise<IterationSchema> => {
-  const query = buildQuery(i)
-  return sendRequest(post(`/api/posts/${postId}/iterate${query}`))
+  return sendRequest(post(`/api/posts/${postId}/iterate`, i))
 }
 
 type IPostDetails = {
@@ -34,6 +33,5 @@ type IPostDetails = {
 }
 
 export const newPost = (details: IPostDetails): Promise<IterationSchema> => {
-  const query = buildQuery(details)
-  return sendRequest(post(`/api/posts/create${query}`))
+  return sendRequest(post(`/api/posts/create`, details))
 }
