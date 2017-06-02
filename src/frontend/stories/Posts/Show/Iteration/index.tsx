@@ -10,14 +10,12 @@ const Show = (iteration: IterationSchema) => (
       {iteration.title}
     </h1>
 
-    <label>
-      <i>
-        {
-          iteration.createdAt &&
-          U.formatDateStr(iteration.createdAt)
-        }
-      </i>
-    </label>
+    <h6>
+      {
+        iteration.createdAt &&
+        U.formatDateStr(iteration.createdAt)
+      }
+    </h6>
 
     <div id='iteration-body'>
       {

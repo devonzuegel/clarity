@@ -1,21 +1,11 @@
 import * as React from 'react'
 
-import MarkdownEditor from '~/frontend/components/MarkdownEditor'
 
-class Me extends React.Component<{}, {text: string}> {
-  initialState = {text: 'hello'}
-  state        = this.initialState
-
+class Me extends React.Component<{}, {}> {
   render () {
     return (
       <div>
-        <pre>
-          {JSON.stringify(this.state, null, 2)}
-        </pre>
-        <MarkdownEditor
-          options={{initialValue: this.initialState.text}}
-          onChange={(text: string) => this.setState({text})}
-        />
+        Nothing to see here!
       </div>
     )
   }
