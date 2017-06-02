@@ -1,22 +1,35 @@
-import * as React from 'react'
+import * as React  from 'react'
+import * as marked from 'marked'
 
+import * as U            from '~/../utils/date.ts'
 import {IterationSchema} from '~/server/db/models/iteration'
 
-
 const Show = (iteration: IterationSchema) => (
-  <div className='pt-card'>
+  <div>
     <h1 id='iteration-title'>
       {iteration.title}
     </h1>
 
     <label>
       <i>
-        {new Date(Date.parse(iteration.createdAt)).toLocaleString()}
+        {
+          iteration.createdAt &&
+          U.formatDateStr(iteration.createdAt)
+        }
       </i>
     </label>
 
     <div id='iteration-body'>
-      {iteration.body && iteration.body.split(`\n`).map((s, k) => <p key={k}>{s}</p>)}
+      {
+        iteration.body &&
+        <br />
+      }
+      {
+        iteration.body &&
+        <div dangerouslySetInnerHTML={{
+          __html: marked(iteration.body),
+        }} />
+      }
     </div>
   </div>
 )
