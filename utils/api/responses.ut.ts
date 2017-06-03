@@ -1,11 +1,7 @@
-import {
-  // post,
-  // sendRequest,
-  buildQuery,
-} from './responses'
+import {buildQuery} from './responses'
 
 
-xdescribe('buildQuery', () => {
+describe('buildQuery', () => {
   it('builds a query', () => {
     const values   = {a: 123, b: 'mystring'}
     const expected = '?a=123&b=mystring'
