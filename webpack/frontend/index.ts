@@ -16,17 +16,21 @@ export const setup = (env: Env.Type) => {
     isProd,
   }
 
+  const shared = [
+    require('../loaders/css-loader'),
+    require('./partials/base'),
+    require('../partials/aliases'),
+  ]
+
   const partials = (
     isProd
     ? [
       require('../loaders/typescript-loader'),
-      require('./partials/base'),
-      require('../partials/aliases'),
+      ...shared,
     ]
     : [
       require('../loaders/hot-typescript-loader'),
-      require('./partials/base'),
-      require('../partials/aliases'),
+      ...shared,
     ]
   )
   return webpackMerge(partials.map((m): webpack.Configuration => m.partial(options)))
