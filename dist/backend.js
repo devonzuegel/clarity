@@ -686,10 +686,10 @@ var requests_1 = __webpack_require__(6);
 var authentication_1 = __webpack_require__(21);
 exports.default = function (app) {
     app.post('/api/signup', function (req, res) {
-        authentication_1.signup(req.query.username, req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
+        authentication_1.signup(req.body.username, req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
     });
     app.post('/api/signin', function (req, res) {
-        authentication_1.signIn(req.query.username, req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
+        authentication_1.signIn(req.body.username, req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
     });
     app.post('/api/signout', function (req, res) {
         authentication_1.signout(req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
@@ -818,12 +818,12 @@ router.post('/create', function (req, res) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3,, 4]);
-                    return [4 /*yield*/, user_1.userService.findByUsername(req.query.username)];
+                    return [4 /*yield*/, user_1.userService.findByUsername(req.body.username)];
                 case 1:
                     user = _a.sent();
                     return [4 /*yield*/, post_1.postService.create(user, {
-                        title: req.query.title,
-                        body: req.query.body
+                        title: req.body.title,
+                        body: req.body.body
                     })];
                 case 2:
                     post = _a.sent();
@@ -869,7 +869,7 @@ router.post('/:id/iterate', function (req, res) {
                 case 0:
                     _a.trys.push([0, 2,, 3]);
                     postId = Number(req.params.id);
-                    return [4 /*yield*/, post_1.postService.iterate(postId, req.query)];
+                    return [4 /*yield*/, post_1.postService.iterate(postId, req.body)];
                 case 1:
                     iteration = _a.sent();
                     res.status(200).json(iteration);

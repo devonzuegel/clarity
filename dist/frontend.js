@@ -3530,7 +3530,7 @@ exports.getSession = function () {
     return responses_1.sendRequest(responses_1.get('/api/session'));
 };
 exports.signupOrSignin = function (action, username) {
-    return responses_1.sendRequest(responses_1.post("/api/" + action + "?username=" + username));
+    return responses_1.sendRequest(responses_1.post("/api/" + action, { username: username }));
 };
 exports.signout = function () {
     return responses_1.sendRequest(responses_1.post('/api/signout'));
@@ -3543,12 +3543,10 @@ exports.getIterations = function (postId) {
     return responses_1.sendRequest(responses_1.get("/api/posts/" + postId));
 };
 exports.iterate = function (postId, i) {
-    var query = responses_1.buildQuery(i);
-    return responses_1.sendRequest(responses_1.post("/api/posts/" + postId + "/iterate" + query));
+    return responses_1.sendRequest(responses_1.post("/api/posts/" + postId + "/iterate", i));
 };
 exports.newPost = function (details) {
-    var query = responses_1.buildQuery(details);
-    return responses_1.sendRequest(responses_1.post("/api/posts/create" + query));
+    return responses_1.sendRequest(responses_1.post("/api/posts/create", details));
 };
 
 /***/ }),
@@ -27590,7 +27588,7 @@ exports.get = function (url) {
         });
     });
 };
-exports.post = function (url) {
+exports.post = function (url, data) {
     return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             return [2 /*return*/, fetch(url, {
@@ -27599,7 +27597,8 @@ exports.post = function (url) {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
-                }
+                },
+                body: JSON.stringify(data || {})
             })];
         });
     });
