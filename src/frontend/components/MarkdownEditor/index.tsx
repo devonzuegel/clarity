@@ -75,10 +75,12 @@ const Dependencies = () => (
       {`
         .CodeMirror {
           max-height: 400px !important;
-
         }
         .CodeMirror-line {
           box-shadow: none;
+        }
+        .cm-formatting {
+          opacity: 0.35;
         }
       `}
     </style>
