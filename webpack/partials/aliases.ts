@@ -11,7 +11,7 @@ export const partial = (c: Options.Interface): webpack.Configuration => ({
      * Though the project's source is in Typescript, we must support Javascript
      * resolution as well, because some node_modules import JS files.
      */
-    extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
 
     alias: {
       '~': path.resolve('./src'),

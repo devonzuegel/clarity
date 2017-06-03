@@ -1,15 +1,28 @@
 import * as webpack from 'webpack'
+import * as Options from 'webpack/models/Options'
 
 
-export const partial = (): webpack.Configuration => ({
+const loaders: webpack.Loader[] = [
+  {
+    loader: 'style-loader'
+  }, {
+    loader: 'css-loader',
+    options: {
+      importLoaders:  2,
+      sourceMap:      true,
+      modules:        true,
+      localIdentName: '[local]___[hash:base64:5]',
+    },
+  },
+]
+
+export const partial = (c: Options.Interface): webpack.Configuration => ({
   module: {
     rules: [
       {
+        include: c.rootDir,
         test:    /\.css?$/,
-        loaders: [
-          'style-loader',
-          'css-loader',
-        ],
+        use:     loaders,
         exclude: /node_modules/,
       }
     ]
