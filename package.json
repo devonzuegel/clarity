@@ -19,6 +19,7 @@
     "cluster": "^0.7.7",
     "compression": "^1.6.2",
     "continuation-local-storage": "^3.2.0",
+    "css-loader": "^0.28.4",
     "dotenv": "^4.0.0",
     "es6-promise": "^4.1.0",
     "express": "^4.15.2",
@@ -42,6 +43,7 @@
     "sequelize": "^3.30.4",
     "simplemde": "latest",
     "source-map-support": "^0.4.14",
+    "style-loader": "^0.18.1",
     "webpack": "^2.3.3",
     "webpack-merge": "^4.1.0"
   },
