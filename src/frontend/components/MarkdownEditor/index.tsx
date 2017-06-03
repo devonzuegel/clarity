@@ -1,15 +1,16 @@
-import * as React    from 'react'
-import * as ReactDOM from 'react-dom'
-
-
 /**
  * This SimpleMDE React wrapper was adapted from `react-simplemde-v1`:
  *   github.com/xlsdg/react-simplemde-v1
+ *
  * SimpleMDE documentation can be found here:
  *   github.com/sparksuite/simplemde-markdown-editor
  */
 
-const SimpleMDE = require('simplemde/dist/simplemde.min.js')
+import * as React    from 'react'
+import * as ReactDOM from 'react-dom'
+
+
+const SimpleMDE = require('./SimpleMDE.js')
 
 const toolbar = [
   'strikethrough',
