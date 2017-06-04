@@ -10,7 +10,9 @@ import * as React    from 'react'
 import * as ReactDOM from 'react-dom'
 
 
+const styles    = require('./styles.css')
 const SimpleMDE = require('./SimpleMDE.js')
+
 
 const toolbar = [
   'strikethrough',
@@ -71,29 +73,15 @@ class MarkdownEditor extends React.Component<IMarkdownEditorProps, any> {
 
 const Dependencies = () => (
   <div>
-    <style>
-      {`
-        .CodeMirror {
-          max-height: 400px !important;
-        }
-        .CodeMirror-line {
-          box-shadow: none;
-        }
-        .cm-formatting {
-          opacity: 0.35;
-        }
-      `}
-    </style>
     <link
       rel ='stylesheet'
       href='https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css'
     />
-    <script src='https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js'/>
   </div>
 )
 
 export default (props: IMarkdownEditorProps) => (
-  <div>
+  <div className={`${styles.markdownEditor} markdownEditor-global`}>
     <Dependencies />
     <MarkdownEditor {...props} />
   </div>

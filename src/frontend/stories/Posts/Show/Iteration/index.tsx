@@ -4,6 +4,9 @@ import * as marked from 'marked'
 import * as U            from '~/../utils/date.ts'
 import {IterationSchema} from '~/server/db/models/iteration'
 
+const styles = require('./styles.css')
+
+
 const Show = (iteration: IterationSchema) => (
   <div>
     <h1 id='iteration-title'>
@@ -24,9 +27,10 @@ const Show = (iteration: IterationSchema) => (
       }
       {
         iteration.body &&
-        <div dangerouslySetInnerHTML={{
-          __html: marked(iteration.body),
-        }} />
+        <div
+          className={styles.markdown}
+          dangerouslySetInnerHTML={{__html: marked(iteration.body)}}
+        />
       }
     </div>
   </div>

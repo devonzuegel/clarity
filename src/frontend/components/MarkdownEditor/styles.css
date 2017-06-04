@@ -1,0 +1,72 @@
+:root {
+  --cursor-spacing: 0;
+}
+
+/***********************************************************************
+ CodeMirror (global)
+************************************************************************/
+
+:global .markdownEditor-global .CodeMirror {
+  max-height: 400px !important;
+}
+
+:global .markdownEditor-global .CodeMirror.CodeMirror-fullscreen {
+  max-height: none !important;
+}
+
+:global .markdownEditor-global .CodeMirror-scroll {
+  max-height: 340px;
+}
+
+:global .markdownEditor-global .CodeMirror.CodeMirror-fullscreen .CodeMirror-scroll {
+  max-height: none !important;
+}
+
+:global .markdownEditor-global .CodeMirror-line {
+  box-shadow: none;
+}
+
+:global .markdownEditor-global .CodeMirror-placeholder {
+  margin-left: var(--cursor-spacing);
+}
+
+:global .markdownEditor-global .CodeMirror-activeline-background {
+  background: none;
+}
+
+:global .markdownEditor-global .CodeMirror-cursor {
+  border-left: 1px solid #aaa;
+  margin: 0 var(--cursor-spacing);
+}
+
+:global .markdownEditor-global img {
+  margin: 12px;
+  border: 1px solid #ddd;
+}
+
+:global .markdownEditor-global img[src*='#right'] {
+  float: right;
+}
+
+:global .markdownEditor-global img[src*='#left'] {
+  float: left;
+}
+
+:global .markdownEditor-global .cm-formatting {
+  opacity: 0.35;
+  /*
+    visibility: hidden;
+  }
+
+  :global .markdownEditor-global .CodeMirror-activeline .cm-formatting {
+    visibility: visible;
+    opacity: 0.35;
+  */
+}
+
+/***********************************************************************
+  MarkdownEditor component
+************************************************************************/
+
+.markdownEditor {
+}
