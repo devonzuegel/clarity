@@ -7,7 +7,13 @@ import * as Options from 'webpack/models/Options'
 
 const entryFile = './src/frontend/main.tsx'
 export const partial = (c: Options.Interface): webpack.Configuration => ({
-  entry: c.isProd ? entryFile : {app: ['webpack-hot-middleware/client?reload=true', entryFile]},
+  entry: (
+    c.isProd
+    ? entryFile
+    : {
+      app: ['webpack-hot-middleware/client?reload=true', entryFile],
+    }
+  ),
 
   output: {
     path:       path.join(c.rootDir, c.outputDir),
@@ -18,7 +24,8 @@ export const partial = (c: Options.Interface): webpack.Configuration => ({
   devtool: c.devtool,
 
   plugins: [
-    ...(c.isProd ? [] : [new webpack.HotModuleReplacementPlugin()]),
+    new webpack.HotModuleReplacementPlugin(),
+    // ...(c.isProd ? [] : [new webpack.HotModuleReplacementPlugin()]),
     new HtmlWebpackPlugin({ template: './src/frontend/index.html' }),
   ]
 })
