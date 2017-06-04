@@ -14,19 +14,32 @@ if (env.error) {
 }
 
 module.exports = {
-  port:         process.env.PORT || 4000,
-  host:         process.env.HOST || 'localhost',
+  port:         process.env.PORT,
+  host:         process.env.HOST,
   env:          process.env.NODE_ENV,
   database_url: process.env.DATABASE_URL,
   sentry_dsn:   process.env.SENTRY_DSN,
+
+  /*******************************************************************
+   *** The db object is used by Sequelize to configure migrations. ***
+   *******************************************************************/
   db: {
+    dialect:          'postgres',
+    timezone:         '+00:00',
+    logging: (
+      process.env.NODE_ENV !== 'test' &&
+      process.env.NODE_ENV !== 'ci' &&
+      console.log
+    ),
+
+    /** For Heroku and local development **/
+    use_env_variable: 'DATABASE_URL',
+
+    /** For Circle CI **/
     database: process.env.DB_NAME,
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     host:     process.env.DB_HOST,
     port:     process.env.DB_PORT,
-    dialect:  'postgres',
-    logging:  process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'ci' && console.log,
-    timezone: '+00:00',
   }
 }
