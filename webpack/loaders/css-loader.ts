@@ -24,7 +24,7 @@ export const partial = (c: Options.Interface): webpack.Configuration => ({
         test:    /\.css?$/,
         use:     loaders,
         exclude: /node_modules/,
-      }
+      },
     ]
   },
 })
