@@ -19,11 +19,6 @@ export const addIteration = (iteration: IterationSchema) => (prev: IState) => {
 
 export const select = (index: number, editing?: boolean) => (prev: IState) => ({
   ...prev,
-  selected: index,
   editing,
-})
-
-export const toggle = (prev: IState) => ({
-  ...prev,
-  editing: !prev.editing,
+  selected: index,
 })
