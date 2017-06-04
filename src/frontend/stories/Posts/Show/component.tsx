@@ -14,15 +14,15 @@ import Timeline      from './Timeline'
 const _dummy   = { // Force compiler to accept the selected iteration.
   createdAt: '',
   postId:    -1,
-  title:     'TODO: _dummy',
+  title:     '',
 }
 
 export class Post extends React.Component<{postId: number}, IState> {
   state = {
-    iterations: undefined,
-    selected:   0,
-    editing:    false,
-    errorMsg:   undefined,
+    iterations:  undefined,
+    selected:    0,
+    editing:     false,
+    errorMsg:    undefined,
   }
 
 
@@ -47,6 +47,19 @@ export class Post extends React.Component<{postId: number}, IState> {
 
     if (!iterations) {
       return 'Retrieving iterations...'
+    }
+
+    if (this.state.selected === iterations.length) {
+      return (
+        <div>
+          <h2>
+            Creating history...
+          </h2>
+          <p>
+            Come back later. :)
+          </p>
+        </div>
+      )
     }
 
     if (!this.state.editing) {
@@ -83,7 +96,8 @@ export class Post extends React.Component<{postId: number}, IState> {
                 iterations   ={iterations}
                 isSelected   ={(index: number): Boolean => this.state.selected === index}
                 select       ={(i: number) => this.setState(reducers.select(i))}
-                startRevision={() => this.setState(reducers.select(iterations.length, true))}
+                startRevision={() => this.setState(reducers.select(iterations.length + 1, true))}
+                viewHistory  ={() => this.setState(reducers.select(iterations.length))}
               />
             }
             {this.body()}

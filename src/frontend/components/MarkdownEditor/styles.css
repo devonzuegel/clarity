@@ -6,8 +6,19 @@
  CodeMirror (global)
 ************************************************************************/
 
+:global .markdownEditor-global .editor-toolbar {
+  /*
+  border: none;
+  padding: 12px 0;
+  */
+}
+
 :global .markdownEditor-global .CodeMirror {
   max-height: 400px !important;
+  /*
+  border: none;
+  padding: 0;
+  */
 }
 
 :global .markdownEditor-global .CodeMirror.CodeMirror-fullscreen {
