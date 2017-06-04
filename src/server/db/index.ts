@@ -24,11 +24,13 @@ class Database {
 
   constructor() {
     (Sequelize as any).cls = cls.createNamespace('sequelize-transaction')
+
     if (database_url) {
       this.sequelize = new Sequelize(database_url, c)
     } else {
       this.sequelize = new Sequelize(c.database, c.username, c.password, c)
     }
+
     this.models = {
       User:      UserModel(this.sequelize),
       Post:      PostModel(this.sequelize),

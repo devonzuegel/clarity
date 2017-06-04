@@ -3,6 +3,7 @@
  * If no .env file is to be found at
  */
 const path  = require('path')
+const R     = require('ramda')
 const chalk = require('chalk')
 const env   = require('dotenv').config({ path: path.resolve('.env') })
 
@@ -13,20 +14,45 @@ if (env.error) {
   console.info(chalk.grey(JSON.stringify(env, null, 2)))
 }
 
-module.exports = {
-  port:         process.env.PORT || 4000,
-  host:         process.env.HOST || 'localhost',
-  env:          process.env.NODE_ENV,
-  database_url: process.env.DATABASE_URL,
-  sentry_dsn:   process.env.SENTRY_DSN,
-  db: {
+const herokuEnvs = [
+  'heroku-develop',
+  'heroku-stage',
+  'heroku-live',
+]
+const localEnvs = [
+  'local-develop',
+]
+const dbConnection = (
+  R.contains(process.env.NODE_ENV, herokuEnvs + localEnvs)
+  ? { /** For Heroku and local develoment **/
+    use_env_variable: 'DATABASE_URL'
+  }
+  : { /** For Circle CI **/
     database: process.env.DB_NAME,
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     host:     process.env.DB_HOST,
     port:     process.env.DB_PORT,
-    dialect:  'postgres',
-    logging:  process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'ci' && console.log,
-    timezone: '+00:00',
   }
+)
+
+module.exports = {
+  port:         process.env.PORT,
+  host:         process.env.HOST,
+  env:          process.env.NODE_ENV,
+  database_url: process.env.DATABASE_URL,
+  sentry_dsn:   process.env.SENTRY_DSN,
+
+  /*******************************************************************
+   *** The db object is used by Sequelize to configure migrations. ***
+   *******************************************************************/
+  db: R.merge(dbConnection, {
+    dialect:  'postgres',
+    timezone: '+00:00',
+    logging:  (
+      process.env.NODE_ENV !== 'test' &&
+      process.env.NODE_ENV !== 'ci' &&
+      console.log
+    ),
+  })
 }

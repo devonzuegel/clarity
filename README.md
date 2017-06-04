@@ -41,3 +41,13 @@
 ## Build System ##
 
 - Clarity's Webpack configuration is written in Typescript. By enforcing types in our build system, we can avoid a lot of the mistakes that are famously easy to make when using Webpack.
+
+## Deploying ##
+
+### Develop [clarity-develop.herokuapp.com](http://clarity-develop.herokuapp.com/posts) ###
+
+Periodically, we'll want to reset the database for [clarity-develop](http://clarity-develop.herokuapp.com/posts):
+
+```
+heroku run "sequelize db:migrate:undo:all && sequelize db:migrate" --app clarity-develop
+```
