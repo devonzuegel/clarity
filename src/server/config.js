@@ -43,6 +43,11 @@ module.exports = {
   database_url: process.env.DATABASE_URL,
   sentry_dsn:   process.env.SENTRY_DSN,
 
+  /** Passport **/
+  clientID:     process.env.FB_CLIENT_ID,
+  clientSecret: process.env.FB_CLIENT_SECRET,
+  callbackURL:  process.env.FB_CALLBACK_URL,
+
   /*******************************************************************
    *** The db object is used by Sequelize to configure migrations. ***
    *******************************************************************/

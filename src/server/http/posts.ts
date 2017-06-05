@@ -7,6 +7,7 @@ import {postService} from '../service/post'
 const router = express.Router()
 
 router.get('/', async (_: express.Request, res: express.Response) => {
+  console.log(_.user)
   try {
     const posts = await postService.all()
     res.status(200).json(posts)

@@ -1,6 +1,7 @@
 import * as React from 'react'
-import {IPerson}   from '~/server/db/models/person'
-import {urls} from '~/frontend/routes'
+
+import {IPerson} from '~/server/db/models/person'
+import {urls}    from '~/frontend/routes'
 
 
 interface ILayout {
@@ -29,17 +30,17 @@ const LayoutComponent = ({user, children}: ILayout) => (
     <nav style={{display: 'flow-root', marginBottom: '25px'}}>
       <Brand />
       <div className='pt-navbar-group pt-align-right'>
-        <NavBtn title='Posts'    url={urls.posts}   name='document' />
-        <NavBtn title='New post' url={urls.newPost} name='plus'     />
-        <span className='pt-navbar-divider' />
+        <NavBtn title='Posts'         url={urls.posts}   name='document' />
+        <NavBtn title='New post'      url={urls.newPost} name='plus'     />
         {
-          user.username &&
+          user && user.username &&
           <NavBtn title={user.username} url='/me' name='user' />
         }
+        <span className='pt-navbar-divider' />
         {
           user.username
-          ? <NavBtn title='Sign out' url={urls.signout} name='log-out' />
-          : <NavBtn title='Sign in'  url={urls.signin}  name='log-in'  />
+          ? <NavBtn title='Sign out' url={urls.signout}  name='log-out' />
+          : <NavBtn title='Sign in'  url={urls.fbSignin} name='log-in'  />
         }
       </div>
     </nav>

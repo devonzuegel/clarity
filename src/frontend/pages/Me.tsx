@@ -1,14 +1,36 @@
 import * as React from 'react'
 
+import * as api from '~/frontend/api'
 
-class Me extends React.Component<{}, {}> {
+
+interface IState {
+  profile: any // TODO
+}
+
+class Me extends React.Component<{}, IState> {
+  state = {profile: undefined}
+
+  componentWillMount () {
+    this.retrieveData()
+  }
+
+  async retrieveData () {
+    try {
+      const profile = await api.getProfile()
+      this.setState({profile})
+    } catch (e) {
+      alert(e.message)
+    }
+  }
+
   render () {
     return (
-      <div>
-        Nothing to see here!
-      </div>
+      <pre>
+        {JSON.stringify(this.state.profile, null, 2)}
+      </pre>
     )
   }
 }
 
 export default Me
+

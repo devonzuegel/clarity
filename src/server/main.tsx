@@ -1,13 +1,14 @@
 import * as express    from 'express'
 import * as bodyParser from 'body-parser'
 
-import http                  from './http'
-import { runHotMiddleware  } from './middleware'
-import { listen            } from './listen'
-import { monitorExceptions } from './exceptionMonitoring'
-import { serveFrontend     } from './serveFrontend'
-import { sequelize         } from './db'
-import { setupSession      } from './session'
+import http                from './http'
+import * as Passport       from './passport'
+import {runHotMiddleware}  from './middleware'
+import {listen}            from './listen'
+import {monitorExceptions} from './exceptionMonitoring'
+import {serveFrontend}     from './serveFrontend'
+import {sequelize}         from './db'
+import {setupSession}      from './session'
 
 const config = require('./config.js')
 const app    = express()
@@ -18,6 +19,7 @@ app.use(require('helmet')())
 monitorExceptions(config)(app)
 setupSession(app) // Must happen before initializing the API
 http(app)
+Passport.setup(config)(app)
 
 if (config.env === 'development') {
   runHotMiddleware(app)
