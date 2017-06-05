@@ -1,6 +1,7 @@
 import * as React from 'react'
 
-import {IPerson} from '~/server/db/models/person'
+import {IPerson}         from '~/server/db/models/person'
+import {FacebookProfile} from '~/../utils/models/FacebookProfile'
 
 import * as api        from '~/frontend/api'
 import {IActions}      from '~/frontend/redux/actions/signIn'
@@ -14,8 +15,8 @@ interface ILayout {
 
 class Layout extends React.Component<ILayout, {}> {
   componentWillMount () {
-    api.getSession()
-      .then((u: IPerson) => this.props.actions.setUsername(u.username))
+    api.getProfile()
+      .then((profile: FacebookProfile) => this.props.actions.setUsername(profile.displayName))
   }
 
   render () {

@@ -1,9 +1,9 @@
+import * as R     from 'ramda'
 import * as React from 'react'
 import * as page  from 'page'
 
 import MePage             from '../pages/Me'
 import NotFoundPage       from '../pages/NotFound'
-import SignInPage         from '../pages/SignIn'
 import {renderWithLayout} from './utils'
 
 
@@ -13,15 +13,26 @@ interface IPage {
 }
 
 export const urls = {
-  signin:  '/signin',
-  me:      '/me',
+  me: '/me',
 }
+
+const redirectUrls = [
+  '/auth/facebook',
+]
 
 export const routes = () => {
   const pages: IPage[] = [
-    { href: '/signin', content: <SignInPage />   },
-    { href: '/me',     content: <MePage />       },
-    { href: '*',       content: <NotFoundPage /> },
+    {href: '/me', content: <MePage />},
   ]
+
   pages.map(({href, content}: IPage) => page(href, () => renderWithLayout(content)))
+
+  page('*', (context, _next) => {
+    const isRedirecting = R.contains(context.canonicalPath, redirectUrls)
+    if (isRedirecting) {
+      renderWithLayout(<h6>Redirecting...</h6>)
+    } else {
+      renderWithLayout(<NotFoundPage />)
+    }
+  })
 }
