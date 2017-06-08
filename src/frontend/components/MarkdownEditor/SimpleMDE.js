@@ -6,6 +6,7 @@
  *  - active-line
  *  - matchbrackets
  *  - closebrackets
+ *  - foldcode
  */
 
 /*global require,module*/
@@ -14,18 +15,34 @@ var CodeMirror = require("codemirror");
 require("codemirror/addon/edit/continuelist.js");
 require("simplemde/src/js/codemirror/tablist");
 require("codemirror/addon/display/fullscreen.js");
-require("codemirror/addon/selection/active-line.js");
-require("codemirror/addon/edit/matchbrackets.js");
-require("codemirror/addon/edit/closebrackets.js");
 require("codemirror/mode/markdown/markdown.js");
 require("codemirror/addon/mode/overlay.js");
 require("codemirror/addon/display/placeholder.js");
 require("codemirror/addon/selection/mark-selection.js");
 require("codemirror/mode/gfm/gfm.js");
-require("codemirror/mode/xml/xml.js");
+
+// Custom plugins
+require("codemirror/addon/selection/active-line.js");
+require("codemirror/addon/edit/matchbrackets.js");
+require("codemirror/addon/edit/closebrackets.js");
+
+// Code folding
+require("codemirror/addon/fold/foldcode.js");
+require("codemirror/addon/fold/foldgutter.js");
+require("codemirror/addon/fold/markdown-fold.js");
+
 var CodeMirrorSpellChecker = require("codemirror-spell-checker");
 var marked = require("marked");
 
+const SIMPLE_MDE_OPTIONS = {
+  // Markdown folding
+  foldGutter: true,
+  gutters:    ['CodeMirror-foldgutter'],
+
+  styleActiveLine:   true,
+  autoCloseBrackets: true,
+  matchBrackets:     true,
+}
 
 // Some variables
 var isMac = /Mac/.test(navigator.platform);
@@ -1447,6 +1464,8 @@ SimpleMDE.prototype.render = function(el) {
   this.element = el;
   var options = this.options;
 
+  console.log(options)
+
   var self = this;
   var keyMaps = {};
 
@@ -1492,24 +1511,21 @@ SimpleMDE.prototype.render = function(el) {
     mode.gitHubSpice = false;
   }
 
-  this.codemirror = CodeMirror.fromTextArea(el, {
-    mode:               mode,
-    backdrop:           backdrop,
+  this.codemirror = CodeMirror.fromTextArea(el, Object.assign(SIMPLE_MDE_OPTIONS, {
+    mode,
+    backdrop,
     theme:              "paper",
     tabSize:            (options.tabSize != undefined) ? options.tabSize : 2,
     indentUnit:         (options.tabSize != undefined) ? options.tabSize : 2,
     indentWithTabs:     (options.indentWithTabs === false) ? false : true,
     lineNumbers:        false,
-    styleActiveLine:    true,
-    autoCloseBrackets:  true,
-    matchBrackets:      true,
     autofocus:          (options.autofocus === true) ? true : false,
     extraKeys:          keyMaps,
     lineWrapping:       (options.lineWrapping === false) ? false : true,
     allowDropFileTypes: ["text/plain"],
     placeholder:        options.placeholder || el.getAttribute("placeholder") || "",
-    styleSelectedText:  (options.styleSelectedText != undefined) ? options.styleSelectedText : true
-  });
+    styleSelectedText:  (options.styleSelectedText != undefined) ? options.styleSelectedText : true,
+  }));
 
   if(options.forceSync === true) {
     var cm = this.codemirror;
