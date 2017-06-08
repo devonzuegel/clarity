@@ -27,12 +27,22 @@ const toolbar = [
 ]
 
 type IMarkdownEditorProps = {
-  options: Object,
   onChange: (s: string) => void,
+  options: {
+    initialValue: string,
+    placeholder: string,
+  },
+}
+
+const reducers = {
+  updateContent: (value: string) => () => ({value}),
 }
 
 class MarkdownEditor extends React.Component<IMarkdownEditorProps, any> {
-  state = {instance: null}
+  state = {
+    instance: null, // When the SimpleMDE component mounts, it is stored here.
+    value: this.props.options.initialValue,
+  }
 
   componentDidMount () {
     if (!this.state.instance) {
@@ -43,7 +53,11 @@ class MarkdownEditor extends React.Component<IMarkdownEditorProps, any> {
         autofocus:    true,
         spellChecker: false,
       })
-      instance.codemirror.on('change', () => this.props.onChange(instance.value()))
+      instance.codemirror.on('change', () => {
+        const value: string = instance.value()
+        this.props.onChange(value)
+        this.setState(reducers.updateContent(value))
+      })
       this.setState({instance})
     }
   }
@@ -76,6 +90,26 @@ const Dependencies = () => (
     <link
       rel ='stylesheet'
       href='https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css'
+    />
+    <link
+      rel ='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/mode/markdown/markdown.min.js'
+    />
+    <link
+      rel ='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/fold/markdown-fold.min.js'
+    />
+    <script
+      type='type/javascript'
+      src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/fold/foldcode.min.js'
+     />
+    <script
+      type='type/javascript'
+      src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/fold/foldgutter.min.js'
+     />
+    <link
+      rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/fold/foldgutter.min.css'
     />
   </div>
 )

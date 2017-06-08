@@ -42,7 +42,10 @@ class Form extends React.Component<IFormProps, reducers.IState> {
           id         ={`${formId}__title`}
         />
         <MarkdownEditor
-          options ={{initialValue: this.props.iteration.body, placeholder: 'Start writing!'}}
+          options ={{
+            initialValue: this.props.iteration.body || '',
+            placeholder: 'Start writing!',
+          }}
           onChange={this.updateBody}
         />
         <Blueprint.Button
