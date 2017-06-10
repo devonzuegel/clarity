@@ -16,7 +16,7 @@ export const signupOrSignin = (action: 'signup'|'signin', username: string) =>
   sendRequest(post(`/api/${action}`, {username}))
 
 export const signout = () =>
-  sendRequest(post('/api/signout'))
+  sendRequest(get('/api/signout'))
 
 /** Posts **/
 

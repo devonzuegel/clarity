@@ -63,6 +63,11 @@ export const setup = (config: IPassportConfig) => (app: express.Application) => 
   app.get('/api/profile', isLoggedIn, (req, res) => {
     res.json(req.user)
   })
+
+  app.get('/api/signout', isLoggedIn, (req, res) => {
+    req.logout()
+    res.redirect('/')
+  })
 }
 
 /**
