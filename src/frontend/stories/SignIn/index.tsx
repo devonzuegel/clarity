@@ -1,7 +1,7 @@
 import {connect}            from 'react-redux'
 import {bindActionCreators} from 'redux'
 
-import {actions} from '~/frontend/redux/actions/signIn'
+import {actions} from '~/frontend/redux/actions/auth'
 import SignIn     from './component'
 
 const mapStateToProps = (_state: any) => ({})

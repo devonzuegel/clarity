@@ -7,7 +7,7 @@ import {IPerson} from '~/server/db/models/person'
 
 import {Field}        from '~/frontend/components/Field'
 import {ErrorMessage} from '~/frontend/components/ErrorMessage'
-import {IActions}     from '~/frontend/redux/actions/signIn'
+import {IActions}     from '~/frontend/redux/actions/auth'
 import {urls}         from '~/frontend/routes'
 import * as api       from '~/frontend/api'
 
@@ -29,7 +29,7 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
 
   componentWillMount () {
     api.getSession()
-      .then((u: IPerson) => this.props.actions.setFacebookId(u.facebookId))
+      .then((u: IPerson) => this.props.actions.signIn(u.facebookId))
   }
 
   private constraints: IConstraint[] = [
@@ -53,7 +53,7 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
   }
 
   private signupSuccess = (_: IPerson) => {
-    this.props.actions.setFacebookId(this.state.facebookId)
+    this.props.actions.signIn(this.state.facebookId)
     this.setState(reducers.removeError)
     this.setState(reducers.endSubmit)
     page.redirect(urls.me)

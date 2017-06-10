@@ -1,6 +1,6 @@
 import {connect}            from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {actions}            from '~/frontend/redux/actions/signIn'
+import {actions}            from '~/frontend/redux/actions/auth'
 
 
 import Layout from './component'
@@ -9,8 +9,8 @@ interface IState {
   user: {facebookId: string}
 }
 
-const mapStateToProps = (state: {signInReducer: IState}) => ({
-  facebookId: state.signInReducer.user.facebookId,
+const mapStateToProps = (state: {authReducer: IState}) => ({
+  facebookId: state.authReducer.user.facebookId,
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
