@@ -64,7 +64,7 @@ require("source-map-support").install();
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 29);
+/******/ 	return __webpack_require__(__webpack_require__.s = 30);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -87,12 +87,12 @@ module.exports = require("sequelize");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var cls = __webpack_require__(42);
+var cls = __webpack_require__(43);
 var Sequelize = __webpack_require__(1);
-var user_1 = __webpack_require__(25);
-var post_1 = __webpack_require__(24);
-var iteration_1 = __webpack_require__(23);
-var config_1 = __webpack_require__(21);
+var user_1 = __webpack_require__(26);
+var post_1 = __webpack_require__(25);
+var iteration_1 = __webpack_require__(24);
+var config_1 = __webpack_require__(22);
 var database_url = __webpack_require__(3).database_url;
 var Database = function () {
     function Database() {
@@ -132,7 +132,7 @@ exports.sequelize = database.getSequelize();
 const path  = __webpack_require__(0)
 const R     = __webpack_require__(10)
 const chalk = __webpack_require__(9)
-const env   = __webpack_require__(43).config({ path: path.resolve('.env') })
+const env   = __webpack_require__(44).config({ path: path.resolve('.env') })
 
 if (env.error) {
   console.warn(chalk.yellow(`No config file was found at ${env.error.path}`))
@@ -169,6 +169,11 @@ module.exports = {
   env:          process.env.NODE_ENV,
   database_url: process.env.DATABASE_URL,
   sentry_dsn:   process.env.SENTRY_DSN,
+
+  /** Passport **/
+  clientID:     process.env.FB_CLIENT_ID,
+  clientSecret: process.env.FB_CLIENT_SECRET,
+  callbackURL:  process.env.FB_CALLBACK_URL,
 
   /*******************************************************************
    *** The db object is used by Sequelize to configure migrations. ***
@@ -214,7 +219,7 @@ var __extends = this && this.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var db_1 = __webpack_require__(2);
-var user_mock_1 = __webpack_require__(32);
+var user_mock_1 = __webpack_require__(33);
 var sequelizeFailure = function (reject) {
     return function (error) {
         reject(error.errors[0]); // Return only the descriptive .errors array
@@ -278,7 +283,7 @@ exports.jsonSuccess = function (res) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var U = __webpack_require__(33);
+var U = __webpack_require__(34);
 exports.Enum = U.strEnum(['development', 'production']);
 
 /***/ }),
@@ -318,7 +323,7 @@ module.exports = require("webpack");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Raven = __webpack_require__(47);
+var Raven = __webpack_require__(50);
 exports.monitorExceptions = function (config) {
     return function (app) {
         // Must configure Raven before doing anything else with it
@@ -338,9 +343,9 @@ exports.monitorExceptions = function (config) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var users_1 = __webpack_require__(28);
-var posts_1 = __webpack_require__(27);
-var authentication_1 = __webpack_require__(26);
+var users_1 = __webpack_require__(29);
+var posts_1 = __webpack_require__(28);
+var authentication_1 = __webpack_require__(27);
 exports.default = function (app) {
     users_1.default(app);
     app.use('/api/posts', posts_1.default);
@@ -373,9 +378,9 @@ exports.listen = function (app, _a) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.runHotMiddleware = function (app) {
     var webpack = __webpack_require__(11);
-    var webpackConfig = __webpack_require__(34).default;
+    var webpackConfig = __webpack_require__(35).default;
     var webpackCompiler = webpack(webpackConfig);
-    app.use(__webpack_require__(49)(webpackCompiler, {
+    app.use(__webpack_require__(52)(webpackCompiler, {
         publicPath: webpackConfig.output.publicPath,
         stats: { colors: true },
         noInfo: true,
@@ -385,7 +390,7 @@ exports.runHotMiddleware = function (app) {
         historyApiFallback: true,
         quiet: true
     }));
-    app.use(__webpack_require__(50)(webpackCompiler));
+    app.use(__webpack_require__(53)(webpackCompiler));
 };
 
 /***/ }),
@@ -396,16 +401,69 @@ exports.runHotMiddleware = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = __webpack_require__(4);
-exports.serveFrontend = function (app) {
-    var fs = __webpack_require__(45);
-    var path = __webpack_require__(0);
-    app.use('/', express.static(__dirname));
-    app.get('*', function (_, res) {
-        var file = path.join("dist", 'index.html'); // TODO: Replace with raw-loader require
-        var html = fs.readFileSync(file).toString();
-        res.status(200).send(html);
+var passport = __webpack_require__(48);
+var Facebook = __webpack_require__(49);
+var setupStrategy = function (c) {
+    passport.use(new Facebook.Strategy(c, function (token, refreshToken, profile, done) {
+        console.log('token:');
+        console.log(token);
+        console.log('refreshToken:');
+        console.log(refreshToken);
+        console.log('profile:');
+        console.log(profile);
+        done(null, profile);
+        // // TODO:
+        // User.findOrCreate(..., function(err, user) {
+        //   if (err) { return done(err) }
+        //   done(null, profile)
+        // })
+    }));
+    passport.serializeUser(function (user, done) {
+        return done(null, user);
     });
+    passport.deserializeUser(function (user, done) {
+        return done(null, user);
+    });
+};
+exports.setup = function (config) {
+    return function (app) {
+        setupStrategy(config);
+        app.use(passport.initialize());
+        app.use(passport.session());
+        /**
+         * Redirect the user to Facebook for authentication.  When complete,
+         * Facebook will redirect the user back to the application at
+         *     /auth/facebook/callback
+         **/
+        app.get('/auth/facebook', passport.authenticate('facebook'));
+        /**
+         * Facebook will redirect the user to this URL after approval. Finish
+         * the authentication process by attempting to obtain an access token.
+         * If access was granted, the user will be logged in. Otherwise,
+         * authentication has failed.
+         **/
+        app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+            successRedirect: '/me',
+            failureRedirect: '/auth/facebook/failure'
+        }));
+        app.get('/auth/facebook/failure', function (_, res) {
+            return res.send(403).json({
+                message: 'Sorry, but we were not able to connect your Facebook account.'
+            });
+        });
+        app.get('/api/profile', isLoggedIn, function (req, res) {
+            res.json(req.user);
+        });
+    };
+};
+/**
+ * Route middleware to make sure a user is logged in
+ **/
+var isLoggedIn = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.status(403).json({ message: 'Please sign in.' });
 };
 
 /***/ }),
@@ -416,7 +474,27 @@ exports.serveFrontend = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var session = __webpack_require__(44);
+var express = __webpack_require__(4);
+exports.serveFrontend = function (app) {
+    var fs = __webpack_require__(46);
+    var path = __webpack_require__(0);
+    app.use('/', express.static(__dirname));
+    app.get('*', function (_, res) {
+        var file = path.join("dist", 'index.html'); // TODO: Replace with raw-loader require
+        var html = fs.readFileSync(file).toString();
+        res.status(200).send(html);
+    });
+};
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var session = __webpack_require__(45);
 exports.setupSession = function (app) {
     /** More info: github.com/expressjs/session#options */
     var options = {
@@ -428,19 +506,19 @@ exports.setupSession = function (app) {
 };
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = require("body-parser");
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = require("helmet");
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -448,7 +526,7 @@ module.exports = require("helmet");
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var R = __webpack_require__(10);
-var guest_1 = __webpack_require__(22);
+var guest_1 = __webpack_require__(23);
 var user_1 = __webpack_require__(5);
 exports.signup = function (username, session) {
     return new Promise(function (resolve, reject) {
@@ -514,18 +592,18 @@ exports.getCurrentUser = function (session) {
 };
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var config = __webpack_require__(41);
+var config = __webpack_require__(42);
 exports.default = config;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -541,7 +619,7 @@ var GuestInstance = function () {
 exports.GuestInstance = GuestInstance;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -584,7 +662,7 @@ exports.default = function (sequelize) {
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -620,7 +698,7 @@ exports.default = function (sequelize) {
 };
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -650,7 +728,7 @@ exports.default = function (sequelize) {
 };
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -658,7 +736,7 @@ exports.default = function (sequelize) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var requests_1 = __webpack_require__(6);
-var authentication_1 = __webpack_require__(20);
+var authentication_1 = __webpack_require__(21);
 exports.default = function (app) {
     app.post('/api/signup', function (req, res) {
         authentication_1.signup(req.body.username, req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
@@ -675,7 +753,7 @@ exports.default = function (app) {
 };
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -762,7 +840,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = __webpack_require__(4);
 var requests_1 = __webpack_require__(6);
 var user_1 = __webpack_require__(5);
-var post_1 = __webpack_require__(31);
+var post_1 = __webpack_require__(32);
 var router = express.Router();
 router.get('/', function (_, res) {
     return __awaiter(_this, void 0, void 0, function () {
@@ -770,17 +848,20 @@ router.get('/', function (_, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2,, 3]);
-                    return [4 /*yield*/, post_1.postService.all()];
+                    console.log(_.user);
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3,, 4]);
+                    return [4 /*yield*/, post_1.postService.all()];
+                case 2:
                     posts = _a.sent();
                     res.status(200).json(posts);
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     e_1 = _a.sent();
                     requests_1.jsonError(res)(e_1);
-                    return [3 /*break*/, 3];
-                case 3:
+                    return [3 /*break*/, 4];
+                case 4:
                     return [2 /*return*/];
             }
         });
@@ -862,7 +943,7 @@ router.post('/:id/iterate', function (req, res) {
 exports.default = router;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -885,7 +966,7 @@ exports.default = function (app) {
 };
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -893,21 +974,23 @@ exports.default = function (app) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = __webpack_require__(4);
-var bodyParser = __webpack_require__(18);
+var bodyParser = __webpack_require__(19);
 var http_1 = __webpack_require__(13);
+var Passport = __webpack_require__(16);
 var middleware_1 = __webpack_require__(15);
 var listen_1 = __webpack_require__(14);
 var exceptionMonitoring_1 = __webpack_require__(12);
-var serveFrontend_1 = __webpack_require__(16);
+var serveFrontend_1 = __webpack_require__(17);
 var db_1 = __webpack_require__(2);
-var session_1 = __webpack_require__(17);
+var session_1 = __webpack_require__(18);
 var config = __webpack_require__(3);
 var app = express();
 app.use(bodyParser.json());
-app.use(__webpack_require__(19)());
+app.use(__webpack_require__(20)());
 exceptionMonitoring_1.monitorExceptions(config)(app);
 session_1.setupSession(app); // Must happen before initializing the API
 http_1.default(app);
+Passport.setup(config)(app);
 if (config.env === 'development') {
     middleware_1.runHotMiddleware(app);
 }
@@ -917,7 +1000,7 @@ db_1.sequelize.sync().then(function () {
 });
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1054,7 +1137,7 @@ var MockPostService = function () {
 exports.MockPostService = MockPostService;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1160,7 +1243,7 @@ var __generator = this && this.__generator || function (thisArg, body) {
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var db_1 = __webpack_require__(2);
-var post_mock_1 = __webpack_require__(30);
+var post_mock_1 = __webpack_require__(31);
 var sequelizeFailure = function (reject) {
     return function (error) {
         console.warn(error); // Log full error
@@ -1234,7 +1317,7 @@ exports.PostService = PostService;
 exports.postService = new PostService();
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1282,7 +1365,7 @@ var MockUserService = function () {
 exports.MockUserService = MockUserService;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1300,18 +1383,6 @@ function strEnum(o) {
 exports.strEnum = strEnum;
 
 /***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Env = __webpack_require__(7);
-var _1 = __webpack_require__(35);
-exports.default = _1.setup(Env.Enum.development);
-
-/***/ }),
 /* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1319,7 +1390,19 @@ exports.default = _1.setup(Env.Enum.development);
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var webpackMerge = __webpack_require__(51);
+var Env = __webpack_require__(7);
+var _1 = __webpack_require__(36);
+exports.default = _1.setup(Env.Enum.development);
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var webpackMerge = __webpack_require__(54);
 var path = __webpack_require__(0);
 var Env = __webpack_require__(7);
 exports.setup = function (env) {
@@ -1331,15 +1414,15 @@ exports.setup = function (env) {
         console: !isProd,
         isProd: isProd
     };
-    var shared = [__webpack_require__(37), __webpack_require__(36), __webpack_require__(40)];
-    var partials = isProd ? [__webpack_require__(39)].concat(shared) : [__webpack_require__(38)].concat(shared);
+    var shared = [__webpack_require__(38), __webpack_require__(37), __webpack_require__(41)];
+    var partials = isProd ? [__webpack_require__(40)].concat(shared) : [__webpack_require__(39)].concat(shared);
     return webpackMerge(partials.map(function (m) {
         return m.partial(options);
     }));
 };
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1348,7 +1431,7 @@ exports.setup = function (env) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = __webpack_require__(0);
 var webpack = __webpack_require__(11);
-var HtmlWebpackPlugin = __webpack_require__(46);
+var HtmlWebpackPlugin = __webpack_require__(47);
 var entryFile = './src/frontend/main.tsx';
 exports.partial = function (c) {
     return {
@@ -1368,7 +1451,7 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1400,7 +1483,7 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1413,7 +1496,7 @@ exports.partial = function () {
         module: {
             rules: [{
                 test: /\.tsx?$/,
-                loader: __webpack_require__(48)(['react-hot-loader', 'awesome-typescript-loader']),
+                loader: __webpack_require__(51)(['react-hot-loader', 'awesome-typescript-loader']),
                 exclude: /node_modules/
             }]
         },
@@ -1422,7 +1505,7 @@ exports.partial = function () {
 };
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1444,7 +1527,7 @@ exports.partial = function () {
 };
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1469,7 +1552,7 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -1485,61 +1568,73 @@ module.exports = appConfig.db
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = require("continuation-local-storage");
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-session");
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = require("html-webpack-plugin");
 
 /***/ }),
-/* 47 */
-/***/ (function(module, exports) {
-
-module.exports = require("raven");
-
-/***/ }),
 /* 48 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack-combine-loaders");
+module.exports = require("passport");
 
 /***/ }),
 /* 49 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack-dev-middleware");
+module.exports = require("passport-facebook");
 
 /***/ }),
 /* 50 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack-hot-middleware");
+module.exports = require("raven");
 
 /***/ }),
 /* 51 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-combine-loaders");
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-dev-middleware");
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-hot-middleware");
+
+/***/ }),
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-merge");
