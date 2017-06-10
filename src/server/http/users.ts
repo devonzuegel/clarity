@@ -13,7 +13,7 @@ export default (app: express.Application) => {
   })
 
   app.post('/api/users/create', (req: express.Request, res: express.Response) => {
-    userService.create({username: req.query.username})
+    userService.create({facebookId: req.query.facebookId})
       .then((user: UserInstance) => res.status(200).json(user))
       .catch(jsonError(res))
   })

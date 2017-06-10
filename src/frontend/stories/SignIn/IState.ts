@@ -1,5 +1,5 @@
 export interface IState {
-  username: string
+  facebookId: string
   submitting?: 'signup'|'signin'
   errorMsg: string|null
   submitAttempted: boolean

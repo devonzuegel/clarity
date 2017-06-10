@@ -5,12 +5,12 @@ import {IState as IFormState} from '~/frontend/stories/Posts/Form/reducers'
 import Form                   from '~/frontend/stories/Posts/Form'
 
 
-type INewProps = {username: string}
+type INewProps = {facebookId: string}
 
-const New = ({username}: INewProps) => {
+const New = ({facebookId}: INewProps) => {
   const onSubmit = async (newState: IFormState) => {
     try {
-      await api.newPost({...newState, username})
+      await api.newPost({...newState, facebookId})
     } catch (e) {
       console.error(e)
     }

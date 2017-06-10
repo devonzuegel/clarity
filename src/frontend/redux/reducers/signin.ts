@@ -7,7 +7,7 @@ const initialState = {user: new GuestInstance}
 export const signInReducer = (state = initialState, action: IAction) => {
   switch (action.type) {
     case types.SET_USERNAME:
-      return {user: {username: action.username}}
+      return {user: {facebookId: action.facebookId}}
 
     default:
       return state

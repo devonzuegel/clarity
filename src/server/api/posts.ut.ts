@@ -35,14 +35,14 @@ describe('Posts API', () => {
       }))
     })
 
-    it('fails when the username is not associated with an existing user', () => {
+    it('fails when the facebookId is not associated with an existing user', () => {
       create('thisUsernameDoesntExist', iteration)
         .then(equals({
           dataValues: {
             userId: user.dataValues.id,
           },
         }))
-        .catch(equals({message: 'User with username "thisUsernameDoesntExist" does not exist'}))
+        .catch(equals({message: 'User with facebookId "thisUsernameDoesntExist" does not exist'}))
     })
   })
 

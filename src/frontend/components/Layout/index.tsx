@@ -33,12 +33,12 @@ const LayoutComponent = ({user, children}: ILayout) => (
         <NavBtn title='Posts'         url={urls.posts}   name='document' />
         <NavBtn title='New post'      url={urls.newPost} name='plus'     />
         {
-          user && user.username &&
-          <NavBtn title={user.username} url='/me' name='user' />
+          user && user.facebookId &&
+          <NavBtn title={user.facebookId} url='/me' name='user' />
         }
         <span className='pt-navbar-divider' />
         {
-          user.username
+          user.facebookId
           ? <NavBtn title='Sign out' url={urls.signout}  name='log-out' />
           : <NavBtn title='Sign in'  url={urls.fbSignin} name='log-in'  />
         }

@@ -7,7 +7,7 @@ describe('Posts Service', () => {
   beforeAll(async () => {
     let user
     try {
-      user = await userService.create({username: 'foobar'})
+      user = await userService.create({facebookId: 'foobar'})
     } catch (e) {
       user = await userService.findByUsername('foobar')
     }

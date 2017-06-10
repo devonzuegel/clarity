@@ -2,7 +2,7 @@ import { IState } from './IState'
 
 export const updateUsername = (newUsername: string) => (prevState: IState): IState => ({
   ...prevState,
-  username: newUsername,
+  facebookId: newUsername,
 })
 
 export const beginSubmit = (action: 'signup'|'signin') => (prevState: IState): IState => ({

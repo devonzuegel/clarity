@@ -12,8 +12,8 @@ export const getProfile = (): Promise<FacebookProfile> =>
 export const getSession = () =>
   sendRequest(get('/api/session'))
 
-export const signupOrSignin = (action: 'signup'|'signin', username: string) =>
-  sendRequest(post(`/api/${action}`, {username}))
+export const signupOrSignin = (action: 'signup'|'signin', facebookId: string) =>
+  sendRequest(post(`/api/${action}`, {facebookId}))
 
 export const signout = () =>
   sendRequest(get('/api/signout'))
@@ -33,7 +33,7 @@ export const iterate = (postId: number, i: Partial<IterationAttributes>): Promis
 type IPostDetails = {
   title: string,
   body?: string,
-  username: string,
+  facebookId: string,
 }
 
 export const newPost = (details: IPostDetails): Promise<IterationSchema> => {

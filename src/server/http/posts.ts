@@ -18,7 +18,7 @@ router.get('/', async (_: express.Request, res: express.Response) => {
 
 router.post('/create', async (req: express.Request, res: express.Response) => {
   try {
-    const user = await userService.findByUsername(req.body.username)
+    const user = await userService.findByUsername(req.body.facebookId)
     const post = await postService.create(user, {
       title: req.body.title,
       body:  req.body.body,

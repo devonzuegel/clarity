@@ -1,16 +1,16 @@
 import {UserAttributes, UserInstance} from '../db/models/user'
 
 export class MockUserService {
-  findByUsername (username: string): Promise<UserInstance> {
+  findByUsername (facebookId: string): Promise<UserInstance> {
     return new Promise<UserInstance>((resolve: Function, reject: Function) => {
-      if (!username) {
-        reject({message: `Please provide a username`})
+      if (!facebookId) {
+        reject({message: `Please provide a facebookId`})
       }
-      if (username == 'thisUsernameDoesntExist') {
-        reject({message: `User with username "${username}" does not exist`})
+      if (facebookId == 'thisUsernameDoesntExist') {
+        reject({message: `User with facebookId "${facebookId}" does not exist`})
       }
       resolve({
-        dataValues: {username, id: 123},
+        dataValues: {facebookId, id: 123},
         get: (key: string) => {
           switch (key) {
             case 'id': return 123
@@ -23,8 +23,8 @@ export class MockUserService {
 
   create (attributes: UserAttributes): Promise<UserInstance> {
     return new Promise<UserInstance>((resolve: Function, reject: Function) => {
-      if (attributes.username == 'thisUsernameIsntAvailable') {
-        reject({message: `Sorry, "${attributes.username}" is not available`})
+      if (attributes.facebookId == 'thisUsernameIsntAvailable') {
+        reject({message: `Sorry, "${attributes.facebookId}" is not available`})
       }
       resolve({dataValues: attributes})
     })
@@ -32,7 +32,7 @@ export class MockUserService {
 
   all (): Promise<Array<UserInstance>> {
     return new Promise<Array<UserInstance>>((resolve: Function, _: Function) => {
-      resolve([{username: 'foobar'}])
+      resolve([{facebookId: 'foobar'}])
     })
   }
 }

@@ -17,7 +17,7 @@ import {IConstraint} from './IConstraint'
 
 class SignIn extends React.Component<{actions: IActions}, IState> {
   state = {
-    username:        '',
+    facebookId:        '',
     submitting:      undefined,
     errorMsg:        null,
     submitAttempted: false,
@@ -29,14 +29,14 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
 
   componentWillMount () {
     api.getSession()
-      .then((u: IPerson) => this.props.actions.setUsername(u.username))
+      .then((u: IPerson) => this.props.actions.setUsername(u.facebookId))
   }
 
   private constraints: IConstraint[] = [
     {
-      value:    () => this.state.username,
-      isValid:  (username: string) => !R.isEmpty(username),
-      errorMsg: 'Your username cannot be empty.',
+      value:    () => this.state.facebookId,
+      isValid:  (facebookId: string) => !R.isEmpty(facebookId),
+      errorMsg: 'Your facebookId cannot be empty.',
     },
   ]
 
@@ -53,7 +53,7 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
   }
 
   private signupSuccess = (_: IPerson) => {
-    this.props.actions.setUsername(this.state.username)
+    this.props.actions.setUsername(this.state.facebookId)
     this.setState(reducers.removeError)
     this.setState(reducers.endSubmit)
     page.redirect(urls.me)
@@ -70,7 +70,7 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
       if (!this.validate()) {
         return this.setState(reducers.endSubmit)
       }
-      api.signupOrSignin(action, this.state.username)
+      api.signupOrSignin(action, this.state.facebookId)
         .then(this.signupSuccess)
         .catch(this.signupFailure)
     }, 500)
@@ -93,9 +93,9 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
         <Field
           label      ='Username'
           placeholder='Hi! Who are you?'
-          value      ={this.state.username}
+          value      ={this.state.facebookId}
           onChange   ={this.updateUsername}
-          id         ='signin-form__username'
+          id         ='signin-form__facebookId'
         />
 
         <Blueprint.Button
