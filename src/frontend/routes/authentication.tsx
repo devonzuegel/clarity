@@ -15,7 +15,7 @@ export const routes = () => {
 
   page('/signout', () => {
     api.signout()
-      .then (() => page.redirect('/signin'))
-      .catch(() => page.redirect('/signin'))
+      .then (() => page.redirect('/posts'))
+      .catch(() => page.redirect('/posts'))
   })
 }
