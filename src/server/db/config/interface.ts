@@ -1,5 +1,5 @@
 export interface IDatabaseConfig {
-  username: string
+  facebookId: string
   password: string
   database: string
   host:     string

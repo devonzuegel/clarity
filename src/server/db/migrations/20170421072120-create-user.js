@@ -7,7 +7,7 @@ module.exports = {
         primaryKey:    true,
         type:          Sequelize.INTEGER,
       },
-      username: {
+      facebookId: {
         allowNull: false,
         unique:    true,
         type:      Sequelize.STRING,

@@ -6,7 +6,7 @@ import New from './component'
 
 
 type IState = {signInReducer: {user: IPerson}}
-type IProps = {username: string|null}
+type IProps = {facebookId: string|null}
 
 const mapStateToProps = (state: IState): IProps =>
   state.signInReducer.user

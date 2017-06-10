@@ -23,7 +23,7 @@ app.use('/api/posts', PostsRouter)
 describe('Posts HTTP', () => {
   describe('GET /api/posts', () => {
     it('retrieves list of posts', async () => {
-      const res = await supertest(app).get('/api/posts') // ?username=foobar')
+      const res = await supertest(app).get('/api/posts') // ?facebookId=foobar')
       expect(res.body).toEqual([
         {dataValues: {userId: 1}},
         {dataValues: {userId: 2}},
@@ -34,13 +34,13 @@ describe('Posts HTTP', () => {
 
   describe('/api/posts/create', () => {
     it('returns a created post', async () => {
-      const res = await supertest(app).post('/api/posts/create?username=baz')
+      const res = await supertest(app).post('/api/posts/create?facebookId=baz')
       expect(res.body.dataValues).toEqual({userId: 123})
     })
 
-    it('returns a useful error message when not provided a username', async () => {
+    it('returns a useful error message when not provided a facebookId', async () => {
       const res = await supertest(app).post('/api/posts/create')
-      expect(res.body.dataValues).toEqual({message: 'Please provide a username'})
+      expect(res.body.dataValues).toEqual({message: 'Please provide a facebookId'})
     })
   })
 

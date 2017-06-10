@@ -8,11 +8,11 @@ const NEW_POST_URL = `${config.url}/posts/new`
 // const POSTS_URL    = `${config.url}/posts`
 
 const signedInNightmare = () => {
-  const username  = randomStr()
+  const facebookId  = randomStr()
   const nightmare = Nightmare()
   return nightmare
     .goto(SIGNIN_URL)
-    .type('input#signin-form__username', username)
+    .type('input#signin-form__facebookId', facebookId)
     .click('button#signin-form__signup-button')
 }
 

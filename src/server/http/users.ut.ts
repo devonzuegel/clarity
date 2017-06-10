@@ -18,14 +18,14 @@ describe('Users HTTP', () => {
     it('retrieves list of users', () => {
       supertest(app)
         .get('/api/users')
-        .then((res) => expect(res.body).toEqual([{username: 'foobar'}]))
+        .then((res) => expect(res.body).toEqual([{facebookId: 'foobar'}]))
     })
   })
   describe('/api/users/create', () => {
     it('returns a created user', () => {
       supertest(app)
-        .post('/api/users/create?username=baz')
-        .then((res) => expect(res.body.dataValues).toEqual({username: 'baz'}))
+        .post('/api/users/create?facebookId=baz')
+        .then((res) => expect(res.body.dataValues).toEqual({facebookId: 'baz'}))
     })
   })
 })

@@ -17,10 +17,10 @@ describe('Authentication API', () => {
   describe('signup', () => {
     it('returns successfully', async () => {
       const user = await signup('foobar', mockSession())
-      expect(user.dataValues).toEqual({username: 'foobar'})
+      expect(user.dataValues).toEqual({facebookId: 'foobar'})
     })
 
-    it('rejects an unavailable username', async () => {
+    it('rejects an unavailable facebookId', async () => {
       try {
          await signup('thisUsernameIsntAvailable', mockSession())
       } catch (e) {
@@ -28,7 +28,7 @@ describe('Authentication API', () => {
       }
     })
 
-    it('updates the session to include the `username` key upon successful signup', async () => {
+    it('updates the session to include the `facebookId` key upon successful signup', async () => {
       /**
        * NOTE: Javascript passes objects by shared reference. As a result, we can get side
        * effects like updating the contents of the session object.
@@ -39,13 +39,13 @@ describe('Authentication API', () => {
        */
       const session = mockSession()
       await signup('foobar', session)
-      expect(session['username']).toEqual('foobar')
+      expect(session['facebookId']).toEqual('foobar')
     })
 
-    it('returns an error when no username given', async () => {
+    it('returns an error when no facebookId given', async () => {
       signup(undefined, mockSession())
         .then(unexpectedSuccess)
-        .catch(equals({message: 'You must provide a username'}))
+        .catch(equals({message: 'You must provide a facebookId'}))
     })
 
     it('returns an error when there is no session', async () => {
@@ -58,10 +58,10 @@ describe('Authentication API', () => {
   describe('signIn', () => {
     it('returns successfully', async () => {
       const user = await signIn('foobar', mockSession())
-      expect(user.dataValues).toEqual({username: 'foobar', id: 123})
+      expect(user.dataValues).toEqual({facebookId: 'foobar', id: 123})
     })
 
-    it('updates the session to include the `username` key', async () => {
+    it('updates the session to include the `facebookId` key', async () => {
       /**
        * NOTE: Javascript passes objects by shared reference. As a result, we can get side
        * effects like updating the contents of the session object.
@@ -71,21 +71,21 @@ describe('Authentication API', () => {
        * effects.
        */
       const session = mockSession()
-      expect(session['username']).toEqual(undefined)
+      expect(session['facebookId']).toEqual(undefined)
       signIn('foobar', session)
-        .then(_ => expect(session['username']).toEqual('foobar'))
+        .then(_ => expect(session['facebookId']).toEqual('foobar'))
     })
 
-    it('returns an error when no username given', async () => {
+    it('returns an error when no facebookId given', async () => {
       signIn(undefined, mockSession())
         .then(unexpectedSuccess)
-        .catch(equals({message: 'You must provide a username'}))
+        .catch(equals({message: 'You must provide a facebookId'}))
     })
 
-    it('returns an error when the given username does not belong to an existing user', async () => {
+    it('returns an error when the given facebookId does not belong to an existing user', async () => {
       signIn('thisUsernameDoesntExist', mockSession())
         .then(unexpectedSuccess)
-        .catch(equals({message: 'User with username \"thisUsernameDoesntExist\" does not exist'}))
+        .catch(equals({message: 'User with facebookId \"thisUsernameDoesntExist\" does not exist'}))
     })
 
     it('returns an error when there is no session', async () => {
@@ -97,28 +97,28 @@ describe('Authentication API', () => {
 
   describe('signout', () => {
     it('returns successfully', async () => {
-      const session = {...mockSession(), username: 'foobar'}
+      const session = {...mockSession(), facebookId: 'foobar'}
       await signout(session)
-      expect(session['username']).toEqual(undefined)
+      expect(session['facebookId']).toEqual(undefined)
     })
   })
 
   describe('getCurrentUser', async () => {
     it('returns successfully', async () => {
-      const user = await getCurrentUser({...mockSession(), username: 'foobar'})
-      expect(user.dataValues).toEqual({username: 'foobar', id: 123})
+      const user = await getCurrentUser({...mockSession(), facebookId: 'foobar'})
+      expect(user.dataValues).toEqual({facebookId: 'foobar', id: 123})
     })
 
-    it('returns an error when no username is set on the session', async () => {
+    it('returns an error when no facebookId is set on the session', async () => {
       const user = await getCurrentUser(mockSession())
       expect(user).toEqual(new GuestInstance)
     })
 
-    it('errors when username on the session does not belong to an existing user', async () => {
+    it('errors when facebookId on the session does not belong to an existing user', async () => {
       try {
-        await getCurrentUser({...mockSession(), username: 'thisUsernameDoesntExist'})
+        await getCurrentUser({...mockSession(), facebookId: 'thisUsernameDoesntExist'})
       } catch (e) {
-        const message = 'User with username "thisUsernameDoesntExist" does not exist'
+        const message = 'User with facebookId "thisUsernameDoesntExist" does not exist'
         expect(e).toEqual({message})
       }
     })

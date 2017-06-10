@@ -28,7 +28,7 @@ class Database {
     if (database_url) {
       this.sequelize = new Sequelize(database_url, c)
     } else {
-      this.sequelize = new Sequelize(c.database, c.username, c.password, c)
+      this.sequelize = new Sequelize(c.database, c.facebookId, c.password, c)
     }
 
     this.models = {

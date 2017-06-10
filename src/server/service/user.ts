@@ -9,16 +9,25 @@ const sequelizeFailure = (reject: Function) => (error: Sequelize.ValidationError
 }
 
 export class UserService extends MockUserService {
-  findByUsername(username: string) {
+  findByFacebookId(facebookId: string) {
     return new Promise<UserInstance>((resolve: Function, reject: Function) => {
       return models.User
-        .findOne({where: {username}})
+        .findOne({where: {facebookId}})
         .then((user: UserInstance) => resolve(user))
         .catch(sequelizeFailure(reject))
     })
   }
 
-  create(attributes: {username: string}) {
+  signIn(facebookId: string) {
+    return new Promise<UserInstance>((resolve: Function, reject: Function) => {
+      return models.User
+        .findOrCreate({where: {facebookId}})
+        .then(([user, _isNew]: [UserInstance, boolean]) => resolve(user))
+        .catch(sequelizeFailure(reject))
+    })
+  }
+
+  create(attributes: {facebookId: string}) {
     return new Promise<UserInstance>((resolve: Function, reject: Function) => {
       return models.User
         .create(attributes)

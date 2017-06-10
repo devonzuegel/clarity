@@ -2,16 +2,15 @@ import {connect}            from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {actions}            from '~/frontend/redux/actions/signIn'
 
-import {IPerson} from '~/server/db/models/person'
 
 import Layout from './component'
 
 interface IState {
-  user: IPerson
+  user: {facebookId: string}
 }
 
-const mapStateToProps = (state: {signInReducer: IState}): IState => ({
-  user: state.signInReducer.user,
+const mapStateToProps = (state: {signInReducer: IState}) => ({
+  facebookId: state.signInReducer.user.facebookId,
 })
 
 const mapDispatchToProps = (dispatch: any) => ({

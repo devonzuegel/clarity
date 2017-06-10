@@ -2,6 +2,9 @@ import * as express  from 'express'
 import * as passport from 'passport'
 import * as Facebook from 'passport-facebook'
 
+import {userService}  from '~/server/service/user'
+import {UserInstance} from '~/server/db/models/user'
+
 
 interface IPassportConfig {
   clientID:     string
@@ -10,22 +13,12 @@ interface IPassportConfig {
 }
 
 const setupStrategy = (c: IPassportConfig) => {
-  passport.use(new Facebook.Strategy(c, (token, refreshToken, profile, done) => {
-    console.log('token:')
-    console.log(token)
-
-    console.log('refreshToken:')
-    console.log(refreshToken)
-
-    console.log('profile:')
-    console.log(profile)
-
-    done(null, profile)
-    // // TODO:
-    // User.findOrCreate(..., function(err, user) {
-    //   if (err) { return done(err) }
-    //   done(null, profile)
-    // })
+  passport.use(new Facebook.Strategy(c, (_token, _refreshToken, profile, done) => {
+    const facebookId = profile.id
+    userService
+      .signIn(facebookId)
+      .then((_u: UserInstance) => done(null, profile))
+      .catch((e: any) => done(JSON.stringify(e)))
   }))
 
   passport.serializeUser((user, done)   => done(null, user))

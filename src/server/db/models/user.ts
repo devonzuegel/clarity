@@ -3,7 +3,7 @@ import {Instance, Sequelize} from 'sequelize'
 import {IPerson} from './person'
 
 export interface UserAttributes extends IPerson {
-  username: string
+  facebookId: string
 }
 
 export interface UserInstance extends Instance<UserAttributes> {
@@ -20,7 +20,7 @@ export default (sequelize: Sequelize): IUserModel => {
       primaryKey:    true,
       type:          SequelizeStatic.INTEGER,
     },
-    username: {
+    facebookId: {
       allowNull: false,
       unique:    true,
       type:      SequelizeStatic.STRING,
