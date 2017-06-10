@@ -1,5 +1,5 @@
 export const types = {
-  SET_USERNAME: 'signIn/set-facebookId',
+  SET_USERNAME: 'sign-in/set-facebookId',
 }
 
 export type IAction = {
@@ -8,11 +8,11 @@ export type IAction = {
 }
 
 export interface IActions {
-  setUsername (facebookId: string|null): IAction
+  setFacebookId (facebookId: string|null): IAction
 }
 
 export const actions = {
-  setUsername: (facebookId: string|null) => ({
+  setFacebookId: (facebookId: string|null) => ({
     type: types.SET_USERNAME,
     facebookId,
   }),

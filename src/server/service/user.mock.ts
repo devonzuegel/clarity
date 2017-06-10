@@ -1,7 +1,7 @@
 import {UserAttributes, UserInstance} from '../db/models/user'
 
 export class MockUserService {
-  findByUsername (facebookId: string): Promise<UserInstance> {
+  findByFacebookId (facebookId: string): Promise<UserInstance> {
     return new Promise<UserInstance>((resolve: Function, reject: Function) => {
       if (!facebookId) {
         reject({message: `Please provide a facebookId`})

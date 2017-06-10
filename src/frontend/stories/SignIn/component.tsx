@@ -29,7 +29,7 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
 
   componentWillMount () {
     api.getSession()
-      .then((u: IPerson) => this.props.actions.setUsername(u.facebookId))
+      .then((u: IPerson) => this.props.actions.setFacebookId(u.facebookId))
   }
 
   private constraints: IConstraint[] = [
@@ -53,7 +53,7 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
   }
 
   private signupSuccess = (_: IPerson) => {
-    this.props.actions.setUsername(this.state.facebookId)
+    this.props.actions.setFacebookId(this.state.facebookId)
     this.setState(reducers.removeError)
     this.setState(reducers.endSubmit)
     page.redirect(urls.me)

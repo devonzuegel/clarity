@@ -1,12 +1,11 @@
 import * as React from 'react'
 
-import {IPerson} from '~/server/db/models/person'
-import {urls}    from '~/frontend/routes'
+import {urls} from '~/frontend/routes'
 
 
 interface ILayout {
   children?: Element
-  user: IPerson
+  facebookId: string
 }
 
 const NavBtn = ({url, title, name}: {url: string, title: string, name: string}) => (
@@ -25,7 +24,7 @@ const Brand = () => (
   </div>
 )
 
-const LayoutComponent = ({user, children}: ILayout) => (
+const LayoutComponent = ({facebookId, children}: ILayout) => (
   <div>
     <nav style={{display: 'flow-root', marginBottom: '25px'}}>
       <Brand />
@@ -33,12 +32,12 @@ const LayoutComponent = ({user, children}: ILayout) => (
         <NavBtn title='Posts'         url={urls.posts}   name='document' />
         <NavBtn title='New post'      url={urls.newPost} name='plus'     />
         {
-          user && user.facebookId &&
-          <NavBtn title={user.facebookId} url='/me' name='user' />
+          facebookId &&
+          <NavBtn title={facebookId} url='/me' name='user' />
         }
         <span className='pt-navbar-divider' />
         {
-          user.facebookId
+          facebookId
           ? <NavBtn title='Sign out' url={urls.signout}  name='log-out' />
           : <NavBtn title='Sign in'  url={urls.fbSignin} name='log-in'  />
         }
@@ -52,18 +51,18 @@ const LayoutComponent = ({user, children}: ILayout) => (
 )
 
 interface IState {
-  user: IPerson
+  facebookId: string
 }
 
-export const setCurrentUser = (user: IPerson) => (prevState: IState): IState => ({
+export const setCurrentUser = (facebookId: string) => (prevState: IState): IState => ({
   ...prevState,
-  user,
+  facebookId,
 })
 
 class Layout extends React.Component<ILayout, IState> {
   render () {
     return (
-      <LayoutComponent user={this.props.user}>
+      <LayoutComponent facebookId={this.props.facebookId}>
         {this.props.children}
       </LayoutComponent>
     )

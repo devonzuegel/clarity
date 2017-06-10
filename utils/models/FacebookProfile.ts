@@ -1,6 +1,6 @@
 export type FacebookProfile = {
   id:          string,
-  displayName: string,
+  facebookId: string,
   provider:    string,
   _raw:        string,
   _json: {

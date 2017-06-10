@@ -7,7 +7,7 @@ import {postService}  from '../service/post'
 export const create = (facebookId: string, iteration: {body?: string, title: string}) => (
   new Promise<PostInstance>((resolve: Function, reject: Function) => {
     userService
-      .findByUsername(facebookId)
+      .findByFacebookId(facebookId)
       .then((user: UserInstance) => {
         postService
           .create(user, iteration)

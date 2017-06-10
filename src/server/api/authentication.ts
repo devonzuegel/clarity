@@ -31,7 +31,7 @@ export const signIn = (facebookId: string|undefined, session: Express.Session|un
     if (!session) {
       return reject({message: 'You must initialize the API with a session'})
     }
-    userService.findByUsername(facebookId).then((user: UserInstance) => {
+    userService.findByFacebookId(facebookId).then((user: UserInstance) => {
       if (!user) {
         return reject({message: `User with facebookId "${facebookId}" does not exist`})
       }
@@ -62,7 +62,7 @@ export const getCurrentUser = (session: Express.Session|undefined) => (
     }
 
     userService
-      .findByUsername(session.facebookId)
+      .findByFacebookId(session.facebookId)
       .then((user: UserInstance) => resolve(user))
       .catch(e => reject(e))
   })

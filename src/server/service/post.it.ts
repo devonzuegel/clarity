@@ -9,7 +9,7 @@ describe('Posts Service', () => {
     try {
       user = await userService.create({facebookId: 'foobar'})
     } catch (e) {
-      user = await userService.findByUsername('foobar')
+      user = await userService.findByFacebookId('foobar')
     }
     await postService.create(user, {title: 'baz'})
   })
@@ -23,7 +23,7 @@ describe('Posts Service', () => {
 
   describe('#create', () => {
     it('creates a new post and initializes it with a first iteration', async () => {
-      const user = await userService.findByUsername('foobar')
+      const user = await userService.findByFacebookId('foobar')
       const intiialCounts = {
         posts:      (await postService.all()).length,
         iterations: (await iterationService.all()).length,
@@ -43,7 +43,7 @@ describe('Posts Service', () => {
   describe('#iterations', () => {
     it(`retrieves a post's iterations`, async () => {
       const [title, body] = ['baz', 'qux']
-      const user       = await userService.findByUsername('foobar')
+      const user       = await userService.findByFacebookId('foobar')
       const post       = await postService.create(user, {title, body})
       const iterations = await postService.iterations(post.get('id'))
 
@@ -61,7 +61,7 @@ describe('Posts Service', () => {
     it(`creates an iteration for the given post with the provided title, body`, async () => {
       const [oldTitle, oldBody] = ['baz', 'qux']
       const [newTitle, newBody] = ['foo', 'bar']
-      const user       = await userService.findByUsername('foobar')
+      const user       = await userService.findByFacebookId('foobar')
       const post       = await postService.create(user, {title: oldTitle, body: oldBody})
       const iteration  = await postService.iterate(post.get('id'), {title: newTitle, body: newBody})
       const iterations = await postService.iterations(post.get('id'))

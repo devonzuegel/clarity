@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import {IPerson}         from '~/server/db/models/person'
 import {FacebookProfile} from '~/../utils/models/FacebookProfile'
 
 import * as api        from '~/frontend/api'
@@ -10,18 +9,21 @@ import LayoutComponent from '~/frontend/components/Layout'
 
 interface ILayout {
   actions: IActions
-  user: IPerson
+  facebookId: string
 }
 
 class Layout extends React.Component<ILayout, {}> {
   componentWillMount () {
+    const setFacebookId = (profile: FacebookProfile) => {
+      this.props.actions.setFacebookId(profile.id)
+    }
     api.getProfile()
-      .then((profile: FacebookProfile) => this.props.actions.setUsername(profile.displayName))
+      .then(setFacebookId)
   }
 
   render () {
     return (
-      <LayoutComponent user={this.props.user}>
+      <LayoutComponent facebookId={this.props.facebookId}>
         {this.props.children}
       </LayoutComponent>
     )
