@@ -1,5 +1,8 @@
-import * as page from 'page'
-import * as api  from '~/frontend/api'
+import * as React from 'react'
+import * as page  from 'page'
+
+import {renderWithLayout} from '~/frontend/routes/utils'
+import SignOutPage        from '~/frontend/stories/SignOut'
 
 
 export const urls = {
@@ -9,13 +12,12 @@ export const urls = {
 
 export const routes = () => {
   page('/auth/facebook', (_, next) => {
+    /**
+     * Still unclear why this requires two calls...
+     **/
     next()
     next()
   })
 
-  page('/signout', () => {
-    api.signout()
-      .then (() => page.redirect('/posts'))
-      .catch(() => page.redirect('/posts'))
-  })
+  page('/signout', () => renderWithLayout(<SignOutPage />))
 }

@@ -1,9 +1,9 @@
 import {connect}            from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {actions}            from '~/frontend/redux/actions/auth'
 
+import {actions} from '~/frontend/redux/actions/auth'
+import Layout    from '~/frontend/stories/Layout/component'
 
-import Layout from './component'
 
 interface IState {
   user: {facebookId: string}
@@ -17,4 +17,5 @@ const mapDispatchToProps = (dispatch: any) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout)
+export default connect(mapStateToProps, mapDispatchToProps)(Layout as any)
+

@@ -2,9 +2,9 @@ import * as R     from 'ramda'
 import * as React from 'react'
 import * as page  from 'page'
 
-import MePage             from '../pages/Me'
-import NotFoundPage       from '../pages/NotFound'
-import {renderWithLayout} from './utils'
+import MePage             from '~/frontend/pages/Me'
+import NotFoundPage       from '~/frontend/pages/NotFound'
+import {renderWithLayout} from '~/frontend/routes/utils'
 
 
 interface IPage {

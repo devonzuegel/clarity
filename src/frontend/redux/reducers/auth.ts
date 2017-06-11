@@ -9,6 +9,9 @@ export const authReducer = (state = initialState, action: IAction) => {
     case types.SIGN_IN:
       return {user: {facebookId: action.facebookId}}
 
+    case types.SIGN_OUT:
+      return {user: {facebookId: null}}
+
     default:
       return state
   }
