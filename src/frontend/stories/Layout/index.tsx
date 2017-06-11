@@ -2,7 +2,7 @@ import {connect}            from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 import {actions} from '~/frontend/redux/actions/auth'
-import Layout    from '~/frontend/stories/Layout/component'
+import Layout    from '~/frontend/components/Layout'
 
 
 interface IState {

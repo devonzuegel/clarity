@@ -50,23 +50,4 @@ const LayoutComponent = ({displayName, children}: ILayout) => (
   </div>
 )
 
-interface IState {
-  facebookId: string
-}
-
-export const setCurrentUser = (facebookId: string) => (prevState: IState): IState => ({
-  ...prevState,
-  facebookId,
-})
-
-class Layout extends React.Component<ILayout, IState> {
-  render () {
-    return (
-      <LayoutComponent displayName={this.props.displayName}>
-        {this.props.children}
-      </LayoutComponent>
-    )
-  }
-}
-
-export default Layout
+export default LayoutComponent
