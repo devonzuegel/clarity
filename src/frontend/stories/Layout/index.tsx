@@ -6,12 +6,11 @@ import Layout    from '~/frontend/stories/Layout/component'
 
 
 interface IState {
-  user: {facebookId: string}
+  user: {facebookId: string, displayName: string}
 }
 
-const mapStateToProps = (state: {authReducer: IState}) => ({
-  facebookId: state.authReducer.user.facebookId,
-})
+const mapStateToProps = (state: {authReducer: IState}) =>
+  state.authReducer.user
 
 const mapDispatchToProps = (dispatch: any) => ({
   actions: bindActionCreators(actions, dispatch),

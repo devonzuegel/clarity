@@ -45,7 +45,7 @@ export const setup = (config: IPassportConfig) => (app: express.Application) => 
    * authentication has failed.
    **/
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    successRedirect: '/me',
+    successRedirect: '/signin',
     failureRedirect: '/auth/facebook/failure',
   }))
 

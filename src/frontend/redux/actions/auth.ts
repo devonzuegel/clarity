@@ -4,22 +4,25 @@ export const types = {
 }
 
 export type IAction = {
-  type:       string,
-  facebookId: string|null,
+  type:        string,
+  facebookId:  string|null,
+  displayName: string|null,
 }
 
 export interface IActions {
-  signIn  (facebookId: string|null): IAction
+  signIn  (facebookId: string|null, displayName: string|null): IAction
   signOut (): null
 }
 
 export const actions = {
-  signIn: (facebookId: string|null) => ({
+  signIn: (facebookId: string|null, displayName: string|null) => ({
     type: types.SIGN_IN,
     facebookId,
+    displayName,
   }),
 
   signOut: () => ({
     type: types.SIGN_OUT,
   }),
 }
+

@@ -8,14 +8,14 @@ import LayoutComponent from '~/frontend/components/Layout'
 
 
 interface ILayout {
-  actions: IActions
-  facebookId: string
+  actions:     IActions
+  displayName: string
 }
 
 class Layout extends React.Component<ILayout, {}> {
   componentWillMount () {
     const setFacebookId = (profile: FacebookProfile) => {
-      this.props.actions.signIn(profile.id)
+      this.props.actions.signIn(profile.id, profile.displayName)
     }
     api.getProfile()
       .then(setFacebookId)
@@ -23,7 +23,7 @@ class Layout extends React.Component<ILayout, {}> {
 
   render () {
     return (
-      <LayoutComponent facebookId={this.props.facebookId}>
+      <LayoutComponent displayName={this.props.displayName}>
         {this.props.children}
       </LayoutComponent>
     )

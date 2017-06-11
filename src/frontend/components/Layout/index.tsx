@@ -5,7 +5,7 @@ import {urls} from '~/frontend/routes'
 
 interface ILayout {
   children?: Element
-  facebookId: string
+  displayName: string
 }
 
 const NavBtn = ({url, title, name}: {url: string, title: string, name: string}) => (
@@ -24,7 +24,7 @@ const Brand = () => (
   </div>
 )
 
-const LayoutComponent = ({facebookId, children}: ILayout) => (
+const LayoutComponent = ({displayName, children}: ILayout) => (
   <div>
     <nav style={{display: 'flow-root', marginBottom: '25px'}}>
       <Brand />
@@ -32,12 +32,12 @@ const LayoutComponent = ({facebookId, children}: ILayout) => (
         <NavBtn title='Posts'         url={urls.posts}   name='document' />
         <NavBtn title='New post'      url={urls.newPost} name='plus'     />
         {
-          facebookId &&
-          <NavBtn title={facebookId} url='/me' name='user' />
+          displayName &&
+          <NavBtn title={displayName} url='/me' name='user' />
         }
         <span className='pt-navbar-divider' />
         {
-          facebookId
+          displayName
           ? <NavBtn title='Sign out' url={urls.signout}  name='log-out' />
           : <NavBtn title='Sign in'  url={urls.fbSignin} name='log-in'  />
         }
@@ -62,7 +62,7 @@ export const setCurrentUser = (facebookId: string) => (prevState: IState): IStat
 class Layout extends React.Component<ILayout, IState> {
   render () {
     return (
-      <LayoutComponent facebookId={this.props.facebookId}>
+      <LayoutComponent displayName={this.props.displayName}>
         {this.props.children}
       </LayoutComponent>
     )

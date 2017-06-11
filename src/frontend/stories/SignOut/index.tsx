@@ -5,14 +5,16 @@ import {bindActionCreators} from 'redux'
 
 import {actions, IActions} from '~/frontend/redux/actions/auth'
 import * as api            from '~/frontend/api'
+import {urls}              from '~/frontend/routes'
+import LoadingOverlay      from '~/frontend/components/LoadingOverlay'
 
 
 class SignOut extends React.Component<{actions: IActions}, {}> {
   signOutAndRedirect () {
     this.props.actions.signOut()
     api.signout()
-      .then (() => page.redirect('/posts'))
-      .catch(() => page.redirect('/posts'))
+      .then (() => page.redirect(urls.posts))
+      .catch(() => page.redirect(urls.posts))
   }
 
   componentDidMount () {
@@ -21,9 +23,7 @@ class SignOut extends React.Component<{actions: IActions}, {}> {
 
   render() {
     return (
-      <div>
-        Signing out...
-      </div>
+      <LoadingOverlay />
     )
   }
 }

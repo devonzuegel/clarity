@@ -1,11 +1,13 @@
 import * as React from 'react'
 import * as page  from 'page'
 
-import {renderWithLayout} from '~/frontend/routes/utils'
-import SignOutPage        from '~/frontend/stories/SignOut'
+import render      from '~/frontend/render'
+import SignInPage  from '~/frontend/stories/SignIn'
+import SignOutPage from '~/frontend/stories/SignOut'
 
 
 export const urls = {
+  signIn:   '/signin',
   signout:  '/signout',
   fbSignin: '/auth/facebook',
 }
@@ -19,5 +21,6 @@ export const routes = () => {
     next()
   })
 
-  page('/signout', () => renderWithLayout(<SignOutPage />))
+  page('/signin',  () => render(<SignInPage />))
+  page('/signout', () => render(<SignOutPage />))
 }
