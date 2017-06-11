@@ -2,9 +2,11 @@ import * as R     from 'ramda'
 import * as React from 'react'
 import * as page  from 'page'
 
-import MePage             from '../pages/Me'
-import NotFoundPage       from '../pages/NotFound'
-import {renderWithLayout} from './utils'
+import MePage             from '~/frontend/pages/Me'
+import NotFoundPage       from '~/frontend/pages/NotFound'
+import render             from '~/frontend/render'
+import {renderWithLayout} from '~/frontend/routes/utils'
+import LoadingOverlay     from  '~/frontend/components/LoadingOverlay'
 
 
 interface IPage {
@@ -30,7 +32,7 @@ export const routes = () => {
   page('*', (context, _next) => {
     const isRedirecting = R.contains(context.canonicalPath, redirectUrls)
     if (isRedirecting) {
-      renderWithLayout(<h6>Redirecting...</h6>)
+      render(<LoadingOverlay />)
     } else {
       renderWithLayout(<NotFoundPage />)
     }

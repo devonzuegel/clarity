@@ -5,11 +5,11 @@ import {IPerson} from '~/server/db/models/person'
 import New from './component'
 
 
-type IState = {signInReducer: {user: IPerson}}
+type IState = {authReducer: {user: IPerson}}
 type IProps = {facebookId: string|null}
 
 const mapStateToProps = (state: IState): IProps =>
-  state.signInReducer.user
+  state.authReducer.user
 
 const mapDispatchToProps = (_dispatch: any) =>
   ({})
