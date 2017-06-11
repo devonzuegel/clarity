@@ -75,12 +75,81 @@ module.exports = require("path");
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = this && this.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var db_1 = __webpack_require__(3);
+var user_mock_1 = __webpack_require__(33);
+var sequelizeFailure = function (reject) {
+    return function (error) {
+        reject(error.errors[0]); // Return only the descriptive .errors array
+    };
+};
+var UserService = function (_super) {
+    __extends(UserService, _super);
+    function UserService() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    UserService.prototype.findByFacebookId = function (facebookId) {
+        return new Promise(function (resolve, reject) {
+            return db_1.models.User.findOne({ where: { facebookId: facebookId } }).then(function (user) {
+                return resolve(user);
+            }).catch(sequelizeFailure(reject));
+        });
+    };
+    UserService.prototype.signIn = function (facebookId) {
+        return new Promise(function (resolve, reject) {
+            return db_1.models.User.findOrCreate({ where: { facebookId: facebookId } }).then(function (_a) {
+                var user = _a[0],
+                    _isNew = _a[1];
+                return resolve(user);
+            }).catch(sequelizeFailure(reject));
+        });
+    };
+    UserService.prototype.create = function (attributes) {
+        return new Promise(function (resolve, reject) {
+            return db_1.models.User.create(attributes).then(function (user) {
+                return resolve(user);
+            }).catch(sequelizeFailure(reject));
+        });
+    };
+    UserService.prototype.all = function () {
+        return new Promise(function (resolve, reject) {
+            return db_1.models.User.findAll().then(function (users) {
+                return resolve(users);
+            }).catch(sequelizeFailure(reject));
+        });
+    };
+    return UserService;
+}(user_mock_1.MockUserService);
+exports.UserService = UserService;
+exports.userService = new UserService();
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports) {
 
 module.exports = require("sequelize");
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88,12 +157,12 @@ module.exports = require("sequelize");
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var cls = __webpack_require__(43);
-var Sequelize = __webpack_require__(1);
+var Sequelize = __webpack_require__(2);
 var user_1 = __webpack_require__(26);
 var post_1 = __webpack_require__(25);
 var iteration_1 = __webpack_require__(24);
 var config_1 = __webpack_require__(22);
-var database_url = __webpack_require__(3).database_url;
+var database_url = __webpack_require__(4).database_url;
 var Database = function () {
     function Database() {
         var _this = this;
@@ -107,7 +176,7 @@ var Database = function () {
         if (database_url) {
             this.sequelize = new Sequelize(database_url, config_1.default);
         } else {
-            this.sequelize = new Sequelize(config_1.default.database, config_1.default.username, config_1.default.password, config_1.default);
+            this.sequelize = new Sequelize(config_1.default.database, config_1.default.facebookId, config_1.default.password, config_1.default);
         }
         this.models = {
             User: user_1.default(this.sequelize),
@@ -122,7 +191,7 @@ exports.models = database.getModels();
 exports.sequelize = database.getSequelize();
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -156,7 +225,7 @@ const dbConnection = (
   }
   : { /** For Circle CI **/
     database: process.env.DB_NAME,
-    username: process.env.DB_USERNAME,
+    facebookId: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     host:     process.env.DB_HOST,
     port:     process.env.DB_PORT,
@@ -191,70 +260,10 @@ module.exports = {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = this && this.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", { value: true });
-var db_1 = __webpack_require__(2);
-var user_mock_1 = __webpack_require__(33);
-var sequelizeFailure = function (reject) {
-    return function (error) {
-        reject(error.errors[0]); // Return only the descriptive .errors array
-    };
-};
-var UserService = function (_super) {
-    __extends(UserService, _super);
-    function UserService() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    UserService.prototype.findByUsername = function (username) {
-        return new Promise(function (resolve, reject) {
-            return db_1.models.User.findOne({ where: { username: username } }).then(function (user) {
-                return resolve(user);
-            }).catch(sequelizeFailure(reject));
-        });
-    };
-    UserService.prototype.create = function (attributes) {
-        return new Promise(function (resolve, reject) {
-            return db_1.models.User.create(attributes).then(function (user) {
-                return resolve(user);
-            }).catch(sequelizeFailure(reject));
-        });
-    };
-    UserService.prototype.all = function () {
-        return new Promise(function (resolve, reject) {
-            return db_1.models.User.findAll().then(function (users) {
-                return resolve(users);
-            }).catch(sequelizeFailure(reject));
-        });
-    };
-    return UserService;
-}(user_mock_1.MockUserService);
-exports.UserService = UserService;
-exports.userService = new UserService();
 
 /***/ }),
 /* 6 */
@@ -403,20 +412,15 @@ exports.runHotMiddleware = function (app) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var passport = __webpack_require__(48);
 var Facebook = __webpack_require__(49);
+var user_1 = __webpack_require__(1);
 var setupStrategy = function (c) {
-    passport.use(new Facebook.Strategy(c, function (token, refreshToken, profile, done) {
-        console.log('token:');
-        console.log(token);
-        console.log('refreshToken:');
-        console.log(refreshToken);
-        console.log('profile:');
-        console.log(profile);
-        done(null, profile);
-        // // TODO:
-        // User.findOrCreate(..., function(err, user) {
-        //   if (err) { return done(err) }
-        //   done(null, profile)
-        // })
+    passport.use(new Facebook.Strategy(c, function (_token, _refreshToken, profile, done) {
+        var facebookId = profile.id;
+        user_1.userService.signIn(facebookId).then(function (_u) {
+            return done(null, profile);
+        }).catch(function (e) {
+            return done(JSON.stringify(e));
+        });
     }));
     passport.serializeUser(function (user, done) {
         return done(null, user);
@@ -443,7 +447,7 @@ exports.setup = function (config) {
          * authentication has failed.
          **/
         app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-            successRedirect: '/me',
+            successRedirect: '/signin',
             failureRedirect: '/auth/facebook/failure'
         }));
         app.get('/auth/facebook/failure', function (_, res) {
@@ -453,6 +457,10 @@ exports.setup = function (config) {
         });
         app.get('/api/profile', isLoggedIn, function (req, res) {
             res.json(req.user);
+        });
+        app.get('/api/signout', isLoggedIn, function (req, res) {
+            req.logout();
+            res.redirect('/');
         });
     };
 };
@@ -474,7 +482,7 @@ var isLoggedIn = function (req, res, next) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = __webpack_require__(4);
+var express = __webpack_require__(5);
 exports.serveFrontend = function (app) {
     var fs = __webpack_require__(46);
     var path = __webpack_require__(0);
@@ -527,39 +535,39 @@ module.exports = require("helmet");
 Object.defineProperty(exports, "__esModule", { value: true });
 var R = __webpack_require__(10);
 var guest_1 = __webpack_require__(23);
-var user_1 = __webpack_require__(5);
-exports.signup = function (username, session) {
+var user_1 = __webpack_require__(1);
+exports.signup = function (facebookId, session) {
     return new Promise(function (resolve, reject) {
-        if (!username) {
-            return reject({ message: 'You must provide a username' });
+        if (!facebookId) {
+            return reject({ message: 'You must provide a facebookId' });
         }
         if (!session) {
             return reject({ message: 'You must initialize the API with a session' });
         }
-        user_1.userService.create({ username: username }).then(function (user) {
-            session['username'] = username;
+        user_1.userService.create({ facebookId: facebookId }).then(function (user) {
+            session['facebookId'] = facebookId;
             return resolve(user);
         }).catch(function (e) {
             if (e.type === 'unique violation') {
-                return reject({ message: "The username \"" + e.value + "\" is not available" });
+                return reject({ message: "The facebookId \"" + e.value + "\" is not available" });
             }
             return reject(R.pick(['message'], e));
         });
     });
 };
-exports.signIn = function (username, session) {
+exports.signIn = function (facebookId, session) {
     return new Promise(function (resolve, reject) {
-        if (!username) {
-            return reject({ message: 'You must provide a username' });
+        if (!facebookId) {
+            return reject({ message: 'You must provide a facebookId' });
         }
         if (!session) {
             return reject({ message: 'You must initialize the API with a session' });
         }
-        user_1.userService.findByUsername(username).then(function (user) {
+        user_1.userService.findByFacebookId(facebookId).then(function (user) {
             if (!user) {
-                return reject({ message: "User with username \"" + username + "\" does not exist" });
+                return reject({ message: "User with facebookId \"" + facebookId + "\" does not exist" });
             }
-            session['username'] = username;
+            session['facebookId'] = facebookId;
             return resolve(user);
         }).catch(function (e) {
             return reject(e);
@@ -571,7 +579,7 @@ exports.signout = function (session) {
         if (!session) {
             return reject({ message: 'You must initialize the API with a session' });
         }
-        session['username'] = undefined;
+        session['facebookId'] = undefined;
         return resolve();
     });
 };
@@ -580,10 +588,10 @@ exports.getCurrentUser = function (session) {
         if (!session) {
             return reject({ message: 'You must initialize the API with a session' });
         }
-        if (!session.username) {
+        if (!session.facebookId) {
             return resolve(new guest_1.GuestInstance());
         }
-        user_1.userService.findByUsername(session.username).then(function (user) {
+        user_1.userService.findByFacebookId(session.facebookId).then(function (user) {
             return resolve(user);
         }).catch(function (e) {
             return reject(e);
@@ -612,7 +620,7 @@ exports.default = config;
 Object.defineProperty(exports, "__esModule", { value: true });
 var GuestInstance = function () {
     function GuestInstance() {
-        this.username = null;
+        this.facebookId = null;
     }
     return GuestInstance;
 }();
@@ -626,7 +634,7 @@ exports.GuestInstance = GuestInstance;
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var SequelizeStatic = __webpack_require__(1);
+var SequelizeStatic = __webpack_require__(2);
 exports.default = function (sequelize) {
     var Schema = {
         id: {
@@ -669,7 +677,7 @@ exports.default = function (sequelize) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var SequelizeStatic = __webpack_require__(1);
+var SequelizeStatic = __webpack_require__(2);
 exports.default = function (sequelize) {
     var Schema = {
         id: {
@@ -705,7 +713,7 @@ exports.default = function (sequelize) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var SequelizeStatic = __webpack_require__(1);
+var SequelizeStatic = __webpack_require__(2);
 exports.default = function (sequelize) {
     var Schema = {
         id: {
@@ -714,7 +722,7 @@ exports.default = function (sequelize) {
             primaryKey: true,
             type: SequelizeStatic.INTEGER
         },
-        username: {
+        facebookId: {
             allowNull: false,
             unique: true,
             type: SequelizeStatic.STRING
@@ -739,10 +747,10 @@ var requests_1 = __webpack_require__(6);
 var authentication_1 = __webpack_require__(21);
 exports.default = function (app) {
     app.post('/api/signup', function (req, res) {
-        authentication_1.signup(req.body.username, req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
+        authentication_1.signup(req.body.facebookId, req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
     });
     app.post('/api/signin', function (req, res) {
-        authentication_1.signIn(req.body.username, req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
+        authentication_1.signIn(req.body.facebookId, req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
     });
     app.post('/api/signout', function (req, res) {
         authentication_1.signout(req.session).then(requests_1.jsonSuccess(res)).catch(requests_1.jsonError(res));
@@ -837,9 +845,9 @@ var __generator = this && this.__generator || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = __webpack_require__(4);
+var express = __webpack_require__(5);
 var requests_1 = __webpack_require__(6);
-var user_1 = __webpack_require__(5);
+var user_1 = __webpack_require__(1);
 var post_1 = __webpack_require__(32);
 var router = express.Router();
 router.get('/', function (_, res) {
@@ -874,7 +882,7 @@ router.post('/create', function (req, res) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3,, 4]);
-                    return [4 /*yield*/, user_1.userService.findByUsername(req.body.username)];
+                    return [4 /*yield*/, user_1.userService.findByFacebookId(req.body.facebookId)];
                 case 1:
                     user = _a.sent();
                     return [4 /*yield*/, post_1.postService.create(user, {
@@ -951,7 +959,7 @@ exports.default = router;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var requests_1 = __webpack_require__(6);
-var user_1 = __webpack_require__(5);
+var user_1 = __webpack_require__(1);
 exports.default = function (app) {
     app.get('/api/users', function (_, res) {
         user_1.userService.all().then(function (users) {
@@ -959,7 +967,7 @@ exports.default = function (app) {
         }).catch(requests_1.jsonError(res));
     });
     app.post('/api/users/create', function (req, res) {
-        user_1.userService.create({ username: req.query.username }).then(function (user) {
+        user_1.userService.create({ facebookId: req.query.facebookId }).then(function (user) {
             return res.status(200).json(user);
         }).catch(requests_1.jsonError(res));
     });
@@ -973,7 +981,7 @@ exports.default = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = __webpack_require__(4);
+var express = __webpack_require__(5);
 var bodyParser = __webpack_require__(19);
 var http_1 = __webpack_require__(13);
 var Passport = __webpack_require__(16);
@@ -981,9 +989,9 @@ var middleware_1 = __webpack_require__(15);
 var listen_1 = __webpack_require__(14);
 var exceptionMonitoring_1 = __webpack_require__(12);
 var serveFrontend_1 = __webpack_require__(17);
-var db_1 = __webpack_require__(2);
+var db_1 = __webpack_require__(3);
 var session_1 = __webpack_require__(18);
-var config = __webpack_require__(3);
+var config = __webpack_require__(4);
 var app = express();
 app.use(bodyParser.json());
 app.use(__webpack_require__(20)());
@@ -1242,7 +1250,7 @@ var __generator = this && this.__generator || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var db_1 = __webpack_require__(2);
+var db_1 = __webpack_require__(3);
 var post_mock_1 = __webpack_require__(31);
 var sequelizeFailure = function (reject) {
     return function (error) {
@@ -1326,16 +1334,16 @@ exports.postService = new PostService();
 Object.defineProperty(exports, "__esModule", { value: true });
 var MockUserService = function () {
     function MockUserService() {}
-    MockUserService.prototype.findByUsername = function (username) {
+    MockUserService.prototype.findByFacebookId = function (facebookId) {
         return new Promise(function (resolve, reject) {
-            if (!username) {
-                reject({ message: "Please provide a username" });
+            if (!facebookId) {
+                reject({ message: "Please provide a facebookId" });
             }
-            if (username == 'thisUsernameDoesntExist') {
-                reject({ message: "User with username \"" + username + "\" does not exist" });
+            if (facebookId == 'thisUsernameDoesntExist') {
+                reject({ message: "User with facebookId \"" + facebookId + "\" does not exist" });
             }
             resolve({
-                dataValues: { username: username, id: 123 },
+                dataValues: { facebookId: facebookId, id: 123 },
                 get: function (key) {
                     switch (key) {
                         case 'id':
@@ -1349,15 +1357,15 @@ var MockUserService = function () {
     };
     MockUserService.prototype.create = function (attributes) {
         return new Promise(function (resolve, reject) {
-            if (attributes.username == 'thisUsernameIsntAvailable') {
-                reject({ message: "Sorry, \"" + attributes.username + "\" is not available" });
+            if (attributes.facebookId == 'thisUsernameIsntAvailable') {
+                reject({ message: "Sorry, \"" + attributes.facebookId + "\" is not available" });
             }
             resolve({ dataValues: attributes });
         });
     };
     MockUserService.prototype.all = function () {
         return new Promise(function (resolve, _) {
-            resolve([{ username: 'foobar' }]);
+            resolve([{ facebookId: 'foobar' }]);
         });
     };
     return MockUserService;
@@ -1562,7 +1570,7 @@ exports.partial = function (c) {
  * enforces the typed IDatabaseConfig interface.
  */
 
-const appConfig = __webpack_require__(3)
+const appConfig = __webpack_require__(4)
 
 module.exports = appConfig.db
 
