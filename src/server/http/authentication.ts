@@ -2,9 +2,7 @@ import * as express from 'express'
 import {jsonError, jsonSuccess} from '../../../utils/api/requests'
 import {signup, signIn, signout, getCurrentUser} from '../api/authentication'
 
-
 export default (app: express.Application) => {
-
   app.post('/api/signup', (req: express.Request, res: express.Response) => {
     signup(req.body.facebookId, req.session)
       .then(jsonSuccess(res))
@@ -18,16 +16,10 @@ export default (app: express.Application) => {
   })
 
   app.post('/api/signout', (req: express.Request, res: express.Response) => {
-    signout(req.session)
-      .then(jsonSuccess(res))
-      .catch(jsonError(res))
+    signout(req.session).then(jsonSuccess(res)).catch(jsonError(res))
   })
 
   app.get('/api/session', (req: express.Request, res: express.Response) => {
-    getCurrentUser(req.session)
-      .then(jsonSuccess(res))
-      .catch(jsonError(res))
+    getCurrentUser(req.session).then(jsonSuccess(res)).catch(jsonError(res))
   })
-
 }
-

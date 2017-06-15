@@ -1,6 +1,8 @@
-export interface IState {title: string, body: string}
+export interface IState {title: string; body: string}
 
-export const updateTitle = (newTitle: string) => (prevState: IState): IState => ({
+export const updateTitle = (newTitle: string) => (
+  prevState: IState
+): IState => ({
   ...prevState,
   title: newTitle,
 })

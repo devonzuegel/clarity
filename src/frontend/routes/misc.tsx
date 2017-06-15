@@ -25,7 +25,7 @@ export const routes = () => {
     <Diff
       old='Run the initial migration to get your db in the correct state.'
       new='Run the migration to get your development db in the right state.'
-    />,
+    />
   ))
 
   page('*', (context, _next) => {

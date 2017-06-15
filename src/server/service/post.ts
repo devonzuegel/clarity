@@ -7,14 +7,15 @@ import {MockPostService} from './post.mock'
 import {UserInstance} from '../db/models/user'
 import {IterationInstance} from '../db/models/iteration'
 
-
-const sequelizeFailure = (reject: Function) => (error: Sequelize.ValidationError) => {
+const sequelizeFailure = (reject: Function) => (
+  error: Sequelize.ValidationError
+) => {
   console.warn(error) // Log full error
   reject(error) // Return only the descriptive .errors array
   // reject(error.errors[0]) // Return only the descriptive .errors array
 }
 
-type IIteration = {body?: string, title: string}
+type IIteration = {body?: string; title: string}
 
 const validateIteration = (iteration: IIteration, reject: Function, cb: Function) => {
   if (R.isEmpty(iteration.title)) {
@@ -50,7 +51,9 @@ export class PostService extends MockPostService {
   }
 
   all() {
-    return new Promise<PostInstance[]>((resolve: Function, reject: Function) => {
+    return new Promise<
+      PostInstance[]
+    >((resolve: Function, reject: Function) => {
       return models.Post
         .findAll()
         .then((posts: PostInstance[]) => resolve(posts))
@@ -58,15 +61,16 @@ export class PostService extends MockPostService {
     })
   }
 
-  iterations (postId: number) {
+  iterations(postId: number) {
     return new Promise<IterationInstance[]>((resolve, reject) => {
-      return models.Iteration.findAll({where: {postId}})
+      return models.Iteration
+        .findAll({where: {postId}})
         .then(resolve)
         .catch(reject)
     })
   }
 
-  iterate (postId: number, data: IIteration) {
+  iterate(postId: number, data: IIteration) {
     return new Promise<IterationInstance>((resolve, reject) => {
       validateIteration(data, reject, () => {
         return models.Iteration.create({postId, ...data})
@@ -76,7 +80,7 @@ export class PostService extends MockPostService {
     })
   }
 
-  comments (iterationId: number) {
+  comments(iterationId: number) {
     return new Promise<IterationInstance[]>((resolve, _reject) => {
       iterationId
       resolve([])
@@ -84,4 +88,4 @@ export class PostService extends MockPostService {
   }
 }
 
-export const postService = new PostService
+export const postService = new PostService()

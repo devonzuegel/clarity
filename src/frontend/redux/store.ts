@@ -1,9 +1,9 @@
-import * as Redux  from 'redux'
+import * as Redux from 'redux'
 import {rootReducer} from './reducers'
 
 declare global {
   interface Window {
-    __REDUX_DEVTOOLS_EXTENSION__: Function,
+    __REDUX_DEVTOOLS_EXTENSION__: Function
   }
 }
 

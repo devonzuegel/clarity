@@ -1,8 +1,9 @@
 import {IterationSchema} from '~/server/db/models/iteration'
-import {IState}          from './IState'
+import {IState} from './IState'
 
-
-export const updatePostsList = (iterations: IterationSchema[]) => (prev: IState) => ({
+export const updatePostsList = (iterations: IterationSchema[]) => (
+  prev: IState
+) => ({
   ...prev,
   iterations,
   selected: iterations.length - 1, // Last iteration
@@ -13,7 +14,7 @@ export const addIteration = (iteration: IterationSchema) => (prev: IState) => {
   return {
     ...prev,
     iterations: [...iterations, iteration],
-    selected:   iterations.length,
+    selected: iterations.length,
   }
 }
 

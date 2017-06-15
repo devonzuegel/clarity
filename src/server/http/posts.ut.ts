@@ -1,4 +1,4 @@
-import * as express   from 'express'
+import * as express from 'express'
 import * as supertest from 'supertest'
 
 import {initSession} from '../../../utils/test/session'
@@ -14,7 +14,6 @@ jest.mock('../service/post', () => ({
 }))
 
 import PostsRouter from './posts'
-
 
 const app = express()
 initSession(app)
@@ -40,7 +39,9 @@ describe('Posts HTTP', () => {
 
     it('returns a useful error message when not provided a facebookId', async () => {
       const res = await supertest(app).post('/api/posts/create')
-      expect(res.body.dataValues).toEqual({message: 'Please provide a facebookId'})
+      expect(res.body.dataValues).toEqual({
+        message: 'Please provide a facebookId',
+      })
     })
   })
 
@@ -53,12 +54,20 @@ describe('Posts HTTP', () => {
     it(`retrieves the post's iterations`, async () => {
       expect(await getIterations(existentId)).toEqual([
         {dataValues: {postId: '1', title: 'Post 1, with no body'}},
-        {dataValues: {postId: '1', title: 'Post 2, with body', body: 'Body of post 2'}},
+        {
+          dataValues: {
+            postId: '1',
+            title: 'Post 2, with body',
+            body: 'Body of post 2',
+          },
+        },
       ])
     })
 
     it(`error message when id doesn't correspond to a post`, async () => {
-      expect(await getIterations(nonexistentId)).toEqual({message: 'Cannot find post with id 2'})
+      expect(await getIterations(nonexistentId)).toEqual({
+        message: 'Cannot find post with id 2',
+      })
     })
   })
 
@@ -68,12 +77,12 @@ describe('Posts HTTP', () => {
       (await supertest(app).post(`/api/posts/${id}/iterate`)).body
 
     fit(`creates a new iteration`, async () => {
-      expect(await iterate(postId)).toEqual({dataValues: {
-        ...new MockPostService().mockPost,
-        postId,
-      }})
+      expect(await iterate(postId)).toEqual({
+        dataValues: {
+          ...new MockPostService().mockPost,
+          postId,
+        },
+      })
     })
   })
 })
-
-

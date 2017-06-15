@@ -1,8 +1,7 @@
 import {IterationSchema} from '~/server/db/models/iteration'
 
-
 export interface IState {
   iterations?: IterationSchema[]
-  selected:    number
-  editing:     boolean
+  selected: number
+  editing: boolean
 }

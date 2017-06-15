@@ -4,7 +4,9 @@ import {models} from '../db'
 import {IterationInstance} from '../db/models/iteration'
 import {MockIterationService} from './iteration.mock'
 
-const sequelizeFailure = (reject: Function) => (error: Sequelize.ValidationError) => {
+const sequelizeFailure = (reject: Function) => (
+  error: Sequelize.ValidationError
+) => {
   console.warn(error) // Log full error
   reject(error) // Return only the descriptive .errors array
   // reject(error.errors[0]) // Return only the descriptive .errors array
@@ -12,7 +14,9 @@ const sequelizeFailure = (reject: Function) => (error: Sequelize.ValidationError
 
 export class IterationService extends MockIterationService {
   all() {
-    return new Promise<Array<IterationInstance>>((resolve: Function, reject: Function) => {
+    return new Promise<
+      Array<IterationInstance>
+    >((resolve: Function, reject: Function) => {
       return models.Iteration
         .findAll()
         .then((iterations: Array<IterationInstance>) => resolve(iterations))
@@ -21,4 +25,4 @@ export class IterationService extends MockIterationService {
   }
 }
 
-export const iterationService = new IterationService
+export const iterationService = new IterationService()
