@@ -1,14 +1,14 @@
 import {randomStr} from '../../../../utils/test/string'
 // import {innerText} from '../../../../utils/test/document'
-import Nightmare   from '../../../../utils/test/nightmare'
-import config      from '../../../../utils/test/config'
+import Nightmare from '../../../../utils/test/nightmare'
+import config from '../../../../utils/test/config'
 
-const SIGNIN_URL   = `${config.url}/signin`
+const SIGNIN_URL = `${config.url}/signin`
 const NEW_POST_URL = `${config.url}/posts/new`
 // const POSTS_URL    = `${config.url}/posts`
 
 const signedInNightmare = () => {
-  const facebookId  = randomStr()
+  const facebookId = randomStr()
   const nightmare = Nightmare()
   return nightmare
     .goto(SIGNIN_URL)
@@ -17,8 +17,8 @@ const signedInNightmare = () => {
 }
 
 describe('New post', () => {
-  xit('Creates a new post with title and body', (done) => {
-    const title     = randomStr()
+  xit('Creates a new post with title and body', done => {
+    const title = randomStr()
     const nightmare = signedInNightmare()
     nightmare
       .goto(NEW_POST_URL)
@@ -35,13 +35,13 @@ describe('New post', () => {
         done()
       })
 
-      // /** Click [+ Add Post] button **/
-      // /** Type a title & body, then submit **/
-      // /** View the new post **/
-      // .end()
-      // .then(() => done())
+    // /** Click [+ Add Post] button **/
+    // /** Type a title & body, then submit **/
+    // /** View the new post **/
+    // .end()
+    // .then(() => done())
   })
-  xit('Creates a new post with no body', (done) => {
+  xit('Creates a new post with no body', done => {
     const nightmare = signedInNightmare()
     nightmare
       /** Click [+ Add Post] button **/
@@ -50,7 +50,7 @@ describe('New post', () => {
       .end()
       .then(() => done())
   })
-  xit('Rejects a new post with no title', (done) => {
+  xit('Rejects a new post with no title', done => {
     const nightmare = signedInNightmare()
     nightmare
       /** Click [+ Add Post] button **/
@@ -59,7 +59,7 @@ describe('New post', () => {
       .end()
       .then(() => done())
   })
-  xit('Rejects a new post if you are not signed in', (done) => {
+  xit('Rejects a new post if you are not signed in', done => {
     const nightmare = Nightmare()
     nightmare
       /** Try to go to /posts/new **/

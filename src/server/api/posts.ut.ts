@@ -21,32 +21,36 @@ const user = {
 }
 const iteration = {
   title: 'baz',
-  body:  'qux',
+  body: 'qux',
 }
 
 describe('Posts API', () => {
-
   describe('create', () => {
     it('returns successfully', () => {
-      create('foobar', iteration).then(equals({
-        dataValues: {
-          userId: user.dataValues.id,
-        },
-      }))
+      create('foobar', iteration).then(
+        equals({
+          dataValues: {
+            userId: user.dataValues.id,
+          },
+        })
+      )
     })
 
     it('fails when the facebookId is not associated with an existing user', () => {
       create('thisUsernameDoesntExist', iteration)
-        .then(equals({
-          dataValues: {
-            userId: user.dataValues.id,
-          },
-        }))
-        .catch(equals({message: 'User with facebookId "thisUsernameDoesntExist" does not exist'}))
+        .then(
+          equals({
+            dataValues: {
+              userId: user.dataValues.id,
+            },
+          })
+        )
+        .catch(
+          equals({
+            message:
+              'User with facebookId "thisUsernameDoesntExist" does not exist',
+          })
+        )
     })
   })
-
-
 })
-
-

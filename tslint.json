@@ -2,7 +2,17 @@
   "rules": {
     "indent": [ true, "spaces" ],
     "quotemark": [ true, "single", "jsx-single", "avoid-escape" ],
-    "trailing-comma": [true, { "multiline": "always", "singleline": "never" }],
+    "trailing-comma": [
+      true,
+      {
+        "multiline": {
+          "objects": "always",
+          "arrays": "always",
+          "functions": "never",
+          "typeLiterals": "ignore"
+        }
+      }
+    ],
     "no-var-requires": false,
     "ordered-imports": false,
     "member-ordering": [false],

@@ -4,8 +4,8 @@ import {IPostModel} from './post'
 
 export interface IterationAttributes {
   postId: number
-  body?:  string
-  title:  string
+  body?: string
+  title: string
 }
 
 export interface IterationSchema extends IterationAttributes {
@@ -16,26 +16,29 @@ export interface IterationInstance extends Instance<IterationAttributes> {
   dataValues: IterationAttributes
 }
 
-export type IIterationModel = SequelizeStatic.Model<IterationInstance, IterationAttributes>
+export type IIterationModel = SequelizeStatic.Model<
+  IterationInstance,
+  IterationAttributes
+>
 
 export default (sequelize: Sequelize): IIterationModel => {
   const Schema = {
     id: {
-      allowNull:     false,
+      allowNull: false,
       autoIncrement: true,
-      primaryKey:    true,
-      type:          SequelizeStatic.INTEGER,
+      primaryKey: true,
+      type: SequelizeStatic.INTEGER,
     },
     createdAt: {
       allowNull: false,
-      type:      SequelizeStatic.DATE,
+      type: SequelizeStatic.DATE,
     },
     postId: {
-      type:      SequelizeStatic.INTEGER,
+      type: SequelizeStatic.INTEGER,
       allowNull: false,
     },
     title: {
-      type:      SequelizeStatic.STRING,
+      type: SequelizeStatic.STRING,
       allowNull: false,
       len:       1,
     },
@@ -45,9 +48,13 @@ export default (sequelize: Sequelize): IIterationModel => {
       type:      SequelizeStatic.TEXT,
     },
   }
-  const Iteration = sequelize.define<IterationInstance, IterationAttributes>('Iteration', Schema, {
+  const Iteration = sequelize.define<
+    IterationInstance,
+    IterationAttributes
+  >('Iteration', Schema, {
     classMethods: {
-      associate: (models: {Post: IPostModel}) => Iteration.belongsTo(models.Post),
+      associate: (models: {Post: IPostModel}) =>
+        Iteration.belongsTo(models.Post),
     },
   })
   return Iteration

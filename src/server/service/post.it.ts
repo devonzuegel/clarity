@@ -1,7 +1,7 @@
-import {userService}      from '../service/user'
-import {postService}      from '../service/post'
+import {userService} from '../service/user'
+import {postService} from '../service/post'
 import {iterationService} from '../service/iteration'
-import {sequelize}        from '../db'
+import {sequelize} from '../db'
 
 describe('Posts Service', () => {
   beforeAll(async () => {
@@ -25,14 +25,14 @@ describe('Posts Service', () => {
     it('creates a new post and initializes it with a first iteration', async () => {
       const user = await userService.findByFacebookId('foobar')
       const intiialCounts = {
-        posts:      (await postService.all()).length,
+        posts: (await postService.all()).length,
         iterations: (await iterationService.all()).length,
       }
 
       await postService.create(user, {title: 'baz', body: 'blah'})
 
       const counts = {
-        posts:      (await postService.all()).length,
+        posts: (await postService.all()).length,
         iterations: (await iterationService.all()).length,
       }
       expect(counts.posts).toEqual(intiialCounts.posts + 1)
@@ -55,8 +55,8 @@ describe('Posts Service', () => {
   describe('#iterations', () => {
     it(`retrieves a post's iterations`, async () => {
       const [title, body] = ['baz', 'qux']
-      const user       = await userService.findByFacebookId('foobar')
-      const post       = await postService.create(user, {title, body})
+      const user = await userService.findByFacebookId('foobar')
+      const post = await postService.create(user, {title, body})
       const iterations = await postService.iterations(post.get('id'))
 
       expect(iterations.length).toEqual(1)
@@ -73,9 +73,15 @@ describe('Posts Service', () => {
     it(`creates an iteration for the given post with the provided title, body`, async () => {
       const [oldTitle, oldBody] = ['baz', 'qux']
       const [newTitle, newBody] = ['foo', 'bar']
-      const user       = await userService.findByFacebookId('foobar')
-      const post       = await postService.create(user, {title: oldTitle, body: oldBody})
-      const iteration  = await postService.iterate(post.get('id'), {title: newTitle, body: newBody})
+      const user = await userService.findByFacebookId('foobar')
+      const post = await postService.create(user, {
+        title: oldTitle,
+        body: oldBody,
+      })
+      const iteration = await postService.iterate(post.get('id'), {
+        title: newTitle,
+        body: newBody,
+      })
       const iterations = await postService.iterations(post.get('id'))
 
       expect(iterations.length).toEqual(2)

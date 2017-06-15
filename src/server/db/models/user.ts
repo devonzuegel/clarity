@@ -15,19 +15,19 @@ export type IUserModel = SequelizeStatic.Model<UserInstance, UserAttributes>
 export default (sequelize: Sequelize): IUserModel => {
   const Schema = {
     id: {
-      allowNull:     false,
+      allowNull: false,
       autoIncrement: true,
-      primaryKey:    true,
-      type:          SequelizeStatic.INTEGER,
+      primaryKey: true,
+      type: SequelizeStatic.INTEGER,
     },
     facebookId: {
       allowNull: false,
-      unique:    true,
-      type:      SequelizeStatic.STRING,
+      unique: true,
+      type: SequelizeStatic.STRING,
     },
     createdAt: {
       allowNull: false,
-      type:      SequelizeStatic.DATE,
+      type: SequelizeStatic.DATE,
     },
   }
   return sequelize.define<UserInstance, UserAttributes>('User', Schema, {})

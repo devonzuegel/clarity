@@ -1,9 +1,10 @@
 import {IterationInstance} from '../db/models/iteration'
 
-
 export class MockIterationService {
-  all (): Promise<IterationInstance[]> {
-    return new Promise<IterationInstance[]>((resolve: Function, _: Function) => {
+  all(): Promise<IterationInstance[]> {
+    return new Promise<
+      IterationInstance[]
+    >((resolve: Function, _: Function) => {
       resolve([
         {dataValues: {title: 'title'}},
         {dataValues: {title: 'title', body: 'body'}},
@@ -12,4 +13,3 @@ export class MockIterationService {
     })
   }
 }
-

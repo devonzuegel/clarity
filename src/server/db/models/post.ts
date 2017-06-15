@@ -3,7 +3,7 @@ import {Instance, Sequelize} from 'sequelize'
 import {IUserModel} from './user'
 
 export interface PostAttributes {
-  userId:     number
+  userId: number
   createdAt?: Date
   // NOTE: updatedAt is not part of the Post interface
 }
@@ -21,17 +21,17 @@ export type IPostModel = SequelizeStatic.Model<PostInstance, PostAttributes>
 export default (sequelize: Sequelize): IPostModel => {
   const Schema = {
     id: {
-      allowNull:     false,
+      allowNull: false,
       autoIncrement: true,
-      primaryKey:    true,
-      type:          SequelizeStatic.INTEGER,
+      primaryKey: true,
+      type: SequelizeStatic.INTEGER,
     },
     createdAt: {
       allowNull: false,
-      type:      SequelizeStatic.DATE,
+      type: SequelizeStatic.DATE,
     },
     userId: {
-      type:      SequelizeStatic.INTEGER,
+      type: SequelizeStatic.INTEGER,
       allowNull: false,
     },
   }
