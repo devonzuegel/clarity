@@ -1,0 +1,18 @@
+.removed,
+.added {
+  opacity: 0.4;
+}
+
+.removed {
+  background-color: #FF4136; /* Red */
+  text-decoration: line-through;
+}
+
+.added {
+  background-color: #2ECC40; /* Green */
+}
+
+.chunk {
+  display: inline;
+  padding: 2px 3px;
+}
