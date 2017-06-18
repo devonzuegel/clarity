@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as page  from 'page'
 
-import {renderWithLayout as layoutRender} from './utils'
+import * as U from '~/frontend/routes/utils'
 
 import PostsPage   from '~/frontend/pages/Posts'
 import PostPage    from '~/frontend/pages/Posts/Show'
@@ -15,8 +15,16 @@ export const urls = {
 }
 
 export const routes = () => {
-  page('/posts/new', ({_})      => layoutRender(<NewPostPage />))
-  page('/posts/:id', ({params}) => layoutRender(<PostPage postId={params.id} />))
-  page('/posts',     ()         => layoutRender(<PostsPage />))
+  page('/posts/new', U.isLoggedIn, ({_}) => {
+    U.renderWithLayout(<NewPostPage />)
+  })
+
+  page('/posts/:id', ({params}) => {
+    U.renderWithLayout(<PostPage postId={params.id} />)
+  })
+
+  page('/posts', () => {
+    U.renderWithLayout(<PostsPage />)
+  })
 }
 

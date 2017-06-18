@@ -19,7 +19,7 @@ class Me extends React.Component<{}, IState> {
       const profile = await api.getProfile()
       this.setState({profile})
     } catch (e) {
-      alert(e.message)
+      console.warn(e.message)
     }
   }
 

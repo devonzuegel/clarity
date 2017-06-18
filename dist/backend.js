@@ -1102,7 +1102,7 @@ var MockPostService = function () {
     function MockPostService() {
         this.mockPost = {
             postId: 9,
-            title: 'aslkdfj'
+            title: 'Foo Bar Baz'
         };
     }
     MockPostService.prototype.create = function (user, _iteration) {
@@ -1113,8 +1113,8 @@ var MockPostService = function () {
     };
     MockPostService.prototype.all = function () {
         return new Promise(function (resolve, _) {
-            var mock = [{ dataValues: { userId: 1 } }, { dataValues: { userId: 2 } }, { dataValues: { userId: 2 } }];
-            resolve(mock);
+            var baz = [{ dataValues: { userId: 1 } }, { dataValues: { userId: 2 } }, { dataValues: { userId: 2 } }];
+            resolve(baz);
         });
     };
     MockPostService.prototype.iterations = function (postId) {

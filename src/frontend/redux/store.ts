@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-export const configureStore = (): Redux.Store<any> => {
+const configureStore = (): Redux.Store<any> => {
   const devtools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   const store = Redux.createStore(rootReducer, devtools)
 
@@ -19,3 +19,7 @@ export const configureStore = (): Redux.Store<any> => {
 
   return store
 }
+
+const store = configureStore()
+
+export default store

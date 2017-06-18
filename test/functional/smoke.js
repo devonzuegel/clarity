@@ -1,13 +1,9 @@
-const { url } = require('./config')
+const { getUrl } = require('./utils')
 
 module.exports = {
-  beforeEach: browser => {
-    browser
-      .url(url)
-      .waitForElementVisible('body', 100)
-  },
   'Smoke test': browser => {
     browser
+      .url(getUrl())
       .assert.visible('#root', 'Check if app has rendered with React')
       .assert.title('') // TODO: Add title
   },
