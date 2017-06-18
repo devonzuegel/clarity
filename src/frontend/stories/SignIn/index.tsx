@@ -12,7 +12,6 @@ import LoadingOverlay      from  '~/frontend/components/LoadingOverlay'
 
 class SignIn extends React.Component<{actions: IActions}, {}> {
   signInAndRedirect () {
-    console.log('alsdkfjasldkfj!')
     api
       .getProfile()
       .then((profile: FacebookProfile) => {

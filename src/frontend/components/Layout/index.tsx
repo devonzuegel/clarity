@@ -30,10 +30,12 @@ const LayoutComponent = ({displayName, children}: ILayout) => (
       <Brand />
       <div className='pt-navbar-group pt-align-right'>
         <NavBtn title='Posts'         url={urls.posts}   name='document' />
-        <NavBtn title='New post'      url={urls.newPost} name='plus'     />
         {
           displayName &&
-          <NavBtn title={displayName} url='/me' name='user' />
+          <div>
+            <NavBtn title='New post'    url={urls.newPost} name='plus' />
+            <NavBtn title={displayName} url={urls.me}      name='user' />
+          </div>
         }
         <span className='pt-navbar-divider' />
         {
