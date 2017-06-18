@@ -1,12 +1,12 @@
-import {PostInstance} from '../db/models/post'
-import {UserInstance} from '../db/models/user'
-import {IterationInstance} from '../db/models/iteration'
+import {PostInstance} from '~/server/db/models/post'
+import {UserInstance} from '~/server/db/models/user'
+import {IterationInstance} from '~/server/db/models/iteration'
 
 
 export class MockPostService {
   public mockPost = {
     postId: 9,
-    title:  'aslkdfj',
+    title:  'Foo Bar Baz',
   }
 
   create (user: UserInstance, _iteration: {body?: string, title: string}) {
@@ -18,12 +18,12 @@ export class MockPostService {
 
   all () {
     return new Promise<PostInstance[]>((resolve, _) => {
-      const mock = [
+      const baz = [
         {dataValues: {userId: 1}},
         {dataValues: {userId: 2}},
         {dataValues: {userId: 2}},
       ]
-      resolve(<PostInstance[]>mock)
+      resolve(<PostInstance[]>baz)
     })
   }
 
