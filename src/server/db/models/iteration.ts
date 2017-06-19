@@ -34,12 +34,15 @@ export default (sequelize: Sequelize): IIterationModel => {
       type:      SequelizeStatic.INTEGER,
       allowNull: false,
     },
-    body: {
-      type: SequelizeStatic.TEXT,
-    },
     title: {
       type:      SequelizeStatic.STRING,
       allowNull: false,
+      len:       1,
+    },
+    body: {
+      len:       1,
+      allowNull: false,
+      type:      SequelizeStatic.TEXT,
     },
   }
   const Iteration = sequelize.define<IterationInstance, IterationAttributes>('Iteration', Schema, {

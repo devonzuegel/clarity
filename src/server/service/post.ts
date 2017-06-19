@@ -1,4 +1,5 @@
 import * as Sequelize from 'sequelize'
+import * as R from 'ramda'
 
 import {models, sequelize} from '../db'
 import {PostInstance} from '../db/models/post'
@@ -15,6 +16,16 @@ const sequelizeFailure = (reject: Function) => (error: Sequelize.ValidationError
 
 type IIteration = {body?: string, title: string}
 
+const validateIteration = (iteration: IIteration, reject: Function, cb: Function) => {
+  if (R.isEmpty(iteration.title)) {
+    return reject('Please provide a title.')
+  }
+  if (R.isEmpty(iteration.body)) {
+    return reject('Please write something.')
+  }
+  cb()
+}
+
 const initPost = (resolve: Function, userId: number, iteration: IIteration) => (
   async (t: Sequelize.Transaction) => {
     const post: PostInstance = await models.Post.create({userId}, {transaction: t})
@@ -27,12 +38,14 @@ export class PostService extends MockPostService {
   create(user: UserInstance, iteration: IIteration) {
     return new Promise<PostInstance>((resolve: Function, reject: Function) => {
       if (!user || !user.get('id')) {
-        return reject('Please provide a user')
+        return reject('Please provide a user.')
       }
-      return sequelize
-        .transaction(initPost(resolve, user.get('id'), iteration))
-        .then((post: PostInstance) => resolve(post))
-        .catch((err: Error) => reject(err))
+      validateIteration(iteration, reject, () => {
+        return sequelize
+          .transaction(initPost(resolve, user.get('id'), iteration))
+          .then((post: PostInstance) => resolve(post))
+          .catch((err: Error) => reject(err))
+      })
     })
   }
 
@@ -55,9 +68,11 @@ export class PostService extends MockPostService {
 
   iterate (postId: number, data: IIteration) {
     return new Promise<IterationInstance>((resolve, reject) => {
-      return models.Iteration.create({postId, ...data})
-        .then(resolve)
-        .catch(reject)
+      validateIteration(data, reject, () => {
+        return models.Iteration.create({postId, ...data})
+          .then(resolve)
+          .catch(reject)
+      })
     })
   }
 

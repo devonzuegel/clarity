@@ -11,7 +11,7 @@ describe('Posts Service', () => {
     } catch (e) {
       user = await userService.findByFacebookId('foobar')
     }
-    await postService.create(user, {title: 'baz'})
+    await postService.create(user, {title: 'baz', body: 'foobar'})
   })
 
   describe('#all', () => {
@@ -29,7 +29,7 @@ describe('Posts Service', () => {
         iterations: (await iterationService.all()).length,
       }
 
-      await postService.create(user, {title: 'baz'})
+      await postService.create(user, {title: 'baz', body: 'blah'})
 
       const counts = {
         posts:      (await postService.all()).length,
@@ -37,6 +37,18 @@ describe('Posts Service', () => {
       }
       expect(counts.posts).toEqual(intiialCounts.posts + 1)
       expect(counts.iterations).toEqual(intiialCounts.iterations + 1)
+    })
+    it('rejects an empty title', async () => {
+      const user = await userService.findByFacebookId('foobar')
+      postService.create(user, {title: '', body: ''}).catch((reason) => {
+        expect(reason).toEqual('Please provide a title.')
+      })
+    })
+    it('rejects an empty title', async () => {
+      const user = await userService.findByFacebookId('foobar')
+      postService.create(user, {title: 'x', body: ''}).catch((reason) => {
+        expect(reason).toEqual('Please write something.')
+      })
     })
   })
 

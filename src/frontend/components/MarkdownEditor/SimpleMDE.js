@@ -1464,8 +1464,6 @@ SimpleMDE.prototype.render = function(el) {
   this.element = el;
   var options = this.options;
 
-  console.log(options)
-
   var self = this;
   var keyMaps = {};
 
