@@ -1,18 +1,70 @@
+@import '../variables.css';
+
 .removed,
 .added {
-  opacity: 0.4;
+  padding: var(--spacing-xxsmall) var(--spacing-xsmall);
 }
 
 .removed {
-  background-color: #FF4136; /* Red */
+  background: color(var(--red) alpha(-80%));
+  color: color(var(--red) blackness(30%));
   text-decoration: line-through;
 }
 
 .added {
-  background-color: #2ECC40; /* Green */
+  background: color(var(--green) alpha(-80%));
+  color: color(var(--green) blackness(45%));
 }
 
 .chunk {
   display: inline;
-  padding: 2px 3px;
 }
+
+/************************************/
+
+.parentxx {
+  line-height: 1.53em;
+  padding:     var(--spacing-base);
+  margin:      var(--spacing-large) 0;
+  border:      1px solid color(var(--maroon) alpha(-80%));
+  color:       color(var(--maroon) blackness(60%));
+  background:  color(var(--maroon) alpha(-95%));
+  & > .badge {
+    background: color(var(--maroon) blackness(50%));
+    border: 1px solid color(var(--maroon) blackness(70%));
+  }
+  & .innerxx,
+  & :global(.innerxx) {
+    margin-top: var(--spacing-base);
+    padding:    var(--spacing-small);
+  }
+  & .innerxx {
+    border:     1px solid color(var(--blue) alpha(-80%));
+    color:      color(var(--blue) blackness(60%));
+    background: color(var(--blue) alpha(-95%));
+  }
+  & .innerxx .badge {
+    background: color(var(--blue) blackness(50%));
+    border: 1px solid color(var(--blue) blackness(70%));
+  }
+  & :global(.innerxx) {
+    border:     1px solid color(var(--purple) alpha(-80%));
+    color:      color(var(--purple) blackness(60%));
+    background: color(var(--purple) alpha(-95%));
+  }
+  & :global(.innerxx) .badge {
+    background: color(var(--purple) blackness(50%));
+    border: 1px solid color(var(--purple) blackness(70%));
+  }
+}
+
+.badge {
+  position:      relative;
+  top:           -1px;
+  padding:       var(--spacing-xsmall) var(--spacing-small);
+  border-radius: var(--spacing-xsmall);
+  color:         var(--white);
+  font-family:   'Roboto Mono';
+  font-size:     0.7em;
+}
+

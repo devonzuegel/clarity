@@ -1,0 +1,28 @@
+:root {
+  --navy:    #001F3F;
+  --blue:    #0074D9;
+  --aqua:    #7FDBFF;
+  --teal:    #39CCCC;
+  --olive:   #3D9970;
+  --green:   #2ECC40;
+  --lime:    #01FF70;
+  --yellow:  #FFDC00;
+  --orange:  #FF851B;
+  --red:     #FF4136;
+  --fuchsia: #F012BE;
+  --purple:  #B10DC9;
+  --maroon:  #85144B;
+  --white:   #FFFFFF;
+  --gray:    #AAAAAA;
+  --silver:  #DDDDDD;
+  --black:   #111111;
+
+  --spacing: 16px;
+  --spacing-xxsmall: calc(var(--spacing) / 8);
+  --spacing-xsmall:  calc(var(--spacing) / 4);
+  --spacing-small:   calc(var(--spacing) / 2);
+  --spacing-base:    calc(1 * var(--spacing));
+  --spacing-large:   calc(2 * var(--spacing));
+  --spacing-xlarge:  calc(3 * var(--spacing));
+  --spacing-xxlarge: calc(4 * var(--spacing));
+}
