@@ -12,9 +12,11 @@ interface ISentryConfig {
   env: string
 }
 
-export const monitorExceptions = (config: ISentryConfig) => (app: express.Application) => {
+export const monitorExceptions = (config: ISentryConfig) => (
+  app: express.Application
+) => {
   // Must configure Raven before doing anything else with it
-  Raven.config(config.sentry_dsn, { environment: config.env }).install()
+  Raven.config(config.sentry_dsn, {environment: config.env}).install()
 
   // The request handler must be the first middleware on the app
   app.use(Raven.requestHandler())

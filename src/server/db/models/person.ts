@@ -1,3 +1,3 @@
 export interface IPerson {
-  facebookId: string|null
+  facebookId: string | null
 }

@@ -1,10 +1,12 @@
 import {UserInstance} from '../db/models/user'
 import {PostInstance} from '../db/models/post'
-import {userService}  from '../service/user'
-import {postService}  from '../service/post'
+import {userService} from '../service/user'
+import {postService} from '../service/post'
 
-
-export const create = (facebookId: string, iteration: {body?: string, title: string}) => (
+export const create = (
+  facebookId: string,
+  iteration: {body?: string; title: string}
+) =>
   new Promise<PostInstance>((resolve: Function, reject: Function) => {
     userService
       .findByFacebookId(facebookId)
@@ -15,4 +17,3 @@ export const create = (facebookId: string, iteration: {body?: string, title: str
       })
       .catch(e => reject(e))
   })
-)

@@ -10,10 +10,11 @@ jest.mock('../service/user', () => ({
 import {signup, signIn, getCurrentUser, signout} from './authentication'
 
 const equals = (expected: any) => (u: any) => expect(u).toEqual(expected)
-const unexpectedSuccess = () => { throw Error }
+const unexpectedSuccess = () => {
+  throw Error
+}
 
 describe('Authentication API', () => {
-
   describe('signup', () => {
     it('returns successfully', async () => {
       const user = await signup('foobar', mockSession())
@@ -22,9 +23,11 @@ describe('Authentication API', () => {
 
     it('rejects an unavailable facebookId', async () => {
       try {
-         await signup('thisUsernameIsntAvailable', mockSession())
+        await signup('thisUsernameIsntAvailable', mockSession())
       } catch (e) {
-        expect(e).toEqual({message: 'Sorry, "thisUsernameIsntAvailable" is not available'})
+        expect(e).toEqual({
+          message: 'Sorry, "thisUsernameIsntAvailable" is not available',
+        })
       }
     })
 
@@ -72,8 +75,9 @@ describe('Authentication API', () => {
        */
       const session = mockSession()
       expect(session['facebookId']).toEqual(undefined)
-      signIn('foobar', session)
-        .then(_ => expect(session['facebookId']).toEqual('foobar'))
+      signIn('foobar', session).then(_ =>
+        expect(session['facebookId']).toEqual('foobar')
+      )
     })
 
     it('returns an error when no facebookId given', async () => {
@@ -85,7 +89,12 @@ describe('Authentication API', () => {
     it('returns an error when the given facebookId does not belong to an existing user', async () => {
       signIn('thisUsernameDoesntExist', mockSession())
         .then(unexpectedSuccess)
-        .catch(equals({message: 'User with facebookId \"thisUsernameDoesntExist\" does not exist'}))
+        .catch(
+          equals({
+            message:
+              'User with facebookId "thisUsernameDoesntExist" does not exist',
+          })
+        )
     })
 
     it('returns an error when there is no session', async () => {
@@ -105,20 +114,27 @@ describe('Authentication API', () => {
 
   describe('getCurrentUser', async () => {
     it('returns successfully', async () => {
-      const user = await getCurrentUser({...mockSession(), facebookId: 'foobar'})
+      const user = await getCurrentUser({
+        ...mockSession(),
+        facebookId: 'foobar',
+      })
       expect(user.dataValues).toEqual({facebookId: 'foobar', id: 123})
     })
 
     it('returns an error when no facebookId is set on the session', async () => {
       const user = await getCurrentUser(mockSession())
-      expect(user).toEqual(new GuestInstance)
+      expect(user).toEqual(new GuestInstance())
     })
 
     it('errors when facebookId on the session does not belong to an existing user', async () => {
       try {
-        await getCurrentUser({...mockSession(), facebookId: 'thisUsernameDoesntExist'})
+        await getCurrentUser({
+          ...mockSession(),
+          facebookId: 'thisUsernameDoesntExist',
+        })
       } catch (e) {
-        const message = 'User with facebookId "thisUsernameDoesntExist" does not exist'
+        const message =
+          'User with facebookId "thisUsernameDoesntExist" does not exist'
         expect(e).toEqual({message})
       }
     })
@@ -132,7 +148,4 @@ describe('Authentication API', () => {
       }
     })
   })
-
 })
-
-
