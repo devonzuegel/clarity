@@ -1,6 +1,11 @@
 import {IterationSchema} from '~/server/db/models/iteration'
 import {IState} from './IState'
 
+export const stopLoading = (prevState: IState) => ({
+  ...prevState,
+  loading: false,
+})
+
 export const updatePostsList = (iterations: IterationSchema[]) => (
   prev: IState
 ) => ({

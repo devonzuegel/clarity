@@ -4,4 +4,5 @@ export interface IState {
   iterations?: IterationSchema[]
   selected: number
   editing: boolean
+  loading: boolean
 }

@@ -1,48 +1,50 @@
-import * as R     from 'ramda'
+import * as R from 'ramda'
 import * as React from 'react'
 
 import {IterationSchema} from '~/server/db/models/iteration'
-import * as api          from '~/frontend/api'
+import * as api from '~/frontend/api'
+import LoadingOverlay from '~/frontend/components/LoadingOverlay'
 
-import {IState}      from './IState'
+import {IState} from './IState'
 import * as reducers from './reducers'
-import Iteration     from './Iteration'
-import Edit          from './Edit'
-import Timeline      from './Timeline'
+import Iteration from './Iteration'
+import Edit from './Edit'
+import Timeline from './Timeline'
 
-
-const _dummy   = { // Force compiler to accept the selected iteration.
+const _dummy = {
+  // Force compiler to accept the selected iteration.
   createdAt: '',
-  postId:    -1,
-  title:     '',
+  postId: -1,
+  title: '',
 }
 
 export class Post extends React.Component<{postId: number}, IState> {
   state = {
-    iterations:  undefined,
-    selected:    0,
-    editing:     false,
-    errorMsg:    undefined,
+    loading: true,
+    iterations: undefined,
+    selected: 0,
+    editing: false,
+    errorMsg: undefined,
   }
 
-
-  async componentWillMount () {
+  async componentWillMount() {
     try {
-      const iterations: IterationSchema[] = await api.getIterations(this.props.postId)
-      if (iterations.length === 0) {
-        this.setState(() => ({errorMsg: `Sorry! That post doesn't exist.`}))
-      }
+      const iterations: IterationSchema[] = await api.getIterations(
+        this.props.postId
+      )
+      if (iterations.length === 0) throw Error('No iterations')
       this.setState(reducers.updatePostsList(iterations))
     } catch (e) {
-      console.warn(e)
+      this.setState(() => ({errorMsg: `Sorry! That post doesn't exist.`}))
     }
+    this.setState(reducers.stopLoading)
   }
 
-  private iterations () {
+  private iterations() {
     return this.state.iterations || []
   }
 
-  private body () {
+  private body() {
     const iterations = this.iterations()
 
     if (!iterations) {
@@ -71,42 +73,40 @@ export class Post extends React.Component<{postId: number}, IState> {
     return (
       <Edit
         iteration={lastIteration}
-        addIteration={(i: IterationSchema) => this.setState(reducers.addIteration(i))}
-       />
-     )
+        addIteration={(i: IterationSchema) =>
+          this.setState(reducers.addIteration(i))}
+      />
+    )
   }
 
-  render () {
+  render() {
+    if (this.state.loading) {
+      return <LoadingOverlay />
+    }
     const iterations = this.iterations()
-
     return (
       <div>
-        {
-          this.state.errorMsg &&
-          <div className='pt-callout pt-intent-danger'>
+        {this.state.errorMsg &&
+          <div className="pt-callout pt-intent-danger">
             {this.state.errorMsg}
-          </div>
-        }
-        {
-          !this.state.errorMsg &&
+          </div>}
+        {!this.state.errorMsg &&
           <div>
-            {
-              iterations &&
+            {iterations &&
               <Timeline
-                iterations   ={iterations}
-                isSelected   ={(index: number): Boolean => this.state.selected === index}
-                select       ={(i: number) => this.setState(reducers.select(i))}
-                startRevision={() => this.setState(reducers.select(iterations.length + 1, true))}
-                viewHistory  ={() => this.setState(reducers.select(iterations.length))}
-              />
-            }
+                iterations={iterations}
+                isSelected={(i: number): Boolean => this.state.selected === i}
+                select={(i: number) => this.setState(reducers.select(i))}
+                startRevision={() =>
+                  this.setState(reducers.select(iterations.length + 1, true))}
+                viewHistory={() =>
+                  this.setState(reducers.select(iterations.length))}
+              />}
             {this.body()}
-          </div>
-        }
+          </div>}
       </div>
     )
   }
 }
 
 export default Post
-
