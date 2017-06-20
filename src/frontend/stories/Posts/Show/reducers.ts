@@ -28,3 +28,8 @@ export const select = (index: number, editing?: boolean) => (prev: IState) => ({
   editing,
   selected: index,
 })
+
+export const showDiff = (i1: number, i2: number) => (prev: IState) => ({
+  ...prev,
+  selected: [i1, i2],
+})

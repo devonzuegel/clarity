@@ -1,9 +1,8 @@
-import * as React      from 'react'
+import * as React from 'react'
 import * as classnames from 'classnames'
-import * as JsDiff     from 'diff'
+import * as JsDiff from 'diff'
 
 const s = require('./styles.css')
-
 
 interface IDiffProps {
   old: string
@@ -20,22 +19,15 @@ class Diff extends React.Component<IDiffProps, any> {
         [s['added']]: added,
       })
 
-    return <div>
-      <div className={s['parentxx']}>
-        This is outside <span className={s['badge']}>{s['parentxx']}</span>
-        <div className={s['innerxx']}>
-          This is inside <span className={s['badge']}>{s['innerxx']}</span>
-        </div>
-        <div className='innerxx'>
-          This is inside <span className={s['badge']}>innerxx</span>
-        </div>
+    return (
+      <div>
+        {diff.map((chunk: JsDiff.IDiffResult, i: number) =>
+          <div key={i} className={classes(chunk)}>
+            {chunk.value}
+          </div>
+        )}
       </div>
-      {diff.map((chunk: JsDiff.IDiffResult, i: number) => (
-        <div key={i} className={classes(chunk)}>
-          {chunk.value}
-        </div>
-      ))}
-    </div>
+    )
   }
 }
 
