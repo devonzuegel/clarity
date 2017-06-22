@@ -88,10 +88,7 @@ export class Post extends React.Component<{postId: number}, IState> {
           <div>
             <Timeline
               iterations={iterations}
-              isSelected={(i): boolean => {
-                console.log(`${this.state.selected}   ${i}`)
-                return R.equals(this.state.selected, i)
-              }}
+              isSelected={i => R.equals(this.state.selected, i)}
               select={i => this.setState(reducers.select(i))}
               startRevision={setState(reducers.select(nIterations + 1, true))}
               viewHistory={setState(reducers.select(nIterations))}
