@@ -1,13 +1,21 @@
-import {GuestInstance} from '~/server/db/models/guest'
 import {types} from '~/frontend/redux/actions/auth'
 import {IAction} from '~/frontend/redux/actions/auth'
 
-const initialState = {user: new GuestInstance()}
+interface IAuthState {
+  user: {
+    facebookId?: string
+    displayName?: string
+  }
+}
 
-export const authReducer = (state = initialState, action: IAction) => {
+const reducer = (_initialState: IAuthState) => (
+  state: IAuthState = _initialState,
+  action: IAction
+) => {
   switch (action.type) {
     case types.SIGN_IN:
       return {
+        ...state, 
         user: {
           facebookId: action.facebookId,
           displayName: action.displayName,
@@ -15,9 +23,23 @@ export const authReducer = (state = initialState, action: IAction) => {
       }
 
     case types.SIGN_OUT:
-      return {user: {facebookId: null}}
+      return {
+        ...state, 
+        user: {facebookId: null},
+      }
 
     default:
       return state
   }
 }
+
+export const authReducer = reducer({
+  user: {},
+})
+
+export const authReducerMock = reducer({
+  user: {
+    facebookId: '123',
+    displayName: 'Test User',
+  },
+})

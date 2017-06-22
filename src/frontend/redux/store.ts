@@ -1,5 +1,5 @@
 import * as Redux from 'redux'
-import {rootReducer} from './reducers'
+import {rootReducer, rootReducerMock} from './reducers'
 
 declare global {
   interface Window {
@@ -8,15 +8,16 @@ declare global {
 }
 
 const configureStore = (): Redux.Store<any> => {
-  const devtools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  const store = Redux.createStore(rootReducer, devtools)
+  const devtools = window.__REDUX_DEVTOOLS_EXTENSION__
+  const _module = module as any
 
-  if (module.hot) {
-    (module as any).hot.accept('./reducers', () => {
-      store.replaceReducer(require('./reducers'))
-    })
+  if (_module.hot) {
+    const store = Redux.createStore(rootReducerMock, devtools && devtools())
+    _module.hot.accept('./reducers', () => store.replaceReducer(require('./reducers')))
+    return store
   }
 
+  const store = Redux.createStore(rootReducer, devtools && devtools())
   return store
 }
 
