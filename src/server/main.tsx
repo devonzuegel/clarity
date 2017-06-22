@@ -1,17 +1,20 @@
-import * as express    from 'express'
+import * as express from 'express'
+import * as R from 'ramda'
+import * as Chalk from 'chalk'
 import * as bodyParser from 'body-parser'
 
-import http                from './http'
-import * as Passport       from './passport'
-import {runHotMiddleware}  from './middleware'
-import {listen}            from './listen'
+import http from './http'
+import * as Passport from './passport'
+import {runHotMiddleware} from './middleware'
+import {listen} from './listen'
 import {monitorExceptions} from './exceptionMonitoring'
-import {serveFrontend}     from './serveFrontend'
-import {sequelize}         from './db'
-import {setupSession}      from './session'
+import {serveFrontend} from './serveFrontend'
+import {sequelize} from './db'
+import {setupSession} from './session'
 
-const config = require('./config.js')
-const app    = express()
+const {LOCAL_ENVS} = require('./config/environments')
+const config = require('./config/index.js')
+const app = express()
 
 app.use(bodyParser.json())
 app.use(require('helmet')())
@@ -21,7 +24,8 @@ setupSession(app) // Must happen before initializing the API
 http(app)
 Passport.setup(config)(app)
 
-if (config.env === 'development') {
+if (R.contains(config.env, LOCAL_ENVS)) {
+  console.log(Chalk.bgBlue.black(`\n\n  Running HMR...  \n`))
   runHotMiddleware(app)
 }
 

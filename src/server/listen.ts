@@ -5,6 +5,6 @@ export const listen = (
   app: express.Application,
   {host, port}: {host: string; port: number}
 ) => {
-  console.info(Chalk.black.bgGreen(`\n\nListening at http://${host}:${port}\n`))
+  console.info(Chalk.black.bgGreen(`\n\n  Listening at http://${host}:${port}  \n`))
   app.listen(port)
 }
