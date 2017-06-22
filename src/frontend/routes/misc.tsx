@@ -18,8 +18,9 @@ const redirectUrls = ['/auth/facebook']
 
 export const routes = () => {
   page('/me', U.isLoggedIn, () => U.renderWithLayout(<MePage />))
+  
   page('/test', () => U.renderWithLayout(<TestPage />))
-
+  
   page('*', (context, _next) => {
     const isRedirecting = R.contains(context.canonicalPath, redirectUrls)
     if (isRedirecting) {
