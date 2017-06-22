@@ -1,6 +1,11 @@
 import {IterationSchema} from '~/server/db/models/iteration'
 import {IState} from './IState'
 
+export const stopLoading = (prevState: IState) => ({
+  ...prevState,
+  loading: false,
+})
+
 export const updatePostsList = (iterations: IterationSchema[]) => (
   prev: IState
 ) => ({
@@ -22,4 +27,9 @@ export const select = (index: number, editing?: boolean) => (prev: IState) => ({
   ...prev,
   editing,
   selected: index,
+})
+
+export const showDiff = (i1: number, i2: number) => (prev: IState) => ({
+  ...prev,
+  selected: [i1, i2],
 })

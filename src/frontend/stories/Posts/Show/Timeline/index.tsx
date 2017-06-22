@@ -1,94 +1,69 @@
-import * as React      from 'react'
-import * as classnames from 'classnames'
+import * as React from 'react'
 
 import {IterationSchema} from '~/server/db/models/iteration'
 
+import Spacer from './Spacer'
+import Item from './Item'
+
 const s = require('./styles.css')
 
-type IItemProps = {
-  id:            string
-  children?:     any,
-  isSelected:    Boolean,
-  onClick:       () => void,
-  onMouseEnter?: () => void,
-  action?:       Boolean,
+type ITimelineProps = {
+  iterations: IterationSchema[]
+  isSelected: (i: number | number[]) => boolean
+  select: (i: number) => void
+  startRevision: () => void
+  viewHistory: () => void
+  showDiff: (i1: number, i2: number) => () => void
 }
 
-const Item = (props: IItemProps) => {
-  const classes = classnames({
-    [s['item']]:         true,
-    [s['item__action']]: !!props.action,
-    [s['pt-button']]:    !!props.action,
-    [s['item__active']]: !!props.isSelected,
-  })
+const Timeline = (props: ITimelineProps) => {
+  const iterations = props.iterations
+
+  const Iteration = (_: IterationSchema, k: number) => [
+    k > 0 &&
+      <Spacer
+        onClick={props.showDiff(k - 1, k)}
+        isSelected={props.isSelected([k - 1, k])}
+      />,
+    <Item
+      id={`iteration-${k}`}
+      onClick={() => props.select(k)}
+      onMouseEnter={() => props.select(k)}
+      isSelected={props.isSelected(k)}
+      key={k}
+    />,
+  ]
 
   return (
-    <div
-      id          ={props.id}
-      onClick     ={props.onClick}
-      onMouseEnter={props.onMouseEnter}
-      className   ={classes}
-    >
-      <span>
-        {props.children}
-      </span>
+    <div className={s['top-bar']}>
+      <div className={s['timeline']}>
+        <div className={s['timeline--line']} />
+        {iterations.length > 1 && iterations.map(Iteration)}
+      </div>
+
+      <div className={s['actions']}>
+        <Item
+          id="posts--show--history"
+          onClick={props.viewHistory}
+          isSelected={props.isSelected(iterations.length)}
+          key={iterations.length}
+          action
+        >
+          History
+        </Item>
+
+        <Item
+          id="posts--show--iterate-btn"
+          onClick={props.startRevision}
+          isSelected={props.isSelected(iterations.length + 1)}
+          key={iterations.length + 1}
+          action
+        >
+          Revise
+        </Item>
+      </div>
     </div>
   )
 }
-
-type ITimelineProps = {
-  iterations:    IterationSchema[],
-  isSelected:    (i: number) => Boolean,
-  select:        (i: number) => void,
-  startRevision: ()          => void,
-  viewHistory:   ()          => void,
-}
-
-const Timeline = (props: ITimelineProps) => (
-  <div className={s['top-bar']}>
-    <div className={s['timeline']}>
-      <div className={s['timeline--line']} />
-      {
-        props.iterations.length > 1 &&
-        props.iterations.map((_: IterationSchema, k: number) => [
-          (
-            k > 0 &&
-            <div className={s['spacer']} />
-          ),
-          <Item
-            id          ={`iteration-${k}`}
-            onClick     ={() => props.select(k)}
-            onMouseEnter={() => props.select(k)}
-            isSelected  ={props.isSelected(k)}
-            key         ={k}
-          />,
-        ])
-
-      }
-    </div>
-
-    <div className={s['actions']}>
-      <Item
-        id        ='posts--show--history'
-        onClick   ={props.viewHistory}
-        isSelected={props.isSelected(props.iterations.length)}
-        key       ={props.iterations.length}
-        action
-      >
-        History
-      </Item>
-
-      <Item
-        id        ='posts--show--iterate-btn'
-        onClick   ={props.startRevision}
-        isSelected={props.isSelected(props.iterations.length + 1)}
-        key       ={props.iterations.length + 1}
-        action
-      >
-        Revise
-      </Item>
-    </div>
-  </div>
-)
 
 export default Timeline

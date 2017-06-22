@@ -1,10 +1,5 @@
-:root {
-  --blue1: #0E5A8A;
-  --blue2: #106BA3;
-  --grey1: #8A9BA8;
-  --grey2: #A7B6C2;
-  --grey3: #BFCCD6;
-}
+@import '../../../../components/variables.css';
+
 .top-bar {
   margin-bottom: 20px;
   display: flex;
@@ -18,13 +13,23 @@
   width: 50%;
   display: flex;
   justify-content: flex-start;
+  cursor: pointer;
 }
 
-.spacer {
-  width: 30px;
-  margin: 0 5px;
-  align-self: center;
-  border-bottom: 1px solid var(--grey3);
+.container {
+  display: flex;
+  vertical-align: middle;
+  & .spacer {
+    width: var(--spacing-large);
+    margin: 0 5px;
+    align-self: center;
+    border-bottom: 2px solid color(var(--grey3) alpha(50%));
+  }
+
+  &.is-selected .spacer {
+    border-bottom: 2px solid var(--blue);
+    box-shadow: 0px 0px 1px 2px color(var(--grey3) alpha(10%));
+  }
 }
 
 /** Items **/
@@ -36,7 +41,6 @@
   height: 12px;
   vertical-align: middle;
   text-align: center;
-  font-size: .9em;
   border: 1px solid var(--grey2);
   border-radius: 100px;
   color: white;
@@ -46,9 +50,7 @@
   justify-content: center;
 }
 
-.item__active,
-.item:hover
-{
+.item__active, .item:hover {
   background: var(--blue2);
   border-color: var(--blue1);
 }
@@ -70,7 +72,6 @@
   width: 90px;
   height: 28px;
   margin-left: 12px;
-  font-size: 1em;
 }
 
 .item__action.item__active {
