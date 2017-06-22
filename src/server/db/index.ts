@@ -26,9 +26,9 @@ class Database {
     _Sequelize.cls = cls.createNamespace('sequelize-transaction')
 
     if (database_url) {
-      this.sequelize = new Sequelize(database_url, c)
+      this.sequelize = new _Sequelize(database_url, c)
     } else {
-      this.sequelize = new Sequelize(c.database, c.facebookId, c.password, c)
+      this.sequelize = new _Sequelize(c.database, c.facebookId, c.password, c)
     }
 
     this.models = {
