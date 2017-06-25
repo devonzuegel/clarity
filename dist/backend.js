@@ -175,9 +175,9 @@ var Database = function () {
         var _Sequelize = Sequelize;
         _Sequelize.cls = cls.createNamespace('sequelize-transaction');
         if (database_url) {
-            this.sequelize = new Sequelize(database_url, config_1.default);
+            this.sequelize = new _Sequelize(database_url, config_1.default);
         } else {
-            this.sequelize = new Sequelize(config_1.default.database, config_1.default.facebookId, config_1.default.password, config_1.default);
+            this.sequelize = new _Sequelize(config_1.default.database, config_1.default.facebookId, config_1.default.password, config_1.default);
         }
         this.models = {
             User: user_1.default(this.sequelize),
@@ -214,19 +214,6 @@ const HEROKU_ENVS = ['heroku-develop', 'heroku-stage', 'heroku-live']
 const LOCAL_ENVS = ['local-develop']
 const TEST_ENVS = ['test', 'ci']
 
-const notCircleCI = R.contains(process.env.NODE_ENV, HEROKU_ENVS + LOCAL_ENVS)
-
-const dbConnection = notCircleCI
-  ? {use_env_variable: 'DATABASE_URL'} /** For Heroku and local develoment **/
-  : {
-      /** For Circle CI **/
-      database: process.env.DB_NAME,
-      facebookId: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT,
-    }
-
 module.exports = {
   port: process.env.PORT,
   host: process.env.HOST,
@@ -242,11 +229,12 @@ module.exports = {
   /*******************************************************************
    *** The db object is used by Sequelize to configure migrations. ***
    *******************************************************************/
-  db: R.merge(dbConnection, {
+  db: {
+    use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
     timezone: '+00:00',
     logging: R.contains(process.env.NODE_ENV, TEST_ENVS) && console.log,
-  }),
+  },
 }
 
 
