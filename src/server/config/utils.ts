@@ -33,5 +33,5 @@ export const getValueSource = (dotEnv: IDotEnv, processEnv: IStrObj) => {
   }
   console.info(chalk.green('Environment variables loaded from .env:'))
   console.info(chalk.grey(JSON.stringify(dotEnv, null, 2)))
-  return dotEnv.parsed
+  return dotEnv.parsed || {}
 }
