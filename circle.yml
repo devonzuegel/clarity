@@ -4,7 +4,7 @@ machine:
 test:
   pre:
     - npm install -g sequelize-cli
-    - sequelize db:migrate
+    - yarn migrate
   override:
     - yarn test:ci
 dependencies:
