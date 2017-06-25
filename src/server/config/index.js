@@ -7,11 +7,10 @@ const chalk = require('chalk')
 const env = require('dotenv').config({path: path.resolve('.env')})
 const {checkExpected} = require('./expected')
 const {getValueSource} = require('./utils')
-const {HEROKU_ENVS, LOCAL_ENVS, TEST_ENVS} = require('./environments')
+const {TEST_ENVS} = require('./environments')
 
 const valueSource = getValueSource(env, process.env)
 const nodeEnv = valueSource.NODE_ENV
-const notCircleCI = R.contains(nodeEnv, HEROKU_ENVS + LOCAL_ENVS)
 
 const result = {
   port: valueSource.PORT,
@@ -32,7 +31,7 @@ const result = {
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
     timezone: '+00:00',
-    logging: R.contains(nodeEnv, TEST_ENVS) && console.log,
+    logging: !R.contains(nodeEnv, TEST_ENVS) && console.log,
   },
 }
 
