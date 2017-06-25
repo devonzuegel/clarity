@@ -172,11 +172,12 @@ var Database = function () {
         this.getSequelize = function () {
             return _this.sequelize;
         };
-        Sequelize.cls = cls.createNamespace('sequelize-transaction');
+        var _Sequelize = Sequelize;
+        _Sequelize.cls = cls.createNamespace('sequelize-transaction');
         if (database_url) {
-            this.sequelize = new Sequelize(database_url, config_1.default);
+            this.sequelize = new _Sequelize(database_url, config_1.default);
         } else {
-            this.sequelize = new Sequelize(config_1.default.database, config_1.default.facebookId, config_1.default.password, config_1.default);
+            this.sequelize = new _Sequelize(config_1.default.database, config_1.default.facebookId, config_1.default.password, config_1.default);
         }
         this.models = {
             User: user_1.default(this.sequelize),
@@ -196,12 +197,11 @@ exports.sequelize = database.getSequelize();
 
 /**
  * Load environment variables from .env for local development.
- * If no .env file is to be found at
  */
-const path  = __webpack_require__(0)
-const R     = __webpack_require__(10)
-const chalk = __webpack_require__(9)
-const env   = __webpack_require__(44).config({ path: path.resolve('.env') })
+const path = __webpack_require__(0)
+const R = __webpack_require__(7)
+const chalk = __webpack_require__(10)
+const env = __webpack_require__(44).config({path: path.resolve('.env')})
 
 if (env.error) {
   console.warn(chalk.yellow(`No config file was found at ${env.error.path}`))
@@ -210,52 +210,31 @@ if (env.error) {
   console.info(chalk.grey(JSON.stringify(env, null, 2)))
 }
 
-const herokuEnvs = [
-  'heroku-develop',
-  'heroku-stage',
-  'heroku-live',
-]
-const localEnvs = [
-  'local-develop',
-]
-const dbConnection = (
-  R.contains(process.env.NODE_ENV, herokuEnvs + localEnvs)
-  ? { /** For Heroku and local develoment **/
-    use_env_variable: 'DATABASE_URL'
-  }
-  : { /** For Circle CI **/
-    database: process.env.DB_NAME,
-    facebookId: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    host:     process.env.DB_HOST,
-    port:     process.env.DB_PORT,
-  }
-)
+const HEROKU_ENVS = ['heroku-develop', 'heroku-stage', 'heroku-live']
+const LOCAL_ENVS = ['local-develop']
+const TEST_ENVS = ['test', 'ci']
 
 module.exports = {
-  port:         process.env.PORT,
-  host:         process.env.HOST,
-  env:          process.env.NODE_ENV,
+  port: process.env.PORT,
+  host: process.env.HOST,
+  env: process.env.NODE_ENV,
   database_url: process.env.DATABASE_URL,
-  sentry_dsn:   process.env.SENTRY_DSN,
+  sentry_dsn: process.env.SENTRY_DSN,
 
   /** Passport **/
-  clientID:     process.env.FB_CLIENT_ID,
+  clientID: process.env.FB_CLIENT_ID,
   clientSecret: process.env.FB_CLIENT_SECRET,
-  callbackURL:  process.env.FB_CALLBACK_URL,
+  callbackURL: process.env.FB_CALLBACK_URL,
 
   /*******************************************************************
    *** The db object is used by Sequelize to configure migrations. ***
    *******************************************************************/
-  db: R.merge(dbConnection, {
-    dialect:  'postgres',
+  db: {
+    use_env_variable: 'DATABASE_URL',
+    dialect: 'postgres',
     timezone: '+00:00',
-    logging:  (
-      process.env.NODE_ENV !== 'test' &&
-      process.env.NODE_ENV !== 'ci' &&
-      console.log
-    ),
-  })
+    logging: R.contains(process.env.NODE_ENV, TEST_ENVS) && console.log,
+  },
 }
 
 
@@ -286,6 +265,12 @@ exports.jsonSuccess = function (res) {
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports) {
+
+module.exports = require("ramda");
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -296,22 +281,16 @@ var U = __webpack_require__(34);
 exports.Enum = U.strEnum(['development', 'production']);
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("awesome-typescript-loader");
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = require("chalk");
-
-/***/ }),
 /* 10 */
 /***/ (function(module, exports) {
 
-module.exports = require("ramda");
+module.exports = require("chalk");
 
 /***/ }),
 /* 11 */
@@ -332,7 +311,7 @@ module.exports = require("webpack");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Raven = __webpack_require__(50);
+var Raven = __webpack_require__(53);
 exports.monitorExceptions = function (config) {
     return function (app) {
         // Must configure Raven before doing anything else with it
@@ -369,7 +348,7 @@ exports.default = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Chalk = __webpack_require__(9);
+var Chalk = __webpack_require__(10);
 exports.listen = function (app, _a) {
     var host = _a.host,
         port = _a.port;
@@ -389,7 +368,7 @@ exports.runHotMiddleware = function (app) {
     var webpack = __webpack_require__(11);
     var webpackConfig = __webpack_require__(35).default;
     var webpackCompiler = webpack(webpackConfig);
-    app.use(__webpack_require__(52)(webpackCompiler, {
+    app.use(__webpack_require__(55)(webpackCompiler, {
         publicPath: webpackConfig.output.publicPath,
         stats: { colors: true },
         noInfo: true,
@@ -399,7 +378,7 @@ exports.runHotMiddleware = function (app) {
         historyApiFallback: true,
         quiet: true
     }));
-    app.use(__webpack_require__(53)(webpackCompiler));
+    app.use(__webpack_require__(56)(webpackCompiler));
 };
 
 /***/ }),
@@ -533,7 +512,7 @@ module.exports = require("helmet");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var R = __webpack_require__(10);
+var R = __webpack_require__(7);
 var guest_1 = __webpack_require__(23);
 var user_1 = __webpack_require__(1);
 exports.signup = function (facebookId, session) {
@@ -549,7 +528,9 @@ exports.signup = function (facebookId, session) {
             return resolve(user);
         }).catch(function (e) {
             if (e.type === 'unique violation') {
-                return reject({ message: "The facebookId \"" + e.value + "\" is not available" });
+                return reject({
+                    message: "The facebookId \"" + e.value + "\" is not available"
+                });
             }
             return reject(R.pick(['message'], e));
         });
@@ -565,7 +546,9 @@ exports.signIn = function (facebookId, session) {
         }
         user_1.userService.findByFacebookId(facebookId).then(function (user) {
             if (!user) {
-                return reject({ message: "User with facebookId \"" + facebookId + "\" does not exist" });
+                return reject({
+                    message: "User with facebookId \"" + facebookId + "\" does not exist"
+                });
             }
             session['facebookId'] = facebookId;
             return resolve(user);
@@ -651,12 +634,15 @@ exports.default = function (sequelize) {
             type: SequelizeStatic.INTEGER,
             allowNull: false
         },
-        body: {
-            type: SequelizeStatic.TEXT
-        },
         title: {
             type: SequelizeStatic.STRING,
-            allowNull: false
+            allowNull: false,
+            len: 1
+        },
+        body: {
+            len: 1,
+            allowNull: false,
+            type: SequelizeStatic.TEXT
         }
     };
     var Iteration = sequelize.define('Iteration', Schema, {
@@ -1120,7 +1106,13 @@ var MockPostService = function () {
     MockPostService.prototype.iterations = function (postId) {
         return new Promise(function (resolve, reject) {
             if (postId % 2) {
-                var mock = [{ dataValues: { postId: postId, title: 'Post 1, with no body' } }, { dataValues: { postId: postId, title: 'Post 2, with body', body: 'Body of post 2' } }];
+                var mock = [{ dataValues: { postId: postId, title: 'Post 1, with no body' } }, {
+                    dataValues: {
+                        postId: postId,
+                        title: 'Post 2, with body',
+                        body: 'Body of post 2'
+                    }
+                }];
                 resolve(mock);
             } else {
                 reject({ message: "Cannot find post with id " + postId });
@@ -1250,6 +1242,7 @@ var __generator = this && this.__generator || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
+var R = __webpack_require__(7);
 var db_1 = __webpack_require__(3);
 var post_mock_1 = __webpack_require__(31);
 var sequelizeFailure = function (reject) {
@@ -1258,6 +1251,15 @@ var sequelizeFailure = function (reject) {
         reject(error); // Return only the descriptive .errors array
         // reject(error.errors[0]) // Return only the descriptive .errors array
     };
+};
+var validateIteration = function (iteration, reject, cb) {
+    if (R.isEmpty(iteration.title)) {
+        return reject('Please provide a title.');
+    }
+    if (R.isEmpty(iteration.body)) {
+        return reject('Please write something.');
+    }
+    cb();
 };
 var initPost = function (resolve, userId, iteration) {
     return function (t) {
@@ -1287,12 +1289,14 @@ var PostService = function (_super) {
     PostService.prototype.create = function (user, iteration) {
         return new Promise(function (resolve, reject) {
             if (!user || !user.get('id')) {
-                return reject('Please provide a user');
+                return reject('Please provide a user.');
             }
-            return db_1.sequelize.transaction(initPost(resolve, user.get('id'), iteration)).then(function (post) {
-                return resolve(post);
-            }).catch(function (err) {
-                return reject(err);
+            validateIteration(iteration, reject, function () {
+                return db_1.sequelize.transaction(initPost(resolve, user.get('id'), iteration)).then(function (post) {
+                    return resolve(post);
+                }).catch(function (err) {
+                    return reject(err);
+                });
             });
         });
     };
@@ -1310,7 +1314,9 @@ var PostService = function (_super) {
     };
     PostService.prototype.iterate = function (postId, data) {
         return new Promise(function (resolve, reject) {
-            return db_1.models.Iteration.create(__assign({ postId: postId }, data)).then(resolve).catch(reject);
+            validateIteration(data, reject, function () {
+                return db_1.models.Iteration.create(__assign({ postId: postId }, data)).then(resolve).catch(reject);
+            });
         });
     };
     PostService.prototype.comments = function (iterationId) {
@@ -1398,7 +1404,7 @@ exports.strEnum = strEnum;
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Env = __webpack_require__(7);
+var Env = __webpack_require__(8);
 var _1 = __webpack_require__(36);
 exports.default = _1.setup(Env.Enum.development);
 
@@ -1410,9 +1416,9 @@ exports.default = _1.setup(Env.Enum.development);
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var webpackMerge = __webpack_require__(54);
+var webpackMerge = __webpack_require__(57);
 var path = __webpack_require__(0);
-var Env = __webpack_require__(7);
+var Env = __webpack_require__(8);
 exports.setup = function (env) {
     var isProd = String(env) === String(Env.Enum.production);
     var options = {
@@ -1466,24 +1472,39 @@ exports.partial = function (c) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var loaders = [{
-    loader: 'style-loader'
-}, {
-    loader: 'css-loader',
-    options: {
-        importLoaders: 2,
-        sourceMap: true,
-        modules: true,
-        localIdentName: '[local]___[hash:base64:5]'
-    }
-}];
+var loaders = function (c) {
+    var frontendDir = function (path) {
+        if (path === void 0) {
+            path = '';
+        }
+        return c.rootDir + "/src/frontend/" + path;
+    };
+    return [{
+        loader: 'style-loader'
+    }, {
+        loader: 'css-loader',
+        options: {
+            importLoaders: 2,
+            sourceMap: true,
+            modules: true,
+            localIdentName: '[local]___[hash:base64:5]'
+        }
+    }, {
+        loader: 'postcss-loader',
+        options: {
+            plugins: function () {
+                return [__webpack_require__(52)({ path: [frontendDir()] }), __webpack_require__(51)(), __webpack_require__(50)({ relative: frontendDir() })];
+            }
+        }
+    }];
+};
 exports.partial = function (c) {
     return {
         module: {
             rules: [{
                 include: c.rootDir,
                 test: /\.css?$/,
-                use: loaders,
+                use: loaders(c),
                 exclude: /node_modules/
             }]
         }
@@ -1498,13 +1519,13 @@ exports.partial = function (c) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var CheckerPlugin = __webpack_require__(8).CheckerPlugin;
+var CheckerPlugin = __webpack_require__(9).CheckerPlugin;
 exports.partial = function () {
     return {
         module: {
             rules: [{
                 test: /\.tsx?$/,
-                loader: __webpack_require__(51)(['react-hot-loader', 'awesome-typescript-loader']),
+                loader: __webpack_require__(54)(['react-hot-loader', 'awesome-typescript-loader']),
                 exclude: /node_modules/
             }]
         },
@@ -1520,7 +1541,7 @@ exports.partial = function () {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var CheckerPlugin = __webpack_require__(8).CheckerPlugin;
+var CheckerPlugin = __webpack_require__(9).CheckerPlugin;
 exports.partial = function () {
     return {
         module: {
@@ -1621,28 +1642,46 @@ module.exports = require("passport-facebook");
 /* 50 */
 /***/ (function(module, exports) {
 
-module.exports = require("raven");
+module.exports = require("postcss-assets");
 
 /***/ }),
 /* 51 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack-combine-loaders");
+module.exports = require("postcss-cssnext");
 
 /***/ }),
 /* 52 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack-dev-middleware");
+module.exports = require("postcss-import");
 
 /***/ }),
 /* 53 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack-hot-middleware");
+module.exports = require("raven");
 
 /***/ }),
 /* 54 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-combine-loaders");
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-dev-middleware");
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-hot-middleware");
+
+/***/ }),
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-merge");

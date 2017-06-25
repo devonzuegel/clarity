@@ -1,14 +1,9 @@
-const chalk    = require('chalk')
+const chalk = require('chalk')
 const execSync = require('child_process').execSync
 
-const runCmd = (cmd) => {
+const runCmd = cmd => {
   console.info(chalk.dim(`\n$ ${cmd}`))
-  execSync(cmd, { stdio: 'inherit' })
-}
-
-const build = () => {
-  /** Note that this also builds the frontend with the hot-reloading dev server. */
-  runCmd('webpack --config webpack/server/development.ts')
+  execSync(cmd, {stdio: 'inherit'})
 }
 
 const lint = () => {
@@ -16,23 +11,38 @@ const lint = () => {
 }
 
 const tasks = {
-  'lint': lint,
+  /****************************************************************************/
+  /** Linting *****************************************************************/
+  /****************************************************************************/
 
-  'start': () => {
-    build()
-    runCmd('NODE_ENV=development node build/backend.js')
+  lint,
+
+  /****************************************************************************/
+  /** Development *************************************************************/
+  /****************************************************************************/
+
+  start: () => {
+    /** Note that this builds the frontend with the hot-reloading dev server. */
+    runCmd('webpack --config webpack/server/development.ts')
+    runCmd('node build/backend.js')
+  },
+
+  /****************************************************************************/
+  /** Production **************************************************************/
+  /****************************************************************************/
+
+  'build:prod': () => {
+    runCmd('webpack --config webpack/frontend/production.ts')
+    runCmd('webpack --config webpack/server/production.ts')
   },
 
   'start:prod': () => {
     runCmd('node dist/backend.js')
   },
 
-  'build': build,
-
-  'build:prod': () => {
-    runCmd('webpack --config webpack/frontend/production.ts')
-    runCmd('webpack --config webpack/server/production.ts')
-  },
+  /****************************************************************************/
+  /** Testing *****************************************************************/
+  /****************************************************************************/
 
   'test:ci': () => {
     lint()
@@ -44,7 +54,7 @@ const tasks = {
     runCmd('NODE_ENV=test jest --watch')
   },
 
-  'test': () => {
+  test: () => {
     lint()
     runCmd('NODE_ENV=test jest --coverage')
     runCmd('NODE_ENV=test nightwatch --config test/nightwatch.js')
@@ -52,7 +62,7 @@ const tasks = {
 }
 
 const taskName = process.argv[2]
-const task     = tasks[taskName]
+const task = tasks[taskName]
 
 if (!task) {
   throw Error(chalk.black.bgRed(`\n\n  Task "${taskName}" is not defined\n`))
