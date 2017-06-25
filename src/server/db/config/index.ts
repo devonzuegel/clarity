@@ -1,5 +1,5 @@
 import {IDatabaseConfig} from './interface'
 
-const config: IDatabaseConfig = require('./index.ts')
+const config: IDatabaseConfig = require('./index.js')
 
 export default config

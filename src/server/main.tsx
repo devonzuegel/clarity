@@ -10,7 +10,7 @@ import {serveFrontend} from './serveFrontend'
 import {sequelize} from './db'
 import {setupSession} from './session'
 
-const config = require('./config/index.ts')
+const config = require('./config/index.js')
 const app = express()
 
 app.use(bodyParser.json())
