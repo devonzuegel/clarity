@@ -12,7 +12,7 @@
     "types": ["node", "redux", "jest"],
     "outDir": "build",
     "module": "commonjs",
-    "target": "es5",
+    "target": "es2015",
     "lib": [ "dom", "es2015.promise", "es5" ],
     "sourceMap": true,
     "inlineSourceMap": false,
