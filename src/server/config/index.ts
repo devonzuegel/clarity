@@ -1,15 +1,17 @@
-/**
- * Load environment variables from .env for local development.
- */
 import * as path from 'path'
 import * as R from 'ramda'
 import * as dotenv from 'dotenv'
-const env = dotenv.config({path: path.resolve('.env')})
+
 import {checkExpected} from './expected'
 import {getValueSource} from './utils'
 import {TEST_ENVS} from './environments'
 
-const valueSource = getValueSource(env, process.env)
+const valueSource = getValueSource(
+  /** Load environment variables from .env for local development. **/
+  dotenv.config({path: path.resolve('.env')}),
+  process.env
+)
+
 const nodeEnv = valueSource.NODE_ENV
 
 const result = {
@@ -37,5 +39,4 @@ const result = {
 
 checkExpected(result)
 
-export default result
-
+module.exports = result
