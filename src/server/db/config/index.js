@@ -5,6 +5,6 @@
  * enforces the typed IDatabaseConfig interface.
  */
 
-const appConfig = require('../../config/index.js')
+const appConfig = require('../../config/index.ts')
 
 module.exports = appConfig.db
