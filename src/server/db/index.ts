@@ -6,7 +6,7 @@ import PostModel, {IPostModel} from '../db/models/post'
 import IterationModel, {IIterationModel} from '../db/models/iteration'
 
 import c from './config'
-const database_url = require('../config/index.ts').database_url
+const database_url = require('../config/index.js').database_url
 
 interface IModels {
   User: IUserModel
