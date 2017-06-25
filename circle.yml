@@ -5,6 +5,7 @@ test:
   pre:
     - npm install -g sequelize-cli
     - sequelize db:migrate
+    - tsc src/server/config/index.ts
   override:
     - yarn test:ci
 dependencies:

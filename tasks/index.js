@@ -46,7 +46,6 @@ const tasks = {
 
   'test:ci': () => {
     lint()
-    runCmd('tsc src/server/config/index.ts')
     runCmd('NODE_ENV=ci jest')
     runCmd('NODE_ENV=ci nightwatch --config test/nightwatch.js')
   },
