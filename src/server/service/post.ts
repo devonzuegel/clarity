@@ -6,11 +6,12 @@ import {PostInstance} from '../db/models/post'
 import {MockPostService} from './post.mock'
 import {UserInstance} from '../db/models/user'
 import {IterationInstance} from '../db/models/iteration'
+import Hermes from '../../../utils/hermes'
 
-const sequelizeFailure = (reject: Function) => (
-  error: Sequelize.ValidationError
-) => {
-  console.warn(error) // Log full error
+const logger = new Hermes({name: 'server'})
+
+const sequelizeFailure = (reject: Function) => (error: Sequelize.ValidationError) => {
+  logger.warn(error.toString()) // Log full error
   reject(error) // Return only the descriptive .errors array
   // reject(error.errors[0]) // Return only the descriptive .errors array
 }
@@ -27,13 +28,13 @@ const validateIteration = (iteration: IIteration, reject: Function, cb: Function
   cb()
 }
 
-const initPost = (resolve: Function, userId: number, iteration: IIteration) => (
-  async (t: Sequelize.Transaction) => {
-    const post: PostInstance = await models.Post.create({userId}, {transaction: t})
-    await models.Iteration.create({...iteration, postId: post.get('id')})
-    resolve(post)
-  }
-)
+const initPost = (resolve: Function, userId: number, iteration: IIteration) => async (
+  t: Sequelize.Transaction
+) => {
+  const post: PostInstance = await models.Post.create({userId}, {transaction: t})
+  await models.Iteration.create({...iteration, postId: post.get('id')})
+  resolve(post)
+}
 
 export class PostService extends MockPostService {
   create(user: UserInstance, iteration: IIteration) {
@@ -51,9 +52,7 @@ export class PostService extends MockPostService {
   }
 
   all() {
-    return new Promise<
-      PostInstance[]
-    >((resolve: Function, reject: Function) => {
+    return new Promise<PostInstance[]>((resolve: Function, reject: Function) => {
       return models.Post
         .findAll()
         .then((posts: PostInstance[]) => resolve(posts))
@@ -63,19 +62,14 @@ export class PostService extends MockPostService {
 
   iterations(postId: number) {
     return new Promise<IterationInstance[]>((resolve, reject) => {
-      return models.Iteration
-        .findAll({where: {postId}})
-        .then(resolve)
-        .catch(reject)
+      return models.Iteration.findAll({where: {postId}}).then(resolve).catch(reject)
     })
   }
 
   iterate(postId: number, data: IIteration) {
     return new Promise<IterationInstance>((resolve, reject) => {
       validateIteration(data, reject, () => {
-        return models.Iteration.create({postId, ...data})
-          .then(resolve)
-          .catch(reject)
+        return models.Iteration.create({postId, ...data}).then(resolve).catch(reject)
       })
     })
   }

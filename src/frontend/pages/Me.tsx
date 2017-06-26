@@ -1,6 +1,10 @@
 import * as React from 'react'
 
+import Hermes from '~/../utils/hermes'
+
 import * as api from '~/frontend/api'
+
+const logger = new Hermes({name: 'frontend'})
 
 interface IState {
   profile: any // TODO
@@ -18,7 +22,7 @@ class Me extends React.Component<{}, IState> {
       const profile = await api.getProfile()
       this.setState({profile})
     } catch (e) {
-      console.warn(e.message)
+      logger.warn(e.message)
     }
   }
 
