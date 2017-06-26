@@ -14,5 +14,6 @@
   --exclude-dir=tasks \
   --exclude=./utils/hermes.ts \
   --exclude=./src/server/config/index.js \
+  --exclude=./src/server/config/environments.ts \
   --exclude=./clarity.sublime-workspace \
   -R 'console.log\|console.warn\|console.info' .
