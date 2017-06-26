@@ -1,12 +1,16 @@
 import * as express from 'express'
+
+import Hermes from '../../../utils/hermes'
 import {jsonError} from '../../../utils/api/requests'
+
 import {userService} from '../service/user'
 import {postService} from '../service/post'
 
+const logger = new Hermes({name: 'server'})
 const router = express.Router()
 
 router.get('/', async (_: express.Request, res: express.Response) => {
-  console.log(_.user)
+  logger.info(_.user)
   try {
     const posts = await postService.all()
     res.status(200).json(posts)
@@ -37,17 +41,14 @@ router.get('/:id', async (req: express.Request, res: express.Response) => {
   }
 })
 
-router.post(
-  '/:id/iterate',
-  async (req: express.Request, res: express.Response) => {
-    try {
-      const postId = Number(req.params.id)
-      const iteration = await postService.iterate(postId, req.body)
-      res.status(200).json(iteration)
-    } catch (e) {
-      jsonError(res)(e)
-    }
+router.post('/:id/iterate', async (req: express.Request, res: express.Response) => {
+  try {
+    const postId = Number(req.params.id)
+    const iteration = await postService.iterate(postId, req.body)
+    res.status(200).json(iteration)
+  } catch (e) {
+    jsonError(res)(e)
   }
-)
+})
 
 export default router

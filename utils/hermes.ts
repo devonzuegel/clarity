@@ -79,6 +79,10 @@ class Hermes {
   error(s: string) {
     return this.log(`ERROR: ${s}`, 'red')
   }
+
+  print(s: string) {
+    return console.log(s)
+  }
 }
 
 export default Hermes

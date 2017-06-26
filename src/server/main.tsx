@@ -3,6 +3,8 @@ import * as R from 'ramda'
 import * as Chalk from 'chalk'
 import * as bodyParser from 'body-parser'
 
+import Hermes from '~/../utils/hermes'
+
 import http from './http'
 import * as Passport from './passport'
 import {runHotMiddleware} from './middleware'
@@ -15,6 +17,7 @@ import {setupSession} from './session'
 const {LOCAL_ENVS} = require('./config/environments')
 const config = require('./config/index.js')
 const app = express()
+const logger = new Hermes({name: 'server'})
 
 app.use(bodyParser.json())
 app.use(require('helmet')())
@@ -25,7 +28,7 @@ http(app)
 Passport.setup(config)(app)
 
 if (R.contains(config.env, LOCAL_ENVS)) {
-  console.log(Chalk.bgBlue.black(`\n\n  Running HMR...  \n`))
+  logger.print(Chalk.bgBlue.black(`\n\n  Running HMR...  \n`))
   runHotMiddleware(app)
 }
 

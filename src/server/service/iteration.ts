@@ -3,11 +3,12 @@ import * as Sequelize from 'sequelize'
 import {models} from '../db'
 import {IterationInstance} from '../db/models/iteration'
 import {MockIterationService} from './iteration.mock'
+import Hermes from '../../../utils/hermes'
 
-const sequelizeFailure = (reject: Function) => (
-  error: Sequelize.ValidationError
-) => {
-  console.warn(error) // Log full error
+const logger = new Hermes({name: 'server'})
+
+const sequelizeFailure = (reject: Function) => (error: Sequelize.ValidationError) => {
+  logger.warn(error.toString()) // Log full error
   reject(error) // Return only the descriptive .errors array
   // reject(error.errors[0]) // Return only the descriptive .errors array
 }

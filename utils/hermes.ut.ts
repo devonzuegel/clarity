@@ -3,7 +3,7 @@ import * as R from 'ramda'
 import Hermes from './hermes'
 
 const str = 'xyz abc'
-const silent = false
+const silent = true
 
 describe('Hermes', () => {
   it('logs the name, date, & string', () => {
