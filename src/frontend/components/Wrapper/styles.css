@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   right: 0;
-  background-color: color(var(--grey3) alpha(10%));
+  background-color: var(--light-grey5);
   line-height: 1.5em;
 }
 
