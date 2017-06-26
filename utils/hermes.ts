@@ -3,6 +3,8 @@ import * as Chalk from 'chalk'
 import * as U from './date'
 
 type TLocation = 'server' | 'frontend'
+type TColor = 'red' | 'blue' | 'white' | 'yellow'
+
 interface IOptions {
   name: TLocation
   silent?: boolean
@@ -26,7 +28,7 @@ class Hermes {
     this.silent = silent || false
   }
 
-  formatName() {
+  private formatName() {
     if (this.name === 'server') {
       return Chalk.bgBlue.white(` ${this.name} `)
     }
@@ -36,21 +38,46 @@ class Hermes {
     throw Error(`Name must be one of "server" or "frontend"`)
   }
 
-  debug(s: string): ILogObject {
+  private formatDate(date: Date) {
+    return Chalk.bgBlack(` ${U.formatDate(date)} `)
+  }
+
+  private log(s: string, color: TColor = 'white'): ILogObject {
     const date = new Date()
-    const formattedDate = U.formatDate(date)
-    const dateString = Chalk.bgBlack(` ${formattedDate} `)
-    const log = `${dateString}${this.formatName()} ${s}`
+
+    const log =
+      `${this.name === 'server' ? this.formatDate(date) : ''}` +
+      `${this.name === 'server' ? this.formatName() : ''}` +
+      `${this.name === 'server' ? ' ' : ''}` + // Add space if metadata included
+      Chalk[color](s)
+
     if (!this.silent) {
-      console.log(log)
+      if (this.name === 'server') {
+        console.log(log)
+      } else {
+        console.log('%c' + log, 'background:' + color) // Handle colors differently for frontend
+      }
     }
+
     return {
       date,
       log,
-      formattedDate,
+      formattedDate: this.formatDate(date),
       name: this.name,
       silent: this.silent,
     }
+  }
+
+  info(s: string) {
+    return this.log(`INFO: ${s}`, 'white')
+  }
+
+  warn(s: string) {
+    return this.log(`WARNING: ${s}`, 'yellow')
+  }
+
+  error(s: string) {
+    return this.log(`ERROR: ${s}`, 'red')
   }
 }
 
