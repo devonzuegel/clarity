@@ -20,13 +20,27 @@ class Diff extends React.Component<IDiffProps, any> {
       })
 
     return (
-      <div>
-        {diff.map((chunk: JsDiff.IDiffResult, i: number) =>
-          <div key={i} className={classes(chunk)}>
-            {chunk.value}
-          </div>
-        )}
-      </div>
+      <pre className={s['diff']}>
+        {diff.map((chunk: JsDiff.IDiffResult, i: number) => {
+          const lines = chunk.value.split('\n')
+
+          // Ignore empty chunks
+          if (lines.every(line => line === '')) return
+
+          return (
+            <div key={i} className={classes(chunk)}>
+              {lines.map((line, j) =>
+                <span key={j}>
+                  {j > 0 && <br />}
+                  <span>
+                    {line}
+                  </span>
+                </span>
+              )}
+            </div>
+          )
+        })}
+      </pre>
     )
   }
 }

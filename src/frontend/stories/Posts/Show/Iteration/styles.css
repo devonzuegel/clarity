@@ -1,6 +1,4 @@
-.markdown {
-  line-height: 1.5em;
-}
+@import '../../../../components/variables.css';
 
 .markdown img {
   margin: 12px 16px;
@@ -15,4 +13,37 @@
 .markdown img[src*='#left'] {
   float: left;
   max-width: 60%;
+}
+
+.markdown {
+  & h2, & h3, & h4, & h5, & h6 {
+    margin-top: calc(var(--spacing) * 2);
+    margin-bottom: calc(var(--spacing) * .75);
+
+    &:first-child {
+      margin-top: calc(var(--spacing) * .5);
+    }
+  }
+  & h3, & h4, & h5, & h6 {
+    margin-top: var(--spacing);
+    margin-bottom: calc(var(--spacing) * .5);
+  }
+  & > * {
+    margin-top: calc(var(--spacing) * 1.25);
+    margin-bottom: calc(var(--spacing) * .75);
+  }
+
+  & a {
+    text-decoration: none;
+    border-bottom: 1px solid color(var(--blue2) alpha(-70%));
+  }
+  & a:hover {
+    text-decoration: none;
+    border-bottom: 1px solid color(var(--blue2) alpha(-50%));
+  }
+
+  & pre, & code {
+    font-family: var(--monospace);
+    font-size: 0.95em;
+  }
 }

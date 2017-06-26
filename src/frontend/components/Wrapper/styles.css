@@ -1,0 +1,17 @@
+@import '../variables.css';
+
+.top-level-wrapper {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: color(var(--grey3) alpha(10%));
+  line-height: 1.5em;
+}
+
+.centered-wrapper {
+  padding: 20px 50px;
+  margin: auto;
+  max-width: 950px;
+}

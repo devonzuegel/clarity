@@ -1,18 +1,26 @@
 @import '../variables.css';
 
+pre.diff {
+  background-color: white;
+  white-space: normal;
+  word-wrap: break-word;
+  font-family: var(--monospace);
+  padding-bottom: calc(.5 * var(--spacing));
+}
+
 .removed, .added {
   padding: var(--spacing-xxsmall) var(--spacing-xsmall);
 }
 
 .removed {
-  background: color(var(--red) alpha(-80%));
-  color: color(var(--red) blackness(30%));
+  background: color(var(--red) tint(85%));
+  color: color(var(--red) blackness(35%));
   text-decoration: line-through;
 }
 
 .added {
-  background: color(var(--green) alpha(-80%));
-  color: color(var(--green) blackness(45%));
+  background: color(var(--green) tint(85%));
+  color: color(var(--green) blackness(50%));
 }
 
 .chunk {

@@ -1,9 +1,12 @@
 import * as React from 'react'
 
-const Wrapper = ({ content }: { content: JSX.Element }) => (
-  <div style={{padding: '20px 50px', margin: 'auto', maxWidth: '950px'}}>
-    {content}
+const s = require('./styles.css')
+
+const Wrapper = ({content}: {content: JSX.Element}) =>
+  <div className={s['top-level-wrapper']}>
+    <div className={s['centered-wrapper']}>
+      {content}
+    </div>
   </div>
-)
 
 export default Wrapper

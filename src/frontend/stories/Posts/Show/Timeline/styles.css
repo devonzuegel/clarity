@@ -1,7 +1,7 @@
 @import '../../../../components/variables.css';
 
 .top-bar {
-  margin-bottom: 20px;
+  margin-bottom: calc(var(--spacing) * 2);
   display: flex;
   justify-content: space-between;
   align-items: center;

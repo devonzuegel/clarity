@@ -31,4 +31,7 @@
   --spacing-large: calc(2 * var(--spacing));
   --spacing-xlarge: calc(3 * var(--spacing));
   --spacing-xxlarge: calc(4 * var(--spacing));
+
+  --monospace: 'Roboto Mono';
+  --sans-serif: 'Roboto';
 }
