@@ -1,3 +1,5 @@
+@import '..//variables.css';
+
 :root {
   --cursor-spacing: 0;
 }
@@ -43,11 +45,10 @@
 }
 
 :global .markdownEditor-global .CodeMirror-foldmarker :after {
-  content: '…'
+  content: '…';
 }
 
 :global .markdownEditor-global .CodeMirror-foldmarker {
-
 }
 
 :global .markdownEditor-global .CodeMirror.CodeMirror-fullscreen .CodeMirror-scroll {
@@ -92,13 +93,11 @@
 :global .CodeMirror-guttermarker-subtle {
 }
 
-:global .CodeMirror-foldgutter-open:after,
-:global .CodeMirror-foldgutter-folded:after {
+:global .CodeMirror-foldgutter-open:after, :global .CodeMirror-foldgutter-folded:after {
   cursor: pointer;
   font-size: 2em;
   margin-left: 8px;
 }
-
 
 :global .markdownEditor-global pre > code {
   background: none;
@@ -110,7 +109,8 @@
 :global .markdownEditor-global .editor-preview pre,
 :global .markdownEditor-global .editor-preview-side pre,
 :global .markdownEditor-global code {
-  font-family: 'Roboto Mono';
+  display: flex;
+  font-family: var(--monospace);
   font-size: 0.9em;
   border-radius: 3px;
   box-shadow: inset 0 0 0 1px rgba(16, 22, 26, 0.2);
@@ -118,17 +118,60 @@
   color: #5c7080;
 }
 
-
 /** Generic line **/
-:global .markdownEditor-global .CodeMirror-line {}
+:global .markdownEditor-global .CodeMirror-line {
+}
 
 /** Active line **/
 :global .markdownEditor-global .CodeMirror-activeline .CodeMirror-line {
   opacity: 1;
 }
 
+:global .editor-preview-side {
+  & h2, & pre {
+    display: flex;
+  }
+  & h2 {
+    color: var(--dark-grey5);
+    font-weight: bold;
+    border-bottom: 1px solid var(--light-grey2);
+    padding-bottom: var(--spacing);
+  }
+  & h2, & h3, & h4, & h5, & h6 {
+    margin-top: calc(var(--spacing) * 2);
+    margin-bottom: calc(var(--spacing) * .75);
+
+    &:first-child {
+      margin-top: calc(var(--spacing) * .5);
+    }
+  }
+  & h3, & h4, & h5, & h6 {
+    margin-top: var(--spacing);
+    margin-bottom: calc(var(--spacing) * .5);
+  }
+  & > * {
+    margin-top: calc(var(--spacing) * 1.25);
+    margin-bottom: calc(var(--spacing) * .75);
+  }
+
+  & a {
+    text-decoration: none;
+    border-bottom: 1px solid color(var(--blue2) alpha(-70%));
+  }
+  & a:hover {
+    text-decoration: none;
+    border-bottom: 1px solid color(var(--blue2) alpha(-50%));
+  }
+
+  & pre, & code {
+    font-family: var(--monospace);
+    font-size: 0.95em;
+  }
+}
+
 /***********************************************************************
   MarkdownEditor component
 ************************************************************************/
 
-.markdownEditor {}
+.markdownEditor {
+}

@@ -1,8 +1,9 @@
 @import '../../../../components/variables.css';
 
 .markdown img {
-  margin: 12px 16px;
-  border: 1px solid #ddd;
+  margin: calc(1.75 * var(--spacing)) calc(2 * var(--spacing));
+  margin-right: 0;
+  border: 1px solid var(--light-grey1);
 }
 
 .markdown img[src*='#right'] {
@@ -16,6 +17,10 @@
 }
 
 .markdown {
+  padding-top: calc(.25 * var(--spacing));
+  & h2, & pre {
+    display: flex;
+  }
   & h2 {
     color: var(--dark-grey5);
     font-weight: bold;
@@ -25,10 +30,6 @@
   & h2, & h3, & h4, & h5, & h6 {
     margin-top: calc(var(--spacing) * 2);
     margin-bottom: calc(var(--spacing) * .75);
-
-    &:first-child {
-      margin-top: calc(var(--spacing) * .5);
-    }
   }
   & h3, & h4, & h5, & h6 {
     margin-top: var(--spacing);
@@ -49,6 +50,16 @@
   }
 
   & pre, & code {
+    font-family: var(--monospace);
+    font-size: 0.95em;
+  }
+  & pre {
+    word-break: break-word;
+    font-size: 0.9em;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1px rgba(16, 22, 26, 0.2);
+    background: rgba(255, 255, 255, 0.7);
+    color: #5c7080;
     font-family: var(--monospace);
     font-size: 0.95em;
   }
