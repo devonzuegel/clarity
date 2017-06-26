@@ -9,11 +9,7 @@ export default (props: {onClick: () => void; isSelected: boolean}) => {
     [s['is-selected']]: props.isSelected,
   })
   return (
-    <div
-      className={classes}
-      onMouseEnter={props.onClick}
-      onClickCapture={props.onClick}
-    >
+    <div className={classes} onClick={props.onClick}>
       <div className={s['spacer']} />
     </div>
   )
