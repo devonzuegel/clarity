@@ -1,31 +1,29 @@
 import {post, get, sendRequest} from '~/../utils/api/responses'
 import {FacebookProfile} from '~/../utils/models/FacebookProfile'
 import {PostSchema} from '~/server/db/models/post'
-import {
-  IterationSchema,
-  IterationAttributes,
-} from '~/server/db/models/iteration'
+import {UserInstance, UserAttributes} from '~/server/db/models/user'
+import {IterationSchema, IterationAttributes} from '~/server/db/models/iteration'
 
 /** Session management **/
 
-export const getUsers = (): Promise<any[]> => sendRequest(get('/api/users')) // TODO
+export const getUsers = (): Promise<UserInstance[]> => sendRequest(get('/api/users'))
+
+export const getUser = (userId: number): Promise<UserAttributes> =>
+  sendRequest(get(`/api/users/${userId}`))
 
 export const getProfile = (): Promise<FacebookProfile> =>
   sendRequest(get('/api/profile'))
 
 export const getSession = () => sendRequest(get('/api/session'))
 
-export const signupOrSignin = (
-  action: 'signup' | 'signin',
-  facebookId: string
-) => sendRequest(post(`/api/${action}`, {facebookId}))
+export const signupOrSignin = (action: 'signup' | 'signin', facebookId: string) =>
+  sendRequest(post(`/api/${action}`, {facebookId}))
 
 export const signout = () => sendRequest(get('/api/signout'))
 
 /** Posts **/
 
-export const getPosts = (): Promise<PostSchema[]> =>
-  sendRequest(get('/api/posts'))
+export const getPosts = (): Promise<PostSchema[]> => sendRequest(get('/api/posts'))
 
 export const getIterations = (postId: number): Promise<IterationSchema[]> =>
   sendRequest(get(`/api/posts/${postId}`))

@@ -5,6 +5,7 @@ import * as U from '~/../utils/date'
 
 import {PostSchema} from '~/server/db/models/post'
 import {IterationSchema} from '~/server/db/models/iteration'
+import {UserAttributes} from '~/server/db/models/user'
 
 import {urls} from '~/frontend/routes'
 import * as api from '~/frontend/api'
@@ -13,6 +14,7 @@ const logger = new Hermes({name: 'frontend'})
 
 interface IPost extends PostSchema {
   iterations?: IterationSchema[]
+  userName?: string
 }
 
 interface IState {
@@ -34,25 +36,33 @@ const reducers = {
     posts[iPost].iterations = iterations
     return {posts}
   },
+
+  addUserName: (iPost: number, userName: string) => (prevState: IState) => {
+    let posts = prevState.posts
+    if (!posts) {
+      return prevState
+    }
+    posts[iPost].userName = userName
+    return {posts}
+  },
 }
 
-const Post = (
-  {id, iterations}: {id: number; iterations: {title: string; createdAt: string}[]},
-  k: number
-) => {
-  if (!iterations) {
-    return null
-  }
-  const lastIteration = iterations[iterations.length - 1]
+const Post = (post: IPost, k: number) => {
+  if (!post.iterations) return null
+
+  const lastIteration = post.iterations[post.iterations.length - 1]
+  const separator = '\u00a0 • \u00a0'
   return (
     <div key={k}>
-      {id !== 0 && <br />}
+      {post.id !== 0 && <br />}
       <h4 className="post-list--post-title">
-        <a href={urls.post(id)}>
+        <a href={urls.post(post.id)}>
           {lastIteration.title}
         </a>
       </h4>
       <label className="pt-text-muted">
+        {post.userName}
+        {separator}
         {U.formatDateStr(lastIteration.createdAt)}
       </label>
       <br />
@@ -72,11 +82,21 @@ class Posts extends React.Component<{}, IState> {
     this.setState(reducers.addIterations(i, iterations))
   }
 
+  retrieveUserName = async (p: PostSchema, i: number) => {
+    try {
+      const user: UserAttributes = await api.getUser(p.userId)
+      this.setState(reducers.addUserName(i, user.facebookId))
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   async retrieveData() {
     try {
       const posts = await api.getPosts()
       this.setState(reducers.updatePostsList(posts))
       posts.map(this.retrieveIterations)
+      posts.map(this.retrieveUserName)
     } catch (e) {
       logger.warn(e)
     }
@@ -88,7 +108,9 @@ class Posts extends React.Component<{}, IState> {
         <h3>
           All posts
         </h3>
-        {this.state.posts ? (this.state.posts || []).map(Post) : 'Retrieving posts...'}
+        {this.state.posts
+          ? (this.state.posts || []).map(Post)
+          : 'Retrieving posts...'}
       </div>
     )
   }

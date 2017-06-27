@@ -11,6 +11,14 @@ export default (app: express.Application) => {
       .catch(jsonError(res))
   })
 
+  app.get('/api/users/:id', (req: express.Request, res: express.Response) => {
+    userService
+      .find(Number(req.params.id))
+      .then((user: UserInstance) => res.status(200).json(user))
+      .catch(jsonError(res))
+  })
+
+  // TODO: remove
   app.post('/api/users/create', (req: express.Request, res: express.Response) => {
     userService
       .create({facebookId: req.query.facebookId})

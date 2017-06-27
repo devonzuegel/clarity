@@ -20,6 +20,15 @@ export class UserService extends MockUserService {
     })
   }
 
+  find(id: number) {
+    return new Promise<UserInstance>((resolve: Function, reject: Function) => {
+      return models.User
+        .findById(id)
+        .then((user: UserInstance) => resolve(user))
+        .catch(sequelizeFailure(reject))
+    })
+  }
+
   signIn(facebookId: string) {
     return new Promise<UserInstance>((resolve: Function, reject: Function) => {
       return models.User
