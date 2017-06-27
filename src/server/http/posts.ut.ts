@@ -1,8 +1,8 @@
-import * as express from 'express'
 import * as supertest from 'supertest'
-import * as bodyParser from 'body-parser'
 
 import {initSession} from '~/../utils/test/session'
+import {postWithData, bodyMatches} from '~/../utils/http/test'
+import {newApp} from '~/../utils/http/newApp'
 
 import {MockUserService} from '~/server/service/user.mock'
 import {MockPostService} from '~/server/service/post.mock'
@@ -15,16 +15,12 @@ jest.mock('~/server/service/post', () => ({
 }))
 
 import PostsRouter from './posts'
-
-const app = express()
-app.use(bodyParser.json())
-initSession(app)
-app.use('/api/posts', PostsRouter)
+const app = newApp([initSession, a => a.use('/api/posts', PostsRouter)])
 
 describe('Posts HTTP', () => {
   describe('GET /api/posts', () => {
     it('retrieves list of posts', async () => {
-      const res = await supertest(app).get('/api/posts') // ?facebookId=foobar')
+      const res = await supertest(app).get('/api/posts')
       expect(res.body).toEqual([
         {dataValues: {userId: 1}},
         {dataValues: {userId: 2}},
@@ -34,21 +30,19 @@ describe('Posts HTTP', () => {
   })
 
   describe('/api/posts/create', () => {
-    it('returns a created post', done => {
-      supertest(app)
-        .post('/api/posts/create')
-        .send({facebookId: 'baz', title: 'foo'})
-        .set('Accept', 'application/json')
-        .end((_err, res) => {
-          expect(res.body.dataValues).toEqual({userId: 123})
-          done()
-        })
+    it('returns the mock data', done => {
+      const userId = 123 // From postService mock
+      const data = {facebookId: 'baz', title: 'foo'}
+      postWithData(app, '/api/posts/create', data, res => {
+        bodyMatches({dataValues: {userId}}, 200)(res)
+        done()
+      })
     })
 
-    it('returns a useful error message when not provided a facebookId', async () => {
-      const r = await supertest(app).post('/api/posts/create')
-      expect(r.body).toEqual({
-        message: 'Please provide a facebookId',
+    it('returns a useful error message when not provided a facebookId', done => {
+      postWithData(app, '/api/posts/create', {}, res => {
+        bodyMatches({message: 'Please provide a facebookId'}, 500)(res)
+        done()
       })
     })
   })

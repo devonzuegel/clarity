@@ -1,7 +1,8 @@
-import * as express from 'express'
 import * as supertest from 'supertest'
 import {initSession} from '~/../utils/test/session'
 import {MockUserService} from '~/server/service/user.mock'
+import {bodyMatches, postWithData} from '~/../utils/http/test'
+import {newApp} from '~/../utils/http/newApp'
 
 jest.mock('~/server/service/user', () => ({
   userService: new MockUserService(),
@@ -9,9 +10,7 @@ jest.mock('~/server/service/user', () => ({
 
 import UsersAPI from './users'
 
-const app = express()
-initSession(app)
-UsersAPI(app)
+const app = newApp([initSession, UsersAPI])
 
 describe('Users HTTP', () => {
   describe('/api/users', () => {
@@ -22,10 +21,11 @@ describe('Users HTTP', () => {
     })
   })
   describe('/api/users/create', () => {
-    it('returns a created user', () => {
-      supertest(app)
-        .post('/api/users/create?facebookId=baz')
-        .then(res => expect(res.body.dataValues).toEqual({facebookId: 'baz'}))
+    it('returns a created user', done => {
+      postWithData(app, '/api/users/create?facebookId=baz', {}, res => {
+        bodyMatches({dataValues: {facebookId: 'baz'}}, 200)(res)
+        done()
+      })
     })
   })
 })
