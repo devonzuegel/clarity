@@ -1,4 +1,4 @@
-import {UserAttributes, UserInstance} from '../db/models/user'
+import {UserAttributes, UserInstance} from '~/server/db/models/user'
 
 export class MockUserService {
   findByFacebookId(facebookId: string): Promise<UserInstance> {
@@ -33,9 +33,7 @@ export class MockUserService {
   }
 
   all(): Promise<Array<UserInstance>> {
-    return new Promise<
-      Array<UserInstance>
-    >((resolve: Function, _: Function) => {
+    return new Promise<Array<UserInstance>>((resolve: Function, _: Function) => {
       resolve([{facebookId: 'foobar'}])
     })
   }

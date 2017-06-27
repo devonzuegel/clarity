@@ -1,9 +1,9 @@
 import * as express from 'express'
 import * as supertest from 'supertest'
-import {initSession} from '../../../utils/test/session'
-import {MockUserService} from '../service/user.mock'
+import {initSession} from '~/../utils/test/session'
+import {MockUserService} from '~/server/service/user.mock'
 
-jest.mock('../service/user', () => ({
+jest.mock('~/server/service/user', () => ({
   userService: new MockUserService(),
 }))
 

@@ -2,12 +2,12 @@ import * as express from 'express'
 import * as supertest from 'supertest'
 import * as bodyParser from 'body-parser'
 
-import {initSession} from '../../../utils/test/session'
-import {bodyMatches} from '../../../utils/test/results'
-import {MockUserService} from '../../server/service/user.mock'
-import {GuestInstance} from '../../server/db/models/guest'
+import {initSession} from '~/../utils/test/session'
+import {bodyMatches} from '~/../utils/test/results'
+import {MockUserService} from '~/server/service/user.mock'
+import {GuestInstance} from '~/server/db/models/guest'
 
-jest.mock('../service/user', () => ({
+jest.mock('~/server/service/user', () => ({
   userService: new MockUserService(),
 }))
 
@@ -43,9 +43,7 @@ describe('Authentication HTTP', () => {
     it('returns successfully', done => {
       const facebookId = 'thisUsernameIsntAvailable'
       postWithData('/api/signup', {facebookId}, res => {
-        bodyMatches({message: `Sorry, "${facebookId}" is not available`}, 500)(
-          res
-        )
+        bodyMatches({message: `Sorry, "${facebookId}" is not available`}, 500)(res)
         done()
       })
     })

@@ -1,6 +1,6 @@
 import * as express from 'express'
-import {jsonError, jsonSuccess} from '../../../utils/api/requests'
-import {signup, signIn, signout, getCurrentUser} from '../api/authentication'
+import {jsonError, jsonSuccess} from '~/../utils/api/requests'
+import {signup, signIn, signout, getCurrentUser} from '~/server/api/authentication'
 
 export default (app: express.Application) => {
   app.post('/api/signup', (req: express.Request, res: express.Response) => {

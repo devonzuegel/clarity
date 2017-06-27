@@ -1,12 +1,12 @@
 import * as Sequelize from 'sequelize'
 import * as R from 'ramda'
 
-import {models, sequelize} from '../db'
-import {PostInstance} from '../db/models/post'
+import {models, sequelize} from '~/server/db'
+import {PostInstance} from '~/server/db/models/post'
 import {MockPostService} from './post.mock'
-import {UserInstance} from '../db/models/user'
-import {IterationInstance} from '../db/models/iteration'
-import Hermes from '../../../utils/hermes'
+import {UserInstance} from '~/server/db/models/user'
+import {IterationInstance} from '~/server/db/models/iteration'
+import Hermes from '~/../utils/hermes'
 
 const logger = new Hermes({name: 'server'})
 

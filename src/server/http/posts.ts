@@ -1,6 +1,6 @@
 import * as express from 'express'
 
-import {jsonError} from '../../../utils/api/requests'
+import {jsonError} from '~/../utils/api/requests'
 
 import {userService} from '~/server/service/user'
 import {postService} from '~/server/service/post'

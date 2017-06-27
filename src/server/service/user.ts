@@ -1,7 +1,7 @@
 import * as Sequelize from 'sequelize'
 
-import {models} from '../db'
-import {UserInstance} from '../db/models/user'
+import {models} from '~/server/db'
+import {UserInstance} from '~/server/db/models/user'
 import {MockUserService} from './user.mock'
 
 const sequelizeFailure = (reject: Function) => (

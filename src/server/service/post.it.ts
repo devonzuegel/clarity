@@ -1,7 +1,7 @@
-import {userService} from '../service/user'
-import {postService} from '../service/post'
-import {iterationService} from '../service/iteration'
-import {sequelize} from '../db'
+import {userService} from '~/server/service/user'
+import {postService} from '~/server/service/post'
+import {iterationService} from '~/server/service/iteration'
+import {sequelize} from '~/server/db'
 
 describe('Posts Service', () => {
   beforeAll(async () => {
@@ -40,13 +40,13 @@ describe('Posts Service', () => {
     })
     it('rejects an empty title', async () => {
       const user = await userService.findByFacebookId('foobar')
-      postService.create(user, {title: '', body: ''}).catch((reason) => {
+      postService.create(user, {title: '', body: ''}).catch(reason => {
         expect(reason).toEqual('Please provide a title.')
       })
     })
     it('rejects an empty title', async () => {
       const user = await userService.findByFacebookId('foobar')
-      postService.create(user, {title: 'x', body: ''}).catch((reason) => {
+      postService.create(user, {title: 'x', body: ''}).catch(reason => {
         expect(reason).toEqual('Please write something.')
       })
     })

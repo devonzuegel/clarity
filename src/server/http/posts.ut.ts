@@ -2,15 +2,15 @@ import * as express from 'express'
 import * as supertest from 'supertest'
 import * as bodyParser from 'body-parser'
 
-import {initSession} from '../../../utils/test/session'
+import {initSession} from '~/../utils/test/session'
 
-import {MockUserService} from '../service/user.mock'
-import {MockPostService} from '../service/post.mock'
+import {MockUserService} from '~/server/service/user.mock'
+import {MockPostService} from '~/server/service/post.mock'
 
-jest.mock('../service/user', () => ({
+jest.mock('~/server/service/user', () => ({
   userService: new MockUserService(),
 }))
-jest.mock('../service/post', () => ({
+jest.mock('~/server/service/post', () => ({
   postService: new MockPostService(),
 }))
 
