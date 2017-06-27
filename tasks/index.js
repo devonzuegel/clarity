@@ -7,7 +7,7 @@ const runCmd = cmd => {
 }
 
 const lint = () => {
-  runCmd('./tasks/noConsole.sh')
+  runCmd('./tasks/check.sh')
   runCmd("tslint -c tslint.json 'src/**/*.{ts,tsx}'")
 }
 
