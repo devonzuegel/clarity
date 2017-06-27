@@ -1,8 +1,8 @@
 import * as express from 'express'
 import * as supertest from 'supertest'
+import * as bodyParser from 'body-parser'
 
 import {initSession} from '../../../utils/test/session'
-import {bodyMatches} from '~/../utils/test/results.ts'
 
 import {MockUserService} from '../service/user.mock'
 import {MockPostService} from '../service/post.mock'
@@ -16,18 +16,8 @@ jest.mock('../service/post', () => ({
 
 import PostsRouter from './posts'
 
-const postWithData = (
-  endpoint: string,
-  data: Object,
-  cb: (r: supertest.Response) => void
-) =>
-  supertest(app)
-    .post(endpoint)
-    .send(data)
-    .set('Accept', 'application/json')
-    .end((_err, res) => cb(res))
-
 const app = express()
+app.use(bodyParser.json())
 initSession(app)
 app.use('/api/posts', PostsRouter)
 
@@ -43,31 +33,21 @@ describe('Posts HTTP', () => {
     })
   })
 
-  // TODO
-  xdescribe('/api/posts/create', () => {
+  describe('/api/posts/create', () => {
     it('returns a created post', done => {
-      postWithData(
-        '/api/posts/create',
-        {facebookId: 'baz', title: 'asdlfkj'},
-        res => {
-          bodyMatches({dataValues: {facebookId: 'baz'}})(res)
-          done()
-        }
-      )
-
       supertest(app)
         .post('/api/posts/create')
-        .send({facebookId: 'baz'})
+        .send({facebookId: 'baz', title: 'foo'})
         .set('Accept', 'application/json')
         .end((_err, res) => {
-          console.log(res)
-          // expect(res.body.dataValues).toEqual({userId: 123})
+          expect(res.body.dataValues).toEqual({userId: 123})
+          done()
         })
     })
 
     it('returns a useful error message when not provided a facebookId', async () => {
-      const res = await supertest(app).post('/api/posts/create')
-      expect(res.body.dataValues).toEqual({
+      const r = await supertest(app).post('/api/posts/create')
+      expect(r.body).toEqual({
         message: 'Please provide a facebookId',
       })
     })
