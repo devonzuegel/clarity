@@ -2,8 +2,8 @@ import * as express from 'express'
 
 import {jsonError} from '../../../utils/api/requests'
 
-import {userService} from '../service/user'
-import {postService} from '../service/post'
+import {userService} from '~/server/service/user'
+import {postService} from '~/server/service/post'
 
 const router = express.Router()
 
