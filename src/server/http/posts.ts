@@ -16,6 +16,19 @@ router.get('/', async (_: express.Request, res: express.Response) => {
   }
 })
 
+router.get(
+  '/users/:facebookId',
+  async (req: express.Request, res: express.Response) => {
+    try {
+      const user = await userService.findByFacebookId(req.params.facebookId)
+      const posts = await postService.ownedBy(user)
+      res.status(200).json(posts)
+    } catch (e) {
+      jsonError(res)(e)
+    }
+  }
+)
+
 router.post('/create', async (req: express.Request, res: express.Response) => {
   try {
     const user = await userService.findByFacebookId(req.body.facebookId)
