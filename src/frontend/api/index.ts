@@ -8,6 +8,8 @@ import {
 
 /** Session management **/
 
+export const getUsers = (): Promise<any[]> => sendRequest(get('/api/users')) // TODO
+
 export const getProfile = (): Promise<FacebookProfile> =>
   sendRequest(get('/api/profile'))
 
