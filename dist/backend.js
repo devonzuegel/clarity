@@ -1654,9 +1654,7 @@ exports.partial = function (c) {
             publicPath: '/'
         },
         devtool: c.devtool,
-        plugins: [new webpack.HotModuleReplacementPlugin(),
-        // ...(c.isProd ? [] : [new webpack.HotModuleReplacementPlugin()]),
-        new HtmlWebpackPlugin({ template: './src/frontend/index.html' })]
+        plugins: (c.isProd ? [] : [new webpack.HotModuleReplacementPlugin()]).concat([new HtmlWebpackPlugin({ template: './src/frontend/index.html' })])
     };
 };
 
