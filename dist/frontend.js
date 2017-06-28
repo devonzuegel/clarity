@@ -28758,7 +28758,7 @@ var configureStore = function () {
     var devtools = window.__REDUX_DEVTOOLS_EXTENSION__;
     var _module = module;
     if (_module.hot) {
-        var store_1 = Redux.createStore(reducers_1.rootReducer, devtools && devtools());
+        var store_1 = Redux.createStore(reducers_1.rootReducerMock, devtools && devtools());
         _module.hot.accept('./reducers', function () {
             return store_1.replaceReducer(__webpack_require__(176));
         });
