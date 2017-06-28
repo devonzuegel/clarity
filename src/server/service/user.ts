@@ -1,7 +1,7 @@
 import * as Sequelize from 'sequelize'
 
-import {models} from '../db'
-import {UserInstance} from '../db/models/user'
+import {models} from '~/server/db'
+import {UserInstance} from '~/server/db/models/user'
 import {MockUserService} from './user.mock'
 
 const sequelizeFailure = (reject: Function) => (
@@ -15,6 +15,15 @@ export class UserService extends MockUserService {
     return new Promise<UserInstance>((resolve: Function, reject: Function) => {
       return models.User
         .findOne({where: {facebookId}})
+        .then((user: UserInstance) => resolve(user))
+        .catch(sequelizeFailure(reject))
+    })
+  }
+
+  find(id: number) {
+    return new Promise<UserInstance>((resolve: Function, reject: Function) => {
+      return models.User
+        .findById(id)
         .then((user: UserInstance) => resolve(user))
         .catch(sequelizeFailure(reject))
     })

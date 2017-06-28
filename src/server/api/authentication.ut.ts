@@ -1,9 +1,9 @@
-import {MockUserService} from '../service/user.mock'
-import {mockSession} from '../../../utils/test/session'
-import {GuestInstance} from '../db/models/guest'
+import {MockUserService} from '~/server/service/user.mock'
+import {mockSession} from '~/../utils/test/session'
+import {GuestInstance} from '~/server/db/models/guest'
 
 // TODO: refactor to inject the UserService dependency rather than manually mocking it out
-jest.mock('../service/user', () => ({
+jest.mock('~/server/service/user', () => ({
   userService: new MockUserService(),
 }))
 
@@ -87,14 +87,11 @@ describe('Authentication API', () => {
     })
 
     it('returns an error when the given facebookId does not belong to an existing user', async () => {
-      signIn('thisUsernameDoesntExist', mockSession())
-        .then(unexpectedSuccess)
-        .catch(
-          equals({
-            message:
-              'User with facebookId "thisUsernameDoesntExist" does not exist',
-          })
-        )
+      signIn('thisUsernameDoesntExist', mockSession()).then(unexpectedSuccess).catch(
+        equals({
+          message: 'User with facebookId "thisUsernameDoesntExist" does not exist',
+        })
+      )
     })
 
     it('returns an error when there is no session', async () => {

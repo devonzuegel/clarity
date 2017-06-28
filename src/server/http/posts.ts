@@ -1,6 +1,6 @@
 import * as express from 'express'
 
-import {jsonError} from '../../../utils/api/requests'
+import {jsonError} from '~/../utils/api/requests'
 
 import {userService} from '~/server/service/user'
 import {postService} from '~/server/service/post'
@@ -15,6 +15,19 @@ router.get('/', async (_: express.Request, res: express.Response) => {
     jsonError(res)(e)
   }
 })
+
+router.get(
+  '/users/:facebookId',
+  async (req: express.Request, res: express.Response) => {
+    try {
+      const user = await userService.findByFacebookId(req.params.facebookId)
+      const posts = await postService.ownedBy(user)
+      res.status(200).json(posts)
+    } catch (e) {
+      jsonError(res)(e)
+    }
+  }
+)
 
 router.post('/create', async (req: express.Request, res: express.Response) => {
   try {

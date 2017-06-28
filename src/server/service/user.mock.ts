@@ -1,4 +1,4 @@
-import {UserAttributes, UserInstance} from '../db/models/user'
+import {UserAttributes, UserInstance} from '~/server/db/models/user'
 
 export class MockUserService {
   findByFacebookId(facebookId: string): Promise<UserInstance> {
@@ -23,6 +23,28 @@ export class MockUserService {
     })
   }
 
+  find(id: number): Promise<UserInstance> {
+    return new Promise<UserInstance>((resolve: Function, reject: Function) => {
+      if (isNaN(id)) {
+        reject({message: `User id must be an integer`})
+      }
+      if (id === 2) {
+        reject({message: `User with id "${2}" does not exist`})
+      }
+      resolve({
+        dataValues: {facebookId: 'fake-fb-id', id},
+        get: (key: string) => {
+          switch (key) {
+            case 'id':
+              return 123
+            default:
+              throw Error(`Value for key "${key}" is undefined on mock user`)
+          }
+        },
+      })
+    })
+  }
+
   create(attributes: UserAttributes): Promise<UserInstance> {
     return new Promise<UserInstance>((resolve: Function, reject: Function) => {
       if (attributes.facebookId == 'thisUsernameIsntAvailable') {
@@ -33,9 +55,7 @@ export class MockUserService {
   }
 
   all(): Promise<Array<UserInstance>> {
-    return new Promise<
-      Array<UserInstance>
-    >((resolve: Function, _: Function) => {
+    return new Promise<Array<UserInstance>>((resolve: Function, _: Function) => {
       resolve([{facebookId: 'foobar'}])
     })
   }

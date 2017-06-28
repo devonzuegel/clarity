@@ -26,9 +26,7 @@ const setupStrategy = (c: IPassportConfig) => {
   passport.deserializeUser((user, done) => done(null, user))
 }
 
-export const setup = (config: IPassportConfig) => (
-  app: express.Application
-) => {
+export const setup = (config: IPassportConfig) => (app: express.Application) => {
   setupStrategy(config)
 
   app.use(passport.initialize())
@@ -74,11 +72,7 @@ export const setup = (config: IPassportConfig) => (
 /**
  * Route middleware to make sure a user is logged in
  **/
-const isLoggedIn = (
-  req: express.Request,
-  res: express.Response,
-  next: Function
-) => {
+const isLoggedIn = (req: express.Request, res: express.Response, next: Function) => {
   if (req.isAuthenticated()) {
     return next()
   }

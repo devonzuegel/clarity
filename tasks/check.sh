@@ -17,3 +17,22 @@
   --exclude=./src/server/config/environments.ts \
   --exclude=./clarity.sublime-workspace \
   -R 'console.log\|console.warn\|console.info' .
+
+
+##############################################################
+###  Fail if source calls `express` outside of http utils ####
+##############################################################
+
+! /usr/bin/grep \
+  --color=always \
+  --exclude-dir=node_modules \
+  --exclude-dir=.git \
+  --exclude-dir=coverage \
+  --exclude-dir=dist \
+  --exclude-dir=build \
+  --exclude-dir=tasks \
+  --exclude=yarn.lock \
+  --exclude=./utils/http/newApp.ts \
+  --exclude=./package.json \
+  --exclude=./yarn-error.log \
+  -R 'express()\|bodyParser' .

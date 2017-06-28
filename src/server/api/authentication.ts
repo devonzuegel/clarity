@@ -1,7 +1,7 @@
 import * as R from 'ramda'
-import {UserInstance} from '../db/models/user'
-import {GuestInstance} from '../db/models/guest'
-import {userService} from '../service/user'
+import {UserInstance} from '~/server/db/models/user'
+import {GuestInstance} from '~/server/db/models/guest'
+import {userService} from '~/server/service/user'
 
 export const signup = (
   facebookId: string | undefined,

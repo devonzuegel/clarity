@@ -5,7 +5,7 @@ import {IterationInstance} from '~/server/db/models/iteration'
 export class MockPostService {
   public mockPost = {
     postId: 9,
-    title:  'Foo Bar Baz',
+    title: 'Foo Bar Baz',
   }
 
   create(user: UserInstance, _iteration: {body?: string; title: string}) {
@@ -21,6 +21,17 @@ export class MockPostService {
         {dataValues: {userId: 1}},
         {dataValues: {userId: 2}},
         {dataValues: {userId: 2}},
+      ]
+      resolve(<PostInstance[]>baz)
+    })
+  }
+
+  ownedBy(user: UserInstance) {
+    return new Promise<PostInstance[]>((resolve, _) => {
+      const baz = [
+        {dataValues: {userId: user.get('id')}},
+        {dataValues: {userId: user.get('id')}},
+        {dataValues: {userId: user.get('id')}},
       ]
       resolve(<PostInstance[]>baz)
     })

@@ -1,13 +1,13 @@
-import {MockUserService} from '../service/user.mock'
-import {MockPostService} from '../service/post.mock'
+import {MockUserService} from '~/server/service/user.mock'
+import {MockPostService} from '~/server/service/post.mock'
 
 // TODO: refactor to inject the UserService dependency rather than manually mocking it out
-jest.mock('../service/user', () => ({
+jest.mock('~/server/service/user', () => ({
   userService: new MockUserService(),
 }))
 
 // TODO: refactor to inject the PostService dependency rather than manually mocking it out
-jest.mock('../service/post', () => ({
+jest.mock('~/server/service/post', () => ({
   postService: new MockPostService(),
 }))
 
@@ -47,8 +47,7 @@ describe('Posts API', () => {
         )
         .catch(
           equals({
-            message:
-              'User with facebookId "thisUsernameDoesntExist" does not exist',
+            message: 'User with facebookId "thisUsernameDoesntExist" does not exist',
           })
         )
     })

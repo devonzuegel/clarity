@@ -1,7 +1,7 @@
-import {UserInstance} from '../db/models/user'
-import {PostInstance} from '../db/models/post'
-import {userService} from '../service/user'
-import {postService} from '../service/post'
+import {UserInstance} from '~/server/db/models/user'
+import {PostInstance} from '~/server/db/models/post'
+import {userService} from '~/server/service/user'
+import {postService} from '~/server/service/post'
 
 export const create = (
   facebookId: string,

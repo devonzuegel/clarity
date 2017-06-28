@@ -1,10 +1,8 @@
-import {IterationInstance} from '../db/models/iteration'
+import {IterationInstance} from '~/server/db/models/iteration'
 
 export class MockIterationService {
   all(): Promise<IterationInstance[]> {
-    return new Promise<
-      IterationInstance[]
-    >((resolve: Function, _: Function) => {
+    return new Promise<IterationInstance[]>((resolve: Function, _: Function) => {
       resolve([
         {dataValues: {title: 'title'}},
         {dataValues: {title: 'title', body: 'body'}},
