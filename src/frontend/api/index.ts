@@ -14,11 +14,6 @@ export const getUser = (userId: number): Promise<UserAttributes> =>
 export const getProfile = (): Promise<FacebookProfile> =>
   sendRequest(get('/api/profile'))
 
-export const getSession = () => sendRequest(get('/api/session'))
-
-export const signupOrSignin = (action: 'signup' | 'signin', facebookId: string) =>
-  sendRequest(post(`/api/${action}`, {facebookId}))
-
 export const signout = () => sendRequest(get('/api/signout'))
 
 /** Posts **/
