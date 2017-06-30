@@ -1,14 +1,7 @@
 import * as express from 'express'
 import * as passport from 'passport'
 
-import {IPassportConfig, setupStrategy} from '~/server/service/authentication'
-
-export const setup = (config: IPassportConfig) => (app: express.Application) => {
-  setupStrategy(config)
-
-  app.use(passport.initialize())
-  app.use(passport.session())
-
+export const setup = (app: express.Application) => {
   /**
    * Redirect the user to Facebook for authentication.  When complete,
    * Facebook will redirect the user back to the application at
