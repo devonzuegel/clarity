@@ -9,4 +9,3 @@ export const newApp = (initalizers: IIntializer[]) => {
   initalizers.map(i => i(app))
   return app
 }
-;('~/../utils/http/newApp')
