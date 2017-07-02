@@ -30,4 +30,38 @@ describe('GraphQL API', () => {
       done()
     })
   })
+
+  it('gets the dummy user data with posts', done => {
+    const attrs = ['id', 'facebookId']
+    const query = `{
+      users {
+        ${attrs.join(',')}
+        posts{id}
+      }
+    }`
+    getWithData(app, '/graphql', {query}, res => {
+      expect(res.body.data.users).toEqual([
+        {id: 1, facebookId: 'foo', posts: [{id: 1}, {id: 2}]},
+        {id: 2, facebookId: 'baz', posts: [{id: 3}]},
+      ])
+      done()
+    })
+  })
+
+  it('gets the dummy posts data', done => {
+    const attrs = ['id', 'userId']
+    const query = `{
+      posts {
+        ${attrs.join(',')}
+      }
+    }`
+    getWithData(app, '/graphql', {query}, res => {
+      expect(res.body.data.posts).toEqual([
+        {id: 1, userId: 1},
+        {id: 2, userId: 1},
+        {id: 3, userId: 2},
+      ])
+      done()
+    })
+  })
 })

@@ -25,7 +25,7 @@ module.exports = {
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
     timezone: '+00:00',
-    logging: R.contains(env.NODE_ENV, TEST_ENVS) && console.info,
+    logging: !R.contains(env.NODE_ENV, TEST_ENVS) && console.info,
   },
 }
 

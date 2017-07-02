@@ -24,7 +24,13 @@ const getEnvVariables = () => {
     return process.env
   }
 
-  if (fromDotenv.parsed.NODE_ENV !== process.env.NODE_ENV) {
+  const result = R.merge(fromDotenv.parsed, {
+    NODE_ENV: process.env.NODE_ENV, // Override
+  })
+
+  const testEnv = R.contains(result.NODE_ENV, TEST_ENVS)
+  const mismatchNODE_ENV = fromDotenv.parsed.NODE_ENV !== process.env.NODE_ENV
+  if (mismatchNODE_ENV && !testEnv) {
     console.info(
       chalk.yellow(
         `WARNING: ${envFile} specifies NODE_ENV=${fromDotenv.parsed.NODE_ENV}, ` +
@@ -33,19 +39,18 @@ const getEnvVariables = () => {
     )
   }
 
-  const result = R.merge(fromDotenv.parsed, {
-    NODE_ENV: process.env.NODE_ENV, // Override
-  })
-
-  if (!R.contains(result.NODE_ENV, ALL_ENVS)) {
+  const supportedEnv = R.contains(result.NODE_ENV, ALL_ENVS)
+  if (!supportedEnv) {
     console.error(
       chalk.red(`NODE_ENV "${result.NODE_ENV}" is not supported. \n`) +
         chalk.grey(`Please provide one of: ${JSON.stringify(ALL_ENVS)}`)
     )
     throw Error('Invalid environment')
   }
-  console.info(chalk.green('Environment variables loaded from .env:'))
-  console.info(chalk.grey(JSON.stringify(result, null, 2)))
+  if (!testEnv) {
+    console.info(chalk.green('Environment variables loaded from .env:'))
+    console.info(chalk.grey(JSON.stringify(result, null, 2)))
+  }
 
   return result
 }
