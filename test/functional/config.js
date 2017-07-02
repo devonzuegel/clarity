@@ -8,5 +8,7 @@ if (!env) {
 
 module.exports = {
   ci: env === 'ci',
-  url: env === 'ci' ? 'http://clarity-develop.herokuapp.com' : `http://${host}:${port}`,
+  url: env === 'ci'
+    ? 'http://clarity-tests.herokuapp.com'
+    : `http://${host}:${port}`,
 }
