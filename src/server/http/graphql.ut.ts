@@ -13,4 +13,18 @@ describe('GraphQL API', () => {
       done()
     })
   })
+
+  it('gets the dummy user data', done => {
+    getWithData(app, '/graphql', {query: '{users{id,facebookId}}'}, res => {
+      expect(res.body).toEqual({
+        data: {
+          users: [
+            {facebookId: 'foobar', id: '111'},
+            {facebookId: 'bazbar', id: '222'},
+          ],
+        },
+      })
+      done()
+    })
+  })
 })
