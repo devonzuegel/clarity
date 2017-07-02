@@ -7,8 +7,18 @@ const {env} = require('~/server/config/index.js')
 import {models} from '~/server/db'
 
 export const mockUsers = [
-  {id: 111, facebookId: 'foobar'},
-  {id: 222, facebookId: 'bazbar'},
+  {
+    id: 1,
+    facebookId: 'foo',
+    createdAt: '2017-07-01 01:37:28.363',
+    updatedAt: '2017-07-01 01:37:28.363',
+  },
+  {
+    id: 2,
+    facebookId: 'baz',
+    createdAt: '2017-07-01 01:37:28.363',
+    updatedAt: '2017-07-01 01:37:28.363',
+  },
 ]
 
 const Type = new G.GraphQLObjectType({
