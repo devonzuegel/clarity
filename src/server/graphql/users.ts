@@ -3,8 +3,10 @@ import * as G from 'graphql'
 const {attributeFields, resolver} = require('graphql-sequelize')
 const {TEST_ENVS} = require('~/server/config/environments')
 const {env} = require('~/server/config/index.js')
+import {mockPosts} from '~/server/graphql/posts'
 
 import {models} from '~/server/db'
+import * as Post from '~/server/graphql/posts'
 
 export const mockUsers = [
   {
@@ -21,10 +23,30 @@ export const mockUsers = [
   },
 ]
 
+const useMocks = R.contains(env, TEST_ENVS)
+
+const postsResolver = (user: {id: number}) => {
+  if (useMocks) {
+    const belongsTo = ({userId}: {userId: number}) => userId === user.id
+    return R.filter(belongsTo, mockPosts)
+  }
+  return models.Post.findAll({where: {userId: user.id}})
+}
+
+const userResolver = useMocks
+  ? (_: any, _args: {[k: string]: any}) => mockUsers
+  : resolver(models.User)
+
 const Type = new G.GraphQLObjectType({
   name: 'User',
   description: 'A user',
-  fields: attributeFields(models.User),
+  fields: {
+    ...attributeFields(models.User),
+    posts: {
+      type: new G.GraphQLList(Post.Type),
+      resolve: postsResolver,
+    },
+  },
 })
 
 export const Schema = {
@@ -33,7 +55,5 @@ export const Schema = {
     id: {type: G.GraphQLID},
     facebookId: {type: G.GraphQLString},
   },
-  resolve: R.contains(env, TEST_ENVS)
-    ? (_: any, _args: {[k: string]: any}) => mockUsers
-    : resolver(models.User),
+  resolve: userResolver,
 }
