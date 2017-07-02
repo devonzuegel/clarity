@@ -13,9 +13,21 @@ export const mockPosts = [
     createdAt: '2017-07-01 01:37:28.363',
     updatedAt: '2017-07-01 01:37:28.363',
   },
+  {
+    id: 2,
+    userId: 1,
+    createdAt: '2017-07-01 01:37:28.363',
+    updatedAt: '2017-07-01 01:37:28.363',
+  },
+  {
+    id: 3,
+    userId: 2,
+    createdAt: '2017-07-01 01:37:28.363',
+    updatedAt: '2017-07-01 01:37:28.363',
+  },
 ]
 
-const Type = new G.GraphQLObjectType({
+export const Type = new G.GraphQLObjectType({
   name: 'Post',
   description: 'A post',
   fields: attributeFields(models.Post),
