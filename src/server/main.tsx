@@ -5,7 +5,7 @@ import Hermes from '~/../utils/hermes'
 import {newApp} from '~/../utils/http/newApp'
 
 import http from './http'
-import * as Passport from './passport'
+import * as Passport from './http/authentication'
 import {runHotMiddleware} from './middleware'
 import {listen} from './listen'
 import {monitorExceptions} from './exceptionMonitoring'

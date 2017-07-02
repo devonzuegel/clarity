@@ -17122,12 +17122,6 @@ exports.getUser = function (userId) {
 exports.getProfile = function () {
     return responses_1.sendRequest(responses_1.get('/api/profile'));
 };
-exports.getSession = function () {
-    return responses_1.sendRequest(responses_1.get('/api/session'));
-};
-exports.signupOrSignin = function (action, facebookId) {
-    return responses_1.sendRequest(responses_1.post("/api/" + action, { facebookId: facebookId }));
-};
 exports.signout = function () {
     return responses_1.sendRequest(responses_1.get('/api/signout'));
 };
@@ -24051,6 +24045,9 @@ var Hermes = function () {
             name: this.name,
             silent: this.silent
         };
+    };
+    Hermes.prototype.debug = function (s) {
+        return this.log("INFO: " + s, 'blue');
     };
     Hermes.prototype.info = function (s) {
         return this.log("INFO: " + s, 'white');

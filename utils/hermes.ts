@@ -68,6 +68,10 @@ class Hermes {
     }
   }
 
+  debug(s: string) {
+    return this.log(`INFO: ${s}`, 'blue')
+  }
+
   info(s: string) {
     return this.log(`INFO: ${s}`, 'white')
   }
