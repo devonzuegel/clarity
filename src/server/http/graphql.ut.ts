@@ -30,4 +30,18 @@ describe('GraphQL API', () => {
       done()
     })
   })
+
+  it('gets the dummy posts data', done => {
+    const attrs = ['id', 'userId']
+    const query = `{
+      posts {
+        ${attrs.join(',')}
+      }
+    }`
+    getWithData(app, '/graphql', {query}, res => {
+      console.log(JSON.stringify(res.body.data.posts))
+      // expect(res.body).toEqual({data: {users}})
+      done()
+    })
+  })
 })
