@@ -28,7 +28,7 @@ sequelize db:migrate:undo:all && sequelize db:migrate
 
 ### Tests ###
 
-Unit and integration test files are named `module-name.ut.ts` and `module-name.it.ts`, respectively. They are co-located with the module they test. For instance, utilities for formatting dates can be found in `utils/date`, and the unit tests that exercise these helpers are in `utils/date.ut`.
+Unit and integration test files are named `module-name.ut.ts` and `module-name.it.ts`, respectively. They are co-located with the module they test. For instance, utilities for formatting dates can be found in `utils/date`, and the unit tests that exercise these helpers are in `utils/date.ut`. Mocks are defined in files named `module-name.mock.ts`.
 
 Functional tests and corresponding test helpers can be found in `test/functional`. At some point, I'd like to consolidate these into the same naming convention as the unit and integration tests, by having them in `module-name.ft.ts`, but NightmareJS was flakey as hell and it wasn't worth the effort at the time. Someday...
 
