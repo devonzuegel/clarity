@@ -64,7 +64,7 @@ require("source-map-support").install();
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 32);
+/******/ 	return __webpack_require__(__webpack_require__.s = 34);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -132,7 +132,7 @@ module.exports = require("path");
 var R = __webpack_require__(0);
 var path = __webpack_require__(3);
 var chalk = __webpack_require__(5);
-var dotenv = __webpack_require__(51);
+var dotenv = __webpack_require__(53);
 var envFile = '.env';
 var HEROKU_ENVS = ['heroku-develop', 'heroku-stage', 'heroku-live', 'heroku-tests'];
 var LOCAL_ENVS = ['test', 'local-develop'];
@@ -185,7 +185,7 @@ module.exports = require("sequelize");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var cls = __webpack_require__(50);
+var cls = __webpack_require__(52);
 var Sequelize = __webpack_require__(6);
 var user_1 = __webpack_require__(27);
 var post_1 = __webpack_require__(26);
@@ -229,7 +229,7 @@ exports.sequelize = database.getSequelize();
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Chalk = __webpack_require__(5);
-var U = __webpack_require__(39);
+var U = __webpack_require__(41);
 var Hermes = function () {
     function Hermes(options) {
         var name = options.name,
@@ -312,7 +312,7 @@ var __extends = this && this.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var db_1 = __webpack_require__(7);
-var user_mock_1 = __webpack_require__(38);
+var user_mock_1 = __webpack_require__(40);
 var sequelizeFailure = function (reject) {
     return function (error) {
         reject(error.errors[0]); // Return only the descriptive .errors array
@@ -398,7 +398,7 @@ exports.jsonSuccess = function (res) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var U = __webpack_require__(40);
+var U = __webpack_require__(42);
 exports.Enum = U.strEnum(['development', 'production']);
 
 /***/ }),
@@ -426,7 +426,7 @@ module.exports = require("webpack");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Raven = __webpack_require__(60);
+var Raven = __webpack_require__(64);
 exports.monitorExceptions = function (config) {
     return function (app) {
         // Must configure Raven before doing anything else with it
@@ -448,9 +448,9 @@ exports.monitorExceptions = function (config) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var R = __webpack_require__(0);
 var passport = __webpack_require__(2);
-var authentication_1 = __webpack_require__(33);
-var Facebook = __webpack_require__(28);
-var Mock = __webpack_require__(29);
+var authentication_1 = __webpack_require__(35);
+var Facebook = __webpack_require__(29);
+var Mock = __webpack_require__(30);
 var TEST_ENVS = __webpack_require__(4).TEST_ENVS;
 var env = __webpack_require__(1).env;
 exports.setup = function (config) {
@@ -490,10 +490,12 @@ var isLoggedIn = function (req, res, next) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var users_1 = __webpack_require__(31);
-var posts_1 = __webpack_require__(30);
+var users_1 = __webpack_require__(33);
+var posts_1 = __webpack_require__(32);
+var graphql_1 = __webpack_require__(31);
 exports.default = function (app) {
     users_1.default(app);
+    graphql_1.default(app);
     app.use('/api/posts', posts_1.default);
 };
 
@@ -525,9 +527,9 @@ exports.listen = function (app, _a) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.runHotMiddleware = function (app) {
     var webpack = __webpack_require__(14);
-    var webpackConfig = __webpack_require__(41).default;
+    var webpackConfig = __webpack_require__(43).default;
     var webpackCompiler = webpack(webpackConfig);
-    app.use(__webpack_require__(63)(webpackCompiler, {
+    app.use(__webpack_require__(67)(webpackCompiler, {
         publicPath: webpackConfig.output.publicPath,
         stats: { colors: true },
         noInfo: true,
@@ -537,7 +539,7 @@ exports.runHotMiddleware = function (app) {
         historyApiFallback: true,
         quiet: true
     }));
-    app.use(__webpack_require__(64)(webpackCompiler));
+    app.use(__webpack_require__(68)(webpackCompiler));
 };
 
 /***/ }),
@@ -550,7 +552,7 @@ exports.runHotMiddleware = function (app) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = __webpack_require__(10);
 exports.serveFrontend = function (app) {
-    var fs = __webpack_require__(53);
+    var fs = __webpack_require__(56);
     var path = __webpack_require__(3);
     app.use('/', express.static(__dirname));
     app.get('*', function (_, res) {
@@ -568,7 +570,7 @@ exports.serveFrontend = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var session = __webpack_require__(52);
+var session = __webpack_require__(55);
 exports.setupSession = function (app) {
     /** More info: github.com/expressjs/session#options */
     var options = {
@@ -587,7 +589,7 @@ exports.setupSession = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var bodyParser = __webpack_require__(49);
+var bodyParser = __webpack_require__(51);
 var express = __webpack_require__(10);
 exports.newApp = function (initalizers) {
     var app = express();
@@ -597,7 +599,6 @@ exports.newApp = function (initalizers) {
     });
     return app;
 };
-'~/../utils/http/newApp';
 
 /***/ }),
 /* 23 */
@@ -613,7 +614,7 @@ module.exports = require("helmet");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var config = __webpack_require__(48);
+var config = __webpack_require__(50);
 exports.default = config;
 
 /***/ }),
@@ -736,6 +737,41 @@ exports.default = function (sequelize) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var G = __webpack_require__(57);
+exports.mockBooks = [{ id: '111', title: 'Moby Dick' }, { id: '222', title: 'Invisible Cities' }, { id: '333', title: '1984' }, { id: '444', title: 'A History of Future Cities' }];
+var bookType = new G.GraphQLObjectType({
+    name: 'book',
+    fields: {
+        id: { type: G.GraphQLID },
+        title: { type: G.GraphQLString }
+    }
+});
+var graphqlSchema = new G.GraphQLSchema({
+    query: new G.GraphQLObjectType({
+        name: 'RootQueryType',
+        fields: {
+            books: {
+                type: new G.GraphQLList(bookType),
+                args: {
+                    id: { type: G.GraphQLID }
+                },
+                resolve: function (_, _args) {
+                    return exports.mockBooks;
+                }
+            }
+        }
+    })
+});
+exports.default = graphqlSchema;
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
 var passport = __webpack_require__(2);
 exports.setup = function (app) {
     /**
@@ -762,7 +798,7 @@ exports.setup = function (app) {
 };
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -777,7 +813,21 @@ exports.setup = function (app) {
 };
 
 /***/ }),
-/* 30 */
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var graphqlHTTP = __webpack_require__(54);
+var schema_1 = __webpack_require__(28);
+exports.default = function (app) {
+    app.use('/graphql', graphqlHTTP({ schema: schema_1.default, graphiql: true }));
+};
+
+/***/ }),
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -864,7 +914,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = __webpack_require__(10);
 var requests_1 = __webpack_require__(11);
 var user_1 = __webpack_require__(9);
-var post_1 = __webpack_require__(37);
+var post_1 = __webpack_require__(39);
 var router = express.Router();
 router.get('/', function (_, res) {
     return __awaiter(_this, void 0, void 0, function () {
@@ -989,7 +1039,7 @@ router.post('/:id/iterate', function (req, res) {
 exports.default = router;
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1018,7 +1068,7 @@ exports.default = function (app) {
 };
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1053,7 +1103,7 @@ db_1.sequelize.sync().then(function () {
 });
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1062,9 +1112,9 @@ db_1.sequelize.sync().then(function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var R = __webpack_require__(0);
 var passport = __webpack_require__(2);
-var Facebook = __webpack_require__(56);
+var Facebook = __webpack_require__(60);
 var user_1 = __webpack_require__(9);
-var Mock = __webpack_require__(34);
+var Mock = __webpack_require__(36);
 var TEST_ENVS = __webpack_require__(4).TEST_ENVS;
 var env = __webpack_require__(1).env;
 var signInCallback = function (profile, done) {
@@ -1113,16 +1163,16 @@ exports.setupStrategy = function (options) {
 };
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var util = __webpack_require__(61);
+var util = __webpack_require__(65);
 var passport = __webpack_require__(2);
-var profile_mock_1 = __webpack_require__(35);
+var profile_mock_1 = __webpack_require__(37);
 exports.Strategy = function Strategy(_options, verify) {
     this.name = 'test';
     this.verify = verify;
@@ -1142,7 +1192,7 @@ exports.Strategy.prototype.authenticate = function (_) {
 };
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1161,7 +1211,7 @@ var profileMock = {
 exports.default = profileMock;
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1310,7 +1360,7 @@ var MockPostService = function () {
 exports.MockPostService = MockPostService;
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1417,7 +1467,7 @@ var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var R = __webpack_require__(0);
 var db_1 = __webpack_require__(7);
-var post_mock_1 = __webpack_require__(36);
+var post_mock_1 = __webpack_require__(38);
 var hermes_1 = __webpack_require__(8);
 var logger = new hermes_1.default({ name: 'server' });
 var sequelizeFailure = function (reject) {
@@ -1513,7 +1563,7 @@ exports.PostService = PostService;
 exports.postService = new PostService();
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1582,14 +1632,14 @@ var MockUserService = function () {
 exports.MockUserService = MockUserService;
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var moment = __webpack_require__(55);
+var moment = __webpack_require__(59);
 exports.formatDateStr = function (s) {
     var result = new Date(Date.parse(s)).toLocaleTimeString('en-UK', {
         hour12: false,
@@ -1607,7 +1657,7 @@ exports.formatDate = function (d) {
 };
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1625,7 +1675,7 @@ function strEnum(o) {
 exports.strEnum = strEnum;
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1633,18 +1683,18 @@ exports.strEnum = strEnum;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Env = __webpack_require__(12);
-var _1 = __webpack_require__(42);
+var _1 = __webpack_require__(44);
 exports.default = _1.setup(Env.Enum.development);
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var webpackMerge = __webpack_require__(65);
+var webpackMerge = __webpack_require__(69);
 var path = __webpack_require__(3);
 var Env = __webpack_require__(12);
 exports.setup = function (env) {
@@ -1656,15 +1706,15 @@ exports.setup = function (env) {
         console: !isProd,
         isProd: isProd
     };
-    var shared = [__webpack_require__(44), __webpack_require__(43), __webpack_require__(47)];
-    var partials = isProd ? [__webpack_require__(46)].concat(shared) : [__webpack_require__(45)].concat(shared);
+    var shared = [__webpack_require__(46), __webpack_require__(45), __webpack_require__(49)];
+    var partials = isProd ? [__webpack_require__(48)].concat(shared) : [__webpack_require__(47)].concat(shared);
     return webpackMerge(partials.map(function (m) {
         return m.partial(options);
     }));
 };
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1673,7 +1723,7 @@ exports.setup = function (env) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = __webpack_require__(3);
 var webpack = __webpack_require__(14);
-var HtmlWebpackPlugin = __webpack_require__(54);
+var HtmlWebpackPlugin = __webpack_require__(58);
 var entryFile = './src/frontend/main.tsx';
 exports.partial = function (c) {
     return {
@@ -1691,7 +1741,7 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1719,7 +1769,7 @@ var loaders = function (c) {
         loader: 'postcss-loader',
         options: {
             plugins: function () {
-                return [__webpack_require__(59)({ path: [frontendDir()] }), __webpack_require__(58)(), __webpack_require__(57)({ relative: frontendDir() })];
+                return [__webpack_require__(63)({ path: [frontendDir()] }), __webpack_require__(62)(), __webpack_require__(61)({ relative: frontendDir() })];
             }
         }
     }];
@@ -1738,7 +1788,7 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1751,7 +1801,7 @@ exports.partial = function () {
         module: {
             rules: [{
                 test: /\.tsx?$/,
-                loader: __webpack_require__(62)(['react-hot-loader', 'awesome-typescript-loader']),
+                loader: __webpack_require__(66)(['react-hot-loader', 'awesome-typescript-loader']),
                 exclude: /node_modules/
             }]
         },
@@ -1760,7 +1810,7 @@ exports.partial = function () {
 };
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1782,7 +1832,7 @@ exports.partial = function () {
 };
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1807,7 +1857,7 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -1823,103 +1873,115 @@ module.exports = appConfig.db
 
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = require("body-parser");
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = require("continuation-local-storage");
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
 
 /***/ }),
-/* 52 */
-/***/ (function(module, exports) {
-
-module.exports = require("express-session");
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports) {
-
-module.exports = require("fs");
-
-/***/ }),
 /* 54 */
 /***/ (function(module, exports) {
 
-module.exports = require("html-webpack-plugin");
+module.exports = require("express-graphql");
 
 /***/ }),
 /* 55 */
 /***/ (function(module, exports) {
 
-module.exports = require("moment");
+module.exports = require("express-session");
 
 /***/ }),
 /* 56 */
 /***/ (function(module, exports) {
 
-module.exports = require("passport-facebook");
+module.exports = require("fs");
 
 /***/ }),
 /* 57 */
 /***/ (function(module, exports) {
 
-module.exports = require("postcss-assets");
+module.exports = require("graphql");
 
 /***/ }),
 /* 58 */
 /***/ (function(module, exports) {
 
-module.exports = require("postcss-cssnext");
+module.exports = require("html-webpack-plugin");
 
 /***/ }),
 /* 59 */
 /***/ (function(module, exports) {
 
-module.exports = require("postcss-import");
+module.exports = require("moment");
 
 /***/ }),
 /* 60 */
 /***/ (function(module, exports) {
 
-module.exports = require("raven");
+module.exports = require("passport-facebook");
 
 /***/ }),
 /* 61 */
 /***/ (function(module, exports) {
 
-module.exports = require("util");
+module.exports = require("postcss-assets");
 
 /***/ }),
 /* 62 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack-combine-loaders");
+module.exports = require("postcss-cssnext");
 
 /***/ }),
 /* 63 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack-dev-middleware");
+module.exports = require("postcss-import");
 
 /***/ }),
 /* 64 */
 /***/ (function(module, exports) {
 
-module.exports = require("webpack-hot-middleware");
+module.exports = require("raven");
 
 /***/ }),
 /* 65 */
+/***/ (function(module, exports) {
+
+module.exports = require("util");
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-combine-loaders");
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-dev-middleware");
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports) {
+
+module.exports = require("webpack-hot-middleware");
+
+/***/ }),
+/* 69 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-merge");

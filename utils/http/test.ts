@@ -17,3 +17,15 @@ export const postWithData = (
     .send(data)
     .set('Accept', 'application/json')
     .end((_err, res) => cb(res))
+
+export const getWithData = (
+  app: express.Application,
+  endpoint: string,
+  data: Object,
+  cb: (r: supertest.Response) => void
+) =>
+  supertest(app)
+    .get(endpoint)
+    .send(data)
+    .set('Accept', 'application/json')
+    .end((_err, res) => cb(res))
