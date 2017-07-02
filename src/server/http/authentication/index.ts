@@ -4,6 +4,7 @@ import * as passport from 'passport'
 
 import {IPassportConfig, setupStrategy} from '~/server/service/authentication'
 import * as Facebook from '~/server/http/authentication/facebook'
+import * as Mock from '~/server/http/authentication/mock'
 const {TEST_ENVS} = require('~/server/config/environments')
 const {env} = require('~/server/config/index.js')
 
@@ -14,8 +15,27 @@ export const setup = (config: IPassportConfig) => (app: express.Application) => 
   app.use(passport.session())
 
   if (R.contains(env, TEST_ENVS)) {
-    Facebook.setup(app)
+    Mock.setup(app)
   } else {
     Facebook.setup(app)
   }
+
+  app.get('/api/profile', isLoggedIn, (req, res) => {
+    res.json(req.user)
+  })
+
+  app.get('/api/signout', isLoggedIn, (req, res) => {
+    req.logout()
+    res.redirect('/')
+  })
+}
+
+/**
+ * Route middleware to make sure a user is logged in
+ **/
+const isLoggedIn = (req: express.Request, res: express.Response, next: Function) => {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  res.status(403).json({message: 'Please sign in.'})
 }

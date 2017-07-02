@@ -1,5 +1,6 @@
 import {types} from '~/frontend/redux/actions/auth'
 import {IAction} from '~/frontend/redux/actions/auth'
+import profileMock from '~/server/service/authentication/profile.mock'
 
 interface IAuthState {
   user: {
@@ -15,7 +16,7 @@ const reducer = (_initialState: IAuthState) => (
   switch (action.type) {
     case types.SIGN_IN:
       return {
-        ...state, 
+        ...state,
         user: {
           facebookId: action.facebookId,
           displayName: action.displayName,
@@ -24,7 +25,7 @@ const reducer = (_initialState: IAuthState) => (
 
     case types.SIGN_OUT:
       return {
-        ...state, 
+        ...state,
         user: {facebookId: null},
       }
 
@@ -33,13 +34,21 @@ const reducer = (_initialState: IAuthState) => (
   }
 }
 
+/***************************************************************************
+ *** Default reducer *******************************************************
+ ***************************************************************************/
+
 export const authReducer = reducer({
   user: {},
 })
 
+/***************************************************************************
+ *** Development reducer ***************************************************
+ ***************************************************************************/
+
 export const authReducerMock = reducer({
   user: {
-    facebookId: '123',
-    displayName: 'Test User',
+    facebookId: profileMock.id,
+    displayName: profileMock.displayName,
   },
 })

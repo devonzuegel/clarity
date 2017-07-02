@@ -28,23 +28,4 @@ export const setup = (app: express.Application) => {
       message: 'Sorry, but we were not able to connect your Facebook account.',
     })
   )
-
-  app.get('/api/profile', isLoggedIn, (req, res) => {
-    res.json(req.user)
-  })
-
-  app.get('/api/signout', isLoggedIn, (req, res) => {
-    req.logout()
-    res.redirect('/')
-  })
-}
-
-/**
- * Route middleware to make sure a user is logged in
- **/
-const isLoggedIn = (req: express.Request, res: express.Response, next: Function) => {
-  if (req.isAuthenticated()) {
-    return next()
-  }
-  res.status(403).json({message: 'Please sign in.'})
 }
