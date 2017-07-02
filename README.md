@@ -14,6 +14,14 @@ HOST=localhost
 
 # Environment affects the config
 NODE_ENV=local-develop
+
+# Facebook Passport config (go to developers.facebook.com)
+FB_CLIENT_ID=xxxxx
+FB_CLIENT_SECRET=xxxxx
+FB_CALLBACK_URL=http://localhost:4000/auth/facebook/callback
+
+# Sentry error tracking config
+SENTRY_DSN=https://xxxxx@sentry.io/xxxxx
 ```
 
 2. Run the initial migration to get your development db in the correct state:
