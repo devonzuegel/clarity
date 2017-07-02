@@ -1,13 +1,11 @@
 import * as express from 'express'
-import * as graphqlHTTP from 'express-graphql'
 
 import UsersAPI from '~/server/http/users'
 import PostsRouter from '~/server/http/posts'
-import graphqlSchema from '~/server/graphql/schema'
+import GraphqlAPI from '~/server/http/graphql'
 
 export default (app: express.Application) => {
   UsersAPI(app)
-
+  GraphqlAPI(app)
   app.use('/api/posts', PostsRouter)
-  app.use('/graphql', graphqlHTTP({schema: graphqlSchema, graphiql: true}))
 }
