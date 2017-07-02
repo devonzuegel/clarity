@@ -22,6 +22,18 @@ NODE_ENV=local-develop
 sequelize db:migrate:undo:all && sequelize db:migrate
 ```
 
+## Structure ##
+
+![](https://cdn-images-1.medium.com/max/1600/1*cr8plxsbWE--Xgk_No5yiw.png)
+
+### Tests ###
+
+Unit and integration test files are named `module-name.ut.ts` and `module-name.it.ts`, respectively. They are co-located with the module they test. For instance, utilities for formatting dates can be found in `utils/date`, and the unit tests that exercise these helpers are in `utils/date.ut`.
+
+Functional tests and corresponding test helpers can be found in `test/functional`. At some point, I'd like to consolidate these into the same naming convention as the unit and integration tests, by having them in `module-name.ft.ts`, but NightmareJS was flakey as hell and it wasn't worth the effort at the time. Someday...
+
+Here's a useful post about the definitions of each test type and finding the boundaries between them: https://hackernoon.com/low-effort-high-value-integration-tests-in-redux-apps-d3a590bd9fd5. 
+
 ## Testing ##
 
 1. [Install the Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) and set up Selenium.
