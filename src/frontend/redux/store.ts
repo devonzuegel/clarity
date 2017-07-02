@@ -1,5 +1,7 @@
 import * as Redux from 'redux'
-import {rootReducer, rootReducerMock} from './reducers'
+
+import Hermes from '~/../utils/hermes'
+import {rootReducer, rootReducerMock} from '~/frontend/redux/reducers'
 
 declare global {
   interface Window {
@@ -7,15 +9,16 @@ declare global {
   }
 }
 
+const logger = new Hermes({name: 'frontend'})
+
 const configureStore = (): Redux.Store<any> => {
   const devtools = window.__REDUX_DEVTOOLS_EXTENSION__
-  const _module = module as any
+  const _m = module as any
 
-  if (_module.hot) {
+  if (_m.hot) {
+    logger.info('Loading rootReducerMock')
     const store = Redux.createStore(rootReducerMock, devtools && devtools())
-    _module.hot.accept('./reducers', () =>
-      store.replaceReducer(require('./reducers'))
-    )
+    _m.hot.accept('./reducers', () => store.replaceReducer(require('./reducers')))
     return store
   }
 
