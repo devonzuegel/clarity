@@ -1886,6 +1886,9 @@ exports.formatDateStr = function (s) {
 exports.formatDate = function (d) {
     return moment(d).format('DD-MM-YYYY HH:mm:ss');
 };
+exports.formatDateLong = function (d) {
+    return moment(d).format('DD MMM YYYY, HH:mm');
+};
 
 /***/ }),
 /* 48 */

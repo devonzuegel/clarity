@@ -16,3 +16,7 @@ export const formatDateStr = (s: string) => {
 export const formatDate = (d: Date) => {
   return moment(d).format('DD-MM-YYYY HH:mm:ss')
 }
+
+export const formatDateLong = (d: Date) => {
+  return moment(d).format('DD MMM YYYY, HH:mm')
+}

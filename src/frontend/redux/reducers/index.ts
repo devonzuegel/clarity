@@ -16,9 +16,10 @@ export const rootReducer = combineReducers({
 
 const devConfig = {
   /** When true, state is populated with user info upon initialization. **/
-  SIGNED_IN: false,
+  SIGNED_IN: true,
 }
 
 export const rootReducerMock = combineReducers({
   authReducer: devConfig.SIGNED_IN ? authReducerMock : authReducer,
 })
+

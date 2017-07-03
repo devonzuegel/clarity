@@ -16,6 +16,7 @@
   --exclude=./src/server/config/index.js \
   --exclude=./src/server/config/environments.ts \
   --exclude=./clarity.sublime-workspace \
+  --exclude=./README.md \
   -R 'console.log\|console.warn\|console.info' .
 
 
@@ -35,4 +36,5 @@
   --exclude=./utils/http/newApp.ts \
   --exclude=./package.json \
   --exclude=./yarn-error.log \
+  --exclude=./README.md \
   -R 'express()\|bodyParser' .
