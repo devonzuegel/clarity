@@ -2,7 +2,7 @@ import * as R from 'ramda'
 import * as React from 'react'
 import * as page from 'page'
 
-import UserPage from '~/frontend/pages/Me'
+import UserPage from '~/frontend/pages/Users/Show'
 import TestPage from '~/frontend/pages/Test'
 import NotFoundPage from '~/frontend/pages/NotFound'
 import render from '~/frontend/render'

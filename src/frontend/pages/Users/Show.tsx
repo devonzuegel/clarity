@@ -1,5 +1,7 @@
 import * as React from 'react'
 import * as R from 'ramda'
+import * as marked from 'marked'
+import * as classnames from 'classnames'
 
 import {graphql} from '~/../utils/api/responses'
 import {formatDateLong} from '~/../utils/date'
@@ -22,6 +24,10 @@ interface IState {
 const Post = (post: IPost, i: number) => {
   const mostRecentIteration = R.last(post.iterations)
   const date = new Date(Date.parse(mostRecentIteration.createdAt))
+  const classes = classnames({
+    'pt-card': true,
+    'pt-interactive': true,
+  })
   return (
     <a
       href={urls.post(post.id)}
@@ -31,16 +37,14 @@ const Post = (post: IPost, i: number) => {
         textDecoration: 'inherit',
       }}
     >
-      <div className="pt-card pt-interactive" style={{marginBottom: '16px'}}>
+      <div className={classes} style={{marginBottom: '16px'}}>
         <h3>
           {mostRecentIteration.title}
         </h3>
         <label className="pt-label pt-text-muted">
           {formatDateLong(date)}
         </label>
-        <div>
-          {mostRecentIteration.body}
-        </div>
+        <div dangerouslySetInnerHTML={{__html: marked(mostRecentIteration.body)}} />
       </div>
     </a>
   )
@@ -53,7 +57,7 @@ const Message = (props: {errors: IError[]}) =>
     )}
   </div>
 
-class UserPage extends React.Component<{facebookId: string}, IState> {
+class ShowUser extends React.Component<{facebookId: string}, IState> {
   state = {posts: undefined, errors: undefined}
 
   componentWillMount() {
@@ -91,4 +95,4 @@ class UserPage extends React.Component<{facebookId: string}, IState> {
   }
 }
 
-export default UserPage
+export default ShowUser
