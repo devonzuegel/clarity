@@ -18,5 +18,5 @@ export const formatDate = (d: Date) => {
 }
 
 export const formatDateLong = (d: Date) => {
-  return moment(d).format('DD MMMM YYYY, HH:mm')
+  return moment(d).format('DD MMM YYYY, HH:mm')
 }
