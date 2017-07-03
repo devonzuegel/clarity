@@ -1,13 +1,9 @@
 @import '../variables.css';
 
 .top-level-wrapper {
-  position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
   background-color: var(--light-grey5);
   line-height: 1.5em;
+  min-height: 100%;
 }
 
 .centered-wrapper {
