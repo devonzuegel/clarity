@@ -37,7 +37,7 @@ const userResolver = useMocks
   ? (_: any, _args: {[k: string]: any}) => mockUsers
   : resolver(models.User)
 
-const Type = new G.GraphQLObjectType({
+export const Type = new G.GraphQLObjectType({
   name: 'User',
   description: 'A user',
   fields: {

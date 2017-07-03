@@ -64,4 +64,43 @@ describe('GraphQL API', () => {
       done()
     })
   })
+
+  it('gets a dummy list of posts with their associated userIds', done => {
+    const query = `{posts {user{id}, id}}`
+    getWithData(app, '/graphql', {query}, res => {
+      expect(res.body.data).toEqual({
+        posts: [
+          {user: {id: 1}, id: 1},
+          {user: {id: 1}, id: 2},
+          {user: {id: 2}, id: 3},
+        ],
+      })
+      done()
+    })
+  })
+
+  it('gets the dummy iteration data', done => {
+    getWithData(app, '/graphql', {query: '{iterations{title,body}}'}, res => {
+      expect(res.body.data).toEqual({
+        iterations: [
+          {title: 'First title', body: 'First body'},
+          {title: 'Second title', body: 'Second body'},
+        ],
+      })
+      done()
+    })
+  })
+
+  it('gets the dummy iteration data', done => {
+    getWithData(app, '/graphql', {query: '{posts{iterations{title,body}}}'}, res => {
+      expect(res.body.data).toEqual({
+        posts: [
+          {iterations: [{title: 'x', body: 'y'}]},
+          {iterations: [{title: 'x', body: 'y'}]},
+          {iterations: [{title: 'x', body: 'y'}]},
+        ],
+      })
+      done()
+    })
+  })
 })
