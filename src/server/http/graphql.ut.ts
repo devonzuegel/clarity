@@ -90,4 +90,17 @@ describe('GraphQL API', () => {
       done()
     })
   })
+
+  it('gets the dummy iteration data', done => {
+    getWithData(app, '/graphql', {query: '{posts{iterations{title,body}}}'}, res => {
+      expect(res.body.data).toEqual({
+        posts: [
+          {iterations: [{title: 'x', body: 'y'}]},
+          {iterations: [{title: 'x', body: 'y'}]},
+          {iterations: [{title: 'x', body: 'y'}]},
+        ],
+      })
+      done()
+    })
+  })
 })
