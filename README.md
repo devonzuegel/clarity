@@ -34,7 +34,7 @@ sequelize db:migrate:undo:all && sequelize db:migrate
 
 ### Sublime Text ###
 
-**JsPrettier** – This project's CI enforces formatting rules across the codebase with [Prettier](https://github.com/prettier/prettier). To avoid unecessary conflicts and failures when running PRs against CI, it's nice to use the Sublime Text plugin [JsPrettier](https://packagecontrol.io/packages/JsPrettier), which autoformats to the rules on save This has the added bonus of allowing you to ignore formatting your code as you write it, which can be an obnoxious time sink. You can find the JsPrettier config here https://gist.github.com/devonzuegel/37a8b58ec66595a9aedc11227e4bb84e.
+**JsPrettier** – This project's CI enforces formatting rules across the codebase with [Prettier](https://github.com/prettier/prettier). To avoid unecessary conflicts and failures when running PRs against CI, it's nice to use the Sublime Text plugin [JsPrettier](https://packagecontrol.io/packages/JsPrettier), which autoformats to the rules on save This has the added bonus of allowing you to ignore formatting your code as you write it, which can be an obnoxious time sink. You can find the JsPrettier config [here](https://gist.github.com/devonzuegel/37a8b58ec66595a9aedc11227e4bb84e).
 
 ## Structure ##
 
