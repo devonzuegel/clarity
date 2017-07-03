@@ -64,4 +64,18 @@ describe('GraphQL API', () => {
       done()
     })
   })
+
+  it('gets a list of posts with their associated userIds', done => {
+    const query = `{posts {user{id}, id}}`
+    getWithData(app, '/graphql', {query}, res => {
+      expect(res.body.data).toEqual({
+        posts: [
+          {user: {id: 1}, id: 1},
+          {user: {id: 1}, id: 2},
+          {user: {id: 2}, id: 3},
+        ],
+      })
+      done()
+    })
+  })
 })
