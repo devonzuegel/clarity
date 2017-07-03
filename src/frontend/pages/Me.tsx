@@ -3,10 +3,8 @@ import * as R from 'ramda'
 
 import {graphql} from '~/../utils/api/responses'
 import {formatDateLong} from '~/../utils/date'
-import * as api from '~/frontend/api'
 import {urls} from '~/frontend/routes'
 import {ErrorMessage} from '~/frontend/components/ErrorMessage'
-import {FacebookProfile} from '~/../utils/models/FacebookProfile'
 
 interface IError {
   message: string
@@ -17,7 +15,6 @@ interface IPost {id: number; iterations: IIteration[]}
 interface IUser {posts: IPost[]}
 
 interface IState {
-  profile?: FacebookProfile
   posts?: IPost[]
   errors?: IError[]
 }
@@ -56,45 +53,42 @@ const Message = (props: {errors: IError[]}) =>
     )}
   </div>
 
-class Me extends React.Component<{}, IState> {
-  state = {profile: undefined, posts: undefined, errors: undefined}
+class UserPage extends React.Component<{facebookId: string}, IState> {
+  state = {posts: undefined, errors: undefined}
 
   componentWillMount() {
     this.retrieveData()
   }
 
   retrieveData() {
-    api
-      .getProfile()
-      .then(profile => {
-        this.setState({profile})
-        const facebookId = profile.id
-        graphql(
-          `{users(facebookId:"${facebookId}") {
-            posts {id, iterations {title,body,createdAt}}
-          }}`
-        )
-          .then((result: {data: {users: IUser[]}}) => {
-            const posts = result.data.users[0].posts
-            this.setState({posts})
-          })
-          .catch(e => this.setState({errors: e.errors}))
+    graphql(
+      `{users(facebookId:"${this.props.facebookId}") {
+          posts {id, iterations {title,body,createdAt}}
+        }}`
+    )
+      .then((result: {data: {users: IUser[]}}) => {
+        if (result.data.users.length === 0) {
+          // TODO: Use NotFound page instead
+          this.setState({errors: [{message: 'That user does not exist'}]})
+        } else {
+          const posts = result.data.users[0].posts
+          this.setState({posts})
+        }
       })
-      .catch(e => this.setState({errors: e}))
+      .catch(e => this.setState({errors: e.errors}))
   }
 
   render() {
-    return (
-      <div>
-        {this.state.errors && <Message errors={this.state.errors || []} />}
-        <h1>
-          Writing
-        </h1>
-        <br />
-        {this.state.posts && (this.state.posts || []).map(Post)}
-      </div>
-    )
+    return this.state.errors
+      ? <Message errors={this.state.errors || []} />
+      : <div>
+          <h1>
+            Writing
+          </h1>
+          <br />
+          {this.state.posts && (this.state.posts || []).map(Post)}
+        </div>
   }
 }
 
-export default Me
+export default UserPage
