@@ -1,6 +1,8 @@
 # Clarity #
 
-## Set up ##
+## Getting started ##
+
+### Set up ###
 
 1. Clone this repo, and then in the root directory create a `.env` file containing:
 
@@ -29,6 +31,10 @@ SENTRY_DSN=https://xxxxx@sentry.io/xxxxx
 ```shell
 sequelize db:migrate:undo:all && sequelize db:migrate
 ```
+
+### Sublime Text ###
+
+**JsPrettier** – This project's CI enforces formatting rules across the codebase with [Prettier](https://github.com/prettier/prettier). To avoid unecessary conflicts and failures when running PRs against CI, it's nice to use the Sublime Text plugin [JsPrettier](https://packagecontrol.io/packages/JsPrettier), which autoformats to the rules on save This has the added bonus of allowing you to ignore formatting your code as you write it, which can be an obnoxious time sink. You can find the JsPrettier config here https://gist.github.com/devonzuegel/37a8b58ec66595a9aedc11227e4bb84e.
 
 ## Structure ##
 
@@ -67,6 +73,18 @@ Here's a useful post about the definitions of each test type and finding the bou
     nightwatch --config nightwatch.js test/functional/myTest.js # Run one test
     ```
 
+### Linting ###
+
+There are several linting rules that can cause CI to fail. Here's a non-comprehensive list (you can find the rest [here](https://github.com/devonzuegel/clarity/blob/a3d5ba5c16a724712b04a18d3c528b4e2ff159a9/tasks/index.js#L9)):
+
+- Files don't conform to the [Prettier](https://github.com/prettier/prettier) code formatter 
+    - More info about setting up JsPrettier for Sublime above in "Set up"
+- Files contain `console.*`
+    - The default console logger should only be used in debugging/development, so this ensures that they're cleaned up before committing to master
+    - If you need a real logger, use [`Hermes`](https://github.com/devonzuegel/clarity/blob/a3d5ba5c16a724712b04a18d3c528b4e2ff159a9/utils/hermes.ts).
+- Files contain `express()` or `bodyParser` outside of the `http/newApp` module
+    - New express servers will nearly always require certain plugins and configuration, so this check ensures that any new server instances will use the pre-packaged `newApp`, which handles all that for you
+
 ## Development ##
 
 - `yarn build`:      Build development server (outputs into `/build`)
@@ -84,11 +102,9 @@ Here's a useful post about the definitions of each test type and finding the bou
 
 - Clarity's Webpack configuration is written in Typescript. By enforcing types in our build system, we can avoid a lot of the mistakes that are famously easy to make when using Webpack.
 
-## Deploying ##
+## Live environments ##
 
-### Develop [clarity-develop.herokuapp.com](http://clarity-develop.herokuapp.com/posts) ###
-
-Periodically, we'll want to reset the database for [clarity-develop](http://clarity-develop.herokuapp.com/posts):
+Periodically, we'll want to reset the database for [clarity-develop.herokuapp.com](http://clarity-develop.herokuapp.com/posts):
 
 ```
 heroku run "sequelize db:migrate:undo:all && sequelize db:migrate" --app clarity-develop
