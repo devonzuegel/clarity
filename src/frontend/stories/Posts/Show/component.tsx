@@ -52,9 +52,11 @@ export class Post extends React.Component<{postId: number}, IState> {
 
     if (Array.isArray(this.state.selected)) {
       const [i, j] = this.state.selected
+      const title1 = (iterations[i] as IterationSchema).title
+      const title2 = (iterations[j] as IterationSchema).title
       const body1 = (iterations[i] as IterationSchema).body
       const body2 = (iterations[j] as IterationSchema).body
-      return <Diff old={body1 || ''} new={body2 || ''} />
+      return <Diff old={`# ${title1}\n\n${body1}`} new={`# ${title2}\n\n${body2}`} />
     }
 
     if (!this.state.editing) {
