@@ -1,4 +1,4 @@
-import * as moment from 'moment'
+import * as format from 'date-fns/format'
 
 export const formatDateStr = (s: string) => {
   const result = new Date(Date.parse(s)).toLocaleTimeString('en-UK', {
@@ -14,9 +14,9 @@ export const formatDateStr = (s: string) => {
 }
 
 export const formatDate = (d: Date) => {
-  return moment(d).format('DD-MM-YYYY HH:mm:ss')
+  return format(d, 'DD-MM-YYYY HH:mm:ss')
 }
 
 export const formatDateLong = (d: Date) => {
-  return moment(d).format('DD MMM YYYY, HH:mm')
+  return format(d, 'DD MMM YYYY, HH:mm')
 }
