@@ -23,7 +23,7 @@ const Brand = () =>
 
 const LayoutComponent = ({displayName, children}: ILayout) =>
   <div>
-    <nav style={{display: 'flow-root', marginBottom: '25px'}}>
+    <nav style={{display: 'flow-root', height: '48px', marginBottom: '25px'}}>
       <Brand />
       <div className="pt-navbar-group pt-align-right">
         <NavBtn title="Posts" url={urls.posts} name="document" />

@@ -1,0 +1,46 @@
+:root {
+  --transition: .3s;
+}
+.expandable {
+  margin-top: 1em;
+  overflow: hidden;
+  padding-bottom: 0.5em;
+}
+.expandable *:first-child {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.expandable *:not(:first-child) {
+  max-height: 0;
+  opacity: .9;
+  overflow: hidden;
+}
+.expandable--state {
+  display: none;
+}
+.expandable--state:checked ~  {
+  & .expandable {
+    & * {
+      display: inline-block;
+      max-height: 400px;
+      opacity: 1;
+      transition: var(--transition);
+    }
+    & *:first-child {
+      padding-top: 0;
+    }
+    & *:not(:first-child) {
+      margin-top: 0;
+      padding-top: 12px;
+    }
+  }
+  & label.expandable--trigger:after {
+    content: 'Less';
+  }
+}
+label.expandable--trigger:after {
+  content: 'More';
+}

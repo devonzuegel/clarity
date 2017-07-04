@@ -1,0 +1,16 @@
+@import '../variables.css';
+
+:root {
+  --n-lines-start: 3;
+  --n-lines-finish: 5;
+}
+
+.read-more-wrap {
+  word-wrap: break-word;
+  overflow: hidden;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--n-lines-start);
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}

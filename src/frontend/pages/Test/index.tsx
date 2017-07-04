@@ -1,8 +1,8 @@
 import * as React from 'react'
-
 import {UserInstance} from '~/server/db/models/user'
-
 import * as api from '~/frontend/api'
+import Truncated from '~/frontend/components/Truncated'
+import Expandable from '~/frontend/components/Expandable'
 
 const s = require('./styles.css')
 
@@ -32,8 +32,50 @@ class Component extends React.Component<{}, {users?: UserInstance[]}> {
   }
 
   render() {
+    const str =
+      `Lorem ipsum dolor sit amet, consectetur adipisicing elit. ` +
+      `Libero fuga facilis vel consectetur quos sapiente deleniti eveniet ` +
+      `dolores tempore eos deserunt officia quis ab? Excepturi vero tempore ` +
+      `minus beatae voluptatem! \n` +
+      `Lorem ipsum dolor sit amet, consectetur adifpisicing elit. ` +
+      `Libero fuga facilis vel consectetur quos sapiente deleniti eveniet ` +
+      `dolores tempore eos deserunt officia quis ab? ` +
+      `Lorem ipsum dolor sit amet, consectetur adifpisicing elit. ` +
+      `Libero fuga facilis vel consectetur quos sapiente deleniti eveniet ` +
+      `dolores tempore eos deserunt officia quis ab? ` +
+      `Lorem ipsum dolor sit amet, consectetur adipisicing elit.`
+
     return (
       <div>
+        <h2>
+          Expandable
+        </h2>
+        <Expandable>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero fuga
+            facilis vel consectetur quos sapiente deleniti eveniet dolores tempore
+            eos deserunt officia quis ab? Excepturi vero tempore minus beatae
+            voluptatem! Lorem ipsum dolor sit amet, consectetur adifpisicing elit.
+            Libero fuga facilis vel consectetur quos sapiente deleniti eveniet
+            dolores tempore eos deserunt officia quis ab? Lorem ipsum dolor sit amet,
+            consectetur adifpisicing elit. Libero fuga facilis vel consectetur quos
+            sapiente deleniti eveniet dolores tempore eos deserunt officia quis ab?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </p>
+          <p>
+            Libero fuga facilis vel consectetur quos sapiente deleniti eveniet
+            dolores tempore eos deserunt officia quis ab? Lorem ipsum dolor sit amet,
+            consectetur adifpisicing elit. Libero fuga facilis vel consectetur quos
+            sapiente deleniti eveniet dolores tempore eos deserunt officia quis ab?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </Expandable>
+        <br />
+        <h2>
+          Truncated
+        </h2>
+        <Truncated children={str} />
+        <br />
         <h2>
           Users
         </h2>

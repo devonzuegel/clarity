@@ -7,6 +7,7 @@ import {graphql} from '~/../utils/api/responses'
 import {formatDateLong} from '~/../utils/date'
 import {urls} from '~/frontend/routes'
 import {ErrorMessage} from '~/frontend/components/ErrorMessage'
+import Truncated from '~/frontend/components/Truncated'
 
 interface IError {
   message: string
@@ -44,7 +45,11 @@ const Post = (post: IPost, i: number) => {
         <label className="pt-label pt-text-muted">
           {formatDateLong(date)}
         </label>
-        <div dangerouslySetInnerHTML={{__html: marked(mostRecentIteration.body)}} />
+        <Truncated>
+          <div
+            dangerouslySetInnerHTML={{__html: marked(mostRecentIteration.body)}}
+          />
+        </Truncated>
       </div>
     </a>
   )
