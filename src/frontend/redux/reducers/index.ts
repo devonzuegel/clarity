@@ -15,8 +15,11 @@ export const rootReducer = combineReducers({
  ***************************************************************************/
 
 const devConfig = {
-  /** When true, state is populated with user info upon initialization. **/
-  SIGNED_IN: true,
+  /*
+   * When true, state is populated with user info upon initialization.
+   * Note: SIGNED_IN must be false for FTs to pass.
+   */
+  SIGNED_IN: false,
 }
 
 export const rootReducerMock = combineReducers({
