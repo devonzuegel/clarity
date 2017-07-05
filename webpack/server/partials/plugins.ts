@@ -9,8 +9,8 @@ export const partial = (c: Options.Interface): webpack.Configuration => ({
 
     // Sourcemap stack traces from Node.
     new webpack.BannerPlugin({
-      banner:    'require("source-map-support").install();',
-      raw:       true,  // Prepend the text as it is (instead of wrapping it in a comment).
+      banner: 'require("source-map-support").install();',
+      raw: true, // Prepend the text as it is (instead of wrapping it in a comment).
       entryOnly: false, // Add the text to all generated files, not just the entry.
     }),
 
@@ -31,7 +31,6 @@ export const partial = (c: Options.Interface): webpack.Configuration => ({
        *   relative-path-files-which-breaks-when-loading-non-root
        */
       __OUTPUT_DIR__: JSON.stringify(c.outputDir),
-    })
+    }),
   ],
 })
-

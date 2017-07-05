@@ -1,30 +1,28 @@
-import * as React           from 'react'
-import * as page            from 'page'
-import {connect}            from 'react-redux'
+import * as React from 'react'
+import * as page from 'page'
+import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 import {actions, IActions} from '~/frontend/redux/actions/auth'
-import * as api            from '~/frontend/api'
-import {urls}              from '~/frontend/routes'
-import LoadingOverlay      from '~/frontend/components/LoadingOverlay'
-
+import * as api from '~/frontend/api'
+import {urls} from '~/frontend/routes'
+import LoadingOverlay from '~/frontend/components/LoadingOverlay'
 
 class SignOut extends React.Component<{actions: IActions}, {}> {
-  signOutAndRedirect () {
+  signOutAndRedirect() {
     this.props.actions.signOut()
-    api.signout()
-      .then (() => page.redirect(urls.posts))
+    api
+      .signout()
+      .then(() => page.redirect(urls.posts))
       .catch(() => page.redirect(urls.posts))
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.signOutAndRedirect()
   }
 
   render() {
-    return (
-      <LoadingOverlay />
-    )
+    return <LoadingOverlay />
   }
 }
 

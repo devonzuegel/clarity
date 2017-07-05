@@ -5,6 +5,7 @@ const R = require('ramda')
 const {TEST_ENVS, getEnvVariables} = require('./environments.ts')
 
 const env = getEnvVariables()
+const isTesting = R.contains(env.NODE_ENV, TEST_ENVS)
 
 module.exports = {
   port: env.PORT,
@@ -13,19 +14,21 @@ module.exports = {
   database_url: env.DATABASE_URL,
   sentry_dsn: env.SENTRY_DSN,
 
+  /** Mocks **/
+  mockAuthentication: isTesting,
+
   /** Passport **/
   clientID: env.FB_CLIENT_ID,
   clientSecret: env.FB_CLIENT_SECRET,
   callbackURL: env.FB_CALLBACK_URL,
 
-  /*******************************************************************
-   *** The db object is used by Sequelize to configure migrations. ***
-   *******************************************************************/
+  /**************************************************************
+   *** Sequelize uses this db object to configure migrations. ***
+   **************************************************************/
   db: {
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
     timezone: '+00:00',
-    logging: !R.contains(env.NODE_ENV, TEST_ENVS) && console.info,
+    logging: !isTesting && console.info,
   },
 }
-

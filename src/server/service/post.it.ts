@@ -31,6 +31,7 @@ describe('Posts Service', () => {
 
       await postService.create(user, {title: 'baz', body: 'blah'})
 
+      // TODO: remove this after replacing calls to iterationService with graphql queries
       const counts = {
         posts: (await postService.all()).length,
         iterations: (await iterationService.all()).length,
@@ -53,7 +54,8 @@ describe('Posts Service', () => {
   })
 
   describe('#iterations', () => {
-    it(`retrieves a post's iterations`, async () => {
+    // TODO: remove this after replacing calls to postService.iterations with graphql queries
+    xit(`retrieves a post's iterations`, async () => {
       const [title, body] = ['baz', 'qux']
       const user = await userService.findByFacebookId('foobar')
       const post = await postService.create(user, {title, body})

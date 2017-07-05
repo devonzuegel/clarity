@@ -1,21 +1,19 @@
 import * as webpack from 'webpack'
 import * as Options from 'webpack/models/Options'
 
-
 const loaders = (c: Options.Interface): webpack.Loader[] => {
-  const frontendDir = (path: string = '') =>
-    `${c.rootDir}/src/frontend/${path}`
+  const frontendDir = (path: string = '') => `${c.rootDir}/src/frontend/${path}`
 
   return [
     {
-      loader: 'style-loader'
+      loader: 'style-loader',
     },
     {
       loader: 'css-loader',
       options: {
-        importLoaders:  2,
-        sourceMap:      true,
-        modules:        true,
+        importLoaders: 2,
+        sourceMap: true,
+        modules: true,
         localIdentName: '[local]___[hash:base64:5]',
       },
     },
@@ -23,9 +21,9 @@ const loaders = (c: Options.Interface): webpack.Loader[] => {
       loader: 'postcss-loader',
       options: {
         plugins: () => [
-          require('postcss-import')({ path: [ frontendDir() ] }),
+          require('postcss-import')({path: [frontendDir()]}),
           require('postcss-cssnext')(),
-          require('postcss-assets')({ relative: frontendDir() })
+          require('postcss-assets')({relative: frontendDir()}),
         ],
       },
     },
@@ -37,10 +35,10 @@ export const partial = (c: Options.Interface): webpack.Configuration => ({
     rules: [
       {
         include: c.rootDir,
-        test:    /\.css?$/,
-        use:     loaders(c),
+        test: /\.css?$/,
+        use: loaders(c),
         exclude: /node_modules/,
       },
-    ]
+    ],
   },
 })

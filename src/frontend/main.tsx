@@ -1,5 +1,5 @@
 import exceptionMonitoring from './exceptionMonitoring'
-import Routes              from './routes'
+import Routes from './routes'
 
 exceptionMonitoring()
 Routes()
