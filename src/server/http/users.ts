@@ -17,12 +17,4 @@ export default (app: express.Application) => {
       .then((user: UserInstance) => res.status(200).json(user))
       .catch(jsonError(res))
   })
-
-  // TODO: remove
-  app.post('/api/users/create', (req: express.Request, res: express.Response) => {
-    userService
-      .create({facebookId: req.query.facebookId})
-      .then((user: UserInstance) => res.status(200).json(user))
-      .catch(jsonError(res))
-  })
 }
