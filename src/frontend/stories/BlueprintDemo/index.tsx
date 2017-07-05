@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import { EditableText } from '@blueprintjs/core'
+import {EditableText} from '@blueprintjs/core'
 
-export default () => (
+export default () =>
   <div>
     <h2>
       And now a nice little <code>EditableText</code> Element
@@ -15,4 +15,3 @@ export default () => (
       onConfirm={(val: string) => alert(`You just submitted: "${val}"`)}
     />
   </div>
-)

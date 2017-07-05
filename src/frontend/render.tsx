@@ -1,10 +1,9 @@
-import * as React    from 'react'
-import {Provider}    from 'react-redux'
+import * as React from 'react'
+import {Provider} from 'react-redux'
 import * as ReactDOM from 'react-dom'
 
-import store   from './redux/store'
+import store from './redux/store'
 import Wrapper from './components/Wrapper'
-
 
 const render = (c: JSX.Element) => {
   const reduxComponent = (

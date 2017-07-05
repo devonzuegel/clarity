@@ -1,12 +1,10 @@
-import * as R from 'ramda'
 import * as express from 'express'
 import * as passport from 'passport'
 
 import {IPassportConfig, setupStrategy} from '~/server/service/authentication'
 import * as Facebook from '~/server/http/authentication/facebook'
 import * as Mock from '~/server/http/authentication/mock'
-const {TEST_ENVS} = require('~/server/config/environments')
-const {env} = require('~/server/config/index.js')
+const {mockAuthentication} = require('~/server/config/index.js')
 
 export const setup = (config: IPassportConfig) => (app: express.Application) => {
   setupStrategy(config)
@@ -14,7 +12,7 @@ export const setup = (config: IPassportConfig) => (app: express.Application) => 
   app.use(passport.initialize())
   app.use(passport.session())
 
-  if (R.contains(env, TEST_ENVS)) {
+  if (mockAuthentication) {
     Mock.setup(app)
   } else {
     Facebook.setup(app)

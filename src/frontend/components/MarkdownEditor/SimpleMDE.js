@@ -260,7 +260,8 @@ function toggleFullScreen(editor) {
 
   // Hide side by side if needed
   var sidebyside = cm.getWrapperElement().nextSibling
-  if (/editor-preview-active-side/.test(sidebyside.className)) toggleSideBySide(editor)
+  if (/editor-preview-active-side/.test(sidebyside.className))
+    toggleSideBySide(editor)
 }
 
 /**
@@ -443,7 +444,10 @@ function toggleCodeBlock(editor) {
         if (cur_end.ch === 0) {
           end_line += 1
         }
-      } else if (cur_end.ch !== 0 && fencing_line(cm.getLineHandle(cur_end.line + 1))) {
+      } else if (
+        cur_end.ch !== 0 &&
+        fencing_line(cm.getLineHandle(cur_end.line + 1))
+      ) {
         end_text = ''
         end_line = cur_end.line + 1
       } else {
@@ -607,7 +611,9 @@ function toggleCodeBlock(editor) {
   } else {
     // insert code formatting
     var no_sel_and_starting_of_line =
-      cur_start.line === cur_end.line && cur_start.ch === cur_end.ch && cur_start.ch === 0
+      cur_start.line === cur_end.line &&
+      cur_start.ch === cur_end.ch &&
+      cur_start.ch === 0
     var sel_multi = cur_start.line !== cur_end.line
     if (no_sel_and_starting_of_line || sel_multi) {
       insertFencingAtSelection(cm, cur_start, cur_end, fenceCharsToInsert)
@@ -771,7 +777,10 @@ function toggleSideBySide(editor) {
   var toolbarButton = editor.toolbarElements['side-by-side']
   var useSideBySideListener = false
   if (/editor-preview-active-side/.test(preview.className)) {
-    preview.className = preview.className.replace(/\s*editor-preview-active-side\s*/g, '')
+    preview.className = preview.className.replace(
+      /\s*editor-preview-active-side\s*/g,
+      ''
+    )
     toolbarButton.className = toolbarButton.className.replace(/\s*active\s*/g, '')
     wrapper.className = wrapper.className.replace(/\s*CodeMirror-sided\s*/g, ' ')
   } else {
@@ -797,7 +806,10 @@ function toggleSideBySide(editor) {
     var toolbar = editor.toolbarElements.preview
     var toolbar_div = wrapper.previousSibling
     toolbar.className = toolbar.className.replace(/\s*active\s*/g, '')
-    toolbar_div.className = toolbar_div.className.replace(/\s*disabled-for-preview*/g, '')
+    toolbar_div.className = toolbar_div.className.replace(
+      /\s*disabled-for-preview*/g,
+      ''
+    )
   }
 
   var sideBySideRenderingFunction = function() {
@@ -858,11 +870,13 @@ function togglePreview(editor) {
 
   // Turn off side by side if needed
   var sidebyside = cm.getWrapperElement().nextSibling
-  if (/editor-preview-active-side/.test(sidebyside.className)) toggleSideBySide(editor)
+  if (/editor-preview-active-side/.test(sidebyside.className))
+    toggleSideBySide(editor)
 }
 
 function _replaceSelection(cm, active, startEnd, url) {
-  if (/editor-preview-active/.test(cm.getWrapperElement().lastChild.className)) return
+  if (/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
+    return
 
   var text
   var start = startEnd[0]
@@ -894,7 +908,8 @@ function _replaceSelection(cm, active, startEnd, url) {
 }
 
 function _toggleHeading(cm, direction, size) {
-  if (/editor-preview-active/.test(cm.getWrapperElement().lastChild.className)) return
+  if (/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
+    return
 
   var startPoint = cm.getCursor('start')
   var endPoint = cm.getCursor('end')
@@ -966,7 +981,8 @@ function _toggleHeading(cm, direction, size) {
 }
 
 function _toggleLine(cm, name) {
-  if (/editor-preview-active/.test(cm.getWrapperElement().lastChild.className)) return
+  if (/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
+    return
 
   var stat = getState(cm)
   var startPoint = cm.getCursor('start')
@@ -1083,7 +1099,8 @@ function _toggleBlock(editor, type, start_chars, end_chars) {
 }
 
 function _cleanBlock(cm) {
-  if (/editor-preview-active/.test(cm.getWrapperElement().lastChild.className)) return
+  if (/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
+    return
 
   var startPoint = cm.getCursor('start')
   var endPoint = cm.getCursor('end')
@@ -1372,7 +1389,9 @@ function SimpleMDE(options) {
     for (var i = 0; i < styleSheets.length; i++) {
       if (!styleSheets[i].href) continue
 
-      if (styleSheets[i].href.indexOf('//maxcdn.bootstrapcdn.com/font-awesome/') > -1) {
+      if (
+        styleSheets[i].href.indexOf('//maxcdn.bootstrapcdn.com/font-awesome/') > -1
+      ) {
         autoDownloadFA = false
       }
     }
@@ -1794,12 +1813,18 @@ SimpleMDE.prototype.createToolbar = function(items) {
   for (i = 0; i < items.length; i++) {
     if (items[i].name == 'guide' && self.options.toolbarGuideIcon === false) continue
 
-    if (self.options.hideIcons && self.options.hideIcons.indexOf(items[i].name) != -1)
+    if (
+      self.options.hideIcons &&
+      self.options.hideIcons.indexOf(items[i].name) != -1
+    )
       continue
 
     // Fullscreen does not work well on mobile devices (even tablets)
     // In the future, hopefully this can be resolved
-    if ((items[i].name == 'fullscreen' || items[i].name == 'side-by-side') && isMobile())
+    if (
+      (items[i].name == 'fullscreen' || items[i].name == 'side-by-side') &&
+      isMobile()
+    )
       continue
 
     // Don't include trailing separators
@@ -1809,7 +1834,8 @@ SimpleMDE.prototype.createToolbar = function(items) {
       for (var x = i + 1; x < items.length; x++) {
         if (
           items[x] !== '|' &&
-          (!self.options.hideIcons || self.options.hideIcons.indexOf(items[x].name) == -1)
+          (!self.options.hideIcons ||
+            self.options.hideIcons.indexOf(items[x].name) == -1)
         ) {
           nonSeparatorIconsFollow = true
         }

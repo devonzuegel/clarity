@@ -1,7 +1,10 @@
 declare global {
   interface NodeModule {
     hot: {
-      accept(dependencies: string[], cb: (updatedDependencies: string[]) => void): void
+      accept(
+        dependencies: string[],
+        cb: (updatedDependencies: string[]) => void
+      ): void
       accept(dependency: string, cb: () => void): void
       accept(errHandler?: (err: any) => void): void
       decline(dependencies: string[]): void
