@@ -7,7 +7,6 @@ import {urls} from '~/frontend/routes'
 import {IState} from '~/frontend/stories/Posts/Form/reducers'
 import {ErrorMessage} from '~/frontend/components/ErrorMessage'
 
-
 type INewProps = {facebookId: string}
 
 const reducers = {
@@ -31,8 +30,8 @@ class New extends React.Component<INewProps, {}> {
     return (
       <div>
         {this.state.error &&
-          <ErrorMessage msg={this.state.error} id='new-post-user-msg' />}
-        <Form iteration={{}} onSubmit={onSubmit} buttonText='Create' />
+          <ErrorMessage msg={this.state.error} id="new-post-user-msg" />}
+        <Form iteration={{}} onSubmit={onSubmit} buttonText="Create" />
       </div>
     )
   }

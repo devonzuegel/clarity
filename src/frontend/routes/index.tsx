@@ -1,8 +1,8 @@
-import * as page  from 'page'
+import * as page from 'page'
 
-import * as Auth  from './authentication'
+import * as Auth from './authentication'
 import * as Posts from './posts'
-import * as Misc  from './misc'
+import * as Misc from './misc'
 
 /**
  * This object defines all available URLs in the app.

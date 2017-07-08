@@ -28,4 +28,3 @@ module.exports = {
     logging: !R.contains(env.NODE_ENV, TEST_ENVS) && console.info,
   },
 }
-

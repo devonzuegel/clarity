@@ -8,7 +8,5 @@
 import * as Raven from 'raven-js'
 
 export default () => {
-  Raven.config(
-    'https://56cd04eab54d4dae8a9349f1e9ae195e@sentry.io/159491'
-  ).install()
+  Raven.config('https://56cd04eab54d4dae8a9349f1e9ae195e@sentry.io/159491').install()
 }
