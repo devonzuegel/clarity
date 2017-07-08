@@ -11,12 +11,29 @@ const lint = () => {
   runCmd("tslint -c tslint.json 'src/**/*.{ts,tsx}'")
 }
 
+const runPrettier = (...flags) => {
+  runCmd(
+    [
+      'prettier',
+      '--print-width 85',
+      '--trailing-comma es5',
+      '--no-bracket-spacing',
+      '--no-semi',
+      '--single-quote',
+      ...flags,
+      "'!(node_modules|build|coverage|dist)/**/*.{js,ts,tsx}'",
+    ].join(' ')
+  )
+}
+
 const tasks = {
   /****************************************************************************/
   /** Linting *****************************************************************/
   /****************************************************************************/
 
   lint,
+
+  style: () => runPrettier('--write'),
 
   /****************************************************************************/
   /** Development *************************************************************/
@@ -57,6 +74,7 @@ const tasks = {
 
   test: () => {
     lint()
+    runPrettier('--list-different')
     runCmd('NODE_ENV=test jest --coverage')
     runCmd('NODE_ENV=test nightwatch --config test/nightwatch.js')
   },
