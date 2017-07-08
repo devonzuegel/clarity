@@ -1,14 +1,13 @@
-import * as React     from 'react'
+import * as React from 'react'
 
-import * as api               from '~/frontend/api'
-import Form                   from '~/frontend/stories/Posts/Form'
+import * as api from '~/frontend/api'
+import Form from '~/frontend/stories/Posts/Form'
 import {IState as IFormState} from '~/frontend/stories/Posts/Form/reducers'
-import {IterationSchema}      from '~/server/db/models/iteration'
-
+import {IterationSchema} from '~/server/db/models/iteration'
 
 type IEditProps = {
-  iteration: IterationSchema,
-  addIteration: (i: IterationSchema) => void,
+  iteration: IterationSchema
+  addIteration: (i: IterationSchema) => void
 }
 
 const Edit = (props: IEditProps) => {
@@ -20,13 +19,7 @@ const Edit = (props: IEditProps) => {
       console.error(e)
     }
   }
-  return (
-    <Form
-      iteration ={props.iteration}
-      onSubmit  ={onSubmit}
-      buttonText='Revise'
-    />
-  )
+  return <Form iteration={props.iteration} onSubmit={onSubmit} buttonText="Revise" />
 }
 
 export default Edit

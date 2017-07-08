@@ -22,4 +22,3 @@ const devConfig = {
 export const rootReducerMock = combineReducers({
   authReducer: devConfig.SIGNED_IN ? authReducerMock : authReducer,
 })
-

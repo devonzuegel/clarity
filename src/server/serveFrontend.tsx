@@ -3,7 +3,7 @@ import * as express from 'express'
 declare var __OUTPUT_DIR__: boolean // Defined by webpack.DefinePlugin at compile time
 
 export const serveFrontend = (app: express.Application) => {
-  const fs   = require('fs')
+  const fs = require('fs')
   const path = require('path')
 
   app.use('/', express.static(__dirname))

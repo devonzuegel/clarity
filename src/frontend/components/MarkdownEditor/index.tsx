@@ -6,13 +6,11 @@
  *   github.com/sparksuite/simplemde-markdown-editor
  */
 
-import * as React    from 'react'
+import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-
-const styles    = require('./styles.css')
+const styles = require('./styles.css')
 const SimpleMDE = require('./SimpleMDE.js')
-
 
 const toolbar = [
   'strikethrough',
@@ -27,11 +25,11 @@ const toolbar = [
 ]
 
 type IMarkdownEditorProps = {
-  onChange: (s: string) => void,
+  onChange: (s: string) => void
   options: {
-    initialValue: string,
-    placeholder: string,
-  },
+    initialValue: string
+    placeholder: string
+  }
 }
 
 const reducers = {
@@ -44,13 +42,13 @@ class MarkdownEditor extends React.Component<IMarkdownEditorProps, any> {
     value: this.props.options.initialValue,
   }
 
-  componentDidMount () {
+  componentDidMount() {
     if (!this.state.instance) {
       const instance = new SimpleMDE({
         ...this.props.options,
         toolbar,
-        element:      ReactDOM.findDOMNode(this),
-        autofocus:    true,
+        element: ReactDOM.findDOMNode(this),
+        autofocus: true,
         spellChecker: false,
       })
       instance.codemirror.on('change', () => {
@@ -85,38 +83,36 @@ class MarkdownEditor extends React.Component<IMarkdownEditorProps, any> {
   }
 }
 
-const Dependencies = () => (
+const Dependencies = () =>
   <div>
     <link
-      rel ='stylesheet'
-      href='https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css'
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css"
     />
     <link
-      rel ='stylesheet'
-      href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/mode/markdown/markdown.min.js'
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/mode/markdown/markdown.min.js"
     />
     <link
-      rel ='stylesheet'
-      href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/fold/markdown-fold.min.js'
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/fold/markdown-fold.min.js"
     />
     <script
-      type='type/javascript'
-      src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/fold/foldcode.min.js'
-     />
+      type="type/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/fold/foldcode.min.js"
+    />
     <script
-      type='type/javascript'
-      src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/fold/foldgutter.min.js'
-     />
+      type="type/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/fold/foldgutter.min.js"
+    />
     <link
-      rel='stylesheet'
-      href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/fold/foldgutter.min.css'
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/fold/foldgutter.min.css"
     />
   </div>
-)
 
-export default (props: IMarkdownEditorProps) => (
+export default (props: IMarkdownEditorProps) =>
   <div className={`${styles.markdownEditor} markdownEditor-global`}>
     <Dependencies />
     <MarkdownEditor {...props} />
   </div>
-)

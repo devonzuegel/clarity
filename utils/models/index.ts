@@ -1,4 +1,4 @@
-export type StrObject = { [key: string]: string }
+export type StrObject = {[key: string]: string}
 
 // Adopted from:
 //   https://basarat.gitbooks.io/typescript/docs/types/literal-types.html
