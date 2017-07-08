@@ -6,7 +6,6 @@
     "build": "node tasks build",
     "build:prod": "node tasks build:prod",
     "lint": "node tasks lint",
-    "pretest": "node tasks lint",
     "test": "node tasks test",
     "test:ci": "node tasks test:ci",
     "test:watch": "node tasks test:watch",
