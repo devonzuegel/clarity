@@ -7,12 +7,11 @@ import * as Options from 'webpack/models/Options'
 
 export const partial = (c: Options.Interface): webpack.Configuration => ({
   node: {
-    console:    c.console,
-    global:     false,
-    process:    false,
-    Buffer:     false,
+    console: c.console,
+    global: false,
+    process: false,
+    Buffer: false,
     __filename: false,
-    __dirname:  false,
+    __dirname: false,
   },
 })
-

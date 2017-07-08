@@ -40,12 +40,12 @@ export default (sequelize: Sequelize): IIterationModel => {
     title: {
       type: SequelizeStatic.STRING,
       allowNull: false,
-      len:       1,
+      len: 1,
     },
     body: {
-      len:       1,
+      len: 1,
       allowNull: false,
-      type:      SequelizeStatic.TEXT,
+      type: SequelizeStatic.TEXT,
     },
   }
   const Iteration = sequelize.define<
@@ -53,8 +53,7 @@ export default (sequelize: Sequelize): IIterationModel => {
     IterationAttributes
   >('Iteration', Schema, {
     classMethods: {
-      associate: (models: {Post: IPostModel}) =>
-        Iteration.belongsTo(models.Post),
+      associate: (models: {Post: IPostModel}) => Iteration.belongsTo(models.Post),
     },
   })
   return Iteration
