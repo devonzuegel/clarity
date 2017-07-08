@@ -1,39 +1,38 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => (
+  up: (queryInterface, Sequelize) =>
     queryInterface.createTable('Iterations', {
       id: {
-        allowNull:     false,
+        allowNull: false,
         autoIncrement: true,
-        primaryKey:    true,
-        type:          Sequelize.INTEGER,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
       },
       postId: {
         allowNull: false,
-        type:      Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         references: {
-          model:    'Posts',
-          key:      'id',
+          model: 'Posts',
+          key: 'id',
           onUpdate: 'cascade',
           onDelete: 'cascade',
-        }
+        },
       },
       createdAt: {
         allowNull: false,
-        type:      Sequelize.DATE,
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type:      Sequelize.DATE,
+        type: Sequelize.DATE,
       },
       body: {
         type: Sequelize.TEXT,
       },
       title: {
-        type:      Sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
-    })
-  ),
+    }),
 
   down: (queryInterface, Sequelize) => queryInterface.dropTable('Iterations'),
 }
