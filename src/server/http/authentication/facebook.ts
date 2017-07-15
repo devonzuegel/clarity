@@ -1,6 +1,9 @@
 import * as express from 'express'
 import * as passport from 'passport'
 
+import Hermes from '~/../utils/hermes'
+const logger = new Hermes({name: 'server'})
+
 export const setup = (app: express.Application) => {
   /**
    * Redirect the user to Facebook for authentication.  When complete,
@@ -23,9 +26,8 @@ export const setup = (app: express.Application) => {
     })
   )
 
-  app.get('/auth/facebook/failure', (_, res) =>
-    res.send(403).json({
-      message: 'Sorry, but we were not able to connect your Facebook account.',
-    })
-  )
+  app.get('/auth/facebook/failure', (_, res) => {
+    logger.info('Facebook OAuth failure')
+    res.redirect('/posts')
+  })
 }

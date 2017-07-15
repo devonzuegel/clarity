@@ -9,13 +9,14 @@ declare global {
   }
 }
 
+const useMock = false // Should only be true for development
 const logger = new Hermes({name: 'frontend'})
 
 const configureStore = (): Redux.Store<any> => {
   const devtools = window.__REDUX_DEVTOOLS_EXTENSION__
   const _m = module as any
 
-  if (_m.hot) {
+  if (_m.hot && useMock) {
     logger.info('Loading rootReducerMock')
     const store = Redux.createStore(rootReducerMock, devtools && devtools())
     _m.hot.accept('./reducers', () => store.replaceReducer(require('./reducers')))
