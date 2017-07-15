@@ -1,12 +1,10 @@
-import * as R from 'ramda'
 import * as passport from 'passport'
 import * as Facebook from 'passport-facebook'
 
 import {userService} from '~/server/service/user'
 import {UserInstance} from '~/server/db/models/user'
 const Mock = require('~/server/service/authentication/mock')
-const {TEST_ENVS} = require('~/server/config/environments')
-const {env} = require('~/server/config/index.js')
+const {mockAuthentication} = require('~/server/config/index.js')
 
 export interface IPassportConfig {
   clientID: string
@@ -38,9 +36,7 @@ const setupMockStrategy = (options: IPassportConfig) => {
 }
 
 export const setupStrategy = (options: IPassportConfig) => {
-  const isTesting = R.contains(env, TEST_ENVS)
-
-  if (isTesting) {
+  if (mockAuthentication) {
     setupMockStrategy(options)
   } else {
     setupFacebookStrategy(options)
