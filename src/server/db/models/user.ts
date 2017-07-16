@@ -4,6 +4,7 @@ import {IPerson} from './person'
 
 export interface UserAttributes extends IPerson {
   facebookId: string
+  username?: string
 }
 
 export interface UserInstance extends Instance<UserAttributes> {
@@ -22,6 +23,11 @@ export default (sequelize: Sequelize): IUserModel => {
     },
     facebookId: {
       allowNull: false,
+      unique: true,
+      type: SequelizeStatic.STRING,
+    },
+    username: {
+      allowNull: true,
       unique: true,
       type: SequelizeStatic.STRING,
     },
