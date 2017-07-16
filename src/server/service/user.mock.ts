@@ -59,4 +59,18 @@ export class MockUserService {
       resolve([{facebookId: 'foobar'}])
     })
   }
+
+  setUsername(facebookId: string, username: string): Promise<UserInstance> {
+    return new Promise<UserInstance>(async (resolve: Function, reject: Function) => {
+      if (username === 'takenUsername') {
+        reject({message: `Sorry, username "${username}" is not available`})
+      }
+      try {
+        const user = await this.findByFacebookId(facebookId)
+        resolve({dataValues: {...user.dataValues, username}})
+      } catch (e) {
+        reject(e)
+      }
+    })
+  }
 }

@@ -5,13 +5,12 @@ import {sequelize} from '~/server/db'
 
 describe('Posts Service', () => {
   beforeAll(async () => {
-    let user
     try {
-      user = await userService.create({facebookId: 'foobar'})
+      const user = await userService.signIn('foobar')
+      await postService.create(user, {title: 'baz', body: 'foobar'})
     } catch (e) {
-      user = await userService.findByFacebookId('foobar')
+      throw e
     }
-    await postService.create(user, {title: 'baz', body: 'foobar'})
   })
 
   describe('#all', () => {
@@ -55,7 +54,7 @@ describe('Posts Service', () => {
 
   describe('#iterations', () => {
     // TODO: remove this after replacing calls to postService.iterations with graphql queries
-    xit(`retrieves a post's iterations`, async () => {
+    it(`retrieves a post's iterations`, async () => {
       const [title, body] = ['baz', 'qux']
       const user = await userService.findByFacebookId('foobar')
       const post = await postService.create(user, {title, body})
