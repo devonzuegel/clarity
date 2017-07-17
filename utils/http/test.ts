@@ -16,7 +16,7 @@ export const postWithData = (
     .post(endpoint)
     .send(data)
     .set('Accept', 'application/json')
-    .end((_err, res) => cb(res))
+    .end(async (_err, res) => cb(res))
 
 export const getWithData = (
   app: express.Application,
@@ -28,4 +28,4 @@ export const getWithData = (
     .get(endpoint)
     .send(data)
     .set('Accept', 'application/json')
-    .end((_err, res) => cb(res))
+    .end(async (_err, res) => cb(res))

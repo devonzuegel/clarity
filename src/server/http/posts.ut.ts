@@ -47,6 +47,7 @@ describe('Posts HTTP', () => {
     })
   })
 
+  // TODO: put this under /api/users (flip "posts" & "users")
   describe('/api/posts/users/:facebookId', () => {
     const getPosts = async (facebookId: string) =>
       (await supertest(app).get(`/api/posts/users/${facebookId}`)).body
