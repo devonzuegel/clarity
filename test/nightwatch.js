@@ -1,8 +1,8 @@
-const config = require('./functional/config')
+const config = require('./config')
 
 module.exports = {
-  src_folders: 'test/functional',
-  output_folder: 'test/functional/reports',
+  src_folders: 'test/specs',
+  output_folder: 'test/specs/reports',
   custom_commands_path: '',
   custom_assertions_path: '',
   page_objects_path: '',
@@ -28,7 +28,7 @@ module.exports = {
       silent: true,
       screenshots: {
         enabled: false, // !config.ci,
-        path: 'test/functional/screenshots',
+        path: 'test/specs/screenshots',
       },
       desiredCapabilities: {
         browserName: 'chrome',

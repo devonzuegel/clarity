@@ -1,4 +1,4 @@
-const {getUrl} = require('./utils')
+const {getUrl} = require('./../utils')
 
 module.exports = {
   'Check if app has rendered with React': browser => {
