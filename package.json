@@ -7,7 +7,6 @@
     "build:prod": "node tasks build:prod",
     "lint": "node tasks lint",
     "style": "node tasks style",
-    "pretest": "node tasks lint",
     "test": "node tasks test",
     "test:ci": "node tasks test:ci",
     "test:watch": "node tasks test:watch",

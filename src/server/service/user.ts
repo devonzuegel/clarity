@@ -15,7 +15,7 @@ export class UserService extends MockUserService {
     return new Promise<UserInstance>((resolve: Function, reject: Function) => {
       return models.User
         .findOne({where: {facebookId}})
-        .then((user: UserInstance) => resolve(user))
+        .then((user: UserInstance) => resolve(user)) // TODO: should reject when user is null
         .catch(sequelizeFailure(reject))
     })
   }
@@ -54,6 +54,26 @@ export class UserService extends MockUserService {
       return models.User
         .findAll()
         .then((users: Array<UserInstance>) => resolve(users))
+        .catch(sequelizeFailure(reject))
+    })
+  }
+
+  setUsername(facebookId: string, username: string) {
+    return new Promise<UserInstance>((resolve: Function, reject: Function) => {
+      if (username === '') {
+        return reject({message: `Your username cannot be empty.`})
+      }
+      return models.User
+        .findOne({where: {facebookId}})
+        .then((user: UserInstance) => {
+          if (!user) {
+            reject({message: `Cannot find user with facebookId ${facebookId}`})
+          }
+          user
+            .update({username})
+            .then(u => resolve(u))
+            .catch(sequelizeFailure(reject))
+        })
         .catch(sequelizeFailure(reject))
     })
   }
