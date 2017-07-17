@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="2">
+
+  <testsuite name="smoke"
+    errors="0" failures="0" hostname="" id="" package="smoke" skipped="0"
+    tests="2" time="2.344" timestamp="Tue, 27 Jun 2017 07:23:30 GMT">
+  
+    <testcase name="Check if app has rendered with React" classname="smoke" time="1.764" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Check that /posts page has content" classname="smoke" time="0.5800" assertions="1">
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="5">
+
+  <testsuite name="signup"
+    errors="0" failures="1" hostname="" id="" package="signup" skipped="4"
+    tests="5" time="1.514" timestamp="Sat, 10 Jun 2017 07:33:10 GMT">
+
+    <testcase name="The signin page should have the expected title" classname="signup" time="1.514" assertions="2">
+
+      <failure message="Testing if the page title equals &quot;&quot;.">    at Object.The signin page should have the expected title (/Users/devonzuegel/dev/clarity/test/functional/signup.js:12:20)
+    at _combinedTickCallback (internal/process/next_tick.js:95:7)</failure>
+
+
+    </testcase>
+
+
+
+    <testcase
+      name="Submit a valid facebookId" classname="signup">
+      <skipped />
+    </testcase>
+
+    <testcase
+      name="Submit an empty (invalid) facebookId" classname="signup">
+      <skipped />
+    </testcase>
+
+    <testcase
+      name="Submit a facebookId that is already taken" classname="signup">
+      <skipped />
+    </testcase>
+
+    <testcase
+      name="Sign up then sign in changes the user in the nav" classname="signup">
+      <skipped />
+    </testcase>
+
+
+  </testsuite>
+</testsuites>
