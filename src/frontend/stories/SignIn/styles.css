@@ -1,0 +1,32 @@
+@import '../../components/variables.css';
+
+.set-username {
+  align-items: center;
+  height: 90%;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+
+  & pre, & code {
+    font-family: var(--monospace);
+  }
+  & h5 {
+    padding-bottom: 20px;
+  }
+}
+
+.fill {
+  width: 100%;
+}
+
+span.icon-tag {
+  background-color: transparent;
+}
+
+.no-error {
+  padding-bottom: 20px;
+}
+
+.helper-text {
+  text-align: left;
+}

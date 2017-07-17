@@ -7,7 +7,7 @@ export class MockUserService {
         reject({message: `Please provide a facebookId`})
       }
       if (facebookId == 'thisUsernameDoesntExist') {
-        reject({message: `User with facebookId "${facebookId}" does not exist`})
+        reject({type: 'user existence violation'})
       }
       resolve({
         dataValues: {facebookId, id: 123},
@@ -62,8 +62,17 @@ export class MockUserService {
 
   setUsername(facebookId: string, username: string): Promise<UserInstance> {
     return new Promise<UserInstance>(async (resolve: Function, reject: Function) => {
+      if (username === '') {
+        reject({type: 'blank violation'})
+      }
+      if (username === 'contains whitespace') {
+        reject({type: 'whitespace violation'})
+      }
+      if (username === 'badFormat!') {
+        reject({type: 'format violation'})
+      }
       if (username === 'takenUsername') {
-        reject({message: `Sorry, username "${username}" is not available`})
+        reject({type: 'unique violation'})
       }
       try {
         const user = await this.findByFacebookId(facebookId)

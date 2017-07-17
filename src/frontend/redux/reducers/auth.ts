@@ -48,7 +48,7 @@ export const authReducer = reducer({
 
 export const authReducerMock = reducer({
   user: {
-    facebookId: profileMock.id,
-    displayName: profileMock.displayName,
+    facebookId: profileMock().id,
+    displayName: profileMock().displayName,
   },
 })

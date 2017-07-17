@@ -2,6 +2,7 @@ import * as page from 'page'
 
 import * as Auth from './authentication'
 import * as Posts from './posts'
+import * as Users from './users'
 import * as Misc from './misc'
 
 /**
@@ -13,12 +14,14 @@ import * as Misc from './misc'
 export const urls = {
   ...Auth.urls,
   ...Posts.urls,
+  ...Users.urls,
   ...Misc.urls,
 }
 
 export default () => {
   Auth.routes()
   Posts.routes()
+  Users.routes()
   Misc.routes()
   page()
 }

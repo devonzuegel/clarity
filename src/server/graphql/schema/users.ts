@@ -24,7 +24,7 @@ export const Schema = {
   type: new G.GraphQLList(Type),
   args: {
     id: {type: G.GraphQLID},
-    facebookId: {type: G.GraphQLString},
+    username: {type: G.GraphQLString},
   },
   resolve: userResolver,
 }
