@@ -10,12 +10,6 @@ const url = env === 'ci'
   ? 'http://clarity-tests.herokuapp.com'
   : `http://${host}:${port}`
 
-const logIn = browser =>
-  browser
-    .url(`${url}/posts`)
-    .click(nav.logIn) // App must be running in a test environment
-    .waitForElementVisible('#root', 1000)
-
 const nav = {
   logIn: 'a#nav--log-in',
   posts: 'a#nav--document',
@@ -25,6 +19,5 @@ const nav = {
 module.exports = {
   ci: env === 'ci',
   url,
-  logIn,
   nav,
 }

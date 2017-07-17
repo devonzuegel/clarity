@@ -11,8 +11,13 @@ export const getUsers = (): Promise<UserInstance[]> => sendRequest(get('/api/use
 export const getUser = (userId: number): Promise<UserAttributes> =>
   sendRequest(get(`/api/users/${userId}`))
 
-export const getProfile = (): Promise<FacebookProfile> =>
-  sendRequest(get('/api/profile'))
+export const setUsername = (facebookId: string, username: string): Promise<string> =>
+  sendRequest(post(`/api/users/setUsername`, {facebookId, username}))
+
+export const getProfile = (): Promise<{
+  profile: FacebookProfile
+  user: UserAttributes
+}> => sendRequest(get('/api/profile'))
 
 export const signout = () => sendRequest(get('/api/signout'))
 

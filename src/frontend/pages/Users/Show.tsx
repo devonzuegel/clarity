@@ -6,12 +6,9 @@ import * as classnames from 'classnames'
 import {graphql} from '~/../utils/api/responses'
 import {formatDateLong} from '~/../utils/date'
 import {urls} from '~/frontend/routes'
-import {ErrorMessage} from '~/frontend/components/ErrorMessage'
 import Truncated from '~/frontend/components/Truncated'
-
-interface IError {
-  message: string
-}
+import NotFound from '~/frontend/pages/NotFound'
+import LoadingOverlay from '~/frontend/components/LoadingOverlay'
 
 interface IIteration {title: string; body: string; createdAt: string}
 interface IPost {id: number; iterations: IIteration[]}
@@ -19,7 +16,8 @@ interface IUser {posts: IPost[]}
 
 interface IState {
   posts?: IPost[]
-  errors?: IError[]
+  error?: string
+  loading: boolean
 }
 
 const Post = (post: IPost, i: number) => {
@@ -55,15 +53,8 @@ const Post = (post: IPost, i: number) => {
   )
 }
 
-const Message = (props: {errors: IError[]}) =>
-  <div>
-    {props.errors.map(({message}: IError, i) =>
-      <ErrorMessage msg={message} key={i} id={`me-error-${i}`} />
-    )}
-  </div>
-
-class ShowUser extends React.Component<{facebookId: string}, IState> {
-  state = {posts: undefined, errors: undefined}
+class ShowUser extends React.Component<{username: string}, IState> {
+  state = {posts: undefined, error: undefined, loading: true}
 
   componentWillMount() {
     this.retrieveData()
@@ -71,32 +62,38 @@ class ShowUser extends React.Component<{facebookId: string}, IState> {
 
   retrieveData() {
     graphql(
-      `{users(facebookId:"${this.props.facebookId}") {
+      `{users(username:"${this.props.username}") {
           posts {id, iterations {title,body,createdAt}}
         }}`
-    )
-      .then((result: {data: {users: IUser[]}}) => {
-        if (result.data.users.length === 0) {
-          // TODO: Use NotFound page instead
-          this.setState({errors: [{message: 'That user does not exist'}]})
-        } else {
-          const posts = result.data.users[0].posts
-          this.setState({posts})
-        }
-      })
-      .catch(e => this.setState({errors: e.errors}))
+    ).then((result: {data: {users: IUser[]}}) => {
+      if (result.data.users.length === 0) {
+        this.setState({
+          error: 'That user does not exist.',
+          loading: false,
+        })
+      } else {
+        const posts = result.data.users[0].posts
+        this.setState({posts, loading: false})
+      }
+    })
   }
 
   render() {
-    return this.state.errors
-      ? <Message errors={this.state.errors || []} />
-      : <div>
-          <h1>
-            Writing
-          </h1>
-          <br />
-          {this.state.posts && (this.state.posts || []).map(Post)}
-        </div>
+    if (this.state.loading) {
+      return <LoadingOverlay />
+    }
+    if (this.state.error) {
+      return <NotFound message={this.state.error} />
+    }
+    return (
+      <div>
+        <h1>
+          Writing
+        </h1>
+        <br />
+        {this.state.posts && (this.state.posts || []).map(Post)}
+      </div>
+    )
   }
 }
 

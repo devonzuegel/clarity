@@ -32,7 +32,7 @@ const LayoutComponent = ({displayName, children}: ILayout) =>
             <NavBtn title="New post" url={urls.newPost} name="plus" />
             <NavBtn
               title={displayName}
-              url={urls.user('10154623316248443')}
+              url={urls.user('devon')} // TODO: get username from Redux
               name="user"
             />
           </div>}

@@ -13,7 +13,7 @@ const logger = new Hermes({name: 'frontend'})
 
 interface IPost extends PostSchema {
   iterations?: IterationSchema[]
-  user: {facebookId: string}
+  user: {facebookId: string; username: string}
 }
 
 interface IState {
@@ -50,7 +50,7 @@ const Post = (post: IPost, k: number) => {
         </a>
       </h4>
       <label className="pt-text-muted">
-        {post.user.facebookId}
+        {post.user.username}
         {separator}
         {U.formatDateStr(lastIteration.createdAt)}
       </label>
@@ -69,7 +69,7 @@ class Posts extends React.Component<{}, IState> {
   async retrieveData() {
     try {
       const data: {posts: PostSchema[]} = (await graphql(
-        `{posts{id,iterations{body,title,createdAt},user{facebookId}}}`
+        `{posts{id,iterations{body,title,createdAt},user{facebookId,username}}}`
       )).data
       this.setState(reducers.updatePostsList(data.posts))
     } catch (e) {

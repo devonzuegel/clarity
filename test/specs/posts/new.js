@@ -1,5 +1,5 @@
-const {url, logIn, nav} = require('../../config')
-const {randomStr} = require('../../utils')
+const {url, nav} = require('../../config')
+const {randomStr, logIn} = require('../../utils')
 
 const selectors = {
   nav,
