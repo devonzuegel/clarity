@@ -42,8 +42,8 @@ node_modules
 build
 
 # Nightwatch functional test reports
-test/functional/reports
-test/functional/screenshots
+test/specs/reports
+test/specs/screenshots
 
 # Define local environment variables
 .env

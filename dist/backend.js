@@ -75,8 +75,8 @@ require("source-map-support").install();
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var cls = __webpack_require__(78);
-var Sequelize = __webpack_require__(11);
+var cls = __webpack_require__(79);
+var Sequelize = __webpack_require__(12);
 var user_1 = __webpack_require__(38);
 var post_1 = __webpack_require__(37);
 var iteration_1 = __webpack_require__(36);
@@ -577,24 +577,6 @@ module.exports = require("chalk");
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports) {
-
-module.exports = require("express");
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-module.exports = require("graphql");
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-module.exports = require("sequelize");
-
-/***/ }),
-/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -668,13 +650,21 @@ var UserService = function (_super) {
     UserService.prototype.setUsername = function (facebookId, username) {
         return new Promise(function (resolve, reject) {
             if (username === '') {
-                return reject({ message: "Your username cannot be empty." });
+                return reject({ type: 'blank violation' });
+            }
+            var containsSpaces = /\s/g.test(username);
+            if (containsSpaces) {
+                return reject({ type: 'whitespace violation' });
+            }
+            var validFormat = /^[a-zA-Z0-9-_]+$/.test(username);
+            if (!validFormat) {
+                return reject({ type: 'format violation' });
             }
             return db_1.models.User.findOne({ where: { facebookId: facebookId } }).then(function (user) {
                 if (!user) {
-                    reject({ message: "Cannot find user with facebookId " + facebookId });
+                    return reject({ type: 'user existence violation' });
                 }
-                user.update({ username: username }).then(function (u) {
+                return user.update({ username: username }).then(function (u) {
                     return resolve(u);
                 }).catch(sequelizeFailure(reject));
             }).catch(sequelizeFailure(reject));
@@ -686,10 +676,28 @@ exports.UserService = UserService;
 exports.userService = new UserService();
 
 /***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = require("express");
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = require("graphql");
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = require("sequelize");
+
+/***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfWeek = __webpack_require__(74)
+var startOfWeek = __webpack_require__(75)
 
 /**
  * @category ISO Week Helpers
@@ -726,7 +734,7 @@ module.exports = startOfISOWeek
 var R = __webpack_require__(4);
 var path = __webpack_require__(6);
 var chalk = __webpack_require__(8);
-var dotenv = __webpack_require__(79);
+var dotenv = __webpack_require__(80);
 var envFile = '.env';
 var HEROKU_ENVS = ['heroku-develop', 'heroku-stage', 'heroku-live', 'heroku-tests'];
 var LOCAL_ENVS = ['test', 'local-develop'];
@@ -806,7 +814,7 @@ exports.default = function (user) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var G = __webpack_require__(10);
+var G = __webpack_require__(11);
 var attributeFields = __webpack_require__(2).attributeFields;
 var db_1 = __webpack_require__(0);
 var iterations_1 = __webpack_require__(15);
@@ -835,7 +843,7 @@ var __assign = this && this.__assign || Object.assign || function (t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var G = __webpack_require__(10);
+var G = __webpack_require__(11);
 var attributeFields = __webpack_require__(2).attributeFields;
 var Iteration = __webpack_require__(17);
 var db_1 = __webpack_require__(0);
@@ -884,7 +892,7 @@ var __assign = this && this.__assign || Object.assign || function (t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var G = __webpack_require__(10);
+var G = __webpack_require__(11);
 var attributeFields = __webpack_require__(2).attributeFields;
 var posts_1 = __webpack_require__(16);
 var db_1 = __webpack_require__(0);
@@ -903,7 +911,7 @@ exports.Schema = {
     type: new G.GraphQLList(exports.Type),
     args: {
         id: { type: G.GraphQLID },
-        facebookId: { type: G.GraphQLString }
+        username: { type: G.GraphQLString }
     },
     resolve: userResolver
 };
@@ -1040,7 +1048,7 @@ module.exports = require("webpack");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Raven = __webpack_require__(88);
+var Raven = __webpack_require__(89);
 exports.monitorExceptions = function (config) {
     return function (app) {
         // Must configure Raven before doing anything else with it
@@ -1059,12 +1067,90 @@ exports.monitorExceptions = function (config) {
 "use strict";
 
 
+var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : new P(function (resolve) {
+                resolve(result.value);
+            }).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = this && this.__generator || function (thisArg, body) {
+    var _ = { label: 0, sent: function () {
+            if (t[0] & 1) throw t[1];return t[1];
+        }, trys: [], ops: [] },
+        f,
+        y,
+        t;
+    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    function verb(n) {
+        return function (v) {
+            return step([n, v]);
+        };
+    }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0:case 1:
+                    t = op;break;
+                case 4:
+                    _.label++;return { value: op[1], done: false };
+                case 5:
+                    _.label++;y = op[1];op = [0];continue;
+                case 7:
+                    op = _.ops.pop();_.trys.pop();continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                        _ = 0;continue;
+                    }
+                    if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+                        _.label = op[1];break;
+                    }
+                    if (op[0] === 6 && _.label < t[1]) {
+                        _.label = t[1];t = op;break;
+                    }
+                    if (t && _.label < t[2]) {
+                        _.label = t[2];_.ops.push(op);break;
+                    }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop();continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) {
+            op = [6, e];y = 0;
+        } finally {
+            f = t = 0;
+        }
+        if (op[0] & 5) throw op[1];return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var passport = __webpack_require__(5);
 var authentication_1 = __webpack_require__(48);
 var Facebook = __webpack_require__(42);
 var Mock = __webpack_require__(43);
 var mockAuthentication = __webpack_require__(3).mockAuthentication;
+var user_1 = __webpack_require__(9);
 exports.setup = function (config) {
     return function (app) {
         authentication_1.setupStrategy(config);
@@ -1076,7 +1162,19 @@ exports.setup = function (config) {
             Facebook.setup(app);
         }
         app.get('/api/profile', isLoggedIn, function (req, res) {
-            res.json(req.user);
+            return __awaiter(_this, void 0, void 0, function () {
+                var user;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            return [4 /*yield*/, user_1.userService.findByFacebookId(req.user.id)];
+                        case 1:
+                            user = _a.sent();
+                            res.json({ profile: req.user, user: user });
+                            return [2 /*return*/];
+                    }
+                });
+            });
         });
         app.get('/api/signout', isLoggedIn, function (req, res) {
             req.logout();
@@ -1139,9 +1237,9 @@ exports.listen = function (app, _a) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.runHotMiddleware = function (app) {
     var webpack = __webpack_require__(25);
-    var webpackConfig = __webpack_require__(56).default;
+    var webpackConfig = __webpack_require__(57).default;
     var webpackCompiler = webpack(webpackConfig);
-    app.use(__webpack_require__(91)(webpackCompiler, {
+    app.use(__webpack_require__(92)(webpackCompiler, {
         publicPath: webpackConfig.output.publicPath,
         stats: { colors: true },
         noInfo: true,
@@ -1151,7 +1249,7 @@ exports.runHotMiddleware = function (app) {
         historyApiFallback: true,
         quiet: true
     }));
-    app.use(__webpack_require__(92)(webpackCompiler));
+    app.use(__webpack_require__(93)(webpackCompiler));
 };
 
 /***/ }),
@@ -1162,9 +1260,9 @@ exports.runHotMiddleware = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = __webpack_require__(9);
+var express = __webpack_require__(10);
 exports.serveFrontend = function (app) {
-    var fs = __webpack_require__(82);
+    var fs = __webpack_require__(83);
     var path = __webpack_require__(6);
     app.use('/', express.static(__dirname));
     app.get('*', function (_, res) {
@@ -1182,7 +1280,7 @@ exports.serveFrontend = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var session = __webpack_require__(81);
+var session = __webpack_require__(82);
 exports.setupSession = function (app) {
     /** More info: github.com/expressjs/session#options */
     var options = {
@@ -1201,8 +1299,8 @@ exports.setupSession = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var bodyParser = __webpack_require__(77);
-var express = __webpack_require__(9);
+var bodyParser = __webpack_require__(78);
+var express = __webpack_require__(10);
 exports.newApp = function (initalizers) {
     var app = express();
     app.use(bodyParser.json());
@@ -1226,7 +1324,7 @@ module.exports = require("helmet");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var config = __webpack_require__(76);
+var config = __webpack_require__(77);
 exports.default = config;
 
 /***/ }),
@@ -1237,7 +1335,7 @@ exports.default = config;
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var SequelizeStatic = __webpack_require__(11);
+var SequelizeStatic = __webpack_require__(12);
 exports.default = function (sequelize) {
     var Schema = {
         id: {
@@ -1283,7 +1381,7 @@ exports.default = function (sequelize) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var SequelizeStatic = __webpack_require__(11);
+var SequelizeStatic = __webpack_require__(12);
 exports.default = function (sequelize) {
     var Schema = {
         id: {
@@ -1319,7 +1417,7 @@ exports.default = function (sequelize) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var SequelizeStatic = __webpack_require__(11);
+var SequelizeStatic = __webpack_require__(12);
 exports.default = function (sequelize) {
     var Schema = {
         id: {
@@ -1379,7 +1477,7 @@ exports.default = resolver(db_1.models.User);
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var G = __webpack_require__(10);
+var G = __webpack_require__(11);
 var User = __webpack_require__(19);
 var Post = __webpack_require__(18);
 var Iteration = __webpack_require__(17);
@@ -1452,7 +1550,7 @@ exports.setup = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var graphqlHTTP = __webpack_require__(80);
+var graphqlHTTP = __webpack_require__(81);
 var schema_1 = __webpack_require__(41);
 exports.default = function (app) {
     app.use('/graphql', graphqlHTTP({ schema: schema_1.default, graphiql: true }));
@@ -1543,9 +1641,9 @@ var __generator = this && this.__generator || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = __webpack_require__(9);
+var express = __webpack_require__(10);
 var requests_1 = __webpack_require__(20);
-var user_1 = __webpack_require__(12);
+var user_1 = __webpack_require__(9);
 var post_1 = __webpack_require__(52);
 var router = express.Router();
 router.get('/', function (_, res) {
@@ -1755,10 +1853,28 @@ var __generator = this && this.__generator || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = __webpack_require__(9);
+var express = __webpack_require__(10);
 var requests_1 = __webpack_require__(20);
-var user_1 = __webpack_require__(12);
+var user_1 = __webpack_require__(9);
 var router = express.Router();
+var getMessage = {
+    setUsername: function (type) {
+        switch (type) {
+            case 'unique violation':
+                return 'Sorry, that username is not available.';
+            case 'blank violation':
+                return 'Your username cannot be empty.';
+            case 'whitespace violation':
+                return 'Please choose a username that does not contain spaces.';
+            case 'format violation':
+                return 'Please choose a username that only contains letters, numbers, ' + 'dashes, and underscores.';
+            case 'user existence violation':
+                return 'Oops! Something went wrong. Please try again.';
+            default:
+                throw Error("Unexpected error of type \"" + type + "\"");
+        }
+    }
+};
 router.post('/setUsername', function (req, res) {
     return __awaiter(_this, void 0, void 0, function () {
         var _a, username, facebookId, user, e_1;
@@ -1774,7 +1890,7 @@ router.post('/setUsername', function (req, res) {
                     return [3 /*break*/, 3];
                 case 2:
                     e_1 = _b.sent();
-                    requests_1.jsonError(res)(e_1);
+                    requests_1.jsonError(res)({ message: getMessage.setUsername(e_1.type) });
                     return [3 /*break*/, 3];
                 case 3:
                     return [2 /*return*/];
@@ -1828,8 +1944,8 @@ db_1.sequelize.sync().then(function () {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var passport = __webpack_require__(5);
-var Facebook = __webpack_require__(84);
-var user_1 = __webpack_require__(12);
+var Facebook = __webpack_require__(85);
+var user_1 = __webpack_require__(9);
 var Mock = __webpack_require__(49);
 var mockAuthentication = __webpack_require__(3).mockAuthentication;
 var signInCallback = function (profile, done) {
@@ -1884,7 +2000,7 @@ exports.setupStrategy = function (options) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var util = __webpack_require__(89);
+var util = __webpack_require__(90);
 var passport = __webpack_require__(5);
 var profile_mock_1 = __webpack_require__(50);
 exports.Strategy = function Strategy(_options, verify) {
@@ -1894,7 +2010,7 @@ exports.Strategy = function Strategy(_options, verify) {
 util.inherits(exports.Strategy, passport.Strategy);
 exports.Strategy.prototype.authenticate = function (_) {
     var _this = this;
-    this.verify(profile_mock_1.default, function (err, profile, info) {
+    this.verify(profile_mock_1.default(), function (err, profile, info) {
         if (err) {
             return _this.error(err);
         }
@@ -1913,14 +2029,17 @@ exports.Strategy.prototype.authenticate = function (_) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.id = 'xxxxxxxxxxxxxxxx';
-exports.displayName = 'Mock User';
-var profileMock = {
-    id: exports.id,
-    displayName: exports.displayName,
-    provider: 'facebook',
-    _raw: "{\"name\":\"" + exports.displayName + "\",\"id\":\"" + exports.id + "\"}",
-    _json: { name: exports.displayName, id: exports.id }
+var string_1 = __webpack_require__(56);
+var profileMock = function () {
+    var id = string_1.randomStr();
+    var displayName = 'Mock User';
+    return {
+        id: id,
+        displayName: displayName,
+        provider: 'facebook',
+        _raw: "{\"name\":\"" + displayName + "\",\"id\":\"" + id + "\"}",
+        _json: { name: displayName, id: id }
+    };
 };
 exports.default = profileMock;
 
@@ -2375,7 +2494,7 @@ var MockUserService = function () {
                 reject({ message: "Please provide a facebookId" });
             }
             if (facebookId == 'thisUsernameDoesntExist') {
-                reject({ message: "User with facebookId \"" + facebookId + "\" does not exist" });
+                reject({ type: 'user existence violation' });
             }
             resolve({
                 dataValues: { facebookId: facebookId, id: 123 },
@@ -2432,8 +2551,17 @@ var MockUserService = function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
+                            if (username === '') {
+                                reject({ type: 'blank violation' });
+                            }
+                            if (username === 'contains whitespace') {
+                                reject({ type: 'whitespace violation' });
+                            }
+                            if (username === 'badFormat!') {
+                                reject({ type: 'format violation' });
+                            }
                             if (username === 'takenUsername') {
-                                reject({ message: "Sorry, username \"" + username + "\" is not available" });
+                                reject({ type: 'unique violation' });
                             }
                             _a.label = 1;
                         case 1:
@@ -2466,7 +2594,7 @@ exports.MockUserService = MockUserService;
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var format = __webpack_require__(64);
+var format = __webpack_require__(65);
 var R = __webpack_require__(4);
 exports.formatDateStr = function (s) {
     var result = new Date(Date.parse(s)).toLocaleTimeString('en-UK', {
@@ -2509,9 +2637,12 @@ exports.strEnum = strEnum;
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Env = __webpack_require__(21);
-var _1 = __webpack_require__(57);
-exports.default = _1.setup(Env.Enum.development);
+exports.randomStr = function () {
+  return Math.random().toString(36).substr(2, 5);
+};
+exports.dasherize = function (str) {
+  return str.replace(/\s+/g, '-').toLowerCase();
+};
 
 /***/ }),
 /* 57 */
@@ -2521,7 +2652,19 @@ exports.default = _1.setup(Env.Enum.development);
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var webpackMerge = __webpack_require__(93);
+var Env = __webpack_require__(21);
+var _1 = __webpack_require__(58);
+exports.default = _1.setup(Env.Enum.development);
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var webpackMerge = __webpack_require__(94);
 var path = __webpack_require__(6);
 var Env = __webpack_require__(21);
 exports.setup = function (env) {
@@ -2533,15 +2676,15 @@ exports.setup = function (env) {
         console: !isProd,
         isProd: isProd
     };
-    var shared = [__webpack_require__(59), __webpack_require__(58), __webpack_require__(62)];
-    var partials = isProd ? [__webpack_require__(61)].concat(shared) : [__webpack_require__(60)].concat(shared);
+    var shared = [__webpack_require__(60), __webpack_require__(59), __webpack_require__(63)];
+    var partials = isProd ? [__webpack_require__(62)].concat(shared) : [__webpack_require__(61)].concat(shared);
     return webpackMerge(partials.map(function (m) {
         return m.partial(options);
     }));
 };
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2550,7 +2693,7 @@ exports.setup = function (env) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = __webpack_require__(6);
 var webpack = __webpack_require__(25);
-var HtmlWebpackPlugin = __webpack_require__(83);
+var HtmlWebpackPlugin = __webpack_require__(84);
 var entryFile = './src/frontend/main.tsx';
 exports.partial = function (c) {
     return {
@@ -2568,7 +2711,7 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2596,7 +2739,7 @@ var loaders = function (c) {
         loader: 'postcss-loader',
         options: {
             plugins: function () {
-                return [__webpack_require__(87)({ path: [frontendDir()] }), __webpack_require__(86)(), __webpack_require__(85)({ relative: frontendDir() })];
+                return [__webpack_require__(88)({ path: [frontendDir()] }), __webpack_require__(87)(), __webpack_require__(86)({ relative: frontendDir() })];
             }
         }
     }];
@@ -2615,7 +2758,7 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2628,7 +2771,7 @@ exports.partial = function () {
         module: {
             rules: [{
                 test: /\.tsx?$/,
-                loader: __webpack_require__(90)(['react-hot-loader', 'awesome-typescript-loader']),
+                loader: __webpack_require__(91)(['react-hot-loader', 'awesome-typescript-loader']),
                 exclude: /node_modules/
             }]
         },
@@ -2637,7 +2780,7 @@ exports.partial = function () {
 };
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2659,7 +2802,7 @@ exports.partial = function () {
 };
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2684,10 +2827,10 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(72)
+var startOfDay = __webpack_require__(73)
 
 var MILLISECONDS_IN_MINUTE = 60000
 var MILLISECONDS_IN_DAY = 86400000
@@ -2731,15 +2874,15 @@ module.exports = differenceInCalendarDays
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getDayOfYear = __webpack_require__(65)
-var getISOWeek = __webpack_require__(66)
+var getDayOfYear = __webpack_require__(66)
+var getISOWeek = __webpack_require__(67)
 var getISOYear = __webpack_require__(22)
 var parse = __webpack_require__(1)
-var isValid = __webpack_require__(67)
-var enLocale = __webpack_require__(71)
+var isValid = __webpack_require__(68)
+var enLocale = __webpack_require__(72)
 
 /**
  * @category Common Helpers
@@ -3065,12 +3208,12 @@ module.exports = format
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
-var startOfYear = __webpack_require__(75)
-var differenceInCalendarDays = __webpack_require__(63)
+var startOfYear = __webpack_require__(76)
+var differenceInCalendarDays = __webpack_require__(64)
 
 /**
  * @category Day Helpers
@@ -3098,12 +3241,12 @@ module.exports = getDayOfYear
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
 var startOfISOWeek = __webpack_require__(13)
-var startOfISOYear = __webpack_require__(73)
+var startOfISOYear = __webpack_require__(74)
 
 var MILLISECONDS_IN_WEEK = 604800000
 
@@ -3138,7 +3281,7 @@ module.exports = getISOWeek
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isDate = __webpack_require__(23)
@@ -3179,7 +3322,7 @@ module.exports = isValid
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports) {
 
 var commonFormatterKeys = [
@@ -3213,7 +3356,7 @@ module.exports = buildFormattingTokensRegExp
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports) {
 
 function buildDistanceInWordsLocale () {
@@ -3318,10 +3461,10 @@ module.exports = buildDistanceInWordsLocale
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildFormattingTokensRegExp = __webpack_require__(68)
+var buildFormattingTokensRegExp = __webpack_require__(69)
 
 function buildFormatLocale () {
   // Note: in English, the names of days of the week and months are capitalized.
@@ -3412,11 +3555,11 @@ module.exports = buildFormatLocale
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildDistanceInWordsLocale = __webpack_require__(69)
-var buildFormatLocale = __webpack_require__(70)
+var buildDistanceInWordsLocale = __webpack_require__(70)
+var buildFormatLocale = __webpack_require__(71)
 
 /**
  * @category Locales
@@ -3429,7 +3572,7 @@ module.exports = {
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
@@ -3460,7 +3603,7 @@ module.exports = startOfDay
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getISOYear = __webpack_require__(22)
@@ -3498,7 +3641,7 @@ module.exports = startOfISOYear
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
@@ -3542,7 +3685,7 @@ module.exports = startOfWeek
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
@@ -3575,7 +3718,7 @@ module.exports = startOfYear
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -3591,103 +3734,103 @@ module.exports = appConfig.db
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports) {
 
 module.exports = require("body-parser");
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports) {
 
 module.exports = require("continuation-local-storage");
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-graphql");
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-session");
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = require("html-webpack-plugin");
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports) {
 
 module.exports = require("passport-facebook");
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports) {
 
 module.exports = require("postcss-assets");
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = require("postcss-cssnext");
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = require("postcss-import");
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = require("raven");
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports) {
 
 module.exports = require("util");
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-combine-loaders");
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-dev-middleware");
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-hot-middleware");
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-merge");

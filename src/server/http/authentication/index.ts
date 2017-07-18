@@ -5,6 +5,7 @@ import {IPassportConfig, setupStrategy} from '~/server/service/authentication'
 import * as Facebook from '~/server/http/authentication/facebook'
 import * as Mock from '~/server/http/authentication/mock'
 const {mockAuthentication} = require('~/server/config/index.js')
+import {userService} from '~/server/service/user'
 
 export const setup = (config: IPassportConfig) => (app: express.Application) => {
   setupStrategy(config)
@@ -18,8 +19,9 @@ export const setup = (config: IPassportConfig) => (app: express.Application) => 
     Facebook.setup(app)
   }
 
-  app.get('/api/profile', isLoggedIn, (req, res) => {
-    res.json(req.user)
+  app.get('/api/profile', isLoggedIn, async (req, res) => {
+    const user = await userService.findByFacebookId(req.user.id)
+    res.json({profile: req.user, user})
   })
 
   app.get('/api/signout', isLoggedIn, (req, res) => {

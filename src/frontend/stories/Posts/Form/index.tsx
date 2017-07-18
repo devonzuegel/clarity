@@ -42,7 +42,7 @@ class Form extends React.Component<IFormProps, reducers.IState> {
     const isValid = R.not(hasNotBeenUpdated || emptyField)
 
     return (
-      <div className="" id={formId}>
+      <div id={formId}>
         <Field
           label=""
           placeholder="Title"

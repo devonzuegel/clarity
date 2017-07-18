@@ -59,17 +59,33 @@ export class UserService extends MockUserService {
   }
 
   setUsername(facebookId: string, username: string) {
-    return new Promise<UserInstance>((resolve: Function, reject: Function) => {
+    type IErrorType =
+      | 'blank violation'
+      | 'whitespace violation'
+      | 'format violation'
+      | 'user existence violation'
+      | 'unique violation'
+    type IReject = (e: {type: IErrorType}) => void
+
+    return new Promise<UserInstance>((resolve: Function, reject: IReject) => {
       if (username === '') {
-        return reject({message: `Your username cannot be empty.`})
+        return reject({type: 'blank violation'})
+      }
+      const containsSpaces = /\s/g.test(username)
+      if (containsSpaces) {
+        return reject({type: 'whitespace violation'})
+      }
+      const validFormat = /^[a-zA-Z0-9-_]+$/.test(username)
+      if (!validFormat) {
+        return reject({type: 'format violation'})
       }
       return models.User
         .findOne({where: {facebookId}})
         .then((user: UserInstance) => {
           if (!user) {
-            reject({message: `Cannot find user with facebookId ${facebookId}`})
+            return reject({type: 'user existence violation'})
           }
-          user
+          return user
             .update({username})
             .then(u => resolve(u))
             .catch(sequelizeFailure(reject))
