@@ -16,7 +16,7 @@ export const Strategy = function Strategy(
 util.inherits(Strategy, passport.Strategy)
 
 Strategy.prototype.authenticate = function(this: any, _: any) {
-  this.verify(profileMock, (err: any, profile: Facebook.Profile, info: any) => {
+  this.verify(profileMock(), (err: any, profile: Facebook.Profile, info: any) => {
     if (err) {
       return this.error(err)
     }

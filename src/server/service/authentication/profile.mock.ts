@@ -1,13 +1,17 @@
 import * as Facebook from 'passport-facebook'
+import {randomStr} from '~/../utils/test/string'
 
-export const id = 'xxxxxxxxxxxxxxxx'
-export const displayName = 'Mock User'
-const profileMock: Facebook.Profile = {
-  id,
-  displayName,
-  provider: 'facebook',
-  _raw: `{"name":"${displayName}","id":"${id}"}`,
-  _json: {name: displayName, id},
+const profileMock = (): Facebook.Profile => {
+  const id = randomStr()
+  const displayName = 'Mock User'
+
+  return {
+    id,
+    displayName,
+    provider: 'facebook',
+    _raw: `{"name":"${displayName}","id":"${id}"}`,
+    _json: {name: displayName, id},
+  }
 }
 
 export default profileMock
