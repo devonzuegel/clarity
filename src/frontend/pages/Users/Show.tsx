@@ -1,12 +1,8 @@
 import * as React from 'react'
 import * as R from 'ramda'
-import * as marked from 'marked'
-import * as classnames from 'classnames'
-
 import {graphql} from '~/../utils/api/responses'
 import {formatDateLong} from '~/../utils/date'
 import {urls} from '~/frontend/routes'
-import Truncated from '~/frontend/components/Truncated'
 import NotFound from '~/frontend/pages/NotFound'
 import LoadingOverlay from '~/frontend/components/LoadingOverlay'
 
@@ -34,35 +30,20 @@ const NoPosts = ({username}: {username: string}) =>
   </div>
 
 const Post = (post: IPost, i: number) => {
-  const mostRecentIteration = R.last(post.iterations)
-  const date = new Date(Date.parse(mostRecentIteration.createdAt))
-  const classes = classnames({
-    'pt-card': true,
-    'pt-interactive': true,
-  })
+  const lastIteration = R.last(post.iterations)
   return (
-    <a
-      href={urls.post(post.id)}
-      key={i}
-      style={{
-        color: 'inherit',
-        textDecoration: 'inherit',
-      }}
-    >
-      <div className={classes} style={{marginBottom: '16px'}}>
-        <h3>
-          {mostRecentIteration.title}
-        </h3>
-        <label className="pt-label pt-text-muted">
-          {formatDateLong(date)}
-        </label>
-        <Truncated>
-          <div
-            dangerouslySetInnerHTML={{__html: marked(mostRecentIteration.body)}}
-          />
-        </Truncated>
-      </div>
-    </a>
+    <div key={i}>
+      {post.id !== 0 && <br />}
+      <h4 className="post-list--post-title">
+        <a href={urls.post(post.id)}>
+          {lastIteration.title}
+        </a>
+      </h4>
+      <label className="pt-text-muted">
+        {formatDateLong(lastIteration.createdAt)}
+      </label>
+      <br />
+    </div>
   )
 }
 
