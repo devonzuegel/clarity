@@ -40355,6 +40355,10 @@ var routes_1 = __webpack_require__(42);
 var Truncated_1 = __webpack_require__(181);
 var NotFound_1 = __webpack_require__(113);
 var LoadingOverlay_1 = __webpack_require__(69);
+var NoPosts = function (_a) {
+    var username = _a.username;
+    return React.createElement("div", { id: "not-found", className: "pt-non-ideal-state", style: { maxHeight: '45%' } }, React.createElement("div", { className: "pt-non-ideal-state-visual pt-non-ideal-state-icon" }, React.createElement("span", { className: "pt-icon pt-icon-moon" })), React.createElement("h4", { className: "pt-non-ideal-state-title" }, "No posts to display"), React.createElement("div", { className: "pt-non-ideal-state-description" }, React.createElement("b", null, username), " hasn't published anything yet!"));
+};
 var Post = function (post, i) {
     var mostRecentIteration = R.last(post.iterations);
     var date = new Date(Date.parse(mostRecentIteration.createdAt));
@@ -40398,7 +40402,8 @@ var ShowUser = function (_super) {
         if (this.state.error) {
             return React.createElement(NotFound_1.default, { message: this.state.error });
         }
-        return React.createElement("div", null, React.createElement("h1", null, "Writing"), React.createElement("br", null), this.state.posts && (this.state.posts || []).map(Post));
+        var noPosts = !(this.state.posts && (this.state.posts || []).length > 0);
+        return React.createElement("div", null, React.createElement("h1", null, "Writing"), React.createElement("br", null), noPosts ? React.createElement(NoPosts, { username: this.props.username }) : (this.state.posts || []).map(Post));
     };
     return ShowUser;
 }(React.Component);
@@ -45493,7 +45498,7 @@ exports = module.exports = __webpack_require__(38)(true);
 
 
 // module
-exports.push([module.i, ".top-level-wrapper___5dEM5 {\n  background-color: #F5F8FA;\n  line-height: 1.5em;\n  min-height: 100%;\n}\n\n.centered-wrapper___5cQ2a {\n  padding: 20px 50px;\n  margin: auto;\n  max-width: 950px;\n}\n", "", {"version":3,"sources":["/Users/devonzuegel/dev/clarity/src/frontend/components/Wrapper/styles.css"],"names":[],"mappings":"AAAA;EACE,0BAA0B;EAC1B,mBAAmB;EACnB,iBAAiB;CAClB;;AAED;EACE,mBAAmB;EACnB,aAAa;EACb,iBAAiB;CAClB","file":"styles.css","sourcesContent":[".top-level-wrapper {\n  background-color: #F5F8FA;\n  line-height: 1.5em;\n  min-height: 100%;\n}\n\n.centered-wrapper {\n  padding: 20px 50px;\n  margin: auto;\n  max-width: 950px;\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, ".top-level-wrapper___5dEM5 {\n  background-color: #F5F8FA;\n  line-height: 1.5em;\n  min-height: 100%;\n}\n\n.centered-wrapper___5cQ2a {\n  padding: 8px 24px;\n  margin: auto;\n  max-width: 950px;\n}\n", "", {"version":3,"sources":["/Users/devonzuegel/dev/clarity/src/frontend/components/Wrapper/styles.css"],"names":[],"mappings":"AAAA;EACE,0BAA0B;EAC1B,mBAAmB;EACnB,iBAAiB;CAClB;;AAED;EACE,kBAAkB;EAClB,aAAa;EACb,iBAAiB;CAClB","file":"styles.css","sourcesContent":[".top-level-wrapper {\n  background-color: #F5F8FA;\n  line-height: 1.5em;\n  min-height: 100%;\n}\n\n.centered-wrapper {\n  padding: 8px 24px;\n  margin: auto;\n  max-width: 950px;\n}\n"],"sourceRoot":""}]);
 
 // exports
 exports.locals = {
