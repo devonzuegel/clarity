@@ -20,6 +20,19 @@ interface IState {
   loading: boolean
 }
 
+const NoPosts = ({username}: {username: string}) =>
+  <div id="not-found" className="pt-non-ideal-state" style={{maxHeight: '45%'}}>
+    <div className="pt-non-ideal-state-visual pt-non-ideal-state-icon">
+      <span className="pt-icon pt-icon-moon" />
+    </div>
+    <h4 className="pt-non-ideal-state-title">
+      No posts to display
+    </h4>
+    <div className="pt-non-ideal-state-description">
+      <b>{username}</b> hasn't published anything yet!
+    </div>
+  </div>
+
 const Post = (post: IPost, i: number) => {
   const mostRecentIteration = R.last(post.iterations)
   const date = new Date(Date.parse(mostRecentIteration.createdAt))
@@ -85,13 +98,16 @@ class ShowUser extends React.Component<{username: string}, IState> {
     if (this.state.error) {
       return <NotFound message={this.state.error} />
     }
+    const noPosts = !(this.state.posts && (this.state.posts || []).length > 0)
     return (
       <div>
         <h1>
           Writing
         </h1>
         <br />
-        {this.state.posts && (this.state.posts || []).map(Post)}
+        {noPosts
+          ? <NoPosts username={this.props.username} />
+          : (this.state.posts || []).map(Post)}
       </div>
     )
   }
