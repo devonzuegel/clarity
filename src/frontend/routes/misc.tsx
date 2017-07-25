@@ -10,12 +10,15 @@ import * as U from '~/frontend/routes/utils'
 
 export const urls = {
   test: '/test',
+  home: '/',
 }
 
 const redirectUrls = ['/auth/facebook']
 
 export const routes = () => {
   page('/test', () => U.renderWithLayout(<TestPage />))
+
+  page('/', () => U.renderWithLayout(<h1>Home</h1>))
 
   page('*', (context, _next) => {
     const isRedirecting = R.contains(context.canonicalPath, redirectUrls)

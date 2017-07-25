@@ -16,6 +16,7 @@ const s = require('~/frontend/stories/SignIn/styles.css')
 type IState = {
   settingUsername: boolean
   user: {facebookId: string}
+  profile: {id: string; displayName: string; facebookId: string}
   username: string
   error?: string
   failedAttempts: U.StrObject
@@ -26,6 +27,7 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
   state = {
     settingUsername: false,
     user: {facebookId: ''},
+    profile: {id: '', displayName: '', facebookId: ''},
     username: '',
     error: undefined,
     failedAttempts: {} as U.StrObject,
@@ -35,14 +37,19 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
     api
       .getProfile()
       .then(({profile, user}) => {
-        this.props.actions.signIn(profile.id, profile.displayName)
+        console.log(JSON.stringify(profile, null, 2))
         if (user.username) {
-          page.redirect(urls.posts)
+          this.props.actions.signIn(profile.id, profile.displayName, user.username)
+          page.redirect(urls.home)
         } else {
-          this.setState({settingUsername: true, user}) // TODO: extract reducer
+          this.setState({
+            settingUsername: true,
+            profile: {id: 'zzz', displayName: 'bbbb', facebookId: 'iiiii'},
+            user,
+          }) // TODO: extract reducer
         }
       })
-      .catch(() => page.redirect(urls.posts))
+      .catch(() => page.redirect(urls.home))
   }
 
   private updateUsername = (e: React.FormEvent<HTMLInputElement>) => {
@@ -54,7 +61,15 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
   private submit = () => {
     api
       .setUsername(this.state.user.facebookId, this.state.username)
-      .then(username => page.redirect(urls.user(username)))
+      .then(username => {
+        console.log(JSON.stringify(this.state.user))
+        this.props.actions.signIn(
+          this.state.profile.facebookId,
+          this.state.profile.displayName,
+          this.state.username
+        )
+        page.redirect(urls.user(username))
+      })
       .catch(e => {
         this.setState({
           error: e.message,

@@ -20,6 +20,7 @@ const reducer = (_initialState: IAuthState) => (
         user: {
           facebookId: action.facebookId,
           displayName: action.displayName,
+          username: action.username,
         },
       }
 
