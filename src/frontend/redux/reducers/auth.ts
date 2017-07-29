@@ -6,6 +6,7 @@ interface IAuthState {
   user: {
     facebookId?: string
     displayName?: string
+    username?: string
   }
 }
 
@@ -14,6 +15,12 @@ const reducer = (_initialState: IAuthState) => (
   action: IAction
 ) => {
   switch (action.type) {
+    case types.SET_USERNAME:
+      return {
+        ...state,
+        user: {...state.user, username: action.username},
+      }
+
     case types.SIGN_IN:
       return {
         ...state,

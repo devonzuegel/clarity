@@ -37,12 +37,12 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
       .then(({profile, user}) => {
         this.props.actions.signIn(profile.id, profile.displayName)
         if (user.username) {
-          page.redirect(urls.posts)
+          page.redirect(urls.user(user.username))
         } else {
           this.setState({settingUsername: true, user}) // TODO: extract reducer
         }
       })
-      .catch(() => page.redirect(urls.posts))
+      .catch(() => page.redirect(urls.signIn))
   }
 
   private updateUsername = (e: React.FormEvent<HTMLInputElement>) => {
@@ -54,7 +54,10 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
   private submit = () => {
     api
       .setUsername(this.state.user.facebookId, this.state.username)
-      .then(username => page.redirect(urls.user(username)))
+      .then(username => {
+        this.props.actions.setUsername(this.state.username)
+        page.redirect(urls.user(username))
+      })
       .catch(e => {
         this.setState({
           error: e.message,
