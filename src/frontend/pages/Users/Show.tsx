@@ -86,9 +86,11 @@ class ShowUser extends React.Component<{username: string}, IState> {
           Writing
         </h1>
         <br />
-        {noPosts
-          ? <NoPosts username={this.props.username} />
-          : (this.state.posts || []).map(Post)}
+        <div id="posts-list">
+          {noPosts
+            ? <NoPosts username={this.props.username} />
+            : (this.state.posts || []).map(Post)}
+        </div>
       </div>
     )
   }

@@ -5,10 +5,12 @@ import {actions} from '~/frontend/redux/actions/auth'
 import Layout from '~/frontend/components/Layout'
 
 interface IState {
-  user: {facebookId: string; displayName: string}
+  user: {facebookId: string; displayName: string; username: string}
 }
 
-const mapStateToProps = (state: {authReducer: IState}) => state.authReducer.user
+const mapStateToProps = (state: {authReducer: IState}) => {
+  return state.authReducer.user
+}
 
 const mapDispatchToProps = (dispatch: any) => ({
   actions: bindActionCreators(actions, dispatch),

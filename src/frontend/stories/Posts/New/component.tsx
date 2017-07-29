@@ -6,8 +6,13 @@ import Form from '~/frontend/stories/Posts/Form'
 import {urls} from '~/frontend/routes'
 import {IState} from '~/frontend/stories/Posts/Form/reducers'
 import {ErrorMessage} from '~/frontend/components/ErrorMessage'
+import {IAction} from '~/frontend/redux/actions/auth'
 
-type INewProps = {facebookId: string}
+export type INewProps = {
+  facebookId: string;
+  username: string;
+  actions: {setUsername(username: string): IAction};
+}
 
 const reducers = {
   updateError: (error: string) => (_prevState: {error?: string}) => ({
@@ -18,23 +23,25 @@ const reducers = {
 class New extends React.Component<INewProps, {}> {
   state = {error: null}
 
-  render() {
-    const onSubmit = async (newState: IState) => {
-      try {
-        await api.newPost({...newState, facebookId: this.props.facebookId})
-        page.redirect(urls.posts)
-      } catch (e) {
-        this.setState(reducers.updateError(e))
-      }
+  onSubmit = async (newState: IState) => {
+    try {
+      await api.newPost({...newState, facebookId: this.props.facebookId})
+      page.redirect(urls.user(this.props.username))
+    } catch (e) {
+      this.setState(reducers.updateError(e))
     }
+  }
+
+  render() {
+    console.log(JSON.stringify(this.props))
     return (
       <div>
         {this.state.error &&
           <ErrorMessage msg={this.state.error} id="new-post-user-msg" />}
-        <Form iteration={{}} onSubmit={onSubmit} buttonText="Create" />
+        <Form iteration={{}} onSubmit={this.onSubmit} buttonText="Create" />
       </div>
     )
   }
 }
 
-export default New
+export default (props: INewProps) => <New {...props} />
