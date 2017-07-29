@@ -7,10 +7,11 @@ export type IAction = {
   type: string
   facebookId: string | null
   displayName: string | null
+  username: string | null
 }
 
 export interface IActions {
-  signIn(facebookId: string | null, displayName: string | null): IAction
+  signIn(facebookId: string, displayName: string, username: string): IAction
   signOut(): null
 }
 

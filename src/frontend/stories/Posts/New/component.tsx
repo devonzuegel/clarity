@@ -22,7 +22,7 @@ class New extends React.Component<INewProps, {}> {
     const onSubmit = async (newState: IState) => {
       try {
         await api.newPost({...newState, facebookId: this.props.facebookId})
-        page.redirect(urls.posts)
+        page.redirect(urls.home)
       } catch (e) {
         this.setState(reducers.updateError(e))
       }
