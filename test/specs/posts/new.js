@@ -31,10 +31,8 @@ module.exports = {
       .keys('foo bar baz qux')
       // Click button
       .waitForElementVisible(selectors.createBtn, 1000)
-      .pause(5000)
       .click(selectors.createBtn)
       // Check posts
-      // .click(selectors.nav.posts)
       .waitForElementVisible('.post-list--post-title', 1000)
       .assert.containsText(selectors.lastPost, title1)
       /*****************************************************/

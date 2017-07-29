@@ -5,6 +5,7 @@ import {urls} from '~/frontend/routes'
 interface ILayout {
   children?: Element
   displayName: string
+  username: string
 }
 
 const NavBtn = ({url, title, name}: {url: string; title: string; name: string}) =>
@@ -21,22 +22,17 @@ const Brand = () =>
     </div>
   </div>
 
-const LayoutComponent = ({displayName, children}: ILayout) =>
+const LayoutComponent = ({displayName, username, children}: ILayout) =>
   <div>
     <nav style={{display: 'flow-root', height: '48px', marginBottom: '25px'}}>
       <Brand />
       <div className="pt-navbar-group pt-align-right">
-        <NavBtn title="Posts" url={urls.posts} name="document" />
         {displayName &&
           <div>
             <NavBtn title="New post" url={urls.newPost} name="plus" />
-            <NavBtn
-              title={displayName}
-              url={urls.user('devon')} // TODO: get username from Redux
-              name="user"
-            />
+            <NavBtn title={displayName} url={urls.user(username)} name="user" />
+            <span className="pt-navbar-divider" />
           </div>}
-        <span className="pt-navbar-divider" />
         {displayName
           ? <NavBtn title="Sign out" url={urls.signout} name="log-out" />
           : <NavBtn title="Sign in" url={urls.fbSignin} name="log-in" />}

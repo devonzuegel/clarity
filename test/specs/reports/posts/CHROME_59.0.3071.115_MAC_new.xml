@@ -5,9 +5,9 @@
 
   <testsuite name="posts.new"
     errors="0" failures="0" hostname="" id="" package="posts" skipped="0"
-    tests="1" time="10.11" timestamp="Mon, 17 Jul 2017 01:15:48 GMT">
+    tests="1" time="4.651" timestamp="Sat, 29 Jul 2017 08:40:29 GMT">
   
-    <testcase name="Create a new post, then iterate" classname="posts.new" time="10.11" assertions="14">
+    <testcase name="Create a new post, then iterate" classname="posts.new" time="4.651" assertions="14">
 
     
 
