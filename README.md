@@ -109,3 +109,16 @@ Periodically, we'll want to reset the database for [clarity-develop.herokuapp.co
 ```
 heroku run "sequelize db:migrate:undo:all && sequelize db:migrate" --app clarity-develop
 ```
+
+## Monitoring ##
+
+Clarity uses New Relic for monitoring. Here are the dashboards for each environment:
+
+- [heroku-develop](https://rpm.newrelic.com/accounts/1701476/applications/61929219)
+- [heroku-tests](https://rpm.newrelic.com/accounts/1701480/applications/68554775)
+- [heroku-stage](https://rpm.newrelic.com/accounts/1701472/applications/79623351)
+- [heroku-live](https://rpm.newrelic.com/accounts/1681091/applications/79621388)
+
+New Relic also provides the benefit of keeping the app awake. Heroku's free tier puts apps to sleep after an hour of inactivity. When your app is asleep, the next user to access any of its resources will have to wait while  the app spins up, resulting in a suboptimal user experience. To keep the app awake, New Relic pings the app constantly. (This comes "for free" with constant monitoring, because monitoring for uptime is basically just sending pings to the server and seieng the result.)
+
+

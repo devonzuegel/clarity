@@ -13,6 +13,7 @@ module.exports = {
   env: env.NODE_ENV,
   database_url: env.DATABASE_URL,
   sentry_dsn: env.SENTRY_DSN,
+  new_relic: env.NEW_RELIC,
 
   /** Mocks **/
   mockAuthentication: isTesting,
