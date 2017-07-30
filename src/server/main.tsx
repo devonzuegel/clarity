@@ -1,3 +1,5 @@
+require('newrelic')
+
 import * as R from 'ramda'
 import * as Chalk from 'chalk'
 
