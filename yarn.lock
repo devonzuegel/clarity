@@ -15,6 +15,12 @@
     tether "^1.4"
     tslib "^1.5.0"
 
+"@newrelic/native-metrics@^2.1.0":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@newrelic/native-metrics/-/native-metrics-2.1.1.tgz#2a7abd87373e46b3c957a08124a72c0c41968dc8"
+  dependencies:
+    nan "^2.4.0"
+
 "@types/bluebird@*":
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.2.tgz#ecf1104217495e50fe0b588d538146cd6f733b89"
@@ -295,6 +301,10 @@ agent-base@2:
   dependencies:
     extend "~3.0.0"
     semver "~5.0.1"
+
+agent-base@~1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-1.0.2.tgz#6890d3fb217004b62b70f8928e0fae5f8952a706"
 
 ajv-keywords@^1.1.1:
   version "1.5.1"
@@ -1242,7 +1252,7 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-concat-stream@1.6.0:
+concat-stream@1.6.0, concat-stream@^1.5.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.6.0.tgz#0aac662fd52be78964d5532f694784e70110acf7"
   dependencies:
@@ -2895,6 +2905,14 @@ https-proxy-agent@1:
     debug "2"
     extend "3"
 
+https-proxy-agent@^0.3.5:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-0.3.6.tgz#713fa38e5d353f50eb14a342febe29033ed1619b"
+  dependencies:
+    agent-base "~1.0.1"
+    debug "2"
+    extend "3"
+
 iconv-lite@0.4.13:
   version "0.4.13"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
@@ -2966,13 +2984,13 @@ interpret@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.2.tgz#f4f623f0bb7122f15f5717c8e254b8161b5c5b2d"
 
-invariant@2.2.1:
+invariant@2.2.1, invariant@^2.0.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.1.tgz#b097010547668c7e337028ebe816ebe36c8a8d54"
   dependencies:
     loose-envify "^1.0.0"
 
-invariant@^2.0.0, invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2:
+invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
   dependencies:
@@ -3534,7 +3552,7 @@ json-stable-stringify@^1.0.1:
   dependencies:
     jsonify "~0.0.0"
 
-json-stringify-safe@5.0.1, json-stringify-safe@~5.0.1:
+json-stringify-safe@5.0.1, json-stringify-safe@^5.0.0, json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
 
@@ -4194,7 +4212,7 @@ multipipe@^0.1.2:
   dependencies:
     duplexer2 "0.0.2"
 
-nan@^2.3.0:
+nan@^2.3.0, nan@^2.4.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.1.tgz#8c84f7b14c96b89f57fbc838012180ec8ca39a01"
 
@@ -4219,6 +4237,18 @@ negotiator@0.6.1:
 netmask@~1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-1.0.6.tgz#20297e89d86f6f6400f250d9f4f6b4c1945fcd35"
+
+newrelic@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/newrelic/-/newrelic-2.0.1.tgz#2e4c4edbc12cf6fe3245b82a5d964237ef73d7a7"
+  dependencies:
+    concat-stream "^1.5.0"
+    https-proxy-agent "^0.3.5"
+    json-stringify-safe "^5.0.0"
+    readable-stream "^2.1.4"
+    semver "^5.3.0"
+  optionalDependencies:
+    "@newrelic/native-metrics" "^2.1.0"
 
 next-tick@1:
   version "1.0.0"
