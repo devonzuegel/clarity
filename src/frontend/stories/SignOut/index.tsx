@@ -13,8 +13,8 @@ class SignOut extends React.Component<{actions: IActions}, {}> {
     this.props.actions.signOut()
     api
       .signout()
-      .then(() => page.redirect(urls.test))
-      .catch(() => page.redirect(urls.test))
+      .then(() => page.redirect(urls.home))
+      .catch(() => page.redirect(urls.home))
   }
 
   componentDidMount() {
