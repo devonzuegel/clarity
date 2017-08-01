@@ -16,6 +16,7 @@ const logIn = browser =>
     // App must be running in a test environment to bypass Facebook auth
     .click(nav.logIn)
     // Set username
+    .waitForElementVisible('input#set-username__username', 1000)
     .setValue('input#set-username__username', randomStr())
     .click('button#set-username__button')
     .waitForElementVisible('#root', 1000)
