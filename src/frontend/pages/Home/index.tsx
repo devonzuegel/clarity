@@ -1,46 +1,14 @@
 import * as React from 'react'
-import * as R from 'ramda'
 import {graphql} from '~/../utils/api/responses'
-import {formatDateLong} from '~/../utils/date'
-import {urls} from '~/frontend/routes'
 import NotFound from '~/frontend/pages/NotFound'
 import LoadingOverlay from '~/frontend/components/LoadingOverlay'
-
-interface IIteration {title: string; body: string; createdAt: string}
-interface IPost {id: number; iterations: IIteration[]}
+import {NoPosts} from '~/frontend/components/NoPosts'
+import {Post, IPost} from '~/frontend/components/Post'
 
 interface IState {
   posts?: IPost[]
   error?: string
   loading: boolean
-}
-
-const NoPosts = () =>
-  <div id="not-found" className="pt-non-ideal-state" style={{maxHeight: '45%'}}>
-    <div className="pt-non-ideal-state-visual pt-non-ideal-state-icon">
-      <span className="pt-icon pt-icon-moon" />
-    </div>
-    <h4 className="pt-non-ideal-state-title">
-      No posts to display
-    </h4>
-  </div>
-
-const Post = (post: IPost, i: number) => {
-  const lastIteration = R.last(post.iterations)
-  return (
-    <div key={i}>
-      {post.id !== 0 && <br />}
-      <h4 className="post-list--post-title">
-        <a href={urls.post(post.id)}>
-          {lastIteration.title}
-        </a>
-      </h4>
-      <label className="pt-text-muted">
-        {formatDateLong(lastIteration.createdAt)}
-      </label>
-      <br />
-    </div>
-  )
 }
 
 class ShowUser extends React.Component<{}, IState> {
@@ -66,10 +34,13 @@ class ShowUser extends React.Component<{}, IState> {
     if (this.state.error) {
       return <NotFound message={this.state.error} />
     }
-    const noPosts = !(this.state.posts && (this.state.posts || []).length > 0)
+    const posts = this.state.posts || []
+    if (posts.length === 0) {
+      return <NoPosts />
+    }
     return (
       <div id="home--posts-list">
-        {noPosts ? <NoPosts /> : (this.state.posts || []).map(Post)}
+        {posts.map(Post)}
       </div>
     )
   }
