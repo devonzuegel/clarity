@@ -15098,9 +15098,9 @@ module.exports = reactProdInvariant;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(298);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(747);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(746);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(745);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(752);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(751);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(750);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(299);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createStore", function() { return __WEBPACK_IMPORTED_MODULE_0__createStore__["a"]; });
@@ -15262,7 +15262,7 @@ var classNames = __webpack_require__(8);
 var PureRender = __webpack_require__(13);
 var React = __webpack_require__(2);
 var react_dom_1 = __webpack_require__(39);
-var Tether = __webpack_require__(759);
+var Tether = __webpack_require__(764);
 var abstractComponent_1 = __webpack_require__(19);
 var Classes = __webpack_require__(9);
 var Errors = __webpack_require__(25);
@@ -16475,7 +16475,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(755);
+var	fixUrls = __webpack_require__(760);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -24810,6 +24810,7 @@ exports.rootReducerMock = redux_1.combineReducers({
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Redux = __webpack_require__(54);
+var persistState = __webpack_require__(747);
 var hermes_1 = __webpack_require__(183);
 var reducers_1 = __webpack_require__(180);
 var useMock = false; // Should only be true for development
@@ -24817,15 +24818,16 @@ var logger = new hermes_1.default({ name: 'frontend' });
 var configureStore = function () {
     var devtools = window.__REDUX_DEVTOOLS_EXTENSION__;
     var _m = module;
+    var enhancer = Redux.compose(persistState());
     if (_m.hot && useMock) {
         logger.info('Loading rootReducerMock');
-        var store_1 = Redux.createStore(reducers_1.rootReducerMock, devtools && devtools());
+        var store_1 = Redux.createStore(reducers_1.rootReducerMock, devtools && devtools(), enhancer);
         _m.hot.accept('./reducers', function () {
             return store_1.replaceReducer(__webpack_require__(180));
         });
         return store_1;
     }
-    var store = Redux.createStore(reducers_1.rootReducer, devtools && devtools());
+    var store = Redux.createStore(reducers_1.rootReducer, devtools && devtools(), enhancer);
     return store;
 };
 var store = configureStore();
@@ -35531,7 +35533,7 @@ function compose() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(761);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_symbol_observable__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ActionTypes; });
 /* harmony export (immutable) */ __webpack_exports__["a"] = createStore;
@@ -39704,7 +39706,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(2);
 var classnames = __webpack_require__(8);
 var JsDiff = __webpack_require__(414);
-var s = __webpack_require__(750);
+var s = __webpack_require__(755);
 var Diff = function (_super) {
     __extends(Diff, _super);
     function Diff() {
@@ -39907,8 +39909,8 @@ var __assign = this && this.__assign || Object.assign || function (t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(2);
 var ReactDOM = __webpack_require__(39);
-var styles = __webpack_require__(751);
-var SimpleMDE = __webpack_require__(762);
+var styles = __webpack_require__(756);
+var SimpleMDE = __webpack_require__(767);
 var toolbar = ['strikethrough', 'heading', 'code', 'table', '|', 'preview', 'side-by-side', 'fullscreen', 'guide'];
 var reducers = {
     updateContent: function (value) {
@@ -39979,7 +39981,7 @@ exports.default = function (props) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(2);
-var s = __webpack_require__(752);
+var s = __webpack_require__(757);
 var Wrapper = function (_a) {
     var content = _a.content;
     return React.createElement("div", { className: s['top-level-wrapper'] }, React.createElement("div", { className: s['centered-wrapper'] }, content));
@@ -40696,7 +40698,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(2);
 var marked = __webpack_require__(196);
 var U = __webpack_require__(116);
-var styles = __webpack_require__(753);
+var styles = __webpack_require__(758);
 var Show = function (iteration) {
     return React.createElement("div", null, React.createElement("h1", { id: "iteration-title" }, iteration.title), React.createElement("h6", null, iteration.createdAt && U.formatDateStr(iteration.createdAt)), React.createElement("div", { id: "iteration-body" }, iteration.body && React.createElement("div", { className: styles.markdown, dangerouslySetInnerHTML: { __html: marked(iteration.body) } })));
 };
@@ -41062,7 +41064,7 @@ var auth_1 = __webpack_require__(70);
 var api = __webpack_require__(69);
 var routes_1 = __webpack_require__(45);
 var LoadingOverlay_1 = __webpack_require__(59);
-var s = __webpack_require__(754);
+var s = __webpack_require__(759);
 var SignIn = function (_super) {
     __extends(SignIn, _super);
     function SignIn() {
@@ -43155,7 +43157,7 @@ module.exports = Array.isArray || function (arr) {
 /* WEBPACK VAR INJECTION */(function(process) {
 var escapeStringRegexp = __webpack_require__(419);
 var ansiStyles = __webpack_require__(335);
-var stripAnsi = __webpack_require__(749);
+var stripAnsi = __webpack_require__(754);
 var hasAnsi = __webpack_require__(435);
 var supportsColor = __webpack_require__(373);
 var defineProps = Object.defineProperties;
@@ -43339,7 +43341,7 @@ module.exports = (function () {
 
 
 // Requires
-var Typo = __webpack_require__(760);
+var Typo = __webpack_require__(765);
 
 
 // Create function
@@ -49037,7 +49039,7 @@ module.exports = Array.isArray || function (arr) {
 // on the global object (window or self)
 //
 // Return that as the export for use in Webpack, Browserify etc.
-__webpack_require__(761);
+__webpack_require__(766);
 module.exports = self.fetch.bind(self);
 
 
@@ -71523,6 +71525,248 @@ module.exports = flattenChildren;
 
 /***/ }),
 /* 745 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports['default'] = createSlicer;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _getSubsetJs = __webpack_require__(746);
+
+var _getSubsetJs2 = _interopRequireDefault(_getSubsetJs);
+
+var _utilTypeOfJs = __webpack_require__(749);
+
+var _utilTypeOfJs2 = _interopRequireDefault(_utilTypeOfJs);
+
+/**
+ * @description
+ * createSlicer inspects the typeof paths and returns an appropriate slicer function.
+ *
+ * @param {String|String[]} [paths] The paths argument supplied to persistState.
+ *
+ * @return {Function} A slicer function, which returns the subset to store when called with Redux's store state.
+ */
+
+function createSlicer(paths) {
+  switch ((0, _utilTypeOfJs2['default'])(paths)) {
+    case 'void':
+      return function (state) {
+        return state;
+      };
+    case 'string':
+      return function (state) {
+        return (0, _getSubsetJs2['default'])(state, [paths]);
+      };
+    case 'array':
+      return function (state) {
+        return (0, _getSubsetJs2['default'])(state, paths);
+      };
+    default:
+      return console.error('Invalid paths argument, should be of type String, Array or Void');
+  }
+}
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 746 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * @description
+ * getSubset returns an object with the same structure as the original object passed in,
+ * but contains only the specified keys and only if that key has a truth-y value.
+ *
+ * @param {Object} obj The object from which to create a subset.
+ * @param {String[]} paths An array of (top-level) keys that should be included in the subset.
+ *
+ * @return {Object} An object that contains the specified keys with truth-y values
+ */
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = getSubset;
+
+function getSubset(obj, paths) {
+  var subset = {};
+
+  paths.forEach(function (key) {
+    var slice = obj[key];
+    if (slice) subset[key] = slice;
+  });
+
+  return subset;
+}
+
+module.exports = exports["default"];
+
+/***/ }),
+/* 747 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports['default'] = persistState;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _createSlicerJs = __webpack_require__(745);
+
+var _createSlicerJs2 = _interopRequireDefault(_createSlicerJs);
+
+var _utilMergeStateJs = __webpack_require__(748);
+
+var _utilMergeStateJs2 = _interopRequireDefault(_utilMergeStateJs);
+
+/**
+ * @description
+ * persistState is a Store Enhancer that syncs (a subset of) store state to localStorage.
+ *
+ * @param {String|String[]} [paths] Specify keys to sync with localStorage, if left undefined the whole store is persisted
+ * @param {Object} [config] Optional config object
+ * @param {String} [config.key="redux"] String used as localStorage key
+ * @param {Function} [config.slicer] (paths) => (state) => subset. A function that returns a subset
+ * of store state that should be persisted to localStorage
+ * @param {Function} [config.serialize=JSON.stringify] (subset) => serializedData. Called just before persisting to
+ * localStorage. Should transform the subset into a format that can be stored.
+ * @param {Function} [config.deserialize=JSON.parse] (persistedData) => subset. Called directly after retrieving
+ * persistedState from localStorage. Should transform the data into the format expected by your application
+ *
+ * @return {Function} An enhanced store
+ */
+
+function persistState(paths, config) {
+  var cfg = _extends({
+    key: 'redux',
+    merge: _utilMergeStateJs2['default'],
+    slicer: _createSlicerJs2['default'],
+    serialize: JSON.stringify,
+    deserialize: JSON.parse
+  }, config);
+
+  var key = cfg.key;
+  var merge = cfg.merge;
+  var slicer = cfg.slicer;
+  var serialize = cfg.serialize;
+  var deserialize = cfg.deserialize;
+
+  return function (next) {
+    return function (reducer, initialState, enhancer) {
+      if (typeof initialState === 'function' && typeof enhancer === 'undefined') {
+        enhancer = initialState;
+        initialState = undefined;
+      }
+
+      var persistedState = undefined;
+      var finalInitialState = undefined;
+
+      try {
+        persistedState = deserialize(localStorage.getItem(key));
+        finalInitialState = merge(initialState, persistedState);
+      } catch (e) {
+        console.warn('Failed to retrieve initialize state from localStorage:', e);
+      }
+
+      var store = next(reducer, finalInitialState, enhancer);
+      var slicerFn = slicer(paths);
+
+      store.subscribe(function () {
+        var state = store.getState();
+        var subset = slicerFn(state);
+
+        try {
+          localStorage.setItem(key, serialize(subset));
+        } catch (e) {
+          console.warn('Unable to persist state to localStorage:', e);
+        }
+      });
+
+      return store;
+    };
+  };
+}
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 748 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports["default"] = mergeState;
+
+function mergeState(initialState, persistedState) {
+  return persistedState ? _extends({}, initialState, persistedState) : initialState;
+}
+
+module.exports = exports["default"];
+
+/***/ }),
+/* 749 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports['default'] = typeOf;
+var _isArray = Array.isArray || (Array.isArray = function (a) {
+  return '' + a !== a && ({}).toString.call(a) === '[object Array]';
+});
+
+/**
+ * @description
+ * typeof method that
+ * 1. groups all false-y & empty values as void
+ * 2. distinguishes between object and array
+ *
+ * @param {*} thing The thing to inspect
+ *
+ * @return {String} Actionable type classification
+ */
+
+function typeOf(thing) {
+  if (!thing) return 'void';
+
+  if (_isArray(thing)) {
+    if (!thing.length) return 'void';
+    return 'array';
+  }
+
+  return typeof thing;
+}
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 750 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -71578,7 +71822,7 @@ function applyMiddleware() {
 }
 
 /***/ }),
-/* 746 */
+/* 751 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -71632,7 +71876,7 @@ function bindActionCreators(actionCreators, dispatch) {
 }
 
 /***/ }),
-/* 747 */
+/* 752 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -71772,7 +72016,7 @@ function combineReducers(reducers) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 748 */
+/* 753 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -71822,7 +72066,7 @@ CodeMirror.commands.shiftTabAndUnindentMarkdownList = function (cm) {
 
 
 /***/ }),
-/* 749 */
+/* 754 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71835,7 +72079,7 @@ module.exports = function (str) {
 
 
 /***/ }),
-/* 750 */
+/* 755 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -71866,7 +72110,7 @@ if(false) {
 }
 
 /***/ }),
-/* 751 */
+/* 756 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -71897,7 +72141,7 @@ if(false) {
 }
 
 /***/ }),
-/* 752 */
+/* 757 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -71928,7 +72172,7 @@ if(false) {
 }
 
 /***/ }),
-/* 753 */
+/* 758 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -71959,7 +72203,7 @@ if(false) {
 }
 
 /***/ }),
-/* 754 */
+/* 759 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -71990,7 +72234,7 @@ if(false) {
 }
 
 /***/ }),
-/* 755 */
+/* 760 */
 /***/ (function(module, exports) {
 
 
@@ -72085,14 +72329,14 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 756 */
+/* 761 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(757);
+module.exports = __webpack_require__(762);
 
 
 /***/ }),
-/* 757 */
+/* 762 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72102,7 +72346,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ponyfill = __webpack_require__(758);
+var _ponyfill = __webpack_require__(763);
 
 var _ponyfill2 = _interopRequireDefault(_ponyfill);
 
@@ -72128,7 +72372,7 @@ exports['default'] = result;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(55), __webpack_require__(155)(module)))
 
 /***/ }),
-/* 758 */
+/* 763 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72157,7 +72401,7 @@ function symbolObservablePonyfill(root) {
 };
 
 /***/ }),
-/* 759 */
+/* 764 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! tether 1.4.0 */
@@ -73978,7 +74222,7 @@ return Tether;
 
 
 /***/ }),
-/* 760 */
+/* 765 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__dirname, Buffer) {/* globals chrome: false */
@@ -74241,7 +74485,7 @@ Typo.prototype = {
 		}
 		else if (true) {
 			// Node.js
-			var fs = __webpack_require__(763);
+			var fs = __webpack_require__(768);
 			
 			try {
 				if (fs.existsSync(path)) {
@@ -74915,7 +75159,7 @@ if (true) {
 /* WEBPACK VAR INJECTION */}.call(exports, "/", __webpack_require__(370).Buffer))
 
 /***/ }),
-/* 761 */
+/* 766 */
 /***/ (function(module, exports) {
 
 (function(self) {
@@ -75382,7 +75626,7 @@ if (true) {
 
 
 /***/ }),
-/* 762 */
+/* 767 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75401,7 +75645,7 @@ if (true) {
 
 var CodeMirror = __webpack_require__(18)
 __webpack_require__(378)
-__webpack_require__(748)
+__webpack_require__(753)
 __webpack_require__(375)
 __webpack_require__(187)
 __webpack_require__(186)
@@ -77554,7 +77798,7 @@ module.exports = SimpleMDE
 
 
 /***/ }),
-/* 763 */
+/* 768 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
