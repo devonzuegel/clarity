@@ -12,9 +12,8 @@ const isLoginProtected = path => browser => {
 
 const logIn = browser =>
   browser
-    .url(`${url}/posts`)
     // App must be running in a test environment to bypass Facebook auth
-    .click(nav.logIn)
+    .url(`${url}/auth/facebook`)
     // Set username
     .waitForElementVisible('input#set-username__username', 1000)
     .setValue('input#set-username__username', randomStr())
