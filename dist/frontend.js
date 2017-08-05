@@ -39860,14 +39860,11 @@ var NavBtn = function (_a) {
         name = _a.name;
     return React.createElement("a", { href: url, id: "nav--" + name }, React.createElement("button", { className: "pt-button pt-minimal pt-icon-" + name }, title));
 };
-var Brand = function () {
-    return React.createElement("div", { className: "pt-navbar-group pt-align-left" }, React.createElement("div", { className: "pt-navbar-heading" }, "Clarity"));
-};
 var LayoutComponent = function (_a) {
     var displayName = _a.displayName,
         username = _a.username,
         children = _a.children;
-    return React.createElement("div", null, React.createElement("nav", { style: { display: 'flow-root', height: '48px', marginBottom: '25px' } }, React.createElement(Brand, null), React.createElement("div", { className: "pt-navbar-group pt-align-right" }, displayName && React.createElement("div", null, React.createElement(NavBtn, { title: "New post", url: routes_1.urls.newPost, name: "plus" }), React.createElement(NavBtn, { title: displayName, url: routes_1.urls.user(username), name: "user" }), React.createElement("span", { className: "pt-navbar-divider" })), displayName ? React.createElement(NavBtn, { title: "Sign out", url: routes_1.urls.signout, name: "log-out" }) : React.createElement(NavBtn, { title: "Sign in", url: routes_1.urls.fbSignin, name: "log-in" }))), React.createElement("main", null, children));
+    return React.createElement("div", null, React.createElement("nav", { style: { display: 'flow-root', height: '48px', marginBottom: '25px' } }, displayName && React.createElement("div", { className: "pt-navbar-group pt-align-right" }, React.createElement("div", null, React.createElement(NavBtn, { title: "New post", url: routes_1.urls.newPost, name: "plus" }), React.createElement(NavBtn, { title: displayName, url: routes_1.urls.user(username), name: "user" }), React.createElement("span", { className: "pt-navbar-divider" })), React.createElement(NavBtn, { title: "Sign out", url: routes_1.urls.signout, name: "log-out" }))), React.createElement("main", { style: { paddingBottom: '150px' } }, children));
 };
 exports.default = LayoutComponent;
 
@@ -40081,9 +40078,19 @@ exports.default = New_1.default;
 "use strict";
 
 
+var __assign = this && this.__assign || Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(2);
 var Show_1 = __webpack_require__(364);
-exports.default = Show_1.default;
+exports.default = function (props) {
+    return React.createElement(Show_1.default, __assign({}, props));
+};
 
 /***/ }),
 /* 347 */
@@ -40822,8 +40829,11 @@ var __generator = this && this.__generator || function (thisArg, body) {
         }, trys: [], ops: [] },
         f,
         y,
-        t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+        t,
+        g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+        return this;
+    }), g;
     function verb(n) {
         return function (v) {
             return step([n, v]);
@@ -40913,9 +40923,7 @@ var Post = function (_super) {
                         return [3 /*break*/, 3];
                     case 2:
                         e_1 = _a.sent();
-                        this.setState(function () {
-                            return { errorMsg: "Sorry! That post doesn't exist." };
-                        });
+                        this.setState(reducers.nonexistentPostError);
                         return [3 /*break*/, 3];
                     case 3:
                         this.setState(reducers.stopLoading);
@@ -40961,11 +40969,11 @@ var Post = function (_super) {
                 return _this.setState(fn);
             };
         };
-        return React.createElement("div", null, this.state.errorMsg && React.createElement("div", { className: "pt-callout pt-intent-danger" }, this.state.errorMsg), !this.state.errorMsg && React.createElement("div", null, React.createElement(Timeline_1.default, { iterations: iterations, isSelected: function (i) {
+        return React.createElement("div", null, this.state.errorMsg && React.createElement("div", { className: "pt-callout pt-intent-danger" }, this.state.errorMsg), !this.state.errorMsg && React.createElement("div", null, !this.props.readonly && React.createElement(Timeline_1.default, { iterations: iterations, isSelected: function (i) {
                 return R.equals(_this.state.selected, i);
             }, select: function (i) {
-                return _this.setState(reducers.select(i));
-            }, startRevision: setState(reducers.select(nIterations + 1, true)), viewHistory: setState(reducers.select(nIterations)), showDiff: function (i1, i2) {
+                return _this.setState(reducers.select(i, false));
+            }, startRevision: setState(reducers.select(nIterations + 1, true)), viewHistory: setState(reducers.select(nIterations, false)), showDiff: function (i1, i2) {
                 return setState(reducers.showDiff(i1, i2));
             } }), this.body()));
     };
@@ -41000,6 +41008,11 @@ var __assign = this && this.__assign || Object.assign || function (t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.nonexistentPostError = function (_) {
+    return {
+        errorMsg: "Sorry! That post doesn't exist."
+    };
+};
 exports.stopLoading = function (prevState) {
     return __assign({}, prevState, { loading: false });
 };

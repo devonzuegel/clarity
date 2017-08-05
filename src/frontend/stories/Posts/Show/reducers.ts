@@ -1,6 +1,10 @@
 import {IterationSchema} from '~/server/db/models/iteration'
 import {IState} from './IState'
 
+export const nonexistentPostError = (_: IState) => ({
+  errorMsg: `Sorry! That post doesn't exist.`,
+})
+
 export const stopLoading = (prevState: IState) => ({
   ...prevState,
   loading: false,
@@ -23,7 +27,7 @@ export const addIteration = (iteration: IterationSchema) => (prev: IState) => {
   }
 }
 
-export const select = (index: number, editing?: boolean) => (prev: IState) => ({
+export const select = (index: number, editing: boolean) => (prev: IState) => ({
   ...prev,
   editing,
   selected: index,

@@ -21,7 +21,9 @@ const _dummy = {
   title: '',
 }
 
-export class Post extends React.Component<{postId: number}, IState> {
+type IProps = {postId: number; readonly?: boolean}
+
+export class Post extends React.Component<IProps, IState> {
   state = {
     loading: true,
     iterations: undefined,
@@ -36,7 +38,7 @@ export class Post extends React.Component<{postId: number}, IState> {
       if (iterations.length === 0) throw Error('No iterations')
       this.setState(reducers.updatePostsList(iterations))
     } catch (e) {
-      this.setState(() => ({errorMsg: `Sorry! That post doesn't exist.`}))
+      this.setState(reducers.nonexistentPostError)
     }
     this.setState(reducers.stopLoading)
   }
@@ -88,14 +90,15 @@ export class Post extends React.Component<{postId: number}, IState> {
           </div>}
         {!this.state.errorMsg &&
           <div>
-            <Timeline
-              iterations={iterations}
-              isSelected={i => R.equals(this.state.selected, i)}
-              select={i => this.setState(reducers.select(i))}
-              startRevision={setState(reducers.select(nIterations + 1, true))}
-              viewHistory={setState(reducers.select(nIterations))}
-              showDiff={(i1, i2) => setState(reducers.showDiff(i1, i2))}
-            />
+            {!this.props.readonly &&
+              <Timeline
+                iterations={iterations}
+                isSelected={i => R.equals(this.state.selected, i)}
+                select={i => this.setState(reducers.select(i, false))}
+                startRevision={setState(reducers.select(nIterations + 1, true))}
+                viewHistory={setState(reducers.select(nIterations, false))}
+                showDiff={(i1, i2) => setState(reducers.showDiff(i1, i2))}
+              />}
             {this.body()}
           </div>}
       </div>
