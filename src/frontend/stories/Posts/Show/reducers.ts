@@ -23,7 +23,7 @@ export const addIteration = (iteration: IterationSchema) => (prev: IState) => {
   }
 }
 
-export const select = (index: number, editing?: boolean) => (prev: IState) => ({
+export const select = (index: number, editing: boolean) => (prev: IState) => ({
   ...prev,
   editing,
   selected: index,

@@ -91,9 +91,9 @@ export class Post extends React.Component<{postId: number}, IState> {
             <Timeline
               iterations={iterations}
               isSelected={i => R.equals(this.state.selected, i)}
-              select={i => this.setState(reducers.select(i))}
+              select={i => this.setState(reducers.select(i, false))}
               startRevision={setState(reducers.select(nIterations + 1, true))}
-              viewHistory={setState(reducers.select(nIterations))}
+              viewHistory={setState(reducers.select(nIterations, false))}
               showDiff={(i1, i2) => setState(reducers.showDiff(i1, i2))}
             />
             {this.body()}
