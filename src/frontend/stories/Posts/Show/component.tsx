@@ -21,7 +21,7 @@ const _dummy = {
   title: '',
 }
 
-type IProps = {postId: number; readonly?: boolean}
+type IProps = {postId: number; readonly: boolean}
 
 export class Post extends React.Component<IProps, IState> {
   state = {
