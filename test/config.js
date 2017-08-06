@@ -6,9 +6,7 @@ if (!env) {
   throw Error('Please define NODE_ENV')
 }
 
-const url = env === 'ci'
-  ? 'http://clarity-tests.herokuapp.com'
-  : `http://${host}:${port}`
+const url = `http://${host}:${port}`
 
 const nav = {
   logIn: 'a#nav--log-in',

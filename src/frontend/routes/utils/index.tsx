@@ -18,7 +18,8 @@ export const renderWithLayout = (component: JSX.Element) => {
 }
 
 export const isLoggedIn = (_context: PageJS.Context, next: () => any) => {
-  const fbId = store.getState().authReducer.user.facebookId
+  const user = store.getState().authReducer.user
+  const fbId = user && user.facebookId
   if (R.isNil(fbId)) {
     renderWithLayout(<NotFoundPage />)
   } else {
