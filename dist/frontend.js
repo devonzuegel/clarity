@@ -19846,7 +19846,8 @@ exports.renderWithLayout = function (component) {
     return render_1.default(layout);
 };
 exports.isLoggedIn = function (_context, next) {
-    var fbId = store_1.default.getState().authReducer.user.facebookId;
+    var user = store_1.default.getState().authReducer.user;
+    var fbId = user && user.facebookId;
     if (R.isNil(fbId)) {
         exports.renderWithLayout(React.createElement(NotFound_1.default, null));
     } else {
@@ -45238,7 +45239,7 @@ exports = module.exports = __webpack_require__(60)(true);
 
 
 // module
-exports.push([module.i, ".top-level-wrapper___5dEM5 {\n  background-color: #F5F8FA;\n  line-height: 1.5em;\n  min-height: 100%;\n}\n\n.centered-wrapper___5cQ2a {\n  padding: 8px 24px;\n  margin: auto;\n  max-width: 950px;\n}\n", "", {"version":3,"sources":["/Users/devonzuegel/dev/clarity/src/frontend/components/Wrapper/styles.css"],"names":[],"mappings":"AAAA;EACE,0BAA0B;EAC1B,mBAAmB;EACnB,iBAAiB;CAClB;;AAED;EACE,kBAAkB;EAClB,aAAa;EACb,iBAAiB;CAClB","file":"styles.css","sourcesContent":[".top-level-wrapper {\n  background-color: #F5F8FA;\n  line-height: 1.5em;\n  min-height: 100%;\n}\n\n.centered-wrapper {\n  padding: 8px 24px;\n  margin: auto;\n  max-width: 950px;\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, ".top-level-wrapper___5dEM5 {\n  background-color: #EBF1F5;\n  line-height: 1.5em;\n  min-height: 100%;\n}\n\n.centered-wrapper___5cQ2a {\n  padding: 8px 24px;\n  margin: auto;\n  max-width: 950px;\n}\n", "", {"version":3,"sources":["/Users/devonzuegel/dev/clarity/src/frontend/components/Wrapper/styles.css"],"names":[],"mappings":"AAAA;EACE,0BAA0B;EAC1B,mBAAmB;EACnB,iBAAiB;CAClB;;AAED;EACE,kBAAkB;EAClB,aAAa;EACb,iBAAiB;CAClB","file":"styles.css","sourcesContent":[".top-level-wrapper {\n  background-color: #EBF1F5;\n  line-height: 1.5em;\n  min-height: 100%;\n}\n\n.centered-wrapper {\n  padding: 8px 24px;\n  margin: auto;\n  max-width: 950px;\n}\n"],"sourceRoot":""}]);
 
 // exports
 exports.locals = {

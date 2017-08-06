@@ -1,7 +1,7 @@
 @import '../variables.css';
 
 .top-level-wrapper {
-  background-color: var(--light-grey5);
+  background-color: var(--light-grey4);
   line-height: 1.5em;
   min-height: 100%;
 }
