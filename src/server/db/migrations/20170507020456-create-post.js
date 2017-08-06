@@ -17,6 +17,12 @@ module.exports = {
           onDelete: 'cascade',
         },
       },
+      slug: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        defaultValue: Sequelize.UUIDV4,
+        unique: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

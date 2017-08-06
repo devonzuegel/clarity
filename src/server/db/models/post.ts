@@ -26,13 +26,19 @@ export default (sequelize: Sequelize): IPostModel => {
       primaryKey: true,
       type: SequelizeStatic.INTEGER,
     },
+    userId: {
+      allowNull: false,
+      type: SequelizeStatic.INTEGER,
+    },
+    slug: {
+      allowNull: false,
+      defaultValue: SequelizeStatic.UUIDV4,
+      type: SequelizeStatic.STRING,
+      unique: true,
+    },
     createdAt: {
       allowNull: false,
       type: SequelizeStatic.DATE,
-    },
-    userId: {
-      type: SequelizeStatic.INTEGER,
-      allowNull: false,
     },
   }
   const Post = sequelize.define<PostInstance, PostAttributes>('Post', Schema, {
