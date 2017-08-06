@@ -5,6 +5,7 @@ import {IUserModel} from './user'
 export interface PostAttributes {
   userId: number
   createdAt?: Date
+  slug?: string
   // NOTE: updatedAt is not part of the Post interface
 }
 

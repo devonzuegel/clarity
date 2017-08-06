@@ -14,8 +14,7 @@ const sequelizeFailure = (reject: Function) => (
   error: Sequelize.ValidationError
 ) => {
   logger.warn(error.toString()) // Log full error
-  reject(error) // Return only the descriptive .errors array
-  // reject(error.errors[0]) // Return only the descriptive .errors array
+  reject(error.toString()) // Return only the descriptive .errors array
 }
 
 type IIteration = {body?: string; title: string}
@@ -36,23 +35,35 @@ const validateIteration = (
 
 const initPost = (
   resolve: Function,
+  reject: Function,
   userId: number,
-  iteration: IIteration
-) => async (t: Sequelize.Transaction) => {
-  const post: PostInstance = await models.Post.create({userId}, {transaction: t})
-  await models.Iteration.create({...iteration, postId: post.get('id')})
-  resolve(post)
+  iteration: IIteration,
+  slug?: string
+) => (t: Sequelize.Transaction) => {
+  return models.Post
+    .create({userId, slug}, {transaction: t})
+    .then(async post => {
+      await models.Iteration.create({...iteration, postId: post.get('id')})
+      resolve(post)
+    })
+    .catch((reason: {errors: {message: string}[]}) => {
+      const errorMap: {[v: string]: string} = {
+        'slug must be unique': 'Sorry, that slug is taken!',
+      }
+      const m = reason.errors && reason.errors[0].message
+      reject(errorMap[m] || 'Something went wrong.')
+    })
 }
 
 export class PostService extends MockPostService {
-  create(user: UserInstance, iteration: IIteration) {
+  create(user: UserInstance, iteration: IIteration, slug?: string) {
     return new Promise<PostInstance>((resolve: Function, reject: Function) => {
       if (!user || !user.get('id')) {
         return reject('Please provide a user.')
       }
       validateIteration(iteration, reject, () => {
         return sequelize
-          .transaction(initPost(resolve, user.get('id'), iteration))
+          .transaction(initPost(resolve, reject, user.get('id'), iteration, slug))
           .then((post: PostInstance) => resolve(post))
           .catch((err: Error) => reject(err))
       })
