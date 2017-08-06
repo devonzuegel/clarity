@@ -50,8 +50,8 @@ const tasks = {
   /****************************************************************************/
 
   'build:prod': () => {
-    runCmd('webpack --config webpack/frontend/production.ts')
-    runCmd('webpack --config webpack/server/production.ts')
+    runCmd('webpack --config webpack/frontend/production.js')
+    runCmd('webpack --config webpack/server/production.js')
   },
 
   'start:prod': () => {
