@@ -19846,7 +19846,8 @@ exports.renderWithLayout = function (component) {
     return render_1.default(layout);
 };
 exports.isLoggedIn = function (_context, next) {
-    var fbId = store_1.default.getState().authReducer.user.facebookId;
+    var user = store_1.default.getState().authReducer.user;
+    var fbId = user && user.facebookId;
     if (R.isNil(fbId)) {
         exports.renderWithLayout(React.createElement(NotFound_1.default, null));
     } else {
