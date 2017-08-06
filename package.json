@@ -9,7 +9,7 @@
     "build": "node tasks build",
     "build:prod": "node tasks build:prod",
     "lint": "node tasks lint",
-    "postinstall": "yarn build:prod",
+    "postinstall": "npm install -g ts-node && yarn build:prod",
     "style": "node tasks style",
     "test": "node tasks test",
     "test:ci": "node tasks test:ci",

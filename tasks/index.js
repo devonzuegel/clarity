@@ -50,9 +50,8 @@ const tasks = {
   /****************************************************************************/
 
   'build:prod': () => {
-    runCmd('yarn add html-webpack-plugin')
-    runCmd('webpack --config webpack/frontend/production.js')
-    runCmd('webpack --config webpack/server/production.js')
+    runCmd('webpack --config webpack/frontend/production.ts')
+    runCmd('webpack --config webpack/server/production.ts')
   },
 
   'start:prod': () => {
