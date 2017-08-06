@@ -1,7 +1,7 @@
 {
   "name": "clarity",
   "scripts": {
-    "postdeploy": "yarn build:prod"
+    "postdeploy": "yarn && yarn build:prod"
   },
   "env": {
     "FB_CALLBACK_URL": {
@@ -35,12 +35,8 @@
       "required": true
     }
   },
-  "formation": {
-  },
-  "addons": [
-    "newrelic",
-    "heroku-postgresql"
-  ],
+  "formation": {},
+  "addons": ["newrelic", "heroku-postgresql"],
   "buildpacks": [
     {
       "url": "heroku/nodejs"
