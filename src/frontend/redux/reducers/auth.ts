@@ -3,7 +3,7 @@ import {IAction} from '~/frontend/redux/actions/auth'
 import profileMock from '~/server/service/authentication/profile.mock'
 
 interface IAuthState {
-  user: {
+  user?: {
     facebookId?: string
     displayName?: string
     username?: string
@@ -33,7 +33,7 @@ const reducer = (_initialState: IAuthState) => (
     case types.SIGN_OUT:
       return {
         ...state,
-        user: {facebookId: null},
+        user: null,
       }
 
     default:
@@ -46,7 +46,7 @@ const reducer = (_initialState: IAuthState) => (
  ***************************************************************************/
 
 export const authReducer = reducer({
-  user: {},
+  user: undefined,
 })
 
 /***************************************************************************
