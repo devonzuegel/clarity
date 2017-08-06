@@ -1,0 +1,49 @@
+{
+  "name": "clarity",
+  "scripts": {
+    "postdeploy": "yarn build:prod"
+  },
+  "env": {
+    "FB_CALLBACK_URL": {
+      "required": true
+    },
+    "FB_CLIENT_ID": {
+      "required": true
+    },
+    "FB_CLIENT_SECRET": {
+      "required": true
+    },
+    "NEW_RELIC_APP_NAME": {
+      "required": true
+    },
+    "NEW_RELIC_LICENSE_KEY": {
+      "required": true
+    },
+    "NEW_RELIC_LOG": {
+      "required": true
+    },
+    "NEW_RELIC_NO_CONFIG_FILE": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    },
+    "SENTRY_DSN": {
+      "required": true
+    },
+    "SENTRY_DSN_PUBLIC": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "newrelic",
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
