@@ -1,1 +1,1 @@
-web: yarn build:prod && yarn start:prod
+web: yarn add ts-node && yarn build:prod && yarn start:prod
