@@ -1397,13 +1397,19 @@ exports.default = function (sequelize) {
             primaryKey: true,
             type: SequelizeStatic.INTEGER
         },
+        userId: {
+            allowNull: false,
+            type: SequelizeStatic.INTEGER
+        },
+        slug: {
+            allowNull: false,
+            defaultValue: SequelizeStatic.UUIDV4,
+            type: SequelizeStatic.STRING,
+            unique: true
+        },
         createdAt: {
             allowNull: false,
             type: SequelizeStatic.DATE
-        },
-        userId: {
-            type: SequelizeStatic.INTEGER,
-            allowNull: false
         }
     };
     var Post = sequelize.define('Post', Schema, {
@@ -2258,8 +2264,11 @@ var __generator = this && this.__generator || function (thisArg, body) {
         }, trys: [], ops: [] },
         f,
         y,
-        t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+        t,
+        g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+        return this;
+    }), g;
     function verb(n) {
         return function (v) {
             return step([n, v]);
@@ -2314,8 +2323,7 @@ var logger = new hermes_1.default({ name: 'server' });
 var sequelizeFailure = function (reject) {
     return function (error) {
         logger.warn(error.toString()); // Log full error
-        reject(error); // Return only the descriptive .errors array
-        // reject(error.errors[0]) // Return only the descriptive .errors array
+        reject(error.toString()); // Return only the descriptive .errors array
     };
 };
 var validateIteration = function (iteration, reject, cb) {
@@ -2327,23 +2335,27 @@ var validateIteration = function (iteration, reject, cb) {
     }
     cb();
 };
-var initPost = function (resolve, userId, iteration) {
+var initPost = function (resolve, reject, userId, iteration, slug) {
     return function (t) {
-        return __awaiter(_this, void 0, void 0, function () {
-            var post;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        return [4 /*yield*/, db_1.models.Post.create({ userId: userId }, { transaction: t })];
-                    case 1:
-                        post = _a.sent();
-                        return [4 /*yield*/, db_1.models.Iteration.create(__assign({}, iteration, { postId: post.get('id') }))];
-                    case 2:
-                        _a.sent();
-                        resolve(post);
-                        return [2 /*return*/];
-                }
+        return db_1.models.Post.create({ userId: userId, slug: slug }, { transaction: t }).then(function (post) {
+            return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            return [4 /*yield*/, db_1.models.Iteration.create(__assign({}, iteration, { postId: post.get('id') }))];
+                        case 1:
+                            _a.sent();
+                            resolve(post);
+                            return [2 /*return*/];
+                    }
+                });
             });
+        }).catch(function (reason) {
+            var errorMap = {
+                'slug must be unique': 'Sorry, that slug is taken!'
+            };
+            var m = reason.errors && reason.errors[0].message;
+            reject(errorMap[m] || 'Something went wrong.');
         });
     };
 };
@@ -2352,13 +2364,13 @@ var PostService = function (_super) {
     function PostService() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    PostService.prototype.create = function (user, iteration) {
+    PostService.prototype.create = function (user, iteration, slug) {
         return new Promise(function (resolve, reject) {
             if (!user || !user.get('id')) {
                 return reject('Please provide a user.');
             }
             validateIteration(iteration, reject, function () {
-                return db_1.sequelize.transaction(initPost(resolve, user.get('id'), iteration)).then(function (post) {
+                return db_1.sequelize.transaction(initPost(resolve, reject, user.get('id'), iteration, slug)).then(function (post) {
                     return resolve(post);
                 }).catch(function (err) {
                     return reject(err);
