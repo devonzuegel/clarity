@@ -34,7 +34,7 @@ export const Schema = {
   type: new G.GraphQLList(Type),
   args: {
     id: {type: G.GraphQLID},
-    facebookId: {type: G.GraphQLString},
+    slug: {type: G.GraphQLString},
   },
   resolve: postsResolver(),
 }

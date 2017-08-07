@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import ShowPost from '~/frontend/stories/Posts/Show'
 
-const Page = (props: {postId: number; readonly: boolean}) => <ShowPost {...props} />
+const Page = (props: {slug: string; readonly: boolean}) => <ShowPost {...props} />
 
 const mapStateToProps = (state: {authReducer: {user?: any}}) => ({
   readonly: !state.authReducer.user,
@@ -12,8 +12,8 @@ const mapStateToProps = (state: {authReducer: {user?: any}}) => ({
 const mergeProps = (
   stateProps: {readonly: boolean},
   _: any,
-  ownProps: {postId: number}
-): {postId: number; readonly?: boolean} => ({
+  ownProps: {slug: string}
+): {slug: string; readonly?: boolean} => ({
   ...stateProps,
   ...ownProps,
 })
