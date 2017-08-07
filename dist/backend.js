@@ -873,7 +873,7 @@ exports.Schema = {
     type: new G.GraphQLList(exports.Type),
     args: {
         id: { type: G.GraphQLID },
-        facebookId: { type: G.GraphQLString }
+        slug: { type: G.GraphQLString }
     },
     resolve: posts_1.default()
 };
@@ -1606,8 +1606,11 @@ var __generator = this && this.__generator || function (thisArg, body) {
         }, trys: [], ops: [] },
         f,
         y,
-        t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+        t,
+        g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+        return this;
+    }), g;
     function verb(n) {
         return function (v) {
             return step([n, v]);
@@ -1734,14 +1737,14 @@ router.post('/create', function (req, res) {
         });
     });
 });
-router.get('/:id', function (req, res) {
+router.get('/:slug', function (req, res) {
     return __awaiter(_this, void 0, void 0, function () {
         var iterations, e_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2,, 3]);
-                    return [4 /*yield*/, post_1.postService.iterations(req.params.id)];
+                    return [4 /*yield*/, post_1.postService.iterations(req.params.slug)];
                 case 1:
                     iterations = _a.sent();
                     res.status(200).json(iterations);
