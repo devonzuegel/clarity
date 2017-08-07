@@ -1737,31 +1737,9 @@ router.post('/create', function (req, res) {
         });
     });
 });
-router.get('/:slug', function (req, res) {
-    return __awaiter(_this, void 0, void 0, function () {
-        var iterations, e_4;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2,, 3]);
-                    return [4 /*yield*/, post_1.postService.iterations(req.params.slug)];
-                case 1:
-                    iterations = _a.sent();
-                    res.status(200).json(iterations);
-                    return [3 /*break*/, 3];
-                case 2:
-                    e_4 = _a.sent();
-                    requests_1.jsonError(res)(e_4);
-                    return [3 /*break*/, 3];
-                case 3:
-                    return [2 /*return*/];
-            }
-        });
-    });
-});
 router.post('/:id/iterate', function (req, res) {
     return __awaiter(_this, void 0, void 0, function () {
-        var postId, iteration, e_5;
+        var postId, iteration, e_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -1773,8 +1751,8 @@ router.post('/:id/iterate', function (req, res) {
                     res.status(200).json(iteration);
                     return [3 /*break*/, 3];
                 case 2:
-                    e_5 = _a.sent();
-                    requests_1.jsonError(res)(e_5);
+                    e_4 = _a.sent();
+                    requests_1.jsonError(res)(e_4);
                     return [3 /*break*/, 3];
                 case 3:
                     return [2 /*return*/];
