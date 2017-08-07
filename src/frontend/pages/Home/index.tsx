@@ -20,7 +20,12 @@ class ShowUser extends React.Component<{}, IState> {
 
   retrieveData() {
     graphql(
-      `{posts {id, slug, iterations {title,body,createdAt}}}`
+      `{posts {
+        id,
+        slug,
+        iterations {title,body,createdAt}
+        user {username}
+      }}`
     ).then((result: {data: {posts: IPost[]}}) => {
       const posts = result.data.posts
       this.setState({posts, loading: false})
