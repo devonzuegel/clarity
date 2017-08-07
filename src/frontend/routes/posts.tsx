@@ -16,7 +16,7 @@ export const routes = () => {
     U.renderWithLayout(<NewPostPage />)
   })
 
-  page('/posts/:id', ({params}) => {
-    U.renderWithLayout(<PostPage postId={params.id} />)
+  page('/posts/:slug', ({params}) => {
+    U.renderWithLayout(<PostPage slug={params.slug} />)
   })
 }

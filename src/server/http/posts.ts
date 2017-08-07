@@ -42,9 +42,9 @@ router.post('/create', async (req: express.Request, res: express.Response) => {
   }
 })
 
-router.get('/:id', async (req: express.Request, res: express.Response) => {
+router.get('/:slug', async (req: express.Request, res: express.Response) => {
   try {
-    const iterations = await postService.iterations(req.params.id)
+    const iterations = await postService.iterations(req.params.slug)
     res.status(200).json(iterations)
   } catch (e) {
     jsonError(res)(e)

@@ -23,7 +23,7 @@ class ShowUser extends React.Component<{username: string}, IState> {
   retrieveData() {
     graphql(
       `{users(username:"${this.props.username}") {
-          posts {id, iterations {title,body,createdAt}}
+          posts {id, slug, iterations {title,body,createdAt}}
         }}`
     ).then((result: {data: {users: IUser[]}}) => {
       if (result.data.users.length === 0) {

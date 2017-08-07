@@ -25,8 +25,8 @@ export const signout = () => sendRequest(get('/api/signout'))
 
 export const getPosts = (): Promise<PostSchema[]> => sendRequest(get('/api/posts'))
 
-export const getIterations = (postId: number): Promise<IterationSchema[]> =>
-  sendRequest(get(`/api/posts/${postId}`))
+export const getIterations = (slug: string): Promise<IterationSchema[]> =>
+  sendRequest(get(`/api/posts/${slug}`))
 
 export const iterate = (
   postId: number,

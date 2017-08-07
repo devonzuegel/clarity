@@ -2,26 +2,20 @@ import * as R from 'ramda'
 import * as React from 'react'
 
 import {IterationSchema} from '~/server/db/models/iteration'
+import {graphql} from '~/../utils/api/responses'
 
-import * as api from '~/frontend/api'
 import Diff from '~/frontend/components/Diff'
 import LoadingOverlay from '~/frontend/components/LoadingOverlay'
 
 import {IState} from './IState'
 import * as reducers from './reducers'
+import {IPost} from '~/frontend/components/Post'
 import Iteration from './Iteration'
 import Edit from './Edit'
 import History from './History'
 import Timeline from './Timeline'
 
-const _dummy = {
-  // Force compiler to accept the selected iteration.
-  createdAt: '',
-  postId: -1,
-  title: '',
-}
-
-type IProps = {postId: number; readonly: boolean}
+type IProps = {slug: string; readonly: boolean}
 
 export class Post extends React.Component<IProps, IState> {
   state = {
@@ -34,10 +28,16 @@ export class Post extends React.Component<IProps, IState> {
 
   async componentWillMount() {
     try {
+      const result: {data: {posts: IPost[]}} = await graphql(
+        `{posts(slug:"${this.props.slug}") {
+          id,
+          iterations {title,body,createdAt, postId}
+        }}`
+      )
+      if (result.data.posts.length === 0) throw Error()
       // TODO: replace with GraphQL call, and remember to remove
       // endpoint from backend too.
-      const iterations = await api.getIterations(this.props.postId)
-      if (iterations.length === 0) throw Error('No iterations')
+      const iterations = result.data.posts[0].iterations
       this.setState(reducers.updatePostsList(iterations))
     } catch (e) {
       this.setState(reducers.nonexistentPostError)
@@ -65,10 +65,10 @@ export class Post extends React.Component<IProps, IState> {
 
     if (!this.state.editing) {
       const selected = iterations[this.state.selected]
-      return <Iteration {...selected || _dummy} />
+      return <Iteration {...selected} />
     }
 
-    const lastIteration = R.last(iterations) || _dummy
+    const lastIteration = R.last(iterations)
     return (
       <Edit
         iteration={lastIteration}
