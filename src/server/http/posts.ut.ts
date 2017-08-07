@@ -61,32 +61,6 @@ describe('Posts HTTP', () => {
     })
   })
 
-  describe('/api/posts/:id', () => {
-    const [existentId, nonexistentId] = [1, 2]
-
-    const getIterations = async (id: number) =>
-      (await supertest(app).get(`/api/posts/${id}`)).body
-
-    it(`retrieves the post's iterations`, async () => {
-      expect(await getIterations(existentId)).toEqual([
-        {dataValues: {postId: '1', title: 'Post 1, with no body'}},
-        {
-          dataValues: {
-            postId: '1',
-            title: 'Post 2, with body',
-            body: 'Body of post 2',
-          },
-        },
-      ])
-    })
-
-    it(`error message when id doesn't correspond to a post`, async () => {
-      expect(await getIterations(nonexistentId)).toEqual({
-        message: 'Cannot find post with id 2',
-      })
-    })
-  })
-
   describe('/api/posts/:id/iterate', () => {
     const postId = 1
     const iterate = async (id: number) =>

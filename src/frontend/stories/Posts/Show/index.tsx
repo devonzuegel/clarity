@@ -39,13 +39,11 @@ export class Post extends React.Component<IProps, IState> {
           iterations {title,body,createdAt, postId}
         }}`
       )
-      if (
+      const nonexistentPost =
         result.data.posts.length === 0 ||
         result.data.posts[0].user.username !== this.props.username
-      )
-        throw Error()
-      // TODO: replace with GraphQL call, and remember to remove
-      // endpoint from backend too.
+      if (nonexistentPost) throw Error()
+
       const iterations = result.data.posts[0].iterations
       this.setState(reducers.updatePostsList(iterations))
     } catch (e) {
