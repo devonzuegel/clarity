@@ -23,7 +23,7 @@ describe('Posts Service', () => {
   describe('#create', () => {
     it('creates a new post and initializes it with a first iteration', async () => {
       const user = await userService.findByFacebookId('foobar')
-      const intiialCounts = {
+      const intialCounts = {
         posts: (await postService.all()).length,
         iterations: (await iterationService.all()).length,
       }
@@ -35,8 +35,8 @@ describe('Posts Service', () => {
         posts: (await postService.all()).length,
         iterations: (await iterationService.all()).length,
       }
-      expect(counts.posts).toEqual(intiialCounts.posts + 1)
-      expect(counts.iterations).toEqual(intiialCounts.iterations + 1)
+      expect(counts.posts).toEqual(intialCounts.posts + 1)
+      expect(counts.iterations).toEqual(intialCounts.iterations + 1)
     })
     it('rejects an empty title', async () => {
       const user = await userService.findByFacebookId('foobar')
@@ -48,6 +48,14 @@ describe('Posts Service', () => {
       const user = await userService.findByFacebookId('foobar')
       postService.create(user, {title: 'x', body: ''}).catch(reason => {
         expect(reason).toEqual('Please write something.')
+      })
+    })
+    it('rejects a non-unique slug', async () => {
+      const user = await userService.findByFacebookId('foobar')
+      const slug = `integration-test--${String(Math.floor(Math.random() * 9e15))}`
+      await postService.create(user, {title: 'x', body: 'x'}, slug)
+      postService.create(user, {title: 'x', body: 'x'}, slug).catch(reason => {
+        expect(reason).toEqual('Sorry, that slug is taken!')
       })
     })
   })

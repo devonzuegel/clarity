@@ -9,9 +9,9 @@ import {ErrorMessage} from '~/frontend/components/ErrorMessage'
 import {IAction} from '~/frontend/redux/actions/auth'
 
 export type INewProps = {
-  facebookId: string;
-  username: string;
-  actions: {setUsername(username: string): IAction};
+  facebookId: string
+  username: string
+  actions: {setUsername(username: string): IAction}
 }
 
 const reducers = {
@@ -28,12 +28,15 @@ class New extends React.Component<INewProps, {}> {
       await api.newPost({...newState, facebookId: this.props.facebookId})
       page.redirect(urls.user(this.props.username))
     } catch (e) {
-      this.setState(reducers.updateError(e))
+      this.setState(
+        reducers.updateError(
+          (e && JSON.stringify(e)) || 'Sorry, something went wrong.'
+        )
+      )
     }
   }
 
   render() {
-    console.log(JSON.stringify(this.props))
     return (
       <div>
         {this.state.error &&

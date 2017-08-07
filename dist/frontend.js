@@ -19846,7 +19846,8 @@ exports.renderWithLayout = function (component) {
     return render_1.default(layout);
 };
 exports.isLoggedIn = function (_context, next) {
-    var fbId = store_1.default.getState().authReducer.user.facebookId;
+    var user = store_1.default.getState().authReducer.user;
+    var fbId = user && user.facebookId;
     if (R.isNil(fbId)) {
         exports.renderWithLayout(React.createElement(NotFound_1.default, null));
     } else {
@@ -40454,8 +40455,11 @@ var __generator = this && this.__generator || function (thisArg, body) {
         }, trys: [], ops: [] },
         f,
         y,
-        t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+        t,
+        g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+        return this;
+    }), g;
     function verb(n) {
         return function (v) {
             return step([n, v]);
@@ -40535,7 +40539,7 @@ var New = function (_super) {
                             return [3 /*break*/, 3];
                         case 2:
                             e_1 = _a.sent();
-                            this.setState(reducers.updateError(e_1));
+                            this.setState(reducers.updateError(e_1 && JSON.stringify(e_1) || 'Sorry, something went wrong.'));
                             return [3 /*break*/, 3];
                         case 3:
                             return [2 /*return*/];
@@ -40546,7 +40550,6 @@ var New = function (_super) {
         return _this;
     }
     New.prototype.render = function () {
-        console.log(JSON.stringify(this.props));
         return React.createElement("div", null, this.state.error && React.createElement(ErrorMessage_1.ErrorMessage, { msg: this.state.error, id: "new-post-user-msg" }), React.createElement(Form_1.default, { iteration: {}, onSubmit: this.onSubmit, buttonText: "Create" }));
     };
     return New;

@@ -34,6 +34,8 @@ export class Post extends React.Component<IProps, IState> {
 
   async componentWillMount() {
     try {
+      // TODO: replace with GraphQL call, and remember to remove
+      // endpoint from backend too.
       const iterations = await api.getIterations(this.props.postId)
       if (iterations.length === 0) throw Error('No iterations')
       this.setState(reducers.updatePostsList(iterations))
