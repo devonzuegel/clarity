@@ -2,11 +2,11 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {actions} from '~/frontend/redux/actions/auth'
 
-import New, {INewProps} from './component'
+import New, {IProps} from './component'
 
-type IState = {authReducer: {user: INewProps}}
+type IState = {authReducer: {user: IProps}}
 
-const mapStateToProps = (state: IState): INewProps => state.authReducer.user
+const mapStateToProps = (state: IState): IProps => state.authReducer.user
 
 const mapDispatchToProps = (dispatch: any) => ({
   actions: bindActionCreators(actions, dispatch),

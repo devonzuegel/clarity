@@ -58,6 +58,12 @@ describe('Posts Service', () => {
         expect(reason).toEqual('Sorry, that slug is taken!')
       })
     })
+    it('rejects an empty slug', async () => {
+      const user = await userService.findByFacebookId('foobar')
+      postService.create(user, {title: 'x', body: 'x'}, '').catch(reason => {
+        expect(reason).toEqual('Custom slug cannot be empty.')
+      })
+    })
   })
 
   describe('#iterations', () => {

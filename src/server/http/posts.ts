@@ -32,10 +32,8 @@ router.get(
 router.post('/create', async (req: express.Request, res: express.Response) => {
   try {
     const user = await userService.findByFacebookId(req.body.facebookId)
-    const post = await postService.create(user, {
-      title: req.body.title,
-      body: req.body.body,
-    })
+    const iteration = {title: req.body.title, body: req.body.body}
+    const post = await postService.create(user, iteration, req.body.slug)
     res.status(200).json(post)
   } catch (e) {
     jsonError(res)(e)

@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import * as api from '~/frontend/api'
 import Form from '~/frontend/stories/Posts/Form'
-import {IState as IFormState} from '~/frontend/stories/Posts/Form/reducers'
+import {IFormState} from '~/frontend/stories/Posts/Form/reducers'
 import {IterationSchema} from '~/server/db/models/iteration'
 
 type IEditProps = {
