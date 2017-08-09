@@ -10,11 +10,11 @@ import * as reducers from './reducers'
 
 type IFormProps = {
   iteration: {title?: string; body?: string}
-  onSubmit: (i: reducers.IState) => void
+  onSubmit: (i: reducers.IFormState) => void
   buttonText: string
 }
 
-class Form extends React.Component<IFormProps, reducers.IState> {
+class Form extends React.Component<IFormProps, reducers.IFormState> {
   state = {
     title: this.props.iteration.title || '',
     body: this.props.iteration.body || '',
@@ -43,13 +43,15 @@ class Form extends React.Component<IFormProps, reducers.IState> {
 
     return (
       <div id={formId}>
-        <Field
-          label=""
-          placeholder="Title"
-          value={this.state.title}
-          onChange={this.updateTitle}
-          id={`${formId}__title`}
-        />
+        <div style={{maxWidth: '60%'}}>
+          <Field
+            label=""
+            placeholder="Title"
+            value={this.state.title}
+            onChange={this.updateTitle}
+            id={`${formId}__title`}
+          />
+        </div>
         <MarkdownEditor
           options={{
             initialValue: this.props.iteration.body || '',

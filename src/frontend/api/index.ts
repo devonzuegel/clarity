@@ -35,6 +35,7 @@ export const iterate = (
 type IPostDetails = {
   title: string
   body?: string
+  slug?: string
   facebookId: string
 }
 
