@@ -36,6 +36,9 @@ export default (sequelize: Sequelize): IPostModel => {
       defaultValue: SequelizeStatic.UUIDV4,
       type: SequelizeStatic.STRING,
       unique: true,
+      validate: {
+        notEmpty: true,
+      },
     },
     createdAt: {
       allowNull: false,

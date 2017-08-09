@@ -39,6 +39,5 @@ type IPostDetails = {
   facebookId: string
 }
 
-export const newPost = (details: IPostDetails): Promise<IterationSchema> => {
-  return sendRequest(post(`/api/posts/create`, details))
-}
+export const newPost = (details: IPostDetails): Promise<IterationSchema> =>
+  sendRequest(post(`/api/posts/create`, details))

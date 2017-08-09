@@ -61,6 +61,9 @@ export class PostService extends MockPostService {
       if (!user || !user.get('id')) {
         return reject('Please provide a user.')
       }
+      if (slug === '') {
+        return reject('Custom slug cannot be empty.')
+      }
       validateIteration(iteration, reject, () => {
         return sequelize
           .transaction(initPost(resolve, reject, user.get('id'), iteration, slug))

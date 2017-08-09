@@ -31,12 +31,14 @@ const reducers = {
 class New extends React.Component<IProps, IState> {
   state = {error: undefined, slug: undefined}
 
-  onSubmit = async (newState: IFormState) => {
+  onSubmit = async (formState: IFormState) => {
     try {
+      // The slug must be either undefined or a non-empty string
+      const slug = this.state.slug === '' ? undefined : this.state.slug
       await api.newPost({
-        ...newState,
-        slug: this.state.slug,
+        ...formState,
         facebookId: this.props.facebookId,
+        slug,
       })
       page.redirect(urls.user(this.props.username))
     } catch (e) {

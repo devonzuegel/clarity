@@ -22,6 +22,9 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: Sequelize.UUIDV4,
         unique: true,
+        validate: {
+          notEmpty: true,
+        },
       },
       createdAt: {
         allowNull: false,
