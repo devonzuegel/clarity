@@ -55,7 +55,7 @@ class New extends React.Component<IProps, IState> {
     return (
       <div>
         {this.state.error &&
-          <ErrorMessage msg={this.state.error} id="new-post-user-msg" />}
+          <ErrorMessage msg={this.state.error} id="new-post--user-msg" />}
         <Form iteration={{}} onSubmit={this.onSubmit} buttonText="Create" />
         <br />
         <p>
@@ -69,7 +69,7 @@ class New extends React.Component<IProps, IState> {
             value={this.state.slug || ''}
             label=""
             onChange={this.updateSlug}
-            id="new-post-slug"
+            id="new-post--slug"
           />
         </div>
       </div>

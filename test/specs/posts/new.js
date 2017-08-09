@@ -61,5 +61,38 @@ module.exports = {
       .click('#iteration-0')
       .assert.containsText('#iteration-title', title1)
   },
+  'Create a new post with a custom slug': browser => {
+    const title1 = randomStr()
+    const slug = randomStr()
+    logIn(browser)
+      /*****************************************************/
+      /*** Sign in *****************************************/
+      /*****************************************************/
+      .waitForElementVisible(selectors.nav.newPost, 1000)
+      .click(selectors.nav.newPost)
+      /*****************************************************/
+      /*** Create Post *************************************/
+      /*****************************************************/
+      // Set title
+      .setValue('input#post-form--create__title', title1)
+      // Set slug
+      .setValue('input#new-post--slug', slug)
+      // Set content
+      .click(selectors.contentInput)
+      .keys('foo bar baz qux')
+      // Click button
+      .waitForElementVisible(selectors.createBtn, 1000)
+      .click(selectors.createBtn)
+      // Check posts
+      .waitForElementVisible('.post-list--post-title', 1000)
+      .assert.containsText(selectors.lastPost, title1)
+      .click(selectors.lastPost)
+      /*****************************************************/
+      /*** Check custom slug *******************************/
+      /*****************************************************/
+      .url(function(result) {
+        this.assert.ok(result.value.endsWith(`/${slug}`))
+      })
+  },
   after: browser => browser.end(),
 }
