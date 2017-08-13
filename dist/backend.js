@@ -1405,7 +1405,10 @@ exports.default = function (sequelize) {
             allowNull: false,
             defaultValue: SequelizeStatic.UUIDV4,
             type: SequelizeStatic.STRING,
-            unique: true
+            unique: true,
+            validate: {
+                notEmpty: true
+            }
         },
         createdAt: {
             allowNull: false,
@@ -1711,7 +1714,7 @@ router.get('/users/:facebookId', function (req, res) {
 });
 router.post('/create', function (req, res) {
     return __awaiter(_this, void 0, void 0, function () {
-        var user, post, e_3;
+        var user, iteration, post, e_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -1719,10 +1722,8 @@ router.post('/create', function (req, res) {
                     return [4 /*yield*/, user_1.userService.findByFacebookId(req.body.facebookId)];
                 case 1:
                     user = _a.sent();
-                    return [4 /*yield*/, post_1.postService.create(user, {
-                        title: req.body.title,
-                        body: req.body.body
-                    })];
+                    iteration = { title: req.body.title, body: req.body.body };
+                    return [4 /*yield*/, post_1.postService.create(user, iteration, req.body.slug)];
                 case 2:
                     post = _a.sent();
                     res.status(200).json(post);
@@ -2349,6 +2350,9 @@ var PostService = function (_super) {
         return new Promise(function (resolve, reject) {
             if (!user || !user.get('id')) {
                 return reject('Please provide a user.');
+            }
+            if (slug === '') {
+                return reject('Custom slug cannot be empty.');
             }
             validateIteration(iteration, reject, function () {
                 return db_1.sequelize.transaction(initPost(resolve, reject, user.get('id'), iteration, slug)).then(function (post) {
