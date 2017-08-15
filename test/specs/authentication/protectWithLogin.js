@@ -1,4 +1,4 @@
-const {url, isLoginProtected} = require('../../utils')
+const {isLoginProtected} = require('../../utils')
 
 module.exports = {
   'The /posts/new page gives a 404 when not logged in': isLoginProtected(
