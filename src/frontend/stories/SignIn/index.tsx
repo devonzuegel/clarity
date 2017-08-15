@@ -37,6 +37,7 @@ class SignIn extends React.Component<{actions: IActions}, IState> {
       .then(({profile, user}) => {
         this.props.actions.signIn(profile.id, profile.displayName)
         if (user.username) {
+          this.props.actions.setUsername(user.username)
           page.redirect(urls.user(user.username))
         } else {
           this.setState({settingUsername: true, user}) // TODO: extract reducer
