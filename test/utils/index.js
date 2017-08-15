@@ -10,13 +10,13 @@ const isLoginProtected = path => browser => {
     .assert.containsText('body', '404')
 }
 
-const logIn = browser =>
+const logIn = (browser, username = randomStr()) =>
   browser
     // App must be running in a test environment to bypass Facebook auth
     .url(`${url}/auth/facebook`)
     // Set username
     .waitForElementVisible('input#set-username__username', 1000)
-    .setValue('input#set-username__username', randomStr())
+    .setValue('input#set-username__username', username)
     .click('button#set-username__button')
     .waitForElementVisible('#root', 1000)
 

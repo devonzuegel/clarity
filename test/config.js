@@ -10,6 +10,7 @@ const url = `http://${host}:${port}`
 
 const nav = {
   logIn: 'a#nav--log-in',
+  userProfile: 'a#nav--user',
   posts: 'a#nav--document',
   newPost: 'a#nav--plus',
 }
