@@ -27,6 +27,11 @@
   border: 1px solid var(--light-grey1);
 }
 
+.markdown li:target, .markdown a:target {
+    background-color: #ffa;
+    -webkit-transition: all .3s ease-out;
+}
+
 .markdown img[src*='#right'] {
   float: right;
   max-width: 60%;
