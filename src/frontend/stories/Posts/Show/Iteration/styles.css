@@ -1,5 +1,26 @@
 @import '../../../../components/variables.css';
 
+.markdown hr {
+  border: none;
+  margin-top: 52px;
+  margin-bottom: 42px;
+  text-align: center;
+  &:before {
+    --x-height-multiplier: 0.363;
+    --baseline-multiplier: 0.157;
+    font-style: italic;
+    font-size: 20px;
+    letter-spacing: .6em;
+    content: '...';
+    display: inline-block;
+    margin: auto;
+    position: relative;
+    color: var(--grey3);
+    top: -30px;
+  }
+}
+
+
 .markdown img {
   margin: calc(1.75 * var(--spacing)) calc(2 * var(--spacing));
   margin-right: 0;
@@ -14,6 +35,16 @@
 .markdown img[src*='#left'] {
   float: left;
   max-width: 60%;
+}
+
+.markdown img[src*='#right-small'] {
+  float: right;
+  max-width: 40%;
+}
+
+.markdown img[src*='#left-small'] {
+  float: left;
+  max-width: 40%;
 }
 
 .markdown {
