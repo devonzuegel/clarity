@@ -50,14 +50,8 @@ class ShowUser extends React.Component<{username: string}, IState> {
       return <NoPosts />
     }
     return (
-      <div>
-        <h1>
-          Writing
-        </h1>
-        <br />
-        <div id="posts-list">
-          {posts.map(Post)}
-        </div>
+      <div id="posts-list">
+        {posts.map(Post)}
       </div>
     )
   }
