@@ -4,6 +4,7 @@ import NotFound from '~/frontend/pages/NotFound'
 import LoadingOverlay from '~/frontend/components/LoadingOverlay'
 import {NoPosts} from '~/frontend/components/NoPosts'
 import Editor from '~/frontend/components/Editor'
+// import TodoList from '~/frontend/components/Editor/TodoList'
 import {Post, IPost} from '~/frontend/components/Post'
 
 interface IUser {posts: IPost[]}
@@ -55,6 +56,7 @@ class ShowUser extends React.Component<{username: string}, IState> {
         {posts.map(Post)}
         <hr />
         <Editor />
+        {/* <TodoList /> */}
       </div>
     )
   }

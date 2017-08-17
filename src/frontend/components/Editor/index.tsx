@@ -12,6 +12,7 @@ const changeCurrentBlockType = (
   newType = TYPES.UNSTYLED
 ) => {
   const contentState = editorState.getCurrentContent()
+  console.log(`yyy => ${newType}`)
   const selectionState = editorState.getSelection()
   const key = selectionState.getStartKey()
   const blockMap = contentState.getBlockMap()
@@ -20,55 +21,29 @@ const changeCurrentBlockType = (
   // if (block.getLength() >= 2) {
   //   newText = text.substr(1)
   // }
-  console.log(newType)
   const newBlock = new D.ContentBlock({
     key: D.genKey(),
-    type: 'todo',
+    type: newType,
     text: 'asldkfjadlskfj',
-    data: {checked: false}, // TODO: default data
+    data: Immutable.Map({checked: false}), // TODO: default data
   })
   // block.merge({
   //   // type: newType,
   //   data: {checked: false}, // TODO: default data
   // }) as D.ContentBlock
   const newContentState = contentState.merge({
-    // blockMap: blockMap.set(key, block),
-    blockMap: blockMap.set(key, newBlock),
-    // selectionAfter: selectionState.merge({
-    //   anchorOffset: 0,
-    //   focusOffset: 0,
-    // }),
+    blockMap: blockMap, //.set(key, newBlock),
+    selectionAfter: selectionState,
+    //.merge({
+    //  anchorOffset: 0,
+    //  focusOffset: 0,
+    //}),
   }) as D.ContentState
   console.log(contentState)
   console.log(newContentState)
   console.log(newBlock)
   return D.EditorState.push(editorState, newContentState, 'change-block-type')
 }
-
-// const changeCurrentBlockType = (
-//   editorState: D.EditorState,
-//   type: string,
-//   text: string
-// ) => {
-//   // // const data = block.getData()
-//   // const newBlock = block.merge({type, text}) as D.ContentBlock
-//   // const newSelection = selection.merge({
-//   //   anchorOffset: 0,
-//   //   focusOffset: 0,
-//   // })
-//   // console.log(newBlock)
-//   // console.log(newSelection)
-//   // const newContentState = currentContent.merge(
-//   //   {
-//   //     // blockMap: blockMap.set(key, newBlock),
-//   //     // selectionAfter: newSelection,
-//   //   }
-//   // ) as D.ContentState
-//   // console.log(newContentState)
-
-//   // // return D.EditorState.push(editorState, currentContent, 'change-block-type')
-//   // return D.EditorState.push(editorState, newContentState, 'change-block-type')
-// }
 
 const handleBlockType = (editorState: D.EditorState, _character: string) => {
   // const currentSelection = editorState.getSelection()
@@ -77,7 +52,6 @@ const handleBlockType = (editorState: D.EditorState, _character: string) => {
   // const position = currentSelection.getAnchorOffset()
   // const line = [text.slice(0, position), character, text.slice(position)].join('')
   // const blockType = D.RichUtils.getCurrentBlockType(editorState);
-
   return changeCurrentBlockType(editorState, TYPES.TODO)
 }
 
@@ -98,9 +72,13 @@ const devonsPlugin = () => {
       console.log(type)
       switch (type) {
         case TYPES.TODO:
+          console.log('xxxxxxx')
           return {
             component: TodoBlock,
-            props: store,
+            props: {
+              getEditorState: store.getEditorState,
+              setEditorState: store.setEditorState,
+            },
           }
         default:
           return null
