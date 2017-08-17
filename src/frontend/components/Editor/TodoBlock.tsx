@@ -47,7 +47,7 @@ class TodoBlock extends React.Component<TTodoBlock, {}> {
           checked={checked}
           //onChange={this.updateData}
         />
-        <D.EditorBlock {...this.props} />
+        <D.D.EditorBlock {...this.props} />
       </div>
     )
   }

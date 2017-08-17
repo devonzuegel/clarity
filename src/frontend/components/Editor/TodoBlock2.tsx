@@ -15,8 +15,8 @@ const updateDataOfBlock = (
 }
 
 type TProps = {
-  block: D.ContentBlock;
-  blockProps: {onChange: Function; getEditorState: Function};
+  block: D.ContentBlock
+  blockProps: {onChange: Function; getEditorState: Function}
 }
 
 class TodoBlock extends React.Component<TProps, {}> {

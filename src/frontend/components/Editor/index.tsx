@@ -3,14 +3,55 @@ import * as React from 'react'
 import * as D from 'draft-js'
 
 import TodoBlock from './TodoBlock2'
+const s = require('./styles.css')
 
 const BLOCK_TYPES = {
   TODO: 'todo',
+  UNSTYLED: 'unstyled',
 }
 
 type DraftHandleValue = 'handled' | 'not-handled'
 
-// const TodoBlock = () => <div>asfkljasdlkfj</div> // TODO
+const getDefaultBlockData = (blockType: string, initialData = {}) => {
+  switch (blockType) {
+    case BLOCK_TYPES.TODO:
+      return {checked: false}
+    default:
+      return initialData
+  }
+}
+
+/*
+Changes the block type of the current block.
+*/
+const resetBlockType = (
+  editorState: D.EditorState,
+  newType = BLOCK_TYPES.UNSTYLED
+) => {
+  const contentState = editorState.getCurrentContent()
+  const selectionState = editorState.getSelection()
+  const key = selectionState.getStartKey()
+  const blockMap = contentState.getBlockMap()
+  const block = blockMap.get(key)
+  let newText = ''
+  const text = block.getText()
+  if (block.getLength() >= 2) {
+    newText = text.substr(1)
+  }
+  const newBlock = block.merge({
+    text: newText,
+    type: newType,
+    data: getDefaultBlockData(newType),
+  }) as D.ContentBlock
+  const newContentState = contentState.merge({
+    blockMap: blockMap.set(key, newBlock),
+    selectionAfter: selectionState.merge({
+      anchorOffset: 0,
+      focusOffset: 0,
+    }),
+  }) as D.ContentState
+  return D.EditorState.push(editorState, newContentState, 'change-block-type')
+}
 
 const getBlockRendererFn = (getEditorState: Function, onChange: Function) => (
   block: D.ContentBlock
@@ -40,9 +81,9 @@ class MyTodoListEditor extends React.Component<{}, {editorState: D.EditorState}>
   blockStyleFn(block: D.ContentBlock) {
     switch (block.getType()) {
       case BLOCK_TYPES.TODO:
-        return 'block block-todo'
+        return `${s['block']} ${s['block-todo']}`
       default:
-        return 'block'
+        return s['block']
     }
   }
 
@@ -61,8 +102,13 @@ class MyTodoListEditor extends React.Component<{}, {editorState: D.EditorState}>
       const blockLength = currentBlock.getLength()
       if (blockLength === 1 && currentBlock.getText() === '[') {
         console.log(`${blockType} => ${BLOCK_TYPES.TODO}`)
-        // this.onChange(resetBlockType(editorState, blockType !== TODO_TYPE ? TODO_TYPE : 'unstyled'));
-        // return true;
+        this.onChange(
+          resetBlockType(
+            editorState,
+            blockType !== BLOCK_TYPES.TODO ? BLOCK_TYPES.TODO : BLOCK_TYPES.UNSTYLED
+          )
+        )
+        return 'handled'
       }
     }
     return 'not-handled'
