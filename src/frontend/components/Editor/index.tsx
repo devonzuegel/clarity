@@ -2,11 +2,13 @@ import * as Immutable from 'immutable'
 import * as React from 'react'
 import * as D from 'draft-js'
 
+import TodoBlock from './TodoBlock2'
+
 const BLOCK_TYPES = {
   TODO: 'todo',
 }
 
-const TodoBlock = () => <div>asfkljasdlkfj</div> // TODO
+// const TodoBlock = () => <div>asfkljasdlkfj</div> // TODO
 
 const getBlockRendererFn = (getEditorState: Function, onChange: Function) => (
   block: D.ContentBlock
