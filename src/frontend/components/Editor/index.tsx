@@ -8,6 +8,8 @@ const BLOCK_TYPES = {
   TODO: 'todo',
 }
 
+type DraftHandleValue = 'handled' | 'not-handled'
+
 // const TodoBlock = () => <div>asfkljasdlkfj</div> // TODO
 
 const getBlockRendererFn = (getEditorState: Function, onChange: Function) => (
@@ -48,12 +50,31 @@ class MyTodoListEditor extends React.Component<{}, {editorState: D.EditorState}>
 
   onChange = (editorState: D.EditorState) => this.setState({editorState})
 
+  handleBeforeInput = (str: string): DraftHandleValue => {
+    if (str === ']') {
+      const editorState = this.state.editorState
+      const selection = editorState.getSelection()
+      const currentBlock = editorState
+        .getCurrentContent()
+        .getBlockForKey(selection.getStartKey())
+      const blockType = currentBlock.getType()
+      const blockLength = currentBlock.getLength()
+      if (blockLength === 1 && currentBlock.getText() === '[') {
+        console.log(`${blockType} => ${BLOCK_TYPES.TODO}`)
+        // this.onChange(resetBlockType(editorState, blockType !== TODO_TYPE ? TODO_TYPE : 'unstyled'));
+        // return true;
+      }
+    }
+    return 'not-handled'
+  }
+
   render() {
     return (
       <D.Editor
         blockRenderMap={this.blockRenderMap}
         blockStyleFn={this.blockStyleFn}
         blockRendererFn={getBlockRendererFn(this.getEditorState, this.onChange)}
+        handleBeforeInput={this.handleBeforeInput}
         editorState={this.state.editorState}
         onChange={this.onChange}
       />
