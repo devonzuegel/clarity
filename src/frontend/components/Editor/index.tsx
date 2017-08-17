@@ -114,13 +114,29 @@ class MyTodoListEditor extends React.Component<{}, {editorState: D.EditorState}>
     return 'not-handled'
   }
 
+  handleKeyCommand = (command: string) => {
+    const newState = D.RichUtils.handleKeyCommand(this.state.editorState, command)
+    if (newState) {
+      this.onChange(newState)
+      return 'handled'
+    }
+    return 'not-handled'
+  }
+
+  componentDidMount() {
+    const editor = this.refs.editor as HTMLElement
+    editor.focus()
+  }
+
   render() {
     return (
       <D.Editor
+        ref="editor"
         blockRenderMap={this.blockRenderMap}
         blockStyleFn={this.blockStyleFn}
         blockRendererFn={getBlockRendererFn(this.getEditorState, this.onChange)}
         handleBeforeInput={this.handleBeforeInput}
+        handleKeyCommand={this.handleKeyCommand}
         editorState={this.state.editorState}
         onChange={this.onChange}
       />
