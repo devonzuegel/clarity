@@ -1,49 +1,84 @@
 import * as React from 'react'
+import * as Immutable from 'immutable'
 import * as D from 'draft-js'
 
 const DraftJSEditor = require('draft-js-plugins-editor').default
-// const createMarkdownShortcutsPlugin = require('draft-js-markdown-shortcuts-plugin')
-// .default
+import TodoBlock from './TodoBlock'
+
+const TYPES = {TODO: 'todo', UNSTYLED: 'unstyled'}
 
 const changeCurrentBlockType = (
   editorState: D.EditorState,
-  type: string,
-  text: string,
-  blockMetadata = {}
+  newType = TYPES.UNSTYLED
 ) => {
-  const currentContent = editorState.getCurrentContent()
-  const selection = editorState.getSelection()
-  const key = selection.getStartKey()
-  const blockMap = currentContent.getBlockMap()
-  const block = blockMap.get(key)
-  const data = block.getData().merge(blockMetadata)
-  const newBlock = block.merge({type, data, text: text || ''}) as D.ContentBlock
-  const newSelection = selection.merge({
-    anchorOffset: 0,
-    focusOffset: 0,
+  const contentState = editorState.getCurrentContent()
+  const selectionState = editorState.getSelection()
+  const key = selectionState.getStartKey()
+  const blockMap = contentState.getBlockMap()
+  // const block = blockMap.get(key)
+  // const text = block.getText()
+  // if (block.getLength() >= 2) {
+  //   newText = text.substr(1)
+  // }
+  console.log(newType)
+  const newBlock = new D.ContentBlock({
+    key: D.genKey(),
+    type: 'todo',
+    text: 'asldkfjadlskfj',
+    data: {checked: false}, // TODO: default data
   })
-  const newContentState = currentContent.merge({
+  // block.merge({
+  //   // type: newType,
+  //   data: {checked: false}, // TODO: default data
+  // }) as D.ContentBlock
+  const newContentState = contentState.merge({
+    // blockMap: blockMap.set(key, block),
     blockMap: blockMap.set(key, newBlock),
-    selectionAfter: newSelection,
+    // selectionAfter: selectionState.merge({
+    //   anchorOffset: 0,
+    //   focusOffset: 0,
+    // }),
   }) as D.ContentState
+  console.log(contentState)
+  console.log(newContentState)
+  console.log(newBlock)
   return D.EditorState.push(editorState, newContentState, 'change-block-type')
 }
 
-class CustomBlock extends React.Component<
-  {block: D.ContentBlock; contentState: D.ContentState; blockProps: {foo: string}},
-  {}
-> {
-  render() {
-    // const {block, contentState} = this.props
-    const {foo} = this.props.blockProps
-    // const data = contentState.getEntity(block.getEntityAt(0)).getData()
-    return (
-      <figure style={{height: '40px', width: '40px', border: '3px solid pink'}}>
-        {JSON.stringify(foo, null, 2)}
-        {/* {JSON.stringify(data, null, 2)} */}
-      </figure>
-    )
-  }
+// const changeCurrentBlockType = (
+//   editorState: D.EditorState,
+//   type: string,
+//   text: string
+// ) => {
+//   // // const data = block.getData()
+//   // const newBlock = block.merge({type, text}) as D.ContentBlock
+//   // const newSelection = selection.merge({
+//   //   anchorOffset: 0,
+//   //   focusOffset: 0,
+//   // })
+//   // console.log(newBlock)
+//   // console.log(newSelection)
+//   // const newContentState = currentContent.merge(
+//   //   {
+//   //     // blockMap: blockMap.set(key, newBlock),
+//   //     // selectionAfter: newSelection,
+//   //   }
+//   // ) as D.ContentState
+//   // console.log(newContentState)
+
+//   // // return D.EditorState.push(editorState, currentContent, 'change-block-type')
+//   // return D.EditorState.push(editorState, newContentState, 'change-block-type')
+// }
+
+const handleBlockType = (editorState: D.EditorState, _character: string) => {
+  // const currentSelection = editorState.getSelection()
+  // const key = currentSelection.getStartKey()
+  // const text = editorState.getCurrentContent().getBlockForKey(key).getText()
+  // const position = currentSelection.getAnchorOffset()
+  // const line = [text.slice(0, position), character, text.slice(position)].join('')
+  // const blockType = D.RichUtils.getCurrentBlockType(editorState);
+
+  return changeCurrentBlockType(editorState, TYPES.TODO)
 }
 
 const devonsPlugin = () => {
@@ -55,52 +90,33 @@ const devonsPlugin = () => {
   return {
     store,
     initialize({setEditorState, getEditorState}: TStore) {
-      console.log({setEditorState, getEditorState})
       store.setEditorState = setEditorState
       store.getEditorState = getEditorState
     },
-    blockRendererFn(block: D.ContentBlock) {
+    blockRendererFn: (block: D.ContentBlock) => {
       const type = block.getType()
       console.log(type)
-      if (type === 'header-one') {
-        return {
-          component: CustomBlock,
-
-          props: {
-            foo: 'bar',
-          },
-        }
+      switch (type) {
+        case TYPES.TODO:
+          return {
+            component: TodoBlock,
+            props: store,
+          }
+        default:
+          return null
       }
-      return null
     },
-    // blockStyleFn(block: D.ContentBlock) {
-    //   console.log(block.getType())
-    //   return 'xxxxxxxxxx'
-    // },
     handleBeforeInput(
-      character: any,
+      ch: any,
       editorState: D.EditorState,
       {setEditorState}: {setEditorState: Function}
     ) {
-      if (character !== ' ') return 'not-handled'
-      const currentSelection = editorState.getSelection()
-      const key = currentSelection.getStartKey()
-      const text = editorState.getCurrentContent().getBlockForKey(key).getText()
-      const pos = currentSelection.getAnchorOffset()
-      const line = [text.slice(0, pos), character, text.slice(pos)].join('')
-      if (line.indexOf('#') === 0) {
-        setEditorState(
-          changeCurrentBlockType(
-            editorState,
-            'header-one',
-            line.replace(/^#+\s+/, '')
-          )
-        )
+      if (ch !== ']') return 'not-handled'
+      const newEditorState = handleBlockType(editorState, ch)
+      if (editorState !== newEditorState) {
+        setEditorState(newEditorState)
         return 'handled'
       }
-      const blockType = D.RichUtils.getCurrentBlockType(editorState)
-
-      console.log(`"${line}" => ${blockType}`)
       return 'not-handled'
     },
   }
@@ -124,6 +140,14 @@ class Editor extends React.Component<{}, {editorState: D.EditorState}> {
     return (
       <DraftJSEditor
         editorState={this.state.editorState}
+        blockRenderMap={Immutable.Map({
+          [TYPES.UNSTYLED]: {
+            element: 'div',
+          },
+          [TYPES.TODO]: {
+            element: 'div', // or whatever element you want as a wrapper
+          },
+        })}
         onChange={this.onChange}
         plugins={plugins}
       />
