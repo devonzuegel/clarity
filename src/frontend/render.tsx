@@ -1,14 +1,14 @@
 import * as React from 'react'
 import {Provider} from 'react-redux'
 import * as ReactDOM from 'react-dom'
+import Wrapper from '~/frontend/components/Wrapper'
 
 import store from './redux/store'
-import Wrapper from './components/Wrapper'
 
-const render = (c: JSX.Element) => {
+const render = (c: JSX.Element, wrapper: boolean = true) => {
   const reduxComponent = (
     <Provider store={store}>
-      <Wrapper content={c} />
+      {wrapper ? <Wrapper content={c} /> : c}
     </Provider>
   )
   ReactDOM.render(reduxComponent, document.getElementById('root'))

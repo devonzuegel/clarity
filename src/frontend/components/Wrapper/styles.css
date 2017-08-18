@@ -5,29 +5,13 @@
   font-size: 16px;
   min-height: 100%;
   background-color: color(var(--light-grey5) alpha(-60%));
-  font-family: "PT Serif", serif;
+  font-family: var(--serif);
   -webkit-font-smoothing: antialiased;
 
-  & h1,
-  & h2,
-  & h3,
-  & h4,
-  & h5,
-  & h6 {
+  & h1, & h2, & h3, & h4, & h5, & h6 {
     line-height: 1em;
     -webkit-font-smoothing: default;
-    font-family:
-      -apple-system,
-      system-ui,
-      "Segoe UI",
-      Roboto,
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      "Open Sans",
-      "Helvetica Neue",
-      Icons16,
-      sans-serif;
+    font-family: var(--sans-serif);
   }
 }
 

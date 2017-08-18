@@ -1,8 +1,10 @@
 import * as React from 'react'
+import Editor from '~/frontend/components/Editor'
 import {UserInstance} from '~/server/db/models/user'
 import * as api from '~/frontend/api'
 import Truncated from '~/frontend/components/Truncated'
 import Expandable from '~/frontend/components/Expandable'
+import Wrapper from '~/frontend/components/Wrapper'
 
 const s = require('./styles.css')
 
@@ -47,50 +49,67 @@ class Component extends React.Component<{}, {users?: UserInstance[]}> {
 
     return (
       <div>
-        <h2>
-          Expandable
-        </h2>
-        <Expandable>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero fuga
-            facilis vel consectetur quos sapiente deleniti eveniet dolores tempore
-            eos deserunt officia quis ab? Excepturi vero tempore minus beatae
-            voluptatem! Lorem ipsum dolor sit amet, consectetur adifpisicing elit.
-            Libero fuga facilis vel consectetur quos sapiente deleniti eveniet
-            dolores tempore eos deserunt officia quis ab? Lorem ipsum dolor sit amet,
-            consectetur adifpisicing elit. Libero fuga facilis vel consectetur quos
-            sapiente deleniti eveniet dolores tempore eos deserunt officia quis ab?
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          </p>
-          <p>
-            Libero fuga facilis vel consectetur quos sapiente deleniti eveniet
-            dolores tempore eos deserunt officia quis ab? Lorem ipsum dolor sit amet,
-            consectetur adifpisicing elit. Libero fuga facilis vel consectetur quos
-            sapiente deleniti eveniet dolores tempore eos deserunt officia quis ab?
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          </p>
-        </Expandable>
-        <br />
-        <h2>
-          Truncated
-        </h2>
-        <Truncated children={str} />
-        <br />
-        <h2>
-          Users
-        </h2>
-        <pre className={s['pre']}>
-          {this.state.users
-            ? JSON.stringify(this.state.users, null, 2)
-            : 'Retrieving users...'}
-        </pre>
+        <Editor />
+        <Wrapper
+          content={
+            <div>
+              <h2>
+                Expandable
+              </h2>
+              <Expandable>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero
+                  fuga
+                  facilis vel consectetur quos sapiente deleniti eveniet dolores
+                  tempore
+                  eos deserunt officia quis ab? Excepturi vero tempore minus beatae
+                  voluptatem! Lorem ipsum dolor sit amet, consectetur adifpisicing
+                  elit.
+                  Libero fuga facilis vel consectetur quos sapiente deleniti eveniet
+                  dolores tempore eos deserunt officia quis ab? Lorem ipsum dolor sit
+                  amet,
+                  consectetur adifpisicing elit. Libero fuga facilis vel consectetur
+                  quos
+                  sapiente deleniti eveniet dolores tempore eos deserunt officia quis
+                  ab?
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                </p>
+                <p>
+                  Libero fuga facilis vel consectetur quos sapiente deleniti eveniet
+                  dolores tempore eos deserunt officia quis ab? Lorem ipsum dolor sit
+                  amet,
+                  consectetur adifpisicing elit. Libero fuga facilis vel consectetur
+                  quos
+                  sapiente deleniti eveniet dolores tempore eos deserunt officia quis
+                  ab?
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                </p>
+              </Expandable>
+              <br />
+              <h2>
+                Truncated
+              </h2>
+              <Truncated children={str} />
+              <br />
+              <h2>
+                Users
+              </h2>
+              <pre className={s['pre']}>
+                {this.state.users
+                  ? JSON.stringify(this.state.users, null, 2)
+                  : 'Retrieving users...'}
+              </pre>
 
-        <br />
+              <br />
 
-        <h2>
-          Parent/Child Test
-        </h2>
-        <ParentTest />
+              <h2>
+                Parent/Child Test
+              </h2>
+              <ParentTest />
+
+            </div>
+          }
+        />
       </div>
     )
   }
