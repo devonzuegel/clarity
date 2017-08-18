@@ -13,6 +13,7 @@ class Editor extends React.Component<{}, IState> {
       <div className={styles.panes}>
         <div className={styles.pane}>
           <textarea
+            placeholder="Start writing!"
             className={styles.editor}
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
               this.setState({raw: e.currentTarget.value})}

@@ -1,17 +1,24 @@
 @import '../variables.css';
 
+:root {
+  --border: 5px solid var(--light-grey5);
+}
+
 .panes {
   display: flex;
-  height: 100%;
+  width: 100vw;
+  margin-left: -30vw;
+  height: 75%;
 }
 
 .pane {
   line-height: 1.6em;
   width: 50%;
-  padding: 24px 48px;
-  background: color(var(--light-grey5) alpha(-60%));
+  padding: 0 48px;
   overflow: scroll;
-  border-right: 5px solid var(--light-grey5);
+  &:not(:last-of-type) {
+    border-right: var(--border);
+  }
 }
 
 textarea.editor {
