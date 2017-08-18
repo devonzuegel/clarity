@@ -1,26 +1,5 @@
 @import '../variables.css';
 
-:root {
-  --border: 5px solid var(--light-grey5);
-}
-
-.panes {
-  display: flex;
-  width: 100vw;
-  margin-left: -30vw;
-  height: 75%;
-}
-
-.pane {
-  line-height: 1.6em;
-  width: 50%;
-  padding: 0 48px;
-  overflow: scroll;
-  &:not(:last-of-type) {
-    border-right: var(--border);
-  }
-}
-
 textarea.editor {
   resize: none;
   background: transparent;
@@ -33,6 +12,9 @@ textarea.editor {
   font-family: var(--monospace);
   font-size: .95em;
   border: none;
+  &::placeholder {
+    color: var(--grey1);
+  }
   &:focus {
     outline: none;
   }

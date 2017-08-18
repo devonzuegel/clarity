@@ -9,6 +9,6 @@ export const urls = {
 
 export const routes = () => {
   U.route('/posts/new', U.isLoggedIn, ({_}) => {
-    U.renderWithLayout(<NewPostPage />)
+    U.renderWithLayout(<NewPostPage />, false)
   })
 }

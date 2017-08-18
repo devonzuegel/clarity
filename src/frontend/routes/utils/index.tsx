@@ -11,14 +11,17 @@ import Hotkeys from '~/frontend/components/Hotkeys'
 import store from '~/frontend/redux/store'
 import NotFoundPage from '~/frontend/pages/NotFound'
 
-export const renderWithLayout = (component: JSX.Element) => {
+export const renderWithLayout = (
+  component: JSX.Element,
+  wrapper: boolean = true
+) => {
   const layout = (
     <Layout>
       <Hotkeys />
       {component}
     </Layout>
   )
-  return render(layout)
+  return render(layout, wrapper)
 }
 
 export const route = (path: string, ...callbacks: PageJS.Callback[]) => {

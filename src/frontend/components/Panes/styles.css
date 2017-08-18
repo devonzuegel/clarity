@@ -1,0 +1,27 @@
+@import '../variables.css';
+
+:root {
+  --border: 2px solid var(--light-grey5);
+}
+
+.panes {
+  display: flex;
+}
+
+.fill {
+  height: 100%;
+}
+
+.pane {
+  line-height: 1.6em;
+  width: 50%;
+  padding: 0 48px;
+  overflow: scroll;
+  &:not(:last-of-type) {
+    border-right: var(--border);
+  }
+}
+
+.no-scroll {
+  overflow: visible;
+}

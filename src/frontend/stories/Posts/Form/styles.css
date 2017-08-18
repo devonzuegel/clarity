@@ -1,0 +1,57 @@
+@import '../../../components/variables.css';
+
+:root {
+  --title--line-height: 1.2em;
+  --title--font-size: 2em;
+}
+
+textarea.input {
+  min-height: var(--title--font-size);
+  max-width: 750px;
+  float: right;
+  resize: none;
+  background: transparent;
+  padding-right: 30px;
+  overflow-y: auto;
+  box-shadow: none;
+  margin-right: -38px;
+  width: 100%;
+  float: right;
+  max-width: 750px;
+  font-family: var(--monospace);
+  font-size: .95em;
+  border: none;
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+textarea.title {
+  line-height: var(--title--line-height);
+  font-size: var(--title--font-size);
+  font-weight: bold;
+  margin-top: 0 !important;
+  &::placeholder {
+    font-weight: bold;
+  }
+}
+
+textarea.subtitle {
+  font-size: 1.3em;
+  font-style: italic;
+  &::placeholder {
+    font-style: italic;
+  }
+}
+
+.md-title {
+  font-weight: 700;
+  line-height: 1.05em;
+}
+
+.md-subtitle {
+  letter-spacing: .5;
+  color: var(--grey1);
+  font-weight: 300;
+}

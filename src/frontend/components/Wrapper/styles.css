@@ -18,5 +18,5 @@
 .centered-wrapper {
   padding: 8px 24px;
   margin: auto;
-  max-width: 800px;
+  max-width: var(--wrapper);
 }

@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {urls} from '~/frontend/routes'
+const styles = require('./styles.css')
 
 interface ILayout {
   children?: Element
@@ -16,21 +17,23 @@ const NavBtn = ({url, title, name}: {url: string; title: string; name: string}) 
   </a>
 
 const Nav = ({displayName, username}: ILayout) =>
-  <nav style={{display: 'flow-root', height: '48px'}}>
-    <div className="pt-navbar-group pt-align-right">
-      <div>
-        <NavBtn title="New post" url={urls.newPost} name="plus" />
-        <NavBtn title={displayName} url={urls.user(username)} name="user" />
-        <span className="pt-navbar-divider" />
+  <div className={styles['nav-wrapper']}>
+    <nav className={styles.nav}>
+      <div className="pt-navbar-group pt-align-right">
+        <div>
+          <NavBtn title="New post" url={urls.newPost} name="plus" />
+          <NavBtn title={displayName} url={urls.user(username)} name="user" />
+          <span className="pt-navbar-divider" />
+        </div>
+        <NavBtn title="Sign out" url={urls.signout} name="log-out" />
       </div>
-      <NavBtn title="Sign out" url={urls.signout} name="log-out" />
-    </div>
-  </nav>
+    </nav>
+  </div>
 
 const LayoutComponent = ({displayName, username, children}: ILayout) =>
   <div>
     {displayName && <Nav {...{displayName, username}} />}
-    <main style={{paddingBottom: '24px', marginTop: '24px'}}>
+    <main className={styles.main}>
       {children}
     </main>
   </div>
