@@ -1,0 +1,32 @@
+@import '../variables.css';
+
+.panes {
+  display: flex;
+  height: 100%;
+}
+
+.pane {
+  line-height: 1.6em;
+  width: 50%;
+  padding: 24px 48px;
+  background: color(var(--light-grey5) alpha(-60%));
+  overflow: scroll;
+  border-right: 5px solid var(--light-grey5);
+}
+
+textarea.editor {
+  resize: none;
+  background: transparent;
+  padding: 30px 30px 48px 0;
+  margin-right: -48px;
+  width: 100%;
+  float: right;
+  height: calc(100% - 60px);
+  max-width: 750px;
+  font-family: var(--monospace);
+  font-size: .95em;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
