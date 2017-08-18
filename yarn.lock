@@ -66,6 +66,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/draft-js@^0.10.10":
+  version "0.10.10"
+  resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.10.10.tgz#154a0db59a02a4bd4ced33720a36cef2853cb12b"
+  dependencies:
+    "@types/react" "*"
+    immutable "^3.8.1"
+
 "@types/express-graphql@^0.0.33":
   version "0.0.33"
   resolved "https://registry.yarnpkg.com/@types/express-graphql/-/express-graphql-0.0.33.tgz#4045a19169fb676c5aa0c0db7380048ec5839a5b"
@@ -105,6 +112,12 @@
 "@types/highlight.js@^9.1.9":
   version "9.1.9"
   resolved "https://registry.yarnpkg.com/@types/highlight.js/-/highlight.js-9.1.9.tgz#ed6336955eaf233b75eb7923b9b1f373d045ef01"
+
+"@types/immutable@^3.8.7":
+  version "3.8.7"
+  resolved "https://registry.yarnpkg.com/@types/immutable/-/immutable-3.8.7.tgz#536d33d30f3f3d9a6d4642a219419fd82af633fb"
+  dependencies:
+    immutable "*"
 
 "@types/isomorphic-fetch@^0.0.34":
   version "0.0.34"
@@ -1640,6 +1653,10 @@ decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
+decorate-component-with-props@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/decorate-component-with-props/-/decorate-component-with-props-1.0.2.tgz#5764d3cf6a58685a522201bad31bff0cb531e5fe"
+
 deep-defaults@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/deep-defaults/-/deep-defaults-1.0.4.tgz#1a9762e2b6c8d6a4e9931b8ee7ff8cdcee1d1750"
@@ -1824,6 +1841,48 @@ dotenv@^4.0.0:
 dottie@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/dottie/-/dottie-1.1.1.tgz#45c2a3f48bd6528eeed267a69a848eaaca6faa6a"
+
+draft-js-checkable-list-item@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/draft-js-checkable-list-item/-/draft-js-checkable-list-item-2.0.5.tgz#9c5cec16185d57a36622269ea788009a3aabb4e0"
+  dependencies:
+    draft-js-modifiers "^0.1.2"
+
+draft-js-markdown-shortcuts-plugin@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/draft-js-markdown-shortcuts-plugin/-/draft-js-markdown-shortcuts-plugin-0.3.0.tgz#f928cdff941d89a93e5ec2dd8f23df053c8f7ceb"
+  dependencies:
+    decorate-component-with-props "^1.0.2"
+    draft-js "~0.10.1"
+    draft-js-checkable-list-item "^2.0.5"
+    immutable "~3.7.4"
+
+draft-js-modifiers@^0.1.2:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/draft-js-modifiers/-/draft-js-modifiers-0.1.3.tgz#7c58d1a43fee59d97f6911b4c64f59283dcdb396"
+  dependencies:
+    draft-js "~0.10.0"
+    immutable "~3.7.4"
+
+draft-js-plugins-editor@^2.0.0-beta1:
+  version "2.0.0-beta1"
+  resolved "https://registry.yarnpkg.com/draft-js-plugins-editor/-/draft-js-plugins-editor-2.0.0-beta1.tgz#184e0c3579bffeb4b18b8b65a172ffdfce110d04"
+  dependencies:
+    decorate-component-with-props "^1.0.2"
+    draft-js ">=0.7.0"
+    find-with-regex "^1.0.2"
+    immutable ">=3.8.1"
+    react ">=15.1.0"
+    react-dom ">=15.1.0"
+    union-class-names "^1.0.0"
+
+draft-js@>=0.7.0, draft-js@^0.10.1, draft-js@~0.10.0, draft-js@~0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/draft-js/-/draft-js-0.10.1.tgz#6f1219d8095729691429ca6fd7a58d2a8be5cb67"
+  dependencies:
+    fbjs "^0.8.7"
+    immutable "~3.7.4"
+    object-assign "^4.1.0"
 
 duplexer2@0.0.2:
   version "0.0.2"
@@ -2174,7 +2233,7 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fbjs@^0.8.0, fbjs@^0.8.4, fbjs@^0.8.9:
+fbjs@^0.8.0, fbjs@^0.8.4, fbjs@^0.8.7, fbjs@^0.8.9:
   version "0.8.12"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.12.tgz#10b5d92f76d45575fd63a217d4ea02bea2f8ed04"
   dependencies:
@@ -2257,6 +2316,10 @@ find-up@^2.1.0:
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-2.1.0.tgz#45d1b7e506c717ddd482775a2b77920a3c0c57a7"
   dependencies:
     locate-path "^2.0.0"
+
+find-with-regex@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/find-with-regex/-/find-with-regex-1.0.2.tgz#d3b36286539f14c527e31f194159c6d251651a45"
 
 findup-sync@^0.4.0, findup-sync@^0.4.2:
   version "0.4.3"
@@ -2963,6 +3026,14 @@ ieee754@^1.1.4:
 ienoopen@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ienoopen/-/ienoopen-1.0.0.tgz#346a428f474aac8f50cf3784ea2d0f16f62bda6b"
+
+immutable@*, immutable@>=3.8.1, immutable@^3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.1.tgz#200807f11ab0f72710ea485542de088075f68cd2"
+
+immutable@~3.7.4:
+  version "3.7.6"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
 
 indent-string@^2.1.0:
   version "2.1.0"
@@ -5616,7 +5687,7 @@ react-addons-css-transition-group@^15.5.2:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react-dom@^15.5.4:
+react-dom@>=15.1.0, react-dom@^15.5.4:
   version "15.5.4"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.5.4.tgz#ba0c28786fd52ed7e4f2135fe0288d462aef93da"
   dependencies:
@@ -5662,7 +5733,7 @@ react-router@^4.0.0:
     path-to-regexp "^1.5.3"
     warning "^3.0.0"
 
-react@^15.5.4:
+react@>=15.1.0, react@^15.5.4:
   version "15.5.4"
   resolved "https://registry.yarnpkg.com/react/-/react-15.5.4.tgz#fa83eb01506ab237cdc1c8c3b1cea8de012bf047"
   dependencies:
@@ -6862,6 +6933,10 @@ underscore@^1.7.0:
 underscore@~1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.7.0.tgz#6bbaf0877500d36be34ecaa584e0db9fef035209"
+
+union-class-names@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/union-class-names/-/union-class-names-1.0.0.tgz#9259608adacc39094a2b0cfe16c78e6200617847"
 
 uniq@^1.0.1:
   version "1.0.1"
