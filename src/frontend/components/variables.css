@@ -40,6 +40,7 @@
   --light-grey3: #E1E8ED;
   --light-grey4: #EBF1F5;
   --light-grey5: #F5F8FA;
+  --background: color(var(--light-grey4) tint(70%));
 
   --blue: #008AFF;
 

@@ -6,7 +6,6 @@ const TextArea = require('react-textarea-autosize').default
 // import MarkdownEditor from '~/frontend/components/MarkdownEditor'
 import {Panes, Pane, PaneSpacer} from '~/frontend/components/Panes'
 import Editor from '~/frontend/components/Editor'
-import {Field} from '~/frontend/components/Field'
 import {dasherize} from '~/../utils/test/string'
 
 import * as reducers from './reducers'
@@ -50,13 +49,24 @@ class Form extends React.Component<IFormProps, reducers.IFormState> {
 
     const isValid = R.not(hasNotBeenUpdated || emptyField)
 
-    return (
-      <div id={formId} style={{paddingTop: '48px'}}>
-        <PaneSpacer />
+    // return (
+    //   <div className={styles['page']}>
+    //     <div className={styles['pane--constrained']}>
+    //       footer 1
+    //     </div>
+    //     <div className={styles['pane--constrained']}>
+    //       footer 2
+    //     </div>
+    //     <div className={styles['pane--bottom']}>
+    //       asldfkj
+    //     </div>
+    //   </div>
+    // )
 
-        <div
-          style={{minHeight: '48px', paddingBottom: '12px', marginBottom: '-4px'}}
-        >
+    return (
+      <div id={formId} className={`${styles.wrapper} ${styles.page}`}>
+        <PaneSpacer />
+        <div style={{minHeight: '48px'}} className={styles['pane--constrained']}>
           <Panes>
             <Pane noScroll>
               <TextArea
@@ -66,19 +76,6 @@ class Form extends React.Component<IFormProps, reducers.IFormState> {
                 onChange={this.updateTitle}
                 id={`${formId}__title`}
               />
-            </Pane>
-            <Pane noScroll>
-              <h1 className={styles['md-title']}>
-                {this.state.title}
-              </h1>
-            </Pane>
-          </Panes>
-
-        </div>
-
-        <div style={{height: '32px', marginTop: '-12px'}}>
-          <Panes fill>
-            <Pane noScroll>
               <TextArea
                 label=""
                 className={`${styles.subtitle} ${styles.input}`}
@@ -88,7 +85,10 @@ class Form extends React.Component<IFormProps, reducers.IFormState> {
                 id={`${formId}__subtitle`}
               />
             </Pane>
-            <Pane noScroll>
+            <Pane>
+              <h1 className={styles['md-title']}>
+                {this.state.title}
+              </h1>
               <h2 className={styles['md-subtitle']}>
                 {this.state.subtitle}
               </h2>
@@ -96,7 +96,10 @@ class Form extends React.Component<IFormProps, reducers.IFormState> {
           </Panes>
         </div>
 
-        <Editor />
+        <div className={styles['pane--bottom']}>
+          <Editor />
+        </div>
+
         <Blueprint.Button
           intent={Blueprint.Intent.PRIMARY}
           onClick={this.submit}

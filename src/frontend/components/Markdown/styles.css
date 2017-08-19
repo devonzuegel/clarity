@@ -110,7 +110,10 @@
     padding-left: 20px;
   }
   & ol li {
-    padding: 4px 8px;
+    padding: 4px 8px 1px 8px;
+    & p {
+      margin: 0 0 4px;
+    }
   }
   & a {
     text-decoration: none;

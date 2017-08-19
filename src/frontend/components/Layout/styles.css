@@ -1,8 +1,9 @@
 @import '../variables.css';
 
 .nav-wrapper {
-  border-bottom: 2px solid var(--light-grey5);
-  background: white;
+  border-bottom: 2px solid var(--light-grey4);
+  background: var(--white);
+  z-index: 2;
   height: 48px;
   position: fixed;
   width: 100%;
@@ -10,7 +11,7 @@
 
 .nav {
   margin: auto;
-  max-width: var(--wrapper);
+  margin-right: 12px;
   display: flow-root;
 }
 

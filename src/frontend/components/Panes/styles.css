@@ -1,7 +1,7 @@
 @import '../variables.css';
 
 :root {
-  --border: 2px solid var(--light-grey5);
+  --border: 2px solid var(--light-grey4);
 }
 
 .panes {
@@ -10,6 +10,7 @@
 
 .fill {
   height: 100%;
+  width: 100%;
 }
 
 .pane {

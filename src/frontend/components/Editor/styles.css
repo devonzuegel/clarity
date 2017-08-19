@@ -3,11 +3,12 @@
 textarea.editor {
   resize: none;
   background: transparent;
-  padding: 30px 30px 48px 0;
+  padding: 0 30px 48px 0;
+  padding-top: 30px;
   margin-right: -48px;
   width: 100%;
   float: right;
-  height: calc(100% - 60px);
+  height: 100%;
   max-width: 750px;
   font-family: var(--monospace);
   font-size: .95em;

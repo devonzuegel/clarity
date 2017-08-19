@@ -59,22 +59,22 @@ class New extends React.Component<IProps, IState> {
         {this.state.error &&
           <ErrorMessage msg={this.state.error} id="new-post--user-msg" />}
         <Form iteration={{}} onSubmit={this.onSubmit} buttonText="Create" />
-        <br />
-        <p>
-          Story link after publishing: &nbsp;
-          <code>
-            thoughts.devonzuegel.com/@{this.props.username}/{this.state.slug || 'auto-generated'}
-          </code>
-        </p>
-        <div style={{maxWidth: '60%'}}>
-          <Field
-            value={this.state.slug || ''}
-            label=""
-            onChange={this.updateSlug}
-            id="new-post--slug"
-          />
-        </div>
       </div>
+      // <br />
+      // <p>
+      //   Story link after publishing: &nbsp;
+      //   <code>
+      //     thoughts.devonzuegel.com/@{this.props.username}/{this.state.slug || 'auto-generated'}
+      //   </code>
+      // </p>
+      // <div style={{maxWidth: '60%'}}>
+      //   <Field
+      //     value={this.state.slug || ''}
+      //     label=""
+      //     onChange={this.updateSlug}
+      //     id="new-post--slug"
+      //   />
+      // </div>
     )
   }
 }

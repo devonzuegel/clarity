@@ -3,6 +3,14 @@
 :root {
   --title--line-height: 1.2em;
   --title--font-size: 2em;
+  --subtitle--font-size: 1.3em;
+}
+.wrapper {
+  padding-top: 48px;
+  background: var(--background);
+  height: calc(100%);
+  overflow: hidden;
+  border: 2px solid red;
 }
 
 textarea.input {
@@ -10,11 +18,11 @@ textarea.input {
   max-width: 750px;
   float: right;
   resize: none;
+  margin-right: -48px;
   background: transparent;
-  padding-right: 30px;
+  padding: 0 30px 0 0;
   overflow-y: auto;
   box-shadow: none;
-  margin-right: -38px;
   width: 100%;
   float: right;
   max-width: 750px;
@@ -38,8 +46,9 @@ textarea.title {
 }
 
 textarea.subtitle {
-  font-size: 1.3em;
+  font-size: var(--subtitle--font-size);
   font-style: italic;
+  background: var(--background);
   &::placeholder {
     font-style: italic;
   }
@@ -54,4 +63,25 @@ textarea.subtitle {
   letter-spacing: .5;
   color: var(--grey1);
   font-weight: 300;
+}
+
+/********************/
+
+.page {
+  padding-top: 48px;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.pane--constrained {
+  flex: 0 1 1;
+  padding-bottom: 12px;
+}
+
+.pane--bottom {
+  display: flex;
+  height: 100%;
+  // background: color(blue alpha(10%));
+  // border: 5px solid color(blue alpha(30%));
 }

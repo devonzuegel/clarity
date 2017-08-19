@@ -11,7 +11,7 @@ class Editor extends React.Component<{}, IState> {
 
   render() {
     return (
-      <Panes>
+      <Panes fill>
         <Pane>
           <textarea
             placeholder="Start writing!"
