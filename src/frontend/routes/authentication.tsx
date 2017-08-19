@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as page from 'page'
 
-import render from '~/frontend/render'
+import {render} from '~/frontend/routes/utils'
 import SignInPage from '~/frontend/stories/SignIn'
 import SignOutPage from '~/frontend/stories/SignOut'
 
