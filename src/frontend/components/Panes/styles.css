@@ -1,9 +1,5 @@
 @import '../variables.css';
 
-:root {
-  --border: 2px solid var(--light-grey4);
-}
-
 .panes {
   display: flex;
 }

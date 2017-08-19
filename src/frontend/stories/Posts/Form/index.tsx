@@ -100,15 +100,17 @@ class Form extends React.Component<IFormProps, reducers.IFormState> {
           <Editor />
         </div>
 
-        <Blueprint.Button
-          intent={Blueprint.Intent.PRIMARY}
-          onClick={this.submit}
-          disabled={!isValid}
-          id={`${formId}__create-button`}
-          style={{width: '100px', marginRight: '12px'}}
-        >
-          {this.props.buttonText}
-        </Blueprint.Button>
+        <div className={styles.toolbar}>
+          <Blueprint.Button
+            intent={Blueprint.Intent.PRIMARY}
+            onClick={this.submit}
+            disabled={!isValid}
+            id={`${formId}__create-button`}
+            style={{width: '100px', marginRight: '12px'}}
+          >
+            {this.props.buttonText}
+          </Blueprint.Button>
+        </div>
       </div>
       /* <MarkdownEditor
           options={{

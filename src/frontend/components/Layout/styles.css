@@ -1,7 +1,7 @@
 @import '../variables.css';
 
 .nav-wrapper {
-  border-bottom: 2px solid var(--light-grey4);
+  border-bottom: var(--border);
   background: var(--white);
   z-index: 2;
   height: 48px;
