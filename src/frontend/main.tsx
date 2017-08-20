@@ -1,5 +1,5 @@
-import exceptionMonitoring from './exceptionMonitoring'
-import heapAnalytics from './heapAnalytics'
+import exceptionMonitoring from './analytics/exceptionMonitoring'
+import heapAnalytics from './analytics/heapAnalytics'
 import Routes from './routes'
 
 exceptionMonitoring()
