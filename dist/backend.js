@@ -2683,7 +2683,7 @@ exports.setup = function (env) {
     };
     var shared = [__webpack_require__(61), __webpack_require__(60), __webpack_require__(64)];
     var partials = isProd ? [__webpack_require__(63)].concat(shared) : [__webpack_require__(62)].concat(shared);
-    return webpackMerge(partials.map(function (m) {
+    return webpackMerge.apply(void 0, partials.map(function (m) {
         return m.partial(options);
     }));
 };

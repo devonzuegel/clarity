@@ -1,8 +1,10 @@
 import * as React from 'react'
 import * as R from 'ramda'
+import {Provider} from 'react-redux'
+import * as ReactDOM from 'react-dom'
 
+import Wrapper from '~/frontend/components/Wrapper'
 import Layout from '~/frontend/stories/Layout'
-import render from '~/frontend/render'
 import Hotkeys from '~/frontend/components/Hotkeys'
 import store from '~/frontend/redux/store'
 import NotFoundPage from '~/frontend/pages/NotFound'
@@ -25,4 +27,13 @@ export const isLoggedIn = (_context: PageJS.Context, next: () => any) => {
   } else {
     next()
   }
+}
+
+export const render = (c: JSX.Element, wrapper: boolean = true) => {
+  const reduxComponent = (
+    <Provider store={store}>
+      {wrapper ? <Wrapper content={c} /> : c}
+    </Provider>
+  )
+  ReactDOM.render(reduxComponent, document.getElementById('root'))
 }

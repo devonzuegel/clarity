@@ -25,5 +25,7 @@ export const setup = (env: Env.Type) => {
   const partials = isProd
     ? [require('../loaders/typescript-loader'), ...shared]
     : [require('../loaders/hot-typescript-loader'), ...shared]
-  return webpackMerge(partials.map((m): webpack.Configuration => m.partial(options)))
+  return webpackMerge(
+    ...partials.map((m): webpack.Configuration => m.partial(options))
+  )
 }
