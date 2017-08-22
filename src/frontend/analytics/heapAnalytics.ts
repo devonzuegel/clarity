@@ -6,6 +6,10 @@ declare global {
   }
 }
 
+/**
+ * The definition for these IDs can be found under "Projects" at:
+ *   https://heapanalytics.com/app/account
+ */
 const ids = {
   ci: '4261421827',
   'heroku-develop': '999551692',
