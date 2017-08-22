@@ -70,15 +70,12 @@
     margin-bottom: 42px;
     text-align: center;
     &:before {
-      --x-height-multiplier: 0.363;
-      --baseline-multiplier: 0.157;
       font-style: italic;
       font-size: 20px;
       letter-spacing: .6em;
       content: '...';
       display: inline-block;
       margin: auto;
-      position: relative;
       color: var(--grey3);
       top: -30px;
     }
