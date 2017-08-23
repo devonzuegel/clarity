@@ -33,7 +33,7 @@ const getGoogleAnaltyicsId = (): string | null => {
 
 const id = getGoogleAnaltyicsId()
 if (id) {
-  googleAnalytics.initialize('UA-104889483-2', {debug: true})
+  googleAnalytics.initialize('UA-104889483-2')
 } else {
   console.info('Google Analytics disabled for local & CI environments.')
 }
