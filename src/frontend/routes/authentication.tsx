@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import {render, route} from '~/frontend/routes/utils'
+import * as U from '~/frontend/routes/utils'
 import SignInPage from '~/frontend/stories/SignIn'
 import SignOutPage from '~/frontend/stories/SignOut'
 
@@ -11,7 +11,7 @@ export const urls = {
 }
 
 export const routes = () => {
-  route('/auth/facebook', (_, next) => {
+  U.route('/auth/facebook', (_, next) => {
     /**
      * Still unclear why this requires two calls...
      **/
@@ -19,6 +19,6 @@ export const routes = () => {
     next()
   })
 
-  route('/signin', () => render(<SignInPage />))
-  route('/signout', () => render(<SignOutPage />))
+  U.route('/signin', () => U.render(<SignInPage />))
+  U.route('/signout', () => U.render(<SignOutPage />))
 }
