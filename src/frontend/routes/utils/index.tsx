@@ -2,7 +2,9 @@ import * as React from 'react'
 import * as R from 'ramda'
 import {Provider} from 'react-redux'
 import * as ReactDOM from 'react-dom'
+import * as page from 'page'
 
+import * as GoogleAnalytics from '~/frontend/analytics/googleAnalytics'
 import Wrapper from '~/frontend/components/Wrapper'
 import Layout from '~/frontend/stories/Layout'
 import Hotkeys from '~/frontend/components/Hotkeys'
@@ -17,6 +19,10 @@ export const renderWithLayout = (component: JSX.Element) => {
     </Layout>
   )
   return render(layout)
+}
+
+export const route = (path: string, ...callbacks: PageJS.Callback[]) => {
+  page(path, GoogleAnalytics.middleware, ...callbacks)
 }
 
 export const isLoggedIn = (_context: PageJS.Context, next: () => any) => {

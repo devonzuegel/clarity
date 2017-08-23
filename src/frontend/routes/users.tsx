@@ -1,5 +1,4 @@
 import * as React from 'react'
-import * as page from 'page'
 
 import PostPage from '~/frontend/pages/Posts/Show'
 import UserPage from '~/frontend/pages/Users/Show'
@@ -11,11 +10,11 @@ export const urls = {
 }
 
 export const routes = () => {
-  page('/@:username', ({params}) =>
+  U.route('/@:username', ({params}) =>
     U.renderWithLayout(<UserPage username={params.username} />)
   )
 
-  page('/@:username/:slug', ({params}) => {
+  U.route('/@:username/:slug', ({params}) => {
     U.renderWithLayout(<PostPage slug={params.slug} username={params.username} />)
   })
 }
