@@ -43766,15 +43766,16 @@ var ids = {
 var getGoogleAnaltyicsId = function () {
     var h = window.location.href;
     if (R.contains('clarity-develop.herokuapp.com', h)) return ids['heroku-develop'];
-    if (R.contains('clarity-live.herokuapp.com', h)) return ids['heroku-live'];
-    if (R.contains('clarity-stage.herokuapp.com', h)) return ids['heroku-stage'];
     if (R.contains('clarity-tests.herokuapp.com', h)) return ids['heroku-tests'];
+    if (R.contains('clarity-stage.herokuapp.com', h)) return ids['heroku-stage'];
+    if (R.contains('clarity-live.herokuapp.com', h)) return ids['heroku-live'];
+    if (R.contains('thoughts.devonzuegel.com', h)) return ids['heroku-live'];
     if (R.contains('localhost', h)) return null;
     throw Error("Google Analytics config for hostname \"" + h + "\" is not defined.");
 };
 var id = getGoogleAnaltyicsId();
 if (id) {
-    googleAnalytics.initialize('UA-104889483-2', { debug: true });
+    googleAnalytics.initialize(id);
 } else {
     console.info('Google Analytics disabled for local & CI environments.');
 }
@@ -44560,7 +44561,7 @@ exports.default = store;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(2);
-var utils_1 = __webpack_require__(89);
+var U = __webpack_require__(89);
 var SignIn_1 = __webpack_require__(382);
 var SignOut_1 = __webpack_require__(383);
 exports.urls = {
@@ -44569,18 +44570,18 @@ exports.urls = {
     fbSignin: '/auth/facebook'
 };
 exports.routes = function () {
-    utils_1.route('/auth/facebook', function (_, next) {
+    U.route('/auth/facebook', function (_, next) {
         /**
          * Still unclear why this requires two calls...
          **/
         next();
         next();
     });
-    utils_1.route('/signin', function () {
-        return utils_1.render(React.createElement(SignIn_1.default, null));
+    U.route('/signin', function () {
+        return U.render(React.createElement(SignIn_1.default, null));
     });
-    utils_1.route('/signout', function () {
-        return utils_1.render(React.createElement(SignOut_1.default, null));
+    U.route('/signout', function () {
+        return U.render(React.createElement(SignOut_1.default, null));
     });
 };
 
