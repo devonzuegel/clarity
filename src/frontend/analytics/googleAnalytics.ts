@@ -24,6 +24,7 @@ const getGoogleAnaltyicsId = (): string | null => {
   const h = window.location.href
   if (R.contains('clarity-develop.herokuapp.com', h)) return ids['heroku-develop']
   if (R.contains('clarity-live.herokuapp.com', h)) return ids['heroku-live']
+  if (R.contains('thoughts.devonzuegel.com', h)) return ids['heroku-live']
   if (R.contains('clarity-stage.herokuapp.com', h)) return ids['heroku-stage']
   if (R.contains('clarity-tests.herokuapp.com', h)) return ids['heroku-tests']
   if (R.contains('localhost', h)) return null
@@ -33,7 +34,7 @@ const getGoogleAnaltyicsId = (): string | null => {
 
 const id = getGoogleAnaltyicsId()
 if (id) {
-  googleAnalytics.initialize('UA-104889483-2')
+  googleAnalytics.initialize(id)
 } else {
   console.info('Google Analytics disabled for local & CI environments.')
 }
