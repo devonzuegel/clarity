@@ -11,10 +11,10 @@ export const urls = {
 
 export const routes = () => {
   U.route('/@:username', ({params}) =>
-    U.renderWithLayout(<UserPage username={params.username} />)
+    U.render(<UserPage username={params.username} />)
   )
 
   U.route('/@:username/:slug', ({params}) => {
-    U.renderWithLayout(<PostPage slug={params.slug} username={params.username} />)
+    U.render(<PostPage slug={params.slug} username={params.username} />)
   })
 }
