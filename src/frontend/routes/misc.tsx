@@ -6,7 +6,7 @@ import TestPage from '~/frontend/pages/Test'
 import NotFoundPage from '~/frontend/pages/NotFound'
 import LoadingOverlay from '~/frontend/components/LoadingOverlay'
 import * as U from '~/frontend/routes/utils'
-import Wrapper from '../components/Wrapper'
+import Wrapper from '~/frontend/components/Wrapper'
 
 export const urls = {
   home: '/',
@@ -16,14 +16,14 @@ export const urls = {
 const redirectUrls = ['/auth/facebook']
 
 export const routes = () => {
-  U.route('/', () => U.renderWithLayout(<HomePage />))
+  U.route('/', () => U.render(<HomePage />))
 
   U.route('/test', () => U.render(<TestPage />))
 
   U.route('*', (context, _next) => {
     const isRedirecting = R.contains(context.canonicalPath, redirectUrls)
     if (isRedirecting) {
-      U.render(<Wrapper content={<LoadingOverlay />} />)
+      U.render(<Wrapper><LoadingOverlay /></Wrapper>)
     } else {
       U.renderWithLayout(<NotFoundPage />)
     }

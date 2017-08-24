@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as page from 'page'
 
 import * as api from '~/frontend/api'
+import Wrapper from '~/frontend/components/Wrapper'
 import Form from '~/frontend/stories/Posts/Form'
 import {urls} from '~/frontend/routes'
 import {IFormState} from '~/frontend/stories/Posts/Form/reducers'
@@ -55,11 +56,11 @@ class New extends React.Component<IProps, IState> {
 
   render() {
     return (
-      <div>
+      <Wrapper>
         {this.state.error &&
           <ErrorMessage msg={this.state.error} id="new-post--user-msg" />}
         <Form iteration={{}} onSubmit={this.onSubmit} buttonText="Create" />
-      </div>
+      </Wrapper>
       // <br />
       // <p>
       //   Story link after publishing: &nbsp;

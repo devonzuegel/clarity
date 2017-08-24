@@ -1,14 +1,13 @@
 import * as React from 'react'
 
-import Wrapper from '~/frontend/components/Wrapper'
 import {urls} from '~/frontend/routes'
 const styles = require('./styles.css')
+import Wrapper from '~/frontend/components/Wrapper'
 
 interface ILayout {
   children?: JSX.Element
   displayName: string
   username: string
-  wrapper?: boolean
 }
 
 const NavBtn = ({url, title, name}: {url: string; title: string; name: string}) =>
@@ -32,12 +31,14 @@ const Nav = ({displayName, username}: ILayout) =>
     </nav>
   </div>
 
-const LayoutComponent = ({displayName, username, children, wrapper}: ILayout) =>
+const LayoutComponent = ({displayName, username, children}: ILayout) =>
   <div>
     {displayName && <Nav {...{displayName, username}} />}
-    <main className={styles.main}>
-      {wrapper && children ? <Wrapper content={children} /> : children}
-    </main>
+    <Wrapper>
+      <main className={styles.main}>
+        {children}
+      </main>
+    </Wrapper>
   </div>
 
 export default LayoutComponent

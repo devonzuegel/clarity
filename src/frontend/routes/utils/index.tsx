@@ -10,12 +10,9 @@ import Hotkeys from '~/frontend/components/Hotkeys'
 import store from '~/frontend/redux/store'
 import NotFoundPage from '~/frontend/pages/NotFound'
 
-export const renderWithLayout = (
-  component: JSX.Element,
-  wrapper: boolean = true
-) => {
+export const renderWithLayout = (component: JSX.Element) => {
   const layout = (
-    <Layout wrapper={wrapper}>
+    <Layout>
       <Hotkeys />
       {component}
     </Layout>

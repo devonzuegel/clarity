@@ -4,6 +4,7 @@ import NotFound from '~/frontend/pages/NotFound'
 import LoadingOverlay from '~/frontend/components/LoadingOverlay'
 import {NoPosts} from '~/frontend/components/NoPosts'
 import {Post, IPost} from '~/frontend/components/Post'
+import Layout from '~/frontend/stories/Layout'
 
 interface IState {
   posts?: IPost[]
@@ -44,9 +45,11 @@ class ShowUser extends React.Component<{}, IState> {
       return <NoPosts />
     }
     return (
-      <div id="home--posts-list">
-        {posts.map(Post)}
-      </div>
+      <Layout>
+        <div id="home--posts-list">
+          {posts.map(Post)}
+        </div>
+      </Layout>
     )
   }
 }
