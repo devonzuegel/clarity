@@ -34,7 +34,7 @@ const getGoogleAnaltyicsId = (): string | null => {
 
 const id = getGoogleAnaltyicsId()
 if (id) {
-  googleAnalytics.initialize(id)
+  // googleAnalytics.initialize(id)
 } else {
   console.info('Google Analytics disabled for local & CI environments.')
 }
