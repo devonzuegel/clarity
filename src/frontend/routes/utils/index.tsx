@@ -5,7 +5,6 @@ import * as ReactDOM from 'react-dom'
 import * as page from 'page'
 
 import * as GoogleAnalytics from '~/frontend/analytics/googleAnalytics'
-import Wrapper from '~/frontend/components/Wrapper'
 import Layout from '~/frontend/stories/Layout'
 import Hotkeys from '~/frontend/components/Hotkeys'
 import store from '~/frontend/redux/store'
@@ -16,12 +15,12 @@ export const renderWithLayout = (
   wrapper: boolean = true
 ) => {
   const layout = (
-    <Layout>
+    <Layout wrapper={wrapper}>
       <Hotkeys />
       {component}
     </Layout>
   )
-  return render(layout, wrapper)
+  return render(layout)
 }
 
 export const route = (path: string, ...callbacks: PageJS.Callback[]) => {
@@ -38,10 +37,10 @@ export const isLoggedIn = (_context: PageJS.Context, next: () => any) => {
   }
 }
 
-export const render = (c: JSX.Element, wrapper: boolean = true) => {
+export const render = (content: JSX.Element) => {
   const reduxComponent = (
     <Provider store={store}>
-      {wrapper ? <Wrapper content={c} /> : c}
+      {content}
     </Provider>
   )
   ReactDOM.render(reduxComponent, document.getElementById('root'))

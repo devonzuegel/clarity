@@ -16,4 +16,15 @@ const mapDispatchToProps = (dispatch: any) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout as any)
+const mergeProps = (
+  stateProps: {facebookId: string; displayName: string; username: string},
+  _: any,
+  ownProps: {wrapper?: boolean}
+) => ({
+  ...stateProps,
+  ...ownProps,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(
+  Layout as any
+)

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as R from 'ramda'
 import * as Blueprint from '@blueprintjs/core'
-const TextArea = require('react-textarea-autosize').default
+const TextArea = require('react-textarea-autosize').default // TODO: implement, instead of dependency
 
 // import MarkdownEditor from '~/frontend/components/MarkdownEditor'
 import {Panes, Pane, PaneSpacer} from '~/frontend/components/Panes'

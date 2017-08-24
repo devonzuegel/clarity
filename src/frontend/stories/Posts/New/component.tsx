@@ -7,7 +7,7 @@ import {urls} from '~/frontend/routes'
 import {IFormState} from '~/frontend/stories/Posts/Form/reducers'
 import {ErrorMessage} from '~/frontend/components/ErrorMessage'
 import {IAction} from '~/frontend/redux/actions/auth'
-import {Field} from '~/frontend/components/Field'
+// import {Field} from '~/frontend/components/Field'
 
 export type IProps = {
   facebookId: string
@@ -46,12 +46,12 @@ class New extends React.Component<IProps, IState> {
     }
   }
 
-  private updateSlug = (e: React.FormEvent<HTMLInputElement>) => {
-    const slug = e.currentTarget.value
-    if (/^[a-z0-9-_]*$/.test(slug)) {
-      this.setState(reducers.updateSlug(slug))
-    }
-  }
+  // private updateSlug = (e: React.FormEvent<HTMLInputElement>) => {
+  //   const slug = e.currentTarget.value
+  //   if (/^[a-z0-9-_]*$/.test(slug)) {
+  //     this.setState(reducers.updateSlug(slug))
+  //   }
+  // }
 
   render() {
     return (
