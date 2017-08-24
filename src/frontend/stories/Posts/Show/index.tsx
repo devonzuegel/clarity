@@ -4,6 +4,7 @@ import * as React from 'react'
 import {IterationSchema} from '~/server/db/models/iteration'
 import {graphql} from '~/../utils/api/responses'
 
+import Wrapper from '~/frontend/components/Wrapper'
 import Diff from '~/frontend/components/Diff'
 import LoadingOverlay from '~/frontend/components/LoadingOverlay'
 
@@ -59,7 +60,7 @@ export class Post extends React.Component<IProps, IState> {
   private body() {
     const iterations = this.iterations()
     const historySelected = this.state.selected === iterations.length
-    if (historySelected) return <History />
+    if (historySelected) return <Wrapper><History /></Wrapper>
 
     if (Array.isArray(this.state.selected)) {
       const [i, j] = this.state.selected
@@ -72,7 +73,7 @@ export class Post extends React.Component<IProps, IState> {
 
     if (!this.state.editing) {
       const selected = iterations[this.state.selected]
-      return <Iteration {...selected} />
+      return <Wrapper><Iteration {...selected} /></Wrapper>
     }
 
     const lastIteration = R.last(iterations)

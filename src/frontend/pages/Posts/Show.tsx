@@ -2,8 +2,12 @@ import * as React from 'react'
 import {connect} from 'react-redux'
 
 import ShowPost, {IProps} from '~/frontend/stories/Posts/Show'
+import Layout from '~/frontend/stories/Layout'
 
-const Page = (props: IProps) => <ShowPost {...props} />
+const Page = (props: IProps) =>
+  <Layout>
+    <ShowPost {...props} />
+  </Layout>
 
 const mapStateToProps = (state: {authReducer: {user?: any}}) => ({
   readonly: !state.authReducer.user,

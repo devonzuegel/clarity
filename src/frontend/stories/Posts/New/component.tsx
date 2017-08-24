@@ -8,6 +8,7 @@ import {IFormState} from '~/frontend/stories/Posts/Form/reducers'
 import {ErrorMessage} from '~/frontend/components/ErrorMessage'
 import {IAction} from '~/frontend/redux/actions/auth'
 import {Field} from '~/frontend/components/Field'
+import Layout from '~/frontend/stories/Layout'
 
 export type IProps = {
   facebookId: string
@@ -55,7 +56,7 @@ class New extends React.Component<IProps, IState> {
 
   render() {
     return (
-      <div>
+      <Layout>
         {this.state.error &&
           <ErrorMessage msg={this.state.error} id="new-post--user-msg" />}
         <Form iteration={{}} onSubmit={this.onSubmit} buttonText="Create" />
@@ -74,7 +75,7 @@ class New extends React.Component<IProps, IState> {
             id="new-post--slug"
           />
         </div>
-      </div>
+      </Layout>
     )
   }
 }
