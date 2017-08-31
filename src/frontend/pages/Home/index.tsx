@@ -33,16 +33,12 @@ class ShowUser extends React.Component<{}, IState> {
   }
 
   render() {
-    if (this.state.loading) {
-      return <LoadingOverlay />
-    }
-    if (this.state.error) {
-      return <NotFound message={this.state.error} />
-    }
     const posts = this.state.posts || []
-    if (posts.length === 0) {
-      return <NoPosts />
-    }
+
+    if (this.state.loading) return <LoadingOverlay />
+    if (this.state.error) return <NotFound message={this.state.error} />
+    if (posts.length === 0) return <NoPosts />
+
     return (
       <div id="home--posts-list">
         {posts.map(Post)}
