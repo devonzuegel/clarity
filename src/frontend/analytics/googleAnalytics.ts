@@ -25,6 +25,7 @@ const getGoogleAnaltyicsId = (): string | null => {
   if (R.contains('clarity-develop.herokuapp.com', h)) return ids['heroku-develop']
   if (R.contains('clarity-live.herokuapp.com', h)) return ids['heroku-live']
   if (R.contains('thoughts.devonzuegel.com', h)) return ids['heroku-live']
+  if (R.contains('clarity.ink', h)) return ids['heroku-live']
   if (R.contains('clarity-stage.herokuapp.com', h)) return ids['heroku-stage']
   if (R.contains('clarity-tests.herokuapp.com', h)) return ids['heroku-tests']
   if (R.contains('localhost', h)) return null
