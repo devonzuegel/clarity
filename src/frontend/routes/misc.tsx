@@ -16,16 +16,16 @@ export const urls = {
 const redirectUrls = ['/auth/facebook']
 
 export const routes = () => {
-  U.route('/', () => U.renderWithLayout(<HomePage />))
+  U.route('/', () => U.render(<HomePage />))
 
-  U.route('/test', () => U.render(<TestPage />, false))
+  U.route('/test', () => U.render(<TestPage />))
 
   U.route('*', (context, _next) => {
     const isRedirecting = R.contains(context.canonicalPath, redirectUrls)
     if (isRedirecting) {
-      U.render(<Wrapper content={<LoadingOverlay />} />)
+      U.render(<Wrapper><LoadingOverlay /></Wrapper>)
     } else {
-      U.renderWithLayout(<NotFoundPage />)
+      U.render(<NotFoundPage />)
     }
   })
 }

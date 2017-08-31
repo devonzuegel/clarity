@@ -4,6 +4,8 @@ import NotFound from '~/frontend/pages/NotFound'
 import LoadingOverlay from '~/frontend/components/LoadingOverlay'
 import {NoPosts} from '~/frontend/components/NoPosts'
 import {Post, IPost} from '~/frontend/components/Post'
+import Layout from '~/frontend/stories/Layout'
+import Wrapper from '~/frontend/components/Wrapper'
 
 interface IState {
   posts?: IPost[]
@@ -33,20 +35,20 @@ class ShowUser extends React.Component<{}, IState> {
   }
 
   render() {
-    if (this.state.loading) {
-      return <LoadingOverlay />
-    }
-    if (this.state.error) {
-      return <NotFound message={this.state.error} />
-    }
     const posts = this.state.posts || []
-    if (posts.length === 0) {
-      return <NoPosts />
-    }
+
+    if (this.state.loading) return <LoadingOverlay />
+    if (this.state.error) return <NotFound message={this.state.error} />
+    if (posts.length === 0) return <NoPosts />
+
     return (
-      <div id="home--posts-list">
-        {posts.map(Post)}
-      </div>
+      <Layout>
+        <Wrapper>
+          <div id="home--posts-list">
+            {posts.map(Post)}
+          </div>
+        </Wrapper>
+      </Layout>
     )
   }
 }
