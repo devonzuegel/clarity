@@ -75,7 +75,7 @@ require("source-map-support").install();
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var cls = __webpack_require__(80);
+var cls = __webpack_require__(81);
 var Sequelize = __webpack_require__(12);
 var user_1 = __webpack_require__(39);
 var post_1 = __webpack_require__(38);
@@ -698,7 +698,7 @@ module.exports = require("sequelize");
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfWeek = __webpack_require__(76)
+var startOfWeek = __webpack_require__(77)
 
 /**
  * @category ISO Week Helpers
@@ -735,7 +735,7 @@ module.exports = startOfISOWeek
 var R = __webpack_require__(4);
 var path = __webpack_require__(6);
 var chalk = __webpack_require__(8);
-var dotenv = __webpack_require__(81);
+var dotenv = __webpack_require__(82);
 var envFile = '.env';
 var HEROKU_ENVS = ['heroku-develop', 'heroku-stage', 'heroku-live', 'heroku-tests'];
 var LOCAL_ENVS = ['test', 'local-develop'];
@@ -1049,7 +1049,7 @@ module.exports = require("webpack");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Raven = __webpack_require__(90);
+var Raven = __webpack_require__(91);
 exports.monitorExceptions = function (config) {
     return function (app) {
         // Must configure Raven before doing anything else with it
@@ -1240,7 +1240,7 @@ exports.runHotMiddleware = function (app) {
     var webpack = __webpack_require__(25);
     var webpackConfig = __webpack_require__(58).default;
     var webpackCompiler = webpack(webpackConfig);
-    app.use(__webpack_require__(93)(webpackCompiler, {
+    app.use(__webpack_require__(94)(webpackCompiler, {
         publicPath: webpackConfig.output.publicPath,
         stats: { colors: true },
         noInfo: true,
@@ -1250,7 +1250,7 @@ exports.runHotMiddleware = function (app) {
         historyApiFallback: true,
         quiet: true
     }));
-    app.use(__webpack_require__(94)(webpackCompiler));
+    app.use(__webpack_require__(95)(webpackCompiler));
 };
 
 /***/ }),
@@ -1263,7 +1263,7 @@ exports.runHotMiddleware = function (app) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = __webpack_require__(10);
 exports.serveFrontend = function (app) {
-    var fs = __webpack_require__(84);
+    var fs = __webpack_require__(85);
     var path = __webpack_require__(6);
     app.use('/', express.static(__dirname));
     app.get('*', function (_, res) {
@@ -1281,7 +1281,7 @@ exports.serveFrontend = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var session = __webpack_require__(83);
+var session = __webpack_require__(84);
 exports.setupSession = function (app) {
     /** More info: github.com/expressjs/session#options */
     var options = {
@@ -1300,7 +1300,7 @@ exports.setupSession = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var bodyParser = __webpack_require__(79);
+var bodyParser = __webpack_require__(80);
 var express = __webpack_require__(10);
 exports.newApp = function (initalizers) {
     var app = express();
@@ -1331,7 +1331,7 @@ module.exports = require("newrelic");
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var config = __webpack_require__(78);
+var config = __webpack_require__(79);
 exports.default = config;
 
 /***/ }),
@@ -1566,7 +1566,7 @@ exports.setup = function (app) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var graphqlHTTP = __webpack_require__(82);
+var graphqlHTTP = __webpack_require__(83);
 var schema_1 = __webpack_require__(42);
 exports.default = function (app) {
     app.use('/graphql', graphqlHTTP({ schema: schema_1.default, graphiql: true }));
@@ -1940,7 +1940,7 @@ db_1.sequelize.sync().then(function () {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var passport = __webpack_require__(5);
-var Facebook = __webpack_require__(86);
+var Facebook = __webpack_require__(87);
 var user_1 = __webpack_require__(9);
 var Mock = __webpack_require__(50);
 var mockAuthentication = __webpack_require__(3).mockAuthentication;
@@ -1996,7 +1996,7 @@ exports.setupStrategy = function (options) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var util = __webpack_require__(91);
+var util = __webpack_require__(92);
 var passport = __webpack_require__(5);
 var profile_mock_1 = __webpack_require__(51);
 exports.Strategy = function Strategy(_options, verify) {
@@ -2599,7 +2599,7 @@ exports.MockUserService = MockUserService;
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var format = __webpack_require__(66);
+var format = __webpack_require__(67);
 var R = __webpack_require__(4);
 exports.formatDateStr = function (s) {
     var result = new Date(Date.parse(s)).toLocaleTimeString('en-UK', {
@@ -2669,7 +2669,7 @@ exports.default = _1.setup(Env.Enum.development);
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var webpackMerge = __webpack_require__(95);
+var webpackMerge = __webpack_require__(96);
 var path = __webpack_require__(6);
 var Env = __webpack_require__(21);
 exports.setup = function (env) {
@@ -2681,7 +2681,7 @@ exports.setup = function (env) {
         console: !isProd,
         isProd: isProd
     };
-    var shared = [__webpack_require__(61), __webpack_require__(60), __webpack_require__(64)];
+    var shared = [__webpack_require__(64), __webpack_require__(61), __webpack_require__(60), __webpack_require__(65)];
     var partials = isProd ? [__webpack_require__(63)].concat(shared) : [__webpack_require__(62)].concat(shared);
     return webpackMerge.apply(void 0, partials.map(function (m) {
         return m.partial(options);
@@ -2698,7 +2698,7 @@ exports.setup = function (env) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = __webpack_require__(6);
 var webpack = __webpack_require__(25);
-var HtmlWebpackPlugin = __webpack_require__(85);
+var HtmlWebpackPlugin = __webpack_require__(86);
 var entryFile = './src/frontend/main.tsx';
 exports.partial = function (c) {
     return {
@@ -2744,7 +2744,7 @@ var loaders = function (c) {
         loader: 'postcss-loader',
         options: {
             plugins: function () {
-                return [__webpack_require__(89)({ path: [frontendDir()] }), __webpack_require__(88)(), __webpack_require__(87)({ relative: frontendDir() })];
+                return [__webpack_require__(90)({ path: [frontendDir()] }), __webpack_require__(89)(), __webpack_require__(88)({ relative: frontendDir() })];
             }
         }
     }];
@@ -2776,7 +2776,7 @@ exports.partial = function () {
         module: {
             rules: [{
                 test: /\.tsx?$/,
-                loader: __webpack_require__(92)(['react-hot-loader', 'awesome-typescript-loader']),
+                loader: __webpack_require__(93)(['react-hot-loader', 'awesome-typescript-loader']),
                 exclude: /node_modules/
             }]
         },
@@ -2814,6 +2814,31 @@ exports.partial = function () {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.partial = function (c) {
+    return {
+        module: {
+            rules: [{
+                test: /\.(woff|woff2)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 50000,
+                    mimetype: 'application/font-woff',
+                    name: './fonts/[hash].[ext]',
+                    publicPath: c.rootDir + "/fonts"
+                }
+            }]
+        }
+    };
+};
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
 var path = __webpack_require__(6);
 exports.partial = function (c) {
     return {
@@ -2832,10 +2857,10 @@ exports.partial = function (c) {
 };
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var startOfDay = __webpack_require__(74)
+var startOfDay = __webpack_require__(75)
 
 var MILLISECONDS_IN_MINUTE = 60000
 var MILLISECONDS_IN_DAY = 86400000
@@ -2879,15 +2904,15 @@ module.exports = differenceInCalendarDays
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getDayOfYear = __webpack_require__(67)
-var getISOWeek = __webpack_require__(68)
+var getDayOfYear = __webpack_require__(68)
+var getISOWeek = __webpack_require__(69)
 var getISOYear = __webpack_require__(22)
 var parse = __webpack_require__(1)
-var isValid = __webpack_require__(69)
-var enLocale = __webpack_require__(73)
+var isValid = __webpack_require__(70)
+var enLocale = __webpack_require__(74)
 
 /**
  * @category Common Helpers
@@ -3213,12 +3238,12 @@ module.exports = format
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
-var startOfYear = __webpack_require__(77)
-var differenceInCalendarDays = __webpack_require__(65)
+var startOfYear = __webpack_require__(78)
+var differenceInCalendarDays = __webpack_require__(66)
 
 /**
  * @category Day Helpers
@@ -3246,12 +3271,12 @@ module.exports = getDayOfYear
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
 var startOfISOWeek = __webpack_require__(13)
-var startOfISOYear = __webpack_require__(75)
+var startOfISOYear = __webpack_require__(76)
 
 var MILLISECONDS_IN_WEEK = 604800000
 
@@ -3286,7 +3311,7 @@ module.exports = getISOWeek
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isDate = __webpack_require__(23)
@@ -3327,7 +3352,7 @@ module.exports = isValid
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports) {
 
 var commonFormatterKeys = [
@@ -3361,7 +3386,7 @@ module.exports = buildFormattingTokensRegExp
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports) {
 
 function buildDistanceInWordsLocale () {
@@ -3466,10 +3491,10 @@ module.exports = buildDistanceInWordsLocale
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildFormattingTokensRegExp = __webpack_require__(70)
+var buildFormattingTokensRegExp = __webpack_require__(71)
 
 function buildFormatLocale () {
   // Note: in English, the names of days of the week and months are capitalized.
@@ -3560,11 +3585,11 @@ module.exports = buildFormatLocale
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildDistanceInWordsLocale = __webpack_require__(71)
-var buildFormatLocale = __webpack_require__(72)
+var buildDistanceInWordsLocale = __webpack_require__(72)
+var buildFormatLocale = __webpack_require__(73)
 
 /**
  * @category Locales
@@ -3577,7 +3602,7 @@ module.exports = {
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
@@ -3608,7 +3633,7 @@ module.exports = startOfDay
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getISOYear = __webpack_require__(22)
@@ -3646,7 +3671,7 @@ module.exports = startOfISOYear
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
@@ -3690,7 +3715,7 @@ module.exports = startOfWeek
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
@@ -3723,7 +3748,7 @@ module.exports = startOfYear
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -3739,103 +3764,103 @@ module.exports = appConfig.db
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = require("body-parser");
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = require("continuation-local-storage");
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-graphql");
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-session");
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports) {
 
 module.exports = require("html-webpack-plugin");
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = require("passport-facebook");
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = require("postcss-assets");
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = require("postcss-cssnext");
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports) {
 
 module.exports = require("postcss-import");
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports) {
 
 module.exports = require("raven");
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports) {
 
 module.exports = require("util");
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-combine-loaders");
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-dev-middleware");
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-hot-middleware");
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-merge");
