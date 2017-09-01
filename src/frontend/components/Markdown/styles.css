@@ -1,7 +1,7 @@
 @import '../variables.css';
 
 .markdown {
-  font-family: var(--serif);
+  font-family: var(--primary-font);
   -webkit-font-smoothing: antialiased;
   max-width: 750px;
   padding-top: calc(.25 * var(--spacing));
@@ -62,7 +62,7 @@
   & h1, & h2, & h3, & h4, & h5, & h6 {
     line-height: 1em;
     -webkit-font-smoothing: default;
-    font-family: var(--sans-serif);
+    font-family: var(--accent-font);
   }
   & hr {
     border: none;

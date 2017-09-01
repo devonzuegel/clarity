@@ -17,6 +17,7 @@ export const setup = (env: Env.Type) => {
   }
 
   const shared = [
+    require('../loaders/woff-loader'),
     require('../loaders/css-loader'),
     require('./partials/base'),
     require('../partials/aliases'),
