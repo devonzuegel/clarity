@@ -1,3 +1,55 @@
+/***********************************************************************
+ *** Atlas Grotesk *****************************************************
+ ***********************************************************************/
+
+@font-face {
+  font-weight: 400;
+  font-family: 'Atlas Grotesk';
+  src: url('~/fonts/AtlasGrotesk-Regular-Web.woff2') format('woff2');
+}
+
+@font-face {
+  font-weight: 400;
+  font-style: italic;
+  font-family: 'Atlas Grotesk';
+  src: url('~/fonts/AtlasGrotesk-RegularItalic-Web.woff2') format('woff2');
+}
+
+@font-face {
+  font-weight: 600;
+  font-family: 'Atlas Grotesk';
+  src: url('~/fonts/AtlasGrotesk-Medium-Web.woff2') format('woff2');
+}
+
+@font-face {
+  font-weight: 600;
+  font-style: italic;
+  font-family: 'Atlas Grotesk';
+  src: url('~/fonts/AtlasGrotesk-MediumItalic-Web.woff2') format('woff2');
+}
+
+/***********************************************************************
+ *** Maison ************************************************************
+ ***********************************************************************/
+
+@font-face {
+  font-weight: 400;
+  font-family: 'Maison';
+  src: url('~/fonts/MaisonNeueWEB-Book.woff2') format('woff2');
+}
+
+@font-face {
+  font-style: italic;
+  font-family: 'Maison';
+  src: url('~/fonts/MaisonNeueWEB-BookItalic.woff2') format('woff2');
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: 'Maison';
+  src: url('~/fonts/MaisonNeueWEB-Demi.woff2') format('woff2');
+}
+
 :root {
   --navy: #001F3F;
   --blue: #0074D9;
@@ -53,8 +105,8 @@
   --spacing-xxlarge: calc(4 * var(--spacing));
 
   --monospace: 'Roboto Mono';
-  --serif: 'PT Serif', serif;
-  --sans-serif: 'Roboto',
+  --accent-font: 'Maison',
+    'Roboto',
     -apple-system,
     system-ui,
     "Segoe UI",
@@ -66,4 +118,5 @@
     "Helvetica Neue",
     Icons16,
     sans-serif;
+  --primary-font: 'Atlas Grotesk', 'Maison', 'PT Serif', serif;
 }

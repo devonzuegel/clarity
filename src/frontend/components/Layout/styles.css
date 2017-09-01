@@ -2,15 +2,22 @@
 
 .top-level-wrapper {
   background-color: color(var(--light-grey5) alpha(-60%));
-  line-height: 1.6em;
-  font-size: 16px;
+  line-height: 1.53em;
+  font-size: 14px;
   min-height: 100%;
-  font-family: var(--serif);
+  font-family: var(--primary-font);
   -webkit-font-smoothing: antialiased;
 
   & h1, & h2, & h3, & h4, & h5, & h6 {
     line-height: 1em;
     -webkit-font-smoothing: default;
-    font-family: var(--sans-serif);
+    font-family: var(--accent-font);
   }
+}
+
+button.nav-button {
+  font-family: var(--accent-font);
+  font-weight: bold;
+  color: var(--grey1) !important;
+  background-color: red;
 }

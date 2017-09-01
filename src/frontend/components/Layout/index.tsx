@@ -13,7 +13,7 @@ const s = require('./styles.css')
 
 const NavBtn = ({url, title, name}: {url: string; title: string; name: string}) =>
   <a href={url} id={`nav--${name}`}>
-    <button className={`pt-button pt-minimal pt-icon-${name}`}>
+    <button className={`pt-button pt-minimal ${s['nav-button']}`}>
       {title}
     </button>
   </a>
@@ -34,7 +34,7 @@ const Nav = ({displayName, username}: ILayout) =>
 const LayoutComponent = ({displayName, username, children}: ILayout) =>
   <div className={s['top-level-wrapper']}>
     {displayName && <Nav {...{displayName, username}} />}
-    <main style={{paddingBottom: '24px', marginTop: '24px'}}>
+    <main style={{paddingBottom: '24px', paddingTop: '24px'}}>
       {children}
     </main>
   </div>
