@@ -1,4 +1,4 @@
-import exceptionMonitoring from './analytics/exceptionMonitoring'
+import exceptionMonitoring from './analytics/ravenSentryMonitoring'
 import heapAnalytics from './analytics/heapAnalytics'
 import Routes from './routes'
 
