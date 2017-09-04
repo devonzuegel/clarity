@@ -7,6 +7,7 @@ import * as page from 'page'
 import * as GoogleAnalytics from '~/frontend/analytics/googleAnalytics'
 import store from '~/frontend/redux/store'
 import NotFoundPage from '~/frontend/pages/NotFound'
+import DocumentTitle from '~/frontend/components/DocumentTitle'
 
 export const route = (path: string, ...callbacks: PageJS.Callback[]) => {
   page(path, GoogleAnalytics.middleware, ...callbacks)
@@ -25,9 +26,9 @@ export const isLoggedIn = (_context: PageJS.Context, next: () => any) => {
 export const render = (c: JSX.Element) => {
   const reduxComponent = (
     <Provider store={store}>
-      <div>
+      <DocumentTitle>
         {c}
-      </div>
+      </DocumentTitle>
     </Provider>
   )
   ReactDOM.render(reduxComponent, document.getElementById('root'))

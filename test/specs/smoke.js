@@ -5,7 +5,7 @@ module.exports = {
     browser
       .url(getUrl()) // Go to home page
       .assert.visible('#root')
-      .assert.title('') // TODO: Add title
+      .assert.title('Clarity')
   },
   after: browser => browser.end(),
 }

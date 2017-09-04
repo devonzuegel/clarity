@@ -9,6 +9,7 @@ import {ErrorMessage} from '~/frontend/components/ErrorMessage'
 import {IAction} from '~/frontend/redux/actions/auth'
 import {Field} from '~/frontend/components/Field'
 import Layout from '~/frontend/stories/Layout'
+import DocumentTitle from '~/frontend/components/DocumentTitle'
 
 export type IProps = {
   facebookId: string
@@ -57,24 +58,26 @@ class New extends React.Component<IProps, IState> {
   render() {
     return (
       <Layout>
-        {this.state.error &&
-          <ErrorMessage msg={this.state.error} id="new-post--user-msg" />}
-        <Form iteration={{}} onSubmit={this.onSubmit} buttonText="Create" />
-        <br />
-        <p>
-          Story link after publishing: &nbsp;
-          <code>
-            thoughts.devonzuegel.com/@{this.props.username}/{this.state.slug || 'auto-generated'}
-          </code>
-        </p>
-        <div style={{maxWidth: '60%'}}>
-          <Field
-            value={this.state.slug || ''}
-            label=""
-            onChange={this.updateSlug}
-            id="new-post--slug"
-          />
-        </div>
+        <DocumentTitle title="New post">
+          {this.state.error &&
+            <ErrorMessage msg={this.state.error} id="new-post--user-msg" />}
+          <Form iteration={{}} onSubmit={this.onSubmit} buttonText="Create" />
+          <br />
+          <p>
+            Story link after publishing: &nbsp;
+            <code>
+              thoughts.devonzuegel.com/@{this.props.username}/{this.state.slug || 'auto-generated'}
+            </code>
+          </p>
+          <div style={{maxWidth: '60%'}}>
+            <Field
+              value={this.state.slug || ''}
+              label=""
+              onChange={this.updateSlug}
+              id="new-post--slug"
+            />
+          </div>
+        </DocumentTitle>
       </Layout>
     )
   }

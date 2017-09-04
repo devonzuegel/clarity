@@ -6,6 +6,7 @@ import {NoPosts} from '~/frontend/components/NoPosts'
 import {Post, IPost} from '~/frontend/components/Post'
 import Wrapper from '~/frontend/components/Wrapper'
 import Layout from '~/frontend/stories/Layout'
+import DocumentTitle from '~/frontend/components/DocumentTitle'
 
 interface IUser {posts: IPost[]}
 
@@ -53,11 +54,13 @@ class ShowUser extends React.Component<{username: string}, IState> {
     }
     return (
       <Layout>
-        <Wrapper>
-          <div id="posts-list">
-            {posts.map(Post)}
-          </div>
-        </Wrapper>
+        <DocumentTitle title={this.props.username}>
+          <Wrapper>
+            <div id="posts-list">
+              {posts.map(Post)}
+            </div>
+          </Wrapper>
+        </DocumentTitle>
       </Layout>
     )
   }
