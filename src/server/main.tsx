@@ -15,16 +15,20 @@ import {serveFrontend} from './serveFrontend'
 import {sequelize} from './db'
 import {setupSession} from './session'
 
-const {LOCAL_ENVS} = require('./config/environments')
-const config = require('./config/index.js')
+const {LOCAL_ENVS} = require('~/server/config/environments')
 const logger = new Hermes({name: 'server'})
+import config from '~/server/config'
 
 const app = newApp([
   a => a.use(require('helmet')()),
   monitorExceptions(config),
   setupSession, // Must happen before initializing the API
   http,
-  Passport.setup(config),
+  Passport.setup({
+    clientID: config.clientID,
+    clientSecret: config.clientSecret,
+    callbackURL: config.callbackURL,
+  }),
 ])
 
 if (R.contains(config.env, LOCAL_ENVS)) {

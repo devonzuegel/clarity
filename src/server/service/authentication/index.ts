@@ -25,6 +25,7 @@ const signInCallback = (
 
 const setupFacebookStrategy = (options: IPassportConfig) => {
   const fbStrategy = new Facebook.Strategy(options, (_t, _rt, profile, done) => {
+    console.log(profile)
     signInCallback(profile, done)
   })
   passport.use(fbStrategy)
