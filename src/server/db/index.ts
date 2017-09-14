@@ -6,7 +6,8 @@ import PostModel, {IPostModel} from '~/server/db/models/post'
 import IterationModel, {IIterationModel} from '~/server/db/models/iteration'
 
 import c from '~/server/db/config'
-const database_url = require('../config/index.js').database_url
+import config from '~/server/config/index.typed'
+// const database_url = require('../config/index.js').database_url
 
 interface IModels {
   User: IUserModel
@@ -25,11 +26,7 @@ class Database {
     const _Sequelize = Sequelize as any
     _Sequelize.cls = cls.createNamespace('sequelize-transaction')
 
-    if (database_url) {
-      this.sequelize = new _Sequelize(database_url, c)
-    } else {
-      this.sequelize = new _Sequelize(c.database, c.username, c.password, c)
-    }
+    this.sequelize = new _Sequelize(config.database_url, c)
 
     this.models = {
       User: UserModel(this.sequelize),
