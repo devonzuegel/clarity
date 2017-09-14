@@ -5,7 +5,7 @@ import UserModel, {IUserModel} from '~/server/db/models/user'
 import PostModel, {IPostModel} from '~/server/db/models/post'
 import IterationModel, {IIterationModel} from '~/server/db/models/iteration'
 
-import c from './config'
+import c from '~/server/db/config'
 const database_url = require('../config/index.js').database_url
 
 interface IModels {
@@ -28,7 +28,7 @@ class Database {
     if (database_url) {
       this.sequelize = new _Sequelize(database_url, c)
     } else {
-      this.sequelize = new _Sequelize(c.database, c.facebookId, c.password, c)
+      this.sequelize = new _Sequelize(c.database, c.username, c.password, c)
     }
 
     this.models = {

@@ -16,7 +16,8 @@ import {sequelize} from './db'
 import {setupSession} from './session'
 
 const {LOCAL_ENVS} = require('./config/environments')
-const config = require('./config/index.js')
+
+import config from '~/server/config/index.typed'
 const logger = new Hermes({name: 'server'})
 
 const app = newApp([
