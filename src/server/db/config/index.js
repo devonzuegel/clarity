@@ -8,3 +8,5 @@
 const appConfig = require('../../config')
 
 module.exports = appConfig.db
+
+// TODO: simplify me (probalby can remove this file entirely)
