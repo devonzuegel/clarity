@@ -122,23 +122,15 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
+    "moduleFileExtensions": ["ts", "tsx", "js"],
     "moduleNameMapper": {
       "~/(.*)": "<rootDir>/src/$1"
     },
-    "moduleDirectories": [
-      "node_modules"
-    ],
+    "moduleDirectories": ["node_modules"],
     "transform": {
       "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "coveragePathIgnorePatterns": [
-      ".*\\.mock\\.(ts|tsx)$"
-    ],
+    "coveragePathIgnorePatterns": [".*\\.mock\\.(ts|tsx)$"],
     "testRegex": ".*\\.(ut|it)\\.(ts|tsx)$"
   }
 }

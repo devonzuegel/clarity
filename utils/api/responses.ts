@@ -43,8 +43,10 @@ export const sendRequest = async (request: Promise<Response>) => {
 }
 
 export const buildQuery = (v: {[k: string]: any}) =>
-  R.keys(v).filter(k => v[k]).reduce((soFar, k, i) => {
-    const delimeter = i === 0 ? '?' : '&'
-    const value = v[k]
-    return soFar + delimeter + k + '=' + value
-  }, '')
+  R.keys(v)
+    .filter(k => v[k])
+    .reduce((soFar, k, i) => {
+      const delimeter = i === 0 ? '?' : '&'
+      const value = v[k]
+      return soFar + delimeter + k + '=' + value
+    }, '')
