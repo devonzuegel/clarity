@@ -2,6 +2,8 @@
 
 ## Getting started ##
 
+This is a test.
+
 ### Set up ###
 
 1. Clone this repo, and then in the root directory create a `.env` file containing:
@@ -46,7 +48,7 @@ Unit and integration test files are named `module-name.ut.ts` and `module-name.i
 
 Functional tests and corresponding test helpers can be found in `test/functional`. At some point, I'd like to consolidate these into the same naming convention as the unit and integration tests, by having them in `module-name.ft.ts`, but NightmareJS was flakey as hell and it wasn't worth the effort at the time. Someday...
 
-Here's a useful post about the definitions of each test type and finding the boundaries between them: https://hackernoon.com/low-effort-high-value-integration-tests-in-redux-apps-d3a590bd9fd5. 
+Here's a useful post about the definitions of each test type and finding the boundaries between them: https://hackernoon.com/low-effort-high-value-integration-tests-in-redux-apps-d3a590bd9fd5.
 
 ## Testing ##
 
@@ -77,7 +79,7 @@ Here's a useful post about the definitions of each test type and finding the bou
 
 There are several linting rules that can cause CI to fail. Here's a non-comprehensive list (you can find the rest [here](https://github.com/devonzuegel/clarity/blob/a3d5ba5c16a724712b04a18d3c528b4e2ff159a9/tasks/index.js#L9)):
 
-- Files don't conform to the [Prettier](https://github.com/prettier/prettier) code formatter 
+- Files don't conform to the [Prettier](https://github.com/prettier/prettier) code formatter
     - More info about setting up JsPrettier for Sublime above in "Set up"
 - Files contain `console.*`
     - The default console logger should only be used in debugging/development, so this ensures that they're cleaned up before committing to master
